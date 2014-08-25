@@ -1,9 +1,9 @@
 {
   "name": "eehNavigation",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "main": [
-    "navigation.css",
-    "navigation.js"
+    "src/navigation.css",
+    "src/navigation.js"
   ],
   "homepage": "https://github.com/ethanhann/eehNavigation",
   "authors": [
