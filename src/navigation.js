@@ -3,14 +3,14 @@ angular.module('template/eeh-navigation/navigation.html', [])
     $templateCache.put('template/eeh-navigation/navigation.html',
         '<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">' +
         '<div class="navbar-header"> ' +
-        '<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> ' +
+        '<button type="button" class="navbar-toggle" ng-click="isNavbarCollapsed = !isNavbarCollapsed"> ' +
         '<span class="sr-only">Toggle navigation</span> ' +
         '<span class="icon-bar"></span> ' +
         '<span class="icon-bar"></span> ' +
         '<span class="icon-bar"></span> ' +
         '</button> ' +
         '<a ng-if="navbarBrand.state" class="navbar-brand" ui-sref="{{ navbarBrand.state }}" href="#">{{ navbarBrand.text }}</a> ' +
-        '</div> ' +
+        '</div>' +
         '<ul class="nav navbar-top-links navbar-right">' +
         '<li class="dropdown" ng-repeat="dropdown in navbarDropdowns">' +
         '<a class="dropdown-toggle" data-toggle="dropdown" href="#">' +
@@ -28,6 +28,7 @@ angular.module('template/eeh-navigation/navigation.html', [])
         '</ul> ' +
         '</li> ' +
         '</ul> ' +
+        '<div collapse="isNavbarCollapsed">' +
         '<div class="navbar-default sidebar" role="navigation">' +
         '<div class="sidebar-nav navbar-collapse"> ' +
         '<ul class="nav"> ' +
@@ -45,7 +46,9 @@ angular.module('template/eeh-navigation/navigation.html', [])
         '</ul>' +
         '</div>' +
         '</div>' +
+        '</div>' +
         '</nav> ' +
+        '<div id="eeh-navigation-page-wrapper"><ng-transclude></ng-transclude></div>' +
         '<script type="text/ng-template" id="sidebar-menu-item.html">' +
         '<a ng-if="item.state" ui-sref="{{item.state}}" ui-sref-active="active">' +
         '<span class="fa fa-fw {{ item.iconClass}}"></span>' +
@@ -76,14 +79,47 @@ angular.module('eehNavigation', ['template/eeh-navigation/navigation.html'])
         };
     };
 })
-.directive('eehNavigation', function (eehNavigation) {
+.directive('eehNavigation', ['$window', 'eehNavigation', function ($window, eehNavigation) {
     return {
         restrict: 'AE',
+        transclude: true,
         templateUrl: 'template/eeh-navigation/navigation.html',
-        link: function (scope) {
+        link: function (scope, element) {
             scope.navbarBrand = eehNavigation.navbarBrand;
             scope.navbarDropdowns = eehNavigation.navbarDropdowns;
             scope.items = eehNavigation.sidebarItems;
+            scope.isNavbarCollapsed = false;
+
+            var windowElement = angular.element($window);
+            windowElement.bind('resize', function () {
+                scope.$apply();
+            });
+
+            var getWindowDimensions = function () {
+                return {
+                    height: windowElement.height(),
+                    width: windowElement.width(),
+                    innerHeight: windowElement.innerHeight(),
+                    innerWidth: windowElement.innerWidth()
+                };
+            };
+
+            var topOffset = 50;
+            scope.$watch(getWindowDimensions, function (newValue) {
+                var width = (newValue.innerWidth > 0) ? newValue.innerWidth : $window.screen.width;
+                if (width < 768) {
+                    scope.isNavbarCollapsed = true;
+                    topOffset = 100; // 2-row-menu
+                } else {
+                    scope.isNavbarCollapsed = false;
+                }
+                var height = (newValue.innerHeight > 0) ? newValue.innerHeight : $window.screen.height;
+                height = height - topOffset;
+                if (height < 1) height = 1;
+                if (height > topOffset) {
+                    element.find("#eeh-navigation-page-wrapper").css("min-height", (height) + "px");
+                }
+            }, true);
         }
     }
-});
+}]);

@@ -1,13 +1,12 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <button type="button" class="navbar-toggle" ng-click="isNavbarCollapsed = !isNavbarCollapsed">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a ng-if="navbarBrand.state"
-           class="navbar-brand" ui-sref="{{ navbarBrand.state }}" href="#">{{ navbarBrand.text }}</a>
+        <a ng-if="navbarBrand.state" class="navbar-brand" ui-sref="{{ navbarBrand.state }}" href="#">{{ navbarBrand.text }}</a>
     </div>
 
     <ul class="nav navbar-top-links navbar-right">
@@ -30,24 +29,27 @@
         </li>
     </ul>
 
-    <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
-            <ul class="nav">
-                <li class="sidebar-search">
-                    <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                    </div>
-                </li>
-                <li ng-repeat="item in items" ng-include="'sidebar-menu-item.html'"></li>
-            </ul>
+    <div collapse="isNavbarCollapsed">
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                        </div>
+                    </li>
+                    <li ng-repeat="item in items" ng-include="'sidebar-menu-item.html'"></li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
+<div id="eeh-navigation-page-wrapper"><ng-transclude></ng-transclude></div>
 
 <script type="text/ng-template" id="sidebar-menu-item.html">
     <a ng-if="item.state" ui-sref="{{item.state}}" ui-sref-active="active">
