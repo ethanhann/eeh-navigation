@@ -48,7 +48,7 @@ angular.module('template/eeh-navigation/navigation.html', [])
         '</div>' +
         '</div>' +
         '</nav> ' +
-        '<div id="eeh-navigation-page-wrapper"><ng-transclude></ng-transclude></div>' +
+        '<div id="eeh-navigation-page-wrapper" ng-transclude></div>' +
         '<script type="text/ng-template" id="sidebar-menu-item.html">' +
         '<a ng-if="item.state" ui-sref="{{item.state}}" ui-sref-active="active">' +
         '<span class="fa fa-fw {{ item.iconClass}}"></span>' +
