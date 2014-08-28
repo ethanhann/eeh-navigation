@@ -1,15 +1,16 @@
 {
-  "name": "eehNavigation",
-  "version": "1.0.2",
+  "name": "eeh-navigation",
+  "version": "2.0.1",
   "main": [
-    "src/navigation.css",
-    "src/navigation.js"
+    "dist/navigation.css",
+    "dist/navigation.js",
+    "dist/navigation.tpl.js"
   ],
-  "homepage": "https://github.com/ethanhann/eehNavigation",
+  "homepage": "https://github.com/ethanhann/eeh-navigation",
   "authors": [
     "Ethan Hann <ethanhann@gmail.com>"
   ],
-  "description": "An AngularJS Bootstrap navigation directive.",
+  "description": "A data-driven AngularJS Bootstrap navigation directive.",
   "keywords": [
     "AngularJS",
     "Bootstrap",
