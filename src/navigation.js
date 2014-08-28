@@ -1,4 +1,4 @@
-angular.module('eehNavigation')
+angular.module('eehNavigation', [])
 .provider('eehNavigation', function () {
     var self = this;
     self.sidebarItems = [];
