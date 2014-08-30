@@ -1,11 +1,17 @@
 angular.module('eehNavigation', [])
 .provider('eehNavigation', function () {
     var self = this;
+    self.sidebarSearch = {
+        isVisible: true,
+        model: '',
+        click: function () {}
+    };
     self.sidebarItems = [];
     self.navbarBrand = {};
     self.navbarDropdowns = [];
     self.$get = function () {
         return {
+            sidebarSearch: self.sidebarSearch,
             navbarBrand: self.navbarBrand,
             navbarDropdowns: self.navbarDropdowns,
             sidebarItems: self.sidebarItems
@@ -21,6 +27,7 @@ angular.module('eehNavigation', [])
             scope.navbarBrand = eehNavigation.navbarBrand;
             scope.navbarDropdowns = eehNavigation.navbarDropdowns;
             scope.items = eehNavigation.sidebarItems;
+            scope.sidebarSearch = eehNavigation.sidebarSearch;
             scope.isNavbarCollapsed = false;
 
             var windowElement = angular.element($window);
