@@ -135,4 +135,12 @@
         padding: 0 30px;
         border-left: 1px solid #e7e7e7;
     }
+
+    .sidebar.sidebar-text-collapsed {
+        width: 50px;
+    }
+
+    #eeh-navigation-page-wrapper.sidebar-text-collapsed {
+        margin-left: 50px;
+    }
 }

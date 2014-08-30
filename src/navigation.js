@@ -38,6 +38,7 @@ angular.module('eehNavigation', [])
             };
 
             var topOffset = 50;
+            var transcludedWrapper = element.find('#eeh-navigation-page-wrapper');
             scope.$watch(getWindowDimensions, function (newValue) {
                 if (angular.isUndefined(newValue)) {
                     return;
@@ -53,7 +54,7 @@ angular.module('eehNavigation', [])
                 height = height - topOffset;
                 if (height < 1) height = 1;
                 if (height > topOffset) {
-                    element.find("#eeh-navigation-page-wrapper").css("min-height", (height) + "px");
+                    transcludedWrapper.css('min-height', (height) + 'px');
                 }
             }, true);
 
@@ -66,6 +67,14 @@ angular.module('eehNavigation', [])
                 }
                 return true;
             };
+
+            scope.isSidebarTextCollapsed = false;
+            scope.toggleSidebarTextCollapse = function() {
+                scope.isSidebarTextCollapsed = !scope.isSidebarTextCollapsed;
+                transcludedWrapper.toggleClass('sidebar-text-collapsed');
+                element.find('.sidebar').toggleClass('sidebar-text-collapsed');
+                element.find('.sidebar .menu-item-text').toggleClass('hidden');
+            }
         }
     }
 }]);
