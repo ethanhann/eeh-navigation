@@ -25,6 +25,9 @@
                     <a ng-if="item.click" ng-click="item.click()">
                         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
                     </a>
+                    <a ng-if="item.href" ng-href="{{item.href}}">
+                        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+                    </a>
                 </li>
             </ul>
         </li>
@@ -57,6 +60,9 @@
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
     </a>
     <a ng-if="item.click" ng-click="item.click()">
+        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+    </a>
+    <a ng-if="item.href" ng-href="{{item.href}}">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
     </a>
     <a ng-if="!item.state && item.children"
