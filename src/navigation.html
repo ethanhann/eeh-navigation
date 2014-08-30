@@ -60,9 +60,9 @@
        ng-click="item.isCollapsed = !item.isCollapsed">
         <span class="fa fa-fw {{ item.iconClass}}"></span>
         <span> {{ item.text }}</span>
-        <span class="pull-right fa fa-fw" ng-class="item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'"></span>
+        <span class="navbar-right sidebar-arrow fa fa-fw" ng-class="item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'"></span>
     </a>
-    <ul ng-if="!item.state && item.children" collapse="item.isCollapsed" class="nav nav-third-level">
+    <ul ng-if="!item.state && item.children" collapse="item.isCollapsed" class="nav">
         <li ng-repeat="item in item.children" ng-include="'sidebar-menu-item.html'"></li>
     </ul>
 </script>

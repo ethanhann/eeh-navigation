@@ -90,6 +90,10 @@
     padding-left: 52px;
 }
 
+.sidebar .sidebar-arrow {
+    line-height: 1.5em;
+}
+
 @media(min-width:768px) {
     .sidebar {
         z-index: 1;
