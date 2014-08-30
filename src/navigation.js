@@ -39,6 +39,9 @@ angular.module('eehNavigation', [])
 
             var topOffset = 50;
             scope.$watch(getWindowDimensions, function (newValue) {
+                if (angular.isUndefined(newValue)) {
+                    return;
+                }
                 var width = (newValue.innerWidth > 0) ? newValue.innerWidth : $window.screen.width;
                 if (width < 768) {
                     scope.isNavbarCollapsed = true;

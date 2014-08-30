@@ -15,18 +15,19 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
     "        <li class=\"dropdown\" ng-repeat=\"dropdown in navbarDropdowns\">\n" +
-    "            <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">\n" +
+    "            <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
     "                <span class=\"fa fa-user fa-fw\"></span>\n" +
     "                <span> {{ dropdown.text }}</span>\n" +
     "                <span class=\"fa fa-caret-down\"></span>\n" +
     "            </a>\n" +
-    "            <ul class=\"dropdown-menu dropdown-user\">\n" +
+    "            <ul class=\"dropdown-menu\">\n" +
     "                <li ng-repeat=\"item in dropdown.children\" ng-class=\"{'divider': item.isDivider}\">\n" +
     "                    <a ng-if=\"!item.isDivider && item.state\"\n" +
-    "                       ui-sref=\"{{ item.state }}\"\n" +
-    "                       href=\"#\">\n" +
-    "                        <span class=\"fa fa-fw {{ item.iconClass }}\"></span>\n" +
-    "                        <span> {{ item.text }}</span>\n" +
+    "                       ui-sref=\"{{ item.state }}\">\n" +
+    "                        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\n" +
+    "                    </a>\n" +
+    "                    <a ng-if=\"item.click\" ng-click=\"item.click()\">\n" +
+    "                        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "            </ul>\n" +
@@ -47,7 +48,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "                        </span>\n" +
     "                        </div>\n" +
     "                    </li>\n" +
-    "                    <li ng-repeat=\"item in items\" ng-include=\"'sidebar-menu-item.html'\"></li>\n" +
+    "                    <li ng-repeat=\"item in items\" ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"></li>\n" +
     "                </ul>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -55,21 +56,28 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "</nav>\n" +
     "<div id=\"eeh-navigation-page-wrapper\" ng-transclude></div>\n" +
     "\n" +
-    "<script type=\"text/ng-template\" id=\"sidebar-menu-item.html\">\n" +
+    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/sidebar-menu-item.html\">\n" +
     "    <a ng-if=\"item.state\" ui-sref=\"{{item.state}}\" ui-sref-active=\"active\">\n" +
-    "        <span class=\"fa fa-fw {{ item.iconClass}}\"></span>\n" +
-    "        <span> {{ item.text }}</span>\n" +
+    "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"item.click\" ng-click=\"item.click()\">\n" +
+    "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\n" +
     "    </a>\n" +
     "    <a ng-if=\"!item.state && item.children\"\n" +
     "       ng-click=\"item.isCollapsed = !item.isCollapsed\">\n" +
-    "        <span class=\"fa fa-fw {{ item.iconClass}}\"></span>\n" +
-    "        <span> {{ item.text }}</span>\n" +
-    "        <span class=\"pull-right fa fa-fw\" ng-class=\"item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'\"></span>\n" +
+    "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\n" +
+    "        <span class=\"navbar-right sidebar-arrow fa fa-fw\"\n" +
+    "              ng-class=\"item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'\"></span>\n" +
     "    </a>\n" +
-    "    <ul ng-if=\"!item.state && item.children\" collapse=\"item.isCollapsed\" class=\"nav nav-third-level\">\n" +
-    "        <li ng-repeat=\"item in item.children\" ng-include=\"'sidebar-menu-item.html'\"></li>\n" +
+    "    <ul ng-if=\"!item.state && item.children\" collapse=\"item.isCollapsed\" class=\"nav\">\n" +
+    "        <li ng-repeat=\"item in item.children\" ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"></li>\n" +
     "    </ul>\n" +
-    "</script>\n"
+    "</script>\n" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/menu-item-content.html\">\n" +
+    "    <span class=\"fa fa-fw {{ item.iconClass}}\"></span>\n" +
+    "    <span class=\"menu-item-text\"> {{ item.text }}</span>\n" +
+    "</script>"
   );
 
 }]);
