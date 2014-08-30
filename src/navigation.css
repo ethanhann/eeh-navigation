@@ -4,6 +4,14 @@
     background-color: #fff;
 }
 
+.eeh-navigation {
+    margin-bottom: 0;
+}
+
+.eeh-navigation a {
+    cursor: pointer;
+}
+
 .navbar-top-links li {
     display: inline-block;
 }
