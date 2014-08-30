@@ -89,7 +89,7 @@
         <span class="navbar-right sidebar-arrow fa fa-fw"
               ng-class="item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'"></span>
     </a>
-    <ul ng-if="!item.state && item.children" collapse="item.isCollapsed" class="nav">
+    <ul ng-if="!item.state && item.children && !isSidebarTextCollapsed" collapse="item.isCollapsed" class="nav">
         <li ng-repeat="item in item.children"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
             ng-if="isVisible(item)"></li>
