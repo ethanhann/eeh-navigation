@@ -47,6 +47,18 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
                     isDivider: true
                 },
                 {
+                    text: 'Visible',
+                    iconClass: 'fa-eye',
+                    href: 'http://example.com',
+                    isVisible: true
+                },
+                {
+                    text: 'Hidden',
+                    iconClass: 'fa-eye-slash',
+                    href: 'http://example.com',
+                    isVisible: false
+                },
+                {
                     text: 'Logout',
                     iconClass: 'fa-sign-out',
                     click: function () {
@@ -74,6 +86,18 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             text: 'Link to example.com',
             iconClass: 'fa-external-link',
             href: 'http://example.com'
+        },
+        {
+            text: 'Visible',
+            iconClass: 'fa-eye',
+            href: 'http://example.com',
+            isVisible: true
+        },
+        {
+            text: 'Hidden',
+            iconClass: 'fa-eye-slash',
+            href: 'http://example.com',
+            isVisible: false
         },
         {
             text: 'Alphabet',

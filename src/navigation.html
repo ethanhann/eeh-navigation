@@ -17,7 +17,8 @@
                 <span class="fa fa-caret-down"></span>
             </a>
             <ul class="dropdown-menu">
-                <li ng-repeat="item in dropdown.children" ng-class="{'divider': item.isDivider}">
+                <li ng-repeat="item in dropdown.children" ng-class="{'divider': item.isDivider}"
+                    ng-if="isVisible(item)">
                     <a ng-if="!item.isDivider && item.state"
                        ui-sref="{{ item.state }}">
                         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
@@ -47,7 +48,9 @@
                         </span>
                         </div>
                     </li>
-                    <li ng-repeat="item in items" ng-include="'template/eeh-navigation/sidebar-menu-item.html'"></li>
+                    <li ng-repeat="item in items"
+                        ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
+                        ng-if="isVisible(item)"></li>
                 </ul>
             </div>
         </div>
@@ -79,7 +82,9 @@
               ng-class="item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'"></span>
     </a>
     <ul ng-if="!item.state && item.children" collapse="item.isCollapsed" class="nav">
-        <li ng-repeat="item in item.children" ng-include="'template/eeh-navigation/sidebar-menu-item.html'"></li>
+        <li ng-repeat="item in item.children"
+            ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
+            ng-if="isVisible(item)"></li>
     </ul>
 </script>
 
