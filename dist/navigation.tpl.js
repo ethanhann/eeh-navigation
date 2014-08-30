@@ -42,19 +42,27 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "        <div class=\"navbar-default sidebar\" role=\"navigation\">\n" +
     "            <div class=\"sidebar-nav navbar-collapse\">\n" +
     "                <ul class=\"nav\">\n" +
-    "                    <li class=\"sidebar-search\">\n" +
+    "                    <li class=\"sidebar-search\" ng-show=\"!isSidebarTextCollapsed && sidebarSearch.isVisible\">\n" +
     "                        <div class=\"input-group custom-search-form\">\n" +
-    "                            <input type=\"text\" class=\"form-control\" placeholder=\"Search...\">\n" +
-    "                        <span class=\"input-group-btn\">\n" +
-    "                            <button class=\"btn btn-default\" type=\"button\">\n" +
-    "                                <i class=\"fa fa-search\"></i>\n" +
-    "                            </button>\n" +
-    "                        </span>\n" +
+    "                            <input type=\"text\" class=\"form-control\" placeholder=\"Search...\"\n" +
+    "                                   ng-model=\"sidebarSearch.model\"\n" +
+    "                                   ng-click=\"sidebarSearch.click()\">\n" +
+    "                            <span class=\"input-group-btn\">\n" +
+    "                                <button class=\"btn btn-default\" type=\"button\">\n" +
+    "                                    <i class=\"fa fa-search\"></i>\n" +
+    "                                </button>\n" +
+    "                            </span>\n" +
     "                        </div>\n" +
     "                    </li>\n" +
     "                    <li ng-repeat=\"item in items\"\n" +
     "                        ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
     "                        ng-if=\"isVisible(item)\"></li>\n" +
+    "                    <li ng-click=\"toggleSidebarTextCollapse()\">\n" +
+    "                        <a>\n" +
+    "                            <span class=\"fa fa-fw\"\n" +
+    "                                  ng-class=\"isSidebarTextCollapsed ? 'fa-arrow-right' : 'fa-arrow-left'\"></span>\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
     "                </ul>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -79,13 +87,13 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\">\n" +
     "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\n" +
     "    </a>\n" +
-    "    <a ng-if=\"!item.state && item.children\"\n" +
+    "    <a ng-if=\"!item.state && item.children && !isSidebarTextCollapsed\"\n" +
     "       ng-click=\"item.isCollapsed = !item.isCollapsed\">\n" +
     "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\n" +
     "        <span class=\"navbar-right sidebar-arrow fa fa-fw\"\n" +
     "              ng-class=\"item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'\"></span>\n" +
     "    </a>\n" +
-    "    <ul ng-if=\"!item.state && item.children\" collapse=\"item.isCollapsed\" class=\"nav\">\n" +
+    "    <ul ng-if=\"!item.state && item.children && !isSidebarTextCollapsed\" collapse=\"item.isCollapsed\" class=\"nav\">\n" +
     "        <li ng-repeat=\"item in item.children\"\n" +
     "            ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
     "            ng-if=\"isVisible(item)\"></li>\n" +
@@ -93,7 +101,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "</script>\n" +
     "\n" +
     "<script type=\"text/ng-template\" id=\"template/eeh-navigation/menu-item-content.html\">\n" +
-    "    <span class=\"fa fa-fw {{ item.iconClass}}\"></span>\n" +
+    "    <span class=\"menu-item-icon fa fa-fw {{ item.iconClass}}\"></span>\n" +
     "    <span class=\"menu-item-text\"> {{ item.text }}</span>\n" +
     "</script>\n"
   );

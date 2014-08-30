@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('eehNavigation', [])
 .provider('eehNavigation', function () {
     var self = this;
@@ -59,7 +61,9 @@ angular.module('eehNavigation', [])
                 }
                 var height = (newValue.innerHeight > 0) ? newValue.innerHeight : $window.screen.height;
                 height = height - topOffset;
-                if (height < 1) height = 1;
+                if (height < 1) {
+                    height = 1;
+                }
                 if (height > topOffset) {
                     transcludedWrapper.css('min-height', (height) + 'px');
                 }
@@ -81,7 +85,7 @@ angular.module('eehNavigation', [])
                 transcludedWrapper.toggleClass('sidebar-text-collapsed');
                 element.find('.sidebar').toggleClass('sidebar-text-collapsed');
                 element.find('.sidebar .menu-item-text').toggleClass('hidden');
-            }
+            };
         }
-    }
+    };
 }]);

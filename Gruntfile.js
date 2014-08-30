@@ -1,29 +1,35 @@
 'use strict';
 
 module.exports = function (grunt) {
-    grunt.loadNpmTasks('grunt-angular-templates');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
-        copy: {
-            src: {
-                files: [
-                    {
-                        cwd: 'src/',
-                        expand: true,
-                        src: ['*.js', '*.css'],
-                        dest: 'dist/',
-                        filter: 'isFile'
-                    }
-                ]
+        settings: {
+            src: 'src',
+            dist: 'dist',
+            libName: 'navigation'
+        },
+        exec: {
+            generateChangelog: {
+                cmd: function() {
+                    return 'git log --oneline --decorate --no-merges > changelog.txt';
+                }
             }
+        },
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc',
+                reporter: require('jshint-stylish')
+            },
+            src: [
+                '<%= settings.src %>/{,*/}*.js'
+            ]
         },
         ngtemplates: {
             eehNavigation: {
-                cwd: 'src/',
+                cwd: '<%= settings.src %>',
                 src: 'navigation.html',
-                dest: 'dist/navigation.tpl.js',
+                dest: '<%= settings.dist %>/navigation.tpl.js',
                 options:  {
                     url: function (url) {
                         return 'template/eeh-navigation/' + url;
@@ -31,18 +37,82 @@ module.exports = function (grunt) {
                 }
             }
         },
+        sass: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= settings.src %>/scss/',
+                    src: ['**/*.scss'],
+                    dest: '<%= settings.dist %>',
+                    ext: '.css'
+                }]
+            }
+        },
         watch: {
             src: {
                 files: ['src/*.*'],
-                tasks: ['copy', 'ngtemplates'],
+                tasks: ['build'],
                 options: {
                     spawn: false
                 }
             }
+        },
+        uglify: {
+            beautify: {
+                files: {
+                    '<%= settings.dist %>/<%= settings.libName %>.js': ['<%= settings.src %>/*.js']
+                },
+                options: {
+                    wrap: '<%= settings.libName %>',
+                    compress: false,
+                    mangle: false,
+                    beautify: true
+                }
+            },
+            minify: {
+                files: {
+                    '<%= settings.dist %>/<%= settings.libName %>.min.js': ['<%= settings.src %>/*.js'],
+                    '<%= settings.dist %>/<%= settings.libName %>.tpl.min.js': ['<%= settings.dist %>/*.tpl.js']
+                },
+                options: {
+                    wrap: '<%= settings.libName %>',
+                    sourceMap: true
+                }
+            }
+        },
+        versioncheck: {
+            options: {
+                hideUpToDate : true
+            }
         }
     });
 
-    grunt.registerTask('dev', ['watch:src']);
+    grunt.registerTask('dev', [
+        'watch:src'
+    ]);
 
-    grunt.registerTask('default', ['ngtemplates', 'copy']);
+    grunt.registerTask('health-check', [
+        'versioncheck'
+    ]);
+
+    grunt.registerTask('lint', [
+        'jshint:src'
+    ]);
+
+    grunt.registerTask('build', [
+        'sass:dist',
+        'lint',
+        'ngtemplates',
+        'uglify:beautify',
+        'uglify:minify'
+    ]);
+
+    grunt.registerTask('release', [
+        'build',
+        'exec:generateChangelog'
+    ]);
+
+    grunt.registerTask('default', [
+        'build'
+    ]);
 };

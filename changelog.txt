@@ -1,0 +1,31 @@
+0dfe01c (HEAD, origin/master, origin/HEAD, master) Hide children of menu items when text is collapsed
+e7ec7ca Wire up navbar search, and add isVisible property
+912ac76 Add preliminary support for sidebar text collapse
+e8789af Prepare for release
+21bd404 (tag: 1.2.0) Bump version
+8fe8866 Prepare for release
+554564b Add an isVisible property
+9f3230e Fix left border of transcluded content
+527e240 Add href support
+a650bc1 Refactor style and add anchor cursor style
+bfc2a3e Update doc style
+5ef8e7b Update README.md
+f8141de Move demo into main repo
+f73f581 Add dev task and update description
+f461f61 Vertically center sidebar collapse icon
+76af45d Update README.md
+e6a5ad0 Update README.md
+a1e3104 (tag: 1.1.3) Regenerate /dist
+acb237f (tag: 1.1.2) Fix version before release
+474de4a Add empty dep list
+4340eaa Automate template registration
+495eb08 Update README.md
+beca166 (tag: 1.1.1) Use ng-transclude as an attribute
+88c7fde (tag: 1.1.0) Rework nav collapse and add page-wrapper resize
+9dddb4f Add page wrapper class style
+83a8bb6 (tag: 1.0.2) Cache template inline for now
+58f8d4f Fix typo
+f2b34f3 Add FontAwesome as a dep
+05652c2 (tag: 1.0.1) Fix main paths
+6319b7e (tag: 1.0.0) Initial commit
+06f8dc0 Initial commit
