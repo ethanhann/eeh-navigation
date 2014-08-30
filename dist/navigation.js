@@ -56,6 +56,16 @@ angular.module('eehNavigation', [])
                     element.find("#eeh-navigation-page-wrapper").css("min-height", (height) + "px");
                 }
             }, true);
+
+            scope.isVisible = function (item) {
+                if (angular.isFunction(item.isVisible)) {
+                    return item.isVisible();
+                }
+                if (angular.isDefined(item.isVisible)) {
+                    return item.isVisible;
+                }
+                return true;
+            };
         }
     }
 }]);
