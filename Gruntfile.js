@@ -3,6 +3,7 @@
 module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.initConfig({
         copy: {
@@ -29,8 +30,19 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        watch: {
+            src: {
+                files: ['src/*.*'],
+                tasks: ['copy', 'ngtemplates'],
+                options: {
+                    spawn: false
+                }
+            }
         }
     });
+
+    grunt.registerTask('dev', ['watch:src']);
 
     grunt.registerTask('default', ['ngtemplates', 'copy']);
 };
