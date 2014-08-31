@@ -7,7 +7,7 @@ module.exports = function (grunt) {
         settings: {
             src: 'src',
             dist: 'dist',
-            libName: 'navigation'
+            libName: 'eeh-navigation'
         },
         exec: {
             generateChangelog: {
@@ -28,8 +28,8 @@ module.exports = function (grunt) {
         ngtemplates: {
             eehNavigation: {
                 cwd: '<%= settings.src %>',
-                src: 'navigation.html',
-                dest: '<%= settings.dist %>/navigation.tpl.js',
+                src: 'eeh-navigation.html',
+                dest: '<%= settings.dist %>/eeh-navigation.tpl.js',
                 options:  {
                     url: function (url) {
                         return 'template/eeh-navigation/' + url;
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
         },
         watch: {
             src: {
-                files: ['src/*.*'],
+                files: ['src/**/*.*'],
                 tasks: ['build'],
                 options: {
                     spawn: false
@@ -60,7 +60,10 @@ module.exports = function (grunt) {
         uglify: {
             beautify: {
                 files: {
-                    '<%= settings.dist %>/<%= settings.libName %>.js': ['<%= settings.src %>/*.js']
+                    '<%= settings.dist %>/<%= settings.libName %>.js': [
+                        '<%= settings.src %>/eeh-navigation.js',
+                        '<%= settings.src %>/eeh-navigation-*.js'
+                    ]
                 },
                 options: {
                     wrap: '<%= settings.libName %>',
@@ -101,13 +104,13 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'sass:dist',
-        'lint',
         'ngtemplates',
         'uglify:beautify',
         'uglify:minify'
     ]);
 
     grunt.registerTask('release', [
+        'lint',
         'build',
         'exec:generateChangelog'
     ]);

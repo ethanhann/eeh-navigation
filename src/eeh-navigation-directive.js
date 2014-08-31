@@ -1,34 +1,15 @@
 'use strict';
 
-angular.module('eehNavigation', [])
-.provider('eehNavigation', function () {
-    var self = this;
-    self.sidebarSearch = {
-        isVisible: true,
-        model: '',
-        click: function () {}
-    };
-    self.sidebarItems = [];
-    self.navbarBrand = {};
-    self.navbarDropdowns = [];
-    self.$get = function () {
-        return {
-            sidebarSearch: self.sidebarSearch,
-            navbarBrand: self.navbarBrand,
-            navbarDropdowns: self.navbarDropdowns,
-            sidebarItems: self.sidebarItems
-        };
-    };
-})
+angular.module('eehNavigation')
 .directive('eehNavigation', ['$window', 'eehNavigation', function ($window, eehNavigation) {
     return {
         restrict: 'AE',
         transclude: true,
-        templateUrl: 'template/eeh-navigation/navigation.html',
+        templateUrl: 'template/eeh-navigation/eeh-navigation.html',
         link: function (scope, element) {
             scope.navbarBrand = eehNavigation.navbarBrand;
-            scope.navbarDropdowns = eehNavigation.navbarDropdowns;
-            scope.items = eehNavigation.sidebarItems;
+            scope.navbarMenuItems = eehNavigation.navbarMenuItems();
+            scope.items = eehNavigation.sidebarMenuItems();
             scope.sidebarSearch = eehNavigation.sidebarSearch;
             scope.isNavbarCollapsed = false;
 
@@ -85,6 +66,25 @@ angular.module('eehNavigation', [])
                 transcludedWrapper.toggleClass('sidebar-text-collapsed');
                 element.find('.sidebar').toggleClass('sidebar-text-collapsed');
                 element.find('.sidebar .menu-item-text').toggleClass('hidden');
+            };
+
+            scope.hasChildren = function (item) {
+                for (var key in item) {
+                    if (item.hasOwnProperty(key) && angular.isObject(item[key])) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            scope.children = function (item) {
+                var children = [];
+                angular.forEach(item, function (property) {
+                    if (angular.isObject(property)) {
+                        children.push(property);
+                    }
+                });
+                return children;
             };
         }
     };
