@@ -9,6 +9,15 @@ var Navigation = function () {
     this.navbarBrand = {};
     this._navbarMenuItems = {};
     this._sidebarMenuItems = {};
+    this._toArray = function (items) {
+        var arr = [];
+        for (var key in items) {
+            if (items.hasOwnProperty(key)) {
+                arr.push(items[key]);
+            }
+        }
+        return arr;
+    };
 };
 
 /**
@@ -40,7 +49,7 @@ Navigation.prototype.sidebarMenuItems = function () {
     angular.forEach(this._sidebarMenuItems, function (config, name) {
         self.buildAncestorChain(name, items, config);
     });
-    return items;
+    return this._toArray(items);
 };
 
 Navigation.prototype.navbarMenuItem = function (name, config) {
@@ -54,7 +63,7 @@ Navigation.prototype.navbarMenuItems = function () {
     angular.forEach(this._navbarMenuItems, function (config, name) {
         self.buildAncestorChain(name, items, config);
     });
-    return items;
+    return this._toArray(items);
 };
 
 Navigation.prototype.$get = function () {

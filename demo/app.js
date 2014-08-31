@@ -74,7 +74,8 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
         .sidebarMenuItem('home', {
             text: 'Home',
             iconClass: 'fa-home',
-            state: 'demo.home'
+            state: 'demo.home',
+            weight: 0
         })
         .sidebarMenuItem('blank', {
             text: 'Blank',
