@@ -101,13 +101,13 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'sass:dist',
-        'lint',
         'ngtemplates',
         'uglify:beautify',
         'uglify:minify'
     ]);
 
     grunt.registerTask('release', [
+        'lint',
         'build',
         'exec:generateChangelog'
     ]);
