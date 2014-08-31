@@ -1,4 +1,5 @@
-0dfe01c (HEAD, origin/master, origin/HEAD, master) Hide children of menu items when text is collapsed
+c1ae679 (HEAD, origin/master, origin/HEAD, master) Expand build process
+0dfe01c Hide children of menu items when text is collapsed
 e7ec7ca Wire up navbar search, and add isVisible property
 912ac76 Add preliminary support for sidebar text collapse
 e8789af Prepare for release
