@@ -14,6 +14,10 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             url: '/',
             templateUrl: 'partials/home.html'
         })
+        .state('demo.blank', {
+            url: '/blank',
+            templateUrl: 'partials/blank.html'
+        })
         .state('demo.alpha', {
             url: '/alpha',
             templateUrl: 'partials/alpha.html'
@@ -69,50 +73,69 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
         }
     ];
 
-    eehNavigationProvider.sidebarItems = [
-        {
+    eehNavigationProvider
+        .sidebarMenuItem('home', {
             text: 'Home',
             iconClass: 'fa-home',
             state: 'demo.home'
-        },
-        {
+        })
+        .sidebarMenuItem('blank', {
+            text: 'Blank',
+            iconClass: 'fa-star',
+            state: 'demo.blank'
+        })
+        .sidebarMenuItem('click', {
             text: 'Click',
             iconClass: 'fa-asterisk',
             click: function () {
                 alert('Tada!');
             }
-        },
-        {
+        })
+        .sidebarMenuItem('external', {
             text: 'Link to example.com',
             iconClass: 'fa-external-link',
             href: 'http://example.com'
-        },
-        {
+        })
+        .sidebarMenuItem('visible', {
             text: 'Visible',
             iconClass: 'fa-eye',
             href: 'http://example.com',
             isVisible: true
-        },
-        {
+        })
+        .sidebarMenuItem('hidden', {
             text: 'Hidden',
             iconClass: 'fa-eye-slash',
             href: 'http://example.com',
             isVisible: false
-        },
-        {
-            text: 'Alphabet',
-            iconClass: 'fa-language',
-            isCollapsed: true,
-            children: [
-                {
-                    text: 'Alpha',
-                    state: 'demo.alpha'
-                },
-                {
-                    text: 'Beta',
-                    state: 'demo.beta'
-                }
-            ]
-        }
-    ];
+        })
+        .sidebarMenuItem('multilevel', {
+            text: 'Multi level',
+            iconClass: 'fa-sitemap',
+            isCollapsed: true
+        })
+        .sidebarMenuItem('multilevel.firstlevel1', {
+            text: 'First level - 1',
+            iconClass: 'fa-file-o',
+            state: 'demo.blank'
+        })
+        .sidebarMenuItem('multilevel.firstlevel2', {
+            text: 'First level - 2',
+            iconClass: 'fa-file-o',
+            state: 'demo.blank'
+        })
+        .sidebarMenuItem('multilevel.firstlevel3', {
+            text: 'First Level 3',
+            iconClass: 'fa-folder-o',
+            isCollapsed: false
+        })
+        .sidebarMenuItem('multilevel.firstlevel3.secondlevel1', {
+            text: 'Second level - 1',
+            iconClass: 'fa-file-o',
+            state: 'demo.blank'
+        })
+        .sidebarMenuItem('multilevel.firstlevel3.secondlevel2', {
+            text: 'Second level - 2',
+            iconClass: 'fa-file-o',
+            state: 'demo.blank'
+        });
 }]);

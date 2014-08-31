@@ -11,8 +11,39 @@ angular.module('eehNavigation', [])
     self.sidebarItems = [];
     self.navbarBrand = {};
     self.navbarDropdowns = [];
+    var sidebarMenuItems = {};
+    self.sidebarMenuItem = function (name, config) {
+        sidebarMenuItems[name] = config;
+        return self;
+    };
+    self.items = {};
+    self.buildAncestorChain = function (name, items, config) {
+        var keys = name.split('.');
+        if (name.length === 0 || keys.length === 0) {
+            return;
+        }
+        var key = keys.shift();
+        if (angular.isUndefined(items[key])) {
+            items[key] = keys.length === 0 ? config : {};
+            if (keys.length === 0) {
+                items[key] = config;
+            }
+        }
+        self.buildAncestorChain(keys.join('.'), items[key], config);
+    };
+
+    self.sidebarMenuItems = function () {
+        self.items = {};
+        angular.forEach(sidebarMenuItems, function (config, name) {
+            self.buildAncestorChain(name, self.items, config);
+        });
+        return self.items;
+    };
+
     self.$get = function () {
         return {
+            sidebarMenuItem: self.sidebarMenuItem,
+            sidebarMenuItems: self.sidebarMenuItems,
             sidebarSearch: self.sidebarSearch,
             navbarBrand: self.navbarBrand,
             navbarDropdowns: self.navbarDropdowns,
@@ -28,7 +59,7 @@ angular.module('eehNavigation', [])
         link: function (scope, element) {
             scope.navbarBrand = eehNavigation.navbarBrand;
             scope.navbarDropdowns = eehNavigation.navbarDropdowns;
-            scope.items = eehNavigation.sidebarItems;
+            scope.items = eehNavigation.sidebarMenuItems();
             scope.sidebarSearch = eehNavigation.sidebarSearch;
             scope.isNavbarCollapsed = false;
 
@@ -85,6 +116,25 @@ angular.module('eehNavigation', [])
                 transcludedWrapper.toggleClass('sidebar-text-collapsed');
                 element.find('.sidebar').toggleClass('sidebar-text-collapsed');
                 element.find('.sidebar .menu-item-text').toggleClass('hidden');
+            };
+
+            scope.hasChildren = function (item) {
+                for (var key in item) {
+                    if (item.hasOwnProperty(key) && angular.isObject(item[key])) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            scope.children = function (item) {
+                var children = [];
+                angular.forEach(item, function (property) {
+                    if (angular.isObject(property)) {
+                        children.push(property);
+                    }
+                });
+                return children;
             };
         }
     };
