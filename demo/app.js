@@ -32,46 +32,43 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
         state: 'demo.home'
     };
 
-    eehNavigationProvider.navbarDropdowns = [
-        {
+    eehNavigationProvider
+        .navbarMenuItem('user', {
             text: 'me',
+            iconClass: 'fa-user'
+        })
+        .navbarMenuItem('user.profile', {
+            text: 'User Profile',
             iconClass: 'fa-user',
-            children: [
-                {
-                    text: 'User Profile',
-                    iconClass: 'fa-user',
-                    state: 'demo.home'
-                },
-                {
-                    text: 'example.com',
-                    iconClass: 'fa-external-link',
-                    href: 'http://example.com'
-                },
-                {
-                    isDivider: true
-                },
-                {
-                    text: 'Visible',
-                    iconClass: 'fa-eye',
-                    href: 'http://example.com',
-                    isVisible: true
-                },
-                {
-                    text: 'Hidden',
-                    iconClass: 'fa-eye-slash',
-                    href: 'http://example.com',
-                    isVisible: false
-                },
-                {
-                    text: 'Logout',
-                    iconClass: 'fa-sign-out',
-                    click: function () {
-                        alert('faux log out');
-                    }
-                }
-            ]
-        }
-    ];
+            state: 'demo.home'
+        })
+        .navbarMenuItem('user.example-com', {
+            text: 'example.com',
+            iconClass: 'fa-external-link',
+            href: 'http://example.com'
+        })
+        .navbarMenuItem('user.divider1', {
+            isDivider: true
+        })
+        .navbarMenuItem('user.visible', {
+            text: 'Visible',
+            iconClass: 'fa-eye',
+            href: 'http://example.com',
+            isVisible: true
+        })
+        .navbarMenuItem('user.hidden', {
+            text: 'Hidden',
+            iconClass: 'fa-eye-slash',
+            href: 'http://example.com',
+            isVisible: false
+        })
+        .navbarMenuItem('user.logout', {
+            text: 'Logout',
+            iconClass: 'fa-sign-out',
+            click: function () {
+                alert('faux log out');
+            }
+        });
 
     eehNavigationProvider
         .sidebarMenuItem('home', {

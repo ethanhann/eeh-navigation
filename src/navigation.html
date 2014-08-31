@@ -10,14 +10,14 @@
     </div>
 
     <ul class="nav navbar-top-links navbar-right">
-        <li class="dropdown" ng-repeat="dropdown in navbarDropdowns">
+        <li class="dropdown" ng-repeat="navbarMenuItem in navbarMenuItems">
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <span class="fa fa-user fa-fw"></span>
-                <span> {{ dropdown.text }}</span>
+                <span> {{ navbarMenuItem.text }}</span>
                 <span class="fa fa-caret-down"></span>
             </a>
-            <ul class="dropdown-menu">
-                <li ng-repeat="item in dropdown.children" ng-class="{'divider': item.isDivider}"
+            <ul ng-if="hasChildren(navbarMenuItem)" class="dropdown-menu">
+                <li ng-repeat="item in children(navbarMenuItem)" ng-class="{'divider': item.isDivider}"
                     ng-if="isVisible(item)">
                     <a ng-if="!item.isDivider && item.state"
                        ui-sref="{{ item.state }}">

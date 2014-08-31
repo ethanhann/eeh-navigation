@@ -8,15 +8,11 @@ angular.module('eehNavigation', [])
         model: '',
         click: function () {}
     };
-    self.sidebarItems = [];
     self.navbarBrand = {};
-    self.navbarDropdowns = [];
-    var sidebarMenuItems = {};
-    self.sidebarMenuItem = function (name, config) {
-        sidebarMenuItems[name] = config;
-        return self;
-    };
-    self.items = {};
+
+    /**
+     * Recursively map a flat array of menu items to a nested object suitable to generate HTML lists from.
+     */
     self.buildAncestorChain = function (name, items, config) {
         var keys = name.split('.');
         if (name.length === 0 || keys.length === 0) {
@@ -32,22 +28,49 @@ angular.module('eehNavigation', [])
         self.buildAncestorChain(keys.join('.'), items[key], config);
     };
 
-    self.sidebarMenuItems = function () {
-        self.items = {};
-        angular.forEach(sidebarMenuItems, function (config, name) {
-            self.buildAncestorChain(name, self.items, config);
+    // ------------------------------------------------------------------------
+    // Navbar items
+    // ------------------------------------------------------------------------
+    var _navbarMenuItems = {};
+    self.navbarMenuItem = function (name, config) {
+        _navbarMenuItems[name] = config;
+        return self;
+    };
+    self.navbarMenuItems = function () {
+        var items = {};
+        angular.forEach(_navbarMenuItems, function (config, name) {
+            self.buildAncestorChain(name, items, config);
         });
-        return self.items;
+        return items;
+    };
+    // ------------------------------------------------------------------------
+    // Sidebar items
+    // ------------------------------------------------------------------------
+    var _sidebarMenuItems = {};
+    self.sidebarMenuItem = function (name, config) {
+        _sidebarMenuItems[name] = config;
+        return self;
+    };
+    self.sidebarMenuItems = function () {
+        var items = {};
+        angular.forEach(_sidebarMenuItems, function (config, name) {
+            self.buildAncestorChain(name, items, config);
+        });
+        return items;
     };
 
+    // ------------------------------------------------------------------------
+    // API
+    // ------------------------------------------------------------------------
     self.$get = function () {
         return {
             sidebarMenuItem: self.sidebarMenuItem,
             sidebarMenuItems: self.sidebarMenuItems,
             sidebarSearch: self.sidebarSearch,
             navbarBrand: self.navbarBrand,
-            navbarDropdowns: self.navbarDropdowns,
-            sidebarItems: self.sidebarItems
+            navbarMenuItem: self.navbarMenuItem,
+            navbarMenuItems: self.navbarMenuItems
+
         };
     };
 })
@@ -58,7 +81,7 @@ angular.module('eehNavigation', [])
         templateUrl: 'template/eeh-navigation/navigation.html',
         link: function (scope, element) {
             scope.navbarBrand = eehNavigation.navbarBrand;
-            scope.navbarDropdowns = eehNavigation.navbarDropdowns;
+            scope.navbarMenuItems = eehNavigation.navbarMenuItems();
             scope.items = eehNavigation.sidebarMenuItems();
             scope.sidebarSearch = eehNavigation.sidebarSearch;
             scope.isNavbarCollapsed = false;
