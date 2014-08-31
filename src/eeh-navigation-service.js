@@ -70,4 +70,4 @@ Navigation.prototype.$get = function () {
     return this;
 };
 
-angular.module('eehNavigation').provider('eehNavigation', Navigation)
+angular.module('eehNavigation').provider('eehNavigation', Navigation);
