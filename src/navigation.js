@@ -1,79 +1,68 @@
 'use strict';
 
-angular.module('eehNavigation', [])
-.provider('eehNavigation', function () {
-    var self = this;
-    self.sidebarSearch = {
+var Navigation = function () {
+    this.sidebarSearch = {
         isVisible: true,
         model: '',
         click: function () {}
     };
-    self.navbarBrand = {};
+    this.navbarBrand = {};
+    this._navbarMenuItems = {};
+    this._sidebarMenuItems = {};
+};
 
-    /**
-     * Recursively map a flat array of menu items to a nested object suitable to generate HTML lists from.
-     */
-    self.buildAncestorChain = function (name, items, config) {
-        var keys = name.split('.');
-        if (name.length === 0 || keys.length === 0) {
-            return;
+/**
+ * Recursively map a flat array of menu items to a nested object suitable to generate HTML lists from.
+ */
+Navigation.prototype.buildAncestorChain = function (name, items, config) {
+    var keys = name.split('.');
+    if (name.length === 0 || keys.length === 0) {
+        return;
+    }
+    var key = keys.shift();
+    if (angular.isUndefined(items[key])) {
+        items[key] = keys.length === 0 ? config : {};
+        if (keys.length === 0) {
+            items[key] = config;
         }
-        var key = keys.shift();
-        if (angular.isUndefined(items[key])) {
-            items[key] = keys.length === 0 ? config : {};
-            if (keys.length === 0) {
-                items[key] = config;
-            }
-        }
-        self.buildAncestorChain(keys.join('.'), items[key], config);
-    };
+    }
+    this.buildAncestorChain(keys.join('.'), items[key], config);
+};
 
-    // ------------------------------------------------------------------------
-    // Navbar items
-    // ------------------------------------------------------------------------
-    var _navbarMenuItems = {};
-    self.navbarMenuItem = function (name, config) {
-        _navbarMenuItems[name] = config;
-        return self;
-    };
-    self.navbarMenuItems = function () {
-        var items = {};
-        angular.forEach(_navbarMenuItems, function (config, name) {
-            self.buildAncestorChain(name, items, config);
-        });
-        return items;
-    };
-    // ------------------------------------------------------------------------
-    // Sidebar items
-    // ------------------------------------------------------------------------
-    var _sidebarMenuItems = {};
-    self.sidebarMenuItem = function (name, config) {
-        _sidebarMenuItems[name] = config;
-        return self;
-    };
-    self.sidebarMenuItems = function () {
-        var items = {};
-        angular.forEach(_sidebarMenuItems, function (config, name) {
-            self.buildAncestorChain(name, items, config);
-        });
-        return items;
-    };
+Navigation.prototype.sidebarMenuItem = function (name, config) {
+    this._sidebarMenuItems[name] = config;
+    return this;
+};
 
-    // ------------------------------------------------------------------------
-    // API
-    // ------------------------------------------------------------------------
-    self.$get = function () {
-        return {
-            sidebarMenuItem: self.sidebarMenuItem,
-            sidebarMenuItems: self.sidebarMenuItems,
-            sidebarSearch: self.sidebarSearch,
-            navbarBrand: self.navbarBrand,
-            navbarMenuItem: self.navbarMenuItem,
-            navbarMenuItems: self.navbarMenuItems
+Navigation.prototype.sidebarMenuItems = function () {
+    var items = {};
+    var self = this;
+    angular.forEach(this._sidebarMenuItems, function (config, name) {
+        self.buildAncestorChain(name, items, config);
+    });
+    return items;
+};
 
-        };
-    };
-})
+Navigation.prototype.navbarMenuItem = function (name, config) {
+    this._navbarMenuItems[name] = config;
+    return this;
+};
+
+Navigation.prototype.navbarMenuItems = function () {
+    var items = {};
+    var self = this;
+    angular.forEach(this._navbarMenuItems, function (config, name) {
+        self.buildAncestorChain(name, items, config);
+    });
+    return items;
+};
+
+Navigation.prototype.$get = function () {
+    return this;
+};
+
+angular.module('eehNavigation', [])
+.provider('eehNavigation', Navigation)
 .directive('eehNavigation', ['$window', 'eehNavigation', function ($window, eehNavigation) {
     return {
         restrict: 'AE',
