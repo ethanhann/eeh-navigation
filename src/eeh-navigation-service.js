@@ -1,4 +1,5 @@
 'use strict';
+/* global MenuItem */
 
 var NavigationService = function () {
     this.sidebarSearch = {
