@@ -7,10 +7,16 @@ var NavigationDirective = function ($window, eehNavigation) {
         templateUrl: 'template/eeh-navigation/eeh-navigation.html',
         link: function (scope, element) {
             scope.navbarBrand = eehNavigation.navbarBrand;
-            scope.navbarMenuItems = eehNavigation.navbarMenuItems();
-            scope.items = eehNavigation.sidebarMenuItems();
             scope.sidebarSearch = eehNavigation.sidebarSearch;
             scope.isNavbarCollapsed = false;
+            scope._navbarMenuItems = eehNavigation._navbarMenuItems;
+            scope.$watch('_navbarMenuItems', function () {
+                scope.navbarMenuItems = eehNavigation.navbarMenuItems();
+            });
+            scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
+            scope.$watch('_sidebarMenuItems', function () {
+                scope.sidebarMenuItems = eehNavigation.sidebarMenuItems();
+            });
 
             var windowElement = angular.element($window);
             windowElement.bind('resize', function () {

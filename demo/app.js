@@ -10,19 +10,24 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             abstract: true,
             templateUrl: 'app.html'
         })
-        .state('demo.home', {
+        .state('demo.authenticated', {
+            abstract: true,
+            controller: 'AuthenticatedCtrl',
+            templateUrl: 'authenticated/authenticated.html'
+        })
+        .state('demo.authenticated.home', {
             url: '/',
             templateUrl: 'partials/home.html'
         })
-        .state('demo.blank', {
+        .state('demo.authenticated.blank', {
             url: '/blank',
             templateUrl: 'partials/blank.html'
         })
-        .state('demo.alpha', {
+        .state('demo.authenticated.alpha', {
             url: '/alpha',
             templateUrl: 'partials/alpha.html'
         })
-        .state('demo.beta', {
+        .state('demo.authenticated.beta', {
             url: '/beta',
             templateUrl: 'partials/beta.html'
         });
@@ -40,7 +45,7 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
         .navbarMenuItem('user.profile', {
             text: 'User Profile',
             iconClass: 'fa-user',
-            state: 'demo.home'
+            state: 'demo.authenticated.home'
         })
         .navbarMenuItem('user.example-com', {
             text: 'example.com',
@@ -61,33 +66,23 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             iconClass: 'fa-eye-slash',
             href: 'http://example.com',
             isVisible: false
-        })
-        .navbarMenuItem('user.logout', {
-            text: 'Logout',
-            iconClass: 'fa-sign-out',
-            click: function () {
-                alert('faux log out');
-            }
         });
 
     eehNavigationProvider
         .sidebarMenuItem('home', {
             text: 'Home',
             iconClass: 'fa-home',
-            state: 'demo.home',
+            state: 'demo.authenticated.home',
             weight: 0
         })
         .sidebarMenuItem('blank', {
             text: 'Blank',
             iconClass: 'fa-star',
-            state: 'demo.blank'
+            state: 'demo.authenticated.blank'
         })
         .sidebarMenuItem('click', {
             text: 'Click',
-            iconClass: 'fa-asterisk',
-            click: function () {
-                alert('Tada!');
-            }
+            iconClass: 'fa-asterisk'
         })
         .sidebarMenuItem('external', {
             text: 'Link to example.com',
@@ -114,12 +109,12 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
         .sidebarMenuItem('multilevel.firstlevel1', {
             text: 'First level - 1',
             iconClass: 'fa-file-o',
-            state: 'demo.blank'
+            state: 'demo.authenticated.blank'
         })
         .sidebarMenuItem('multilevel.firstlevel2', {
             text: 'First level - 2',
             iconClass: 'fa-file-o',
-            state: 'demo.blank'
+            state: 'demo.authenticated.blank'
         })
         .sidebarMenuItem('multilevel.firstlevel3', {
             text: 'First Level 3',
@@ -129,11 +124,11 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
         .sidebarMenuItem('multilevel.firstlevel3.secondlevel1', {
             text: 'Second level - 1',
             iconClass: 'fa-file-o',
-            state: 'demo.blank'
+            state: 'demo.authenticated.blank'
         })
         .sidebarMenuItem('multilevel.firstlevel3.secondlevel2', {
             text: 'Second level - 2',
             iconClass: 'fa-file-o',
-            state: 'demo.blank'
+            state: 'demo.authenticated.blank'
         });
 }]);

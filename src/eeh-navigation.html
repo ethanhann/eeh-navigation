@@ -50,7 +50,7 @@
                             </span>
                         </div>
                     </li>
-                    <li ng-repeat="item in items | orderBy:'weight'"
+                    <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
                         ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
                         ng-if="item._isVisible()"></li>
                     <li ng-click="toggleSidebarTextCollapse()">
