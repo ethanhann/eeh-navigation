@@ -54,7 +54,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "                            </span>\n" +
     "                        </div>\n" +
     "                    </li>\n" +
-    "                    <li ng-repeat=\"item in items | orderBy:'weight'\"\n" +
+    "                    <li ng-repeat=\"item in sidebarMenuItems | orderBy:'weight'\"\n" +
     "                        ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
     "                        ng-if=\"item._isVisible()\"></li>\n" +
     "                    <li ng-click=\"toggleSidebarTextCollapse()\">\n" +

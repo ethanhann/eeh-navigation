@@ -10,10 +10,16 @@
             templateUrl: "template/eeh-navigation/eeh-navigation.html",
             link: function(scope, element) {
                 scope.navbarBrand = eehNavigation.navbarBrand;
-                scope.navbarMenuItems = eehNavigation.navbarMenuItems();
-                scope.items = eehNavigation.sidebarMenuItems();
                 scope.sidebarSearch = eehNavigation.sidebarSearch;
                 scope.isNavbarCollapsed = false;
+                scope._navbarMenuItems = eehNavigation._navbarMenuItems;
+                scope.$watch("_navbarMenuItems", function() {
+                    scope.navbarMenuItems = eehNavigation.navbarMenuItems();
+                });
+                scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
+                scope.$watch("_sidebarMenuItems", function() {
+                    scope.sidebarMenuItems = eehNavigation.sidebarMenuItems();
+                });
                 var windowElement = angular.element($window);
                 windowElement.bind("resize", function() {
                     scope.$apply();
@@ -127,6 +133,9 @@
         this.buildAncestorChain(keys.join("."), items[key], config);
     };
     NavigationService.prototype.sidebarMenuItem = function(name, config) {
+        if (angular.isUndefined(config)) {
+            return this._sidebarMenuItems[name];
+        }
         this._sidebarMenuItems[name] = new MenuItem(config);
         return this;
     };
@@ -139,6 +148,9 @@
         return this._toArray(items);
     };
     NavigationService.prototype.navbarMenuItem = function(name, config) {
+        if (angular.isUndefined(config)) {
+            return this._navbarMenuItems[name];
+        }
         this._navbarMenuItems[name] = new MenuItem(config);
         return this;
     };

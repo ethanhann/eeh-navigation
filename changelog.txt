@@ -1,4 +1,7 @@
-24cf397 (HEAD, origin/master, origin/HEAD, master) Ignore MenuItem
+a649b5c (HEAD, origin/master, origin/HEAD, master) Re-render menu when menu items change
+6b49964 Allow menu items to be retrieved
+e271dcf (tag: 2.0.1) Prepare for release
+24cf397 Ignore MenuItem
 ce90627 Add a MenuItem class and factor out functions from directive
 5397bde (tag: 2.0.0) Prepare for release
 7d42fda Fix CS issue
