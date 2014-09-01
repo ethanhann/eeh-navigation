@@ -1,4 +1,7 @@
-7d42fda (HEAD, origin/master, origin/HEAD, master) Fix CS issue
+24cf397 (HEAD, origin/master, origin/HEAD, master) Ignore MenuItem
+ce90627 Add a MenuItem class and factor out functions from directive
+5397bde (tag: 2.0.0) Prepare for release
+7d42fda Fix CS issue
 0282574 (origin/flat-config, flat-config) Add ability to weight menu items (heavier items sink)
 97c4cc1 Separate js into multiple files and prefix lib files with eeh-
 e43336a Refactor navigation service

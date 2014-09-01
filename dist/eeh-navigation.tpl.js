@@ -20,9 +20,9 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "                <span> {{ navbarMenuItem.text }}</span>\n" +
     "                <span class=\"fa fa-caret-down\"></span>\n" +
     "            </a>\n" +
-    "            <ul ng-if=\"hasChildren(navbarMenuItem)\" class=\"dropdown-menu\">\n" +
-    "                <li ng-repeat=\"item in children(navbarMenuItem)\" ng-class=\"{'divider': item.isDivider}\"\n" +
-    "                    ng-if=\"isVisible(item)\">\n" +
+    "            <ul ng-if=\"navbarMenuItem.hasChildren()\" class=\"dropdown-menu\">\n" +
+    "                <li ng-repeat=\"item in navbarMenuItem.children()\" ng-class=\"{'divider': item.isDivider}\"\n" +
+    "                    ng-if=\"item._isVisible()\">\n" +
     "                    <a ng-if=\"!item.isDivider && item.state\"\n" +
     "                       ui-sref=\"{{ item.state }}\">\n" +
     "                        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\n" +
@@ -56,7 +56,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "                    </li>\n" +
     "                    <li ng-repeat=\"item in items | orderBy:'weight'\"\n" +
     "                        ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
-    "                        ng-if=\"isVisible(item)\"></li>\n" +
+    "                        ng-if=\"item._isVisible()\"></li>\n" +
     "                    <li ng-click=\"toggleSidebarTextCollapse()\">\n" +
     "                        <a>\n" +
     "                            <span class=\"fa fa-fw\"\n" +
@@ -87,16 +87,16 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\">\n" +
     "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\n" +
     "    </a>\n" +
-    "    <a ng-if=\"!item.state && hasChildren(item) && !isSidebarTextCollapsed\"\n" +
+    "    <a ng-if=\"!item.state && item.hasChildren() && !isSidebarTextCollapsed\"\n" +
     "       ng-click=\"item.isCollapsed = !item.isCollapsed\">\n" +
     "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\n" +
     "        <span class=\"navbar-right sidebar-arrow fa fa-fw\"\n" +
     "              ng-class=\"item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'\"></span>\n" +
     "    </a>\n" +
-    "    <ul ng-if=\"!item.state && hasChildren(item) && !isSidebarTextCollapsed\" collapse=\"item.isCollapsed\" class=\"nav\">\n" +
-    "        <li ng-repeat=\"item in children(item)\"\n" +
+    "    <ul ng-if=\"!item.state && item.hasChildren() && !isSidebarTextCollapsed\" collapse=\"item.isCollapsed\" class=\"nav\">\n" +
+    "        <li ng-repeat=\"item in item.children()\"\n" +
     "            ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
-    "            ng-if=\"isVisible(item)\"></li>\n" +
+    "            ng-if=\"item._isVisible()\"></li>\n" +
     "    </ul>\n" +
     "</script>\n" +
     "\n" +
