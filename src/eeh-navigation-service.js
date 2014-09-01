@@ -40,6 +40,9 @@ NavigationService.prototype.buildAncestorChain = function (name, items, config) 
 };
 
 NavigationService.prototype.sidebarMenuItem = function (name, config) {
+    if (angular.isUndefined(config)) {
+        return this._sidebarMenuItems[name];
+    }
     this._sidebarMenuItems[name] = new MenuItem(config);
     return this;
 };
@@ -54,6 +57,9 @@ NavigationService.prototype.sidebarMenuItems = function () {
 };
 
 NavigationService.prototype.navbarMenuItem = function (name, config) {
+    if (angular.isUndefined(config)) {
+        return this._navbarMenuItems[name];
+    }
     this._navbarMenuItems[name] = new MenuItem(config);
     return this;
 };
