@@ -1,6 +1,6 @@
 'use strict';
 
-var Navigation = function () {
+var NavigationService = function () {
     this.sidebarSearch = {
         isVisible: true,
         model: '',
@@ -23,7 +23,7 @@ var Navigation = function () {
 /**
  * Recursively map a flat array of menu items to a nested object suitable to generate HTML lists from.
  */
-Navigation.prototype.buildAncestorChain = function (name, items, config) {
+NavigationService.prototype.buildAncestorChain = function (name, items, config) {
     var keys = name.split('.');
     if (name.length === 0 || keys.length === 0) {
         return;
@@ -38,12 +38,12 @@ Navigation.prototype.buildAncestorChain = function (name, items, config) {
     this.buildAncestorChain(keys.join('.'), items[key], config);
 };
 
-Navigation.prototype.sidebarMenuItem = function (name, config) {
-    this._sidebarMenuItems[name] = config;
+NavigationService.prototype.sidebarMenuItem = function (name, config) {
+    this._sidebarMenuItems[name] = new MenuItem(config);
     return this;
 };
 
-Navigation.prototype.sidebarMenuItems = function () {
+NavigationService.prototype.sidebarMenuItems = function () {
     var items = {};
     var self = this;
     angular.forEach(this._sidebarMenuItems, function (config, name) {
@@ -52,12 +52,12 @@ Navigation.prototype.sidebarMenuItems = function () {
     return this._toArray(items);
 };
 
-Navigation.prototype.navbarMenuItem = function (name, config) {
-    this._navbarMenuItems[name] = config;
+NavigationService.prototype.navbarMenuItem = function (name, config) {
+    this._navbarMenuItems[name] = new MenuItem(config);
     return this;
 };
 
-Navigation.prototype.navbarMenuItems = function () {
+NavigationService.prototype.navbarMenuItems = function () {
     var items = {};
     var self = this;
     angular.forEach(this._navbarMenuItems, function (config, name) {
@@ -66,8 +66,8 @@ Navigation.prototype.navbarMenuItems = function () {
     return this._toArray(items);
 };
 
-Navigation.prototype.$get = function () {
+NavigationService.prototype.$get = function () {
     return this;
 };
 
-angular.module('eehNavigation').provider('eehNavigation', Navigation);
+angular.module('eehNavigation').provider('eehNavigation', NavigationService);

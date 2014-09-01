@@ -16,9 +16,9 @@
                 <span> {{ navbarMenuItem.text }}</span>
                 <span class="fa fa-caret-down"></span>
             </a>
-            <ul ng-if="hasChildren(navbarMenuItem)" class="dropdown-menu">
-                <li ng-repeat="item in children(navbarMenuItem)" ng-class="{'divider': item.isDivider}"
-                    ng-if="isVisible(item)">
+            <ul ng-if="navbarMenuItem.hasChildren()" class="dropdown-menu">
+                <li ng-repeat="item in navbarMenuItem.children()" ng-class="{'divider': item.isDivider}"
+                    ng-if="item._isVisible()">
                     <a ng-if="!item.isDivider && item.state"
                        ui-sref="{{ item.state }}">
                         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
@@ -52,7 +52,7 @@
                     </li>
                     <li ng-repeat="item in items | orderBy:'weight'"
                         ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
-                        ng-if="isVisible(item)"></li>
+                        ng-if="item._isVisible()"></li>
                     <li ng-click="toggleSidebarTextCollapse()">
                         <a>
                             <span class="fa fa-fw"
@@ -83,16 +83,16 @@
     <a ng-if="item.href" ng-href="{{item.href}}">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
     </a>
-    <a ng-if="!item.state && hasChildren(item) && !isSidebarTextCollapsed"
+    <a ng-if="!item.state && item.hasChildren() && !isSidebarTextCollapsed"
        ng-click="item.isCollapsed = !item.isCollapsed">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
         <span class="navbar-right sidebar-arrow fa fa-fw"
               ng-class="item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'"></span>
     </a>
-    <ul ng-if="!item.state && hasChildren(item) && !isSidebarTextCollapsed" collapse="item.isCollapsed" class="nav">
-        <li ng-repeat="item in children(item)"
+    <ul ng-if="!item.state && item.hasChildren() && !isSidebarTextCollapsed" collapse="item.isCollapsed" class="nav">
+        <li ng-repeat="item in item.children()"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
-            ng-if="isVisible(item)"></li>
+            ng-if="item._isVisible()"></li>
     </ul>
 </script>
 
