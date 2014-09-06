@@ -75,13 +75,13 @@ bower install eeh-navigation
     </code></pre>
     <h3 id="include-css">Include CSS</h3>
     <pre><code class="html">
-&lt;link rel="stylesheet" href="bower_components/eeh-navigation/dist/navigation.css"/&gt;
+&lt;link rel="stylesheet" href="bower_components/eeh-navigation/dist/eeh-navigation.css"/&gt;
     </code></pre>
 
     <h3 id="include-javascript">Include JavaScript</h3>
     <pre><code class="html">
-&lt;script src="bower_components/eeh-navigation/dist/navigation.js"&gt;&lt;/script&gt;
-&lt;script src="bower_components/eeh-navigation/dist/navigation.tpl.js"&gt;&lt;/script&gt;
+&lt;script src="bower_components/eeh-navigation/dist/eeh-navigation.js"&gt;&lt;/script&gt;
+&lt;script src="bower_components/eeh-navigation/dist/eeh-navigation.tpl.js"&gt;&lt;/script&gt;
     </code></pre>
 
     <h3 id="configuration-example">Configuration Example</h3>
@@ -143,15 +143,14 @@ eehNavigationProvider
     <pre><code class="javascript">
 $stateProvider
     .state('myState', {
-        abstract: true,
-        controller: 'AuthenticatedCtrl',
-        templateUrl: 'authenticated/authenticated.html'
+        controller: 'MyCtrl',
+        templateUrl: 'my-template.html'
     });
 // ...
 eehNavigationProvider
     .sidebarMenuItem('foo', {
         text: 'My Sidebar Item',
-        state: 'myState'
+        state: 'myState'    // This is a ui-router state.
     });
     </code></pre>
 
