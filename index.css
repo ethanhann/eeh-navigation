@@ -1,0 +1,110 @@
+body {
+    position: relative;
+}
+
+h1, h2, h3, h4 {
+    padding-top: .6em;
+}
+
+h1 {
+    color: #008800;
+    border-left: solid 4px #008800;
+    padding-left: .2em;
+    line-height: 40px;
+}
+
+h2 {
+    border-left: solid 4px blue;
+    padding-left: .2em;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+h3 {
+    border-left: solid 4px red;
+    padding-left: .3em;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+h4 {
+    border-left: solid 4px gold;
+    padding-left: .3em;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.lead-small {
+    font-size: 16px;
+    font-style: italic;
+}
+
+/* External Link Toolbar */
+
+.external-link-toolbar {
+    line-height: 40px;
+    margin-top: 3em;
+}
+
+/* Affixed sidebar */
+#sidebar .affix {
+    position: fixed;
+    top: 0;
+    width: 360px;
+}
+
+#sidebar .affix-top {
+    position: static;
+}
+
+
+/* First level of sidebar */
+#sidebar > ul {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-top:    10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* All levels of sidebar */
+#sidebar ul > li > a {
+    display: block;
+    color: #716b7a;
+    padding: 5px 20px;
+}
+#sidebar ul > li > a:hover,
+#sidebar ul > li > a:focus {
+    color: #00AA00;
+    text-decoration: none;
+    font-weight: bold;
+    border-left: solid 1px #DDDDDD;
+    background-color: transparent;
+}
+
+#sidebar ul > .active > a,
+#sidebar ul > .active:hover > a,
+#sidebar ul > .active:focus > a {
+    color: #008800;
+    font-weight: bold;
+    border-left: solid 1px #008800;
+    background-color: transparent;;
+}
+
+/* Second level of sidebar */
+#sidebar > ul > li > ul {
+    /*display: none;*/
+}
+
+#sidebar > ul > li.active > ul {
+    display:block;
+}
+#sidebar > ul > li > ul {
+    margin-bottom: 8px;
+}
+#sidebar > ul > li > ul > li > a {
+    padding-top:    3px;
+    padding-bottom: 3px;
+    padding-left: 30px;
+    font-size: 90%;
+}
