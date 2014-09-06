@@ -41,19 +41,33 @@
 <body>
 <div class="container container-small">
     <h1>eeh-navigation</h1>
+    <ul class="list-unstyled list-inline">
+        <li><a href="examples/ui-router.html">Examples</a></li>
+        <li><a href="demo/index.html">Demo</a></li>
+        <li><a href="https://github.com/ethanhann/eeh-navigation">Code</a></li>
+    </ul>
     <div class="lead lead-small">A data-driven AngularJS, Bootstrap navigation directive.</div>
-
-    <h2>Demo</h2>
-    <p>
-        A live demo can be found <a href="demo/index.html">here.</a>
-    </p>
-
-    <h2>Getting started</h2>
-    <h3>Install (via bower)</h3>
+        <h2>About</h2>
+        <p>The <em>eeh-navigation</em> component provides a data-driven, responsive navbar and sidebar AngularJS directive.
+        The directive supports navigation of UI-Router states, ng-click binding, and plain old href links.</p>
+        <h2>Dependencies</h2>
+        <p>The directive will not work at all without the following dependencies.</p>
+        <ul>
+            <li>jQuery</li>
+            <li>AngularJS</li>
+            <li>Angular Bootstrap</li>
+            <li>Twitter Bootstrap (CSS only)</li>
+        </ul>
+        <p>The following dependencies are optional. The directive will work without them.</p>
+        <ul>
+            <li>Angular UI Router</li>
+            <li>FontAwesome</li>
+        </ul>
+        <h2>Getting started</h2>
+        <h3>Install (via bower)</h3>
     <pre><code class="bash">
 bower install eeh-navigation
     </code></pre>
-
     <h3>Include CSS</h3>
     <pre><code class="html">
 &lt;link rel="stylesheet" href="bower_components/eeh-navigation/dist/navigation.css"/&gt;
@@ -67,146 +81,153 @@ bower install eeh-navigation
 
     <h3>Configuration Example</h3>
     <pre><code class="javascript">
-angular.module('demo', [
-    'eehNavigation',
-    'ui.bootstrap',
-    'ui.router'
-]).config(['$stateProvider', '$urlRouterProvider', 'eehNavigationProvider',
-function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
-    $urlRouterProvider.otherwise('/');
-
-    // Setup states/routes with ui-router.
-    $stateProvider
-        .state('demo', {
-            abstract: true,
-            templateUrl: 'app.html'
-        })
-        .state('demo.authenticated', {
-            abstract: true,
-            controller: 'AuthenticatedCtrl',
-            templateUrl: 'authenticated/authenticated.html'
-        })
-        .state('demo.authenticated.home', {
-            url: '/',
-            templateUrl: 'partials/home.html'
-        })
-        .state('demo.authenticated.blank', {
-            url: '/blank',
-            templateUrl: 'partials/blank.html'
-        })
-        .state('demo.authenticated.alpha', {
-            url: '/alpha',
-            templateUrl: 'partials/alpha.html'
-        })
-        .state('demo.authenticated.beta', {
-            url: '/beta',
-            templateUrl: 'partials/beta.html'
-        });
-
-    // Configure navbar branding and the state to navigate to when clicked.
+angular.module('myApp', ['eehNavigation']).config(['eehNavigationProvider',
+function (eehNavigationProvider) {
+    // Configure navbar branding and the link to navigate to when clicked.
     eehNavigationProvider.navbarBrand = {
-        text: 'eeh-navigation demo',
-        state: 'demo.home'
+        text: 'My Product',
+        href: '/home'
     };
 
-    // Add a drowndown menu to the navbar.
+    // Add a drowndown menu for user links to the navbar.
     eehNavigationProvider
         .navbarMenuItem('user', {
-            text: 'me',
+            text: 'Me',
             iconClass: 'fa-user'
         })
         .navbarMenuItem('user.profile', {
             text: 'User Profile',
             iconClass: 'fa-user',
-            state: 'demo.authenticated.home'
-        })
-        .navbarMenuItem('user.example-com', {
-            text: 'example.com',
-            iconClass: 'fa-external-link',
-            href: 'http://example.com'
-        })
-        .navbarMenuItem('user.divider1', {
-            isDivider: true
-        })
-        .navbarMenuItem('user.visible', {
-            text: 'Visible',
-            iconClass: 'fa-eye',
-            href: 'http://example.com',
-            isVisible: true
-        })
-        .navbarMenuItem('user.hidden', {
-            text: 'Hidden',
-            iconClass: 'fa-eye-slash',
-            href: 'http://example.com',
-            isVisible: false
+            href: '/user-profile'
         });
 
-    // Add configurable, and nestable sidebar items.
+    // Add a menu item for /home to the sidebar.
     eehNavigationProvider
         .sidebarMenuItem('home', {
             text: 'Home',
             iconClass: 'fa-home',
-            state: 'demo.authenticated.home',
-            weight: 0
-        })
-        .sidebarMenuItem('blank', {
-            text: 'Blank',
-            iconClass: 'fa-star',
-            state: 'demo.authenticated.blank'
-        })
-        .sidebarMenuItem('click', {
-            text: 'Click',
-            iconClass: 'fa-asterisk'
-        })
-        .sidebarMenuItem('external', {
-            text: 'Link to example.com',
-            iconClass: 'fa-external-link',
-            href: 'http://example.com'
-        })
-        .sidebarMenuItem('visible', {
-            text: 'Visible',
-            iconClass: 'fa-eye',
-            href: 'http://example.com',
-            isVisible: true
-        })
-        .sidebarMenuItem('hidden', {
-            text: 'Hidden',
-            iconClass: 'fa-eye-slash',
-            href: 'http://example.com',
-            isVisible: false
-        })
-        .sidebarMenuItem('multilevel', {
-            text: 'Multi level',
-            iconClass: 'fa-sitemap',
-            isCollapsed: true
-        })
-        .sidebarMenuItem('multilevel.firstlevel1', {
-            text: 'First level - 1',
-            iconClass: 'fa-file-o',
-            state: 'demo.authenticated.blank'
-        })
-        .sidebarMenuItem('multilevel.firstlevel2', {
-            text: 'First level - 2',
-            iconClass: 'fa-file-o',
-            state: 'demo.authenticated.blank'
-        })
-        .sidebarMenuItem('multilevel.firstlevel3', {
-            text: 'First Level 3',
-            iconClass: 'fa-folder-o',
-            isCollapsed: false
-        })
-        .sidebarMenuItem('multilevel.firstlevel3.secondlevel1', {
-            text: 'Second level - 1',
-            iconClass: 'fa-file-o',
-            state: 'demo.authenticated.blank'
-        })
-        .sidebarMenuItem('multilevel.firstlevel3.secondlevel2', {
-            text: 'Second level - 2',
-            iconClass: 'fa-file-o',
-            state: 'demo.authenticated.blank'
+            href: '/home'
         });
 }]);
     </code></pre>
+
+    <h2>Advanced Configuration</h2>
+    <h3>Menu Item Actions</h3>
+    <p>There are three mutually exclusive, configurable menu item actions:
+        <strong>href</strong>, <strong>click</strong>, and <strong>state</strong>. These actions are available for both navbar and sidebar menu items.</p>
+    <h4>href</h4>
+    <p>A good old fashioned anchor link. This value is plugged into a ng-href attribute behind the scenes.</p>
+    <pre><code class="javascript">
+eehNavigationProvider
+    .sidebarMenuItem('mySidebarItem', {
+        text: 'My Sidebar Item',
+        href: '/my-sidebar-item'
+    });
+    </code></pre>
+    <h4>click</h4>
+    <p>A parameterless function. This value is plugged into a ng-click attribute behind the scenes.</p>
+    <pre><code class="javascript">
+eehNavigationProvider
+    .sidebarMenuItem('mySidebarItem', {
+        text: 'My Sidebar Item',
+        click: function () {}
+    });
+    </code></pre>
+    <h4>state</h4>
+    <p>The name of an Angular UI Router state. This value is plugged into an ui-sref attribute behind the scenes.</p>
+    <pre><code class="javascript">
+$stateProvider
+    .state('myState', {
+        abstract: true,
+        controller: 'AuthenticatedCtrl',
+        templateUrl: 'authenticated/authenticated.html'
+    });
+// ...
+eehNavigationProvider
+    .sidebarMenuItem('foo', {
+        text: 'My Sidebar Item',
+        state: 'myState'
+    });
+    </code></pre>
+
+    <h3>Icons</h3>
+    <p>Icons are optional.</p>
+    <h4>iconClass</h4>
+    <p>A CSS class that corresponds to an icon in a library like FontAwesome.</p>
+    <pre><code class="javascript">
+eehNavigationProvider
+    .sidebarMenuItem('mySidebarItem', {
+        text: 'My Sidebar Item',
+        href: '/my-sidebar-item'
+        iconClass: 'fa-wrench'
+    });
+    </code></pre>
+
+    <h3>Sidebar Menu Item Ordering</h3>
+    <p>Sidebar menu items are ordered based on their <strong>weight</strong>.</p>
+    <h4>weight</h4>
+    <p>An integer value. Items that are heavier (i.e. greater weight value) sink to the bottom.</p>
+    <pre><code class="javascript">
+eehNavigationProvider
+    .sidebarMenuItem('bottomSidebarItem', {
+        text: 'Bottom Sidebar Item',
+        href: '/bottom-sidebar-item'
+        weight: 1
+    })
+    .sidebarMenuItem('topSidebarItem', {
+        text: 'Top Sidebar Item',
+        href: '/top-sidebar-item'
+        weight: -1
+    });
+    </code></pre>
+    <h3>Nested Sidebar Menu Items</h3>
+    <p>Sidebar menu items can be nested by using a <strong>.</strong> in the first parameter of sidebarMenuItem.
+    If a menu item has children, do not assign a menu item action to it.</p>
+    <pre><code class="javascript">
+eehNavigationProvider
+    .sidebarMenuItem('root', { // The root level of the nested menu.
+        text: 'Root'
+    })
+    .sidebarMenuItem('root.foo', { // The first item under root.
+        text: 'Foo',
+        href: '/some/path'
+    })
+    .sidebarMenuItem('root.bar', { // The second item under root.
+        text: 'Bar',
+        href: '/some/path'
+    })
+    .sidebarMenuItem('root.baz', { // The third item under root.
+        text: 'Baz'
+    })
+    .sidebarMenuItem('root.baz.qux', { // The first item under root.baz
+        text: 'Quz',
+        href: '/some/path'
+    })
+    .sidebarMenuItem('root.baz.quux', { // The second item under root.baz
+        text: 'Quux',
+        href: '/some/path'
+    });
+    </code></pre>
+    <h4>isCollapsed</h4>
+    <p>Configure the collapse state of a parent menu item. Each parent in a nested hierarchy has an independent collapse state.</p>
+    <pre><code class="javascript">
+eehNavigationProvider
+    .sidebarMenuItem('root', {
+        text: 'Root',
+        isCollapsed: true
+    })
+    .sidebarMenuItem('root.foo', {
+        text: 'Foo',
+        href: '/some/path'
+    });
+    </code></pre>
+
+    <h3>Undocumented features.</h3>
+    <ul>
+        <li>Navbar dropdowns</li>
+        <li>Search input</li>
+        <li>Creating and accessing menu items in controllers.</li>
+    </ul>
 </div>
 
 <div class="text-center" style="padding: 3em;">
