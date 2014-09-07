@@ -45,8 +45,11 @@
                     <li><a href="#icons">Icons</a></li>
                     <li><a href="#sidebar-menu-item-ordering">Sidebar Menu Item Ordering</a></li>
                     <li><a href="#nested-sidebar-menu-items">Nested Sidebar Menu Items</a></li>
+                    <li><a href="#menu-item-visibility">Menu Item Visibility</a></li>
                 </ul>
             </li>
+
+            <li><a href="#accessing-menu-items">Accessing Menu Items</a></li>
             <li><a href="#undocumented-features">Undocumented Features</a></li>
         </ul>
     </div>
@@ -214,7 +217,7 @@ eehNavigationProvider
     });
     </code></pre>
     <h4>isCollapsed</h4>
-    <p>Configure the collapse state of a parent menu item. Each parent in a nested hierarchy has an independent collapse state.</p>
+    <p>A boolean value. Configure the collapse state of a parent menu item. Each parent in a nested hierarchy has an independent collapse state.</p>
     <pre><code class="javascript">
 eehNavigationProvider
     .sidebarMenuItem('root', {
@@ -227,12 +230,60 @@ eehNavigationProvider
     });
     </code></pre>
 
+    <h3 id="menu-item-visibility">Menu Item Visibility</h3>
+    <h4>isVisible</h4>
+    <p>A boolean value or callback function that returns a boolean value.</p>
+    <pre><code class="javascript">
+eehNavigationProvider
+    .sidebarMenuItem('myHiddenMenuItem', {
+        text: 'My Hidden Menu Item',
+        isVisible: false
+    });
+    </code></pre>
+    <p>It is often necessary to contextually hide or show menu items.
+        For example, it is common to hide an "admin" menu item for non-admins.
+        This would probably happen in a controller, hence the use of <strong>eehNavigation</strong> instead of
+        <strong>eehNavigationProvider</strong> in the following example.</p>
+    <pre><code class="javascript">
+var isAdmin = function () {
+    return user.hasRole('admin'); // We are going to assume user and user.hasRole are defined.
+};
+eehNavigation
+    .sidebarMenuItem('admin', {
+        text: 'Admin',
+        isVisible: isAdmin
+    });
+    </code></pre>
+
+    <h2 id="accessing-menu-items">Accessing Menu Items</h2>
+    <p>Menu items can be accessed where <strong>eehNavigation</strong> is available - namely in controllers, services, and directives.
+        Menu items are accessed by referencing the menu item name.
+    </p>
+    <pre><code class="javascript">
+angular.module('myApp')
+.controller('MyCtrl', ['eehNavigation', function (eehNavigation) {
+    // "myMenuItem" was defined somewhere else.
+    eehNavigation.sidebarMenuItem('myMenuItem').text = 'New Menu Item Text;
+}]);
+    </code></pre>
+    <p>It is possible to create a menu item in a controller, but it is not recommended.
+        Instead, create the menu item .config and only do minimal wiring in controllers or services.</p>
+    <pre><code class="javascript">
+// In .config, setup a logout menu item.
+eehNavigationProvider
+    .sidebarMenuItem('logout', {
+        text: 'Logout'
+    });
+// In a controller, set the click property of the menu item.
+eehNavigation.sidebarMenuItem('logout').click = function () {
+    // Call custom logout code (e.g. destroy a cookie, delete user object, send logout request to server).
+};
+    </code></pre>
+
     <h2 id="undocumented-features">Undocumented Features</h2>
     <ul>
         <li>Navbar dropdowns</li>
         <li>Search input</li>
-        <li>Menu item visibility</li>
-        <li>Creating and accessing menu items in controllers</li>
     </ul>
 </div>
 </div>
