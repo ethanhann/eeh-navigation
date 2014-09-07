@@ -1,9 +1,16 @@
 body {
     position: relative;
-    background-color: #00AA00;
+    background-color: #552A08;
 }
 
-.footer .jumbotron,
+
+.footer {
+    border-top: solid 1px #DDDDDD;
+    margin-top: 3em;
+    padding: 3em;
+}
+
+.footer,
 .container {
     background-color: #FFFFFF;
 }
@@ -26,29 +33,22 @@ h1 {
 }
 
 h2 {
-    border-left: solid 4px blue;
-    padding-left: .2em;
+    border-bottom: solid 2px #DDDDDD;
+    padding-bottom: .2em;
     font-size: 24px;
     line-height: 30px;
 }
 
 h3 {
-    border-left: solid 4px red;
-    padding-left: .3em;
+    border-bottom: dashed 2px #DDDDDD;
+    padding-bottom: .2em;
     font-size: 18px;
     line-height: 25px;
 }
 
 h4 {
-    border-left: solid 4px gold;
-    padding-left: .3em;
     font-size: 14px;
     line-height: 20px;
-}
-
-.lead-small {
-    font-size: 16px;
-    font-style: italic;
 }
 
 /* External Link Toolbar */
@@ -69,7 +69,6 @@ h4 {
     position: static;
 }
 
-
 /* First level of sidebar */
 #sidebar > ul {
     margin-top: 20px;
@@ -82,7 +81,7 @@ h4 {
 /* All levels of sidebar */
 #sidebar ul > li > a {
     display: block;
-    color: #716b7a;
+    color: #000000;
     padding: 5px 20px;
 }
 #sidebar ul > li > a:hover,
@@ -103,17 +102,16 @@ h4 {
     background-color: transparent;;
 }
 
-/* Second level of sidebar */
-#sidebar > ul > li > ul {
-    /*display: none;*/
-}
 
+/* Second Level */
 #sidebar > ul > li.active > ul {
     display:block;
 }
+
 #sidebar > ul > li > ul {
     margin-bottom: 8px;
 }
+
 #sidebar > ul > li > ul > li > a {
     padding-top:    3px;
     padding-bottom: 3px;
