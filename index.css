@@ -1,5 +1,17 @@
 body {
     position: relative;
+    background-color: #00AA00;
+}
+
+.footer {
+    background-color: #00AA00;
+}
+
+.container {
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 0px 5px 19px 0px rgba(50, 50, 50, 0.74);
+    -moz-box-shadow:    0px 5px 19px 0px rgba(50, 50, 50, 0.74);
+    box-shadow:         0px 5px 19px 0px rgba(50, 50, 50, 0.74);
 }
 
 h1, h2, h3, h4 {
