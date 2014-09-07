@@ -257,7 +257,7 @@ eehNavigation
 
     <h2 id="accessing-menu-items">Accessing Menu Items</h2>
     <p>Menu items can be accessed where <strong>eehNavigation</strong> is available - namely in controllers, services, and directives.
-        Menu items are accessed by referencing the menu item name.
+        Menu items are accessed by referencing the menu item name after injecting the <strong>eehNavigation</strong> service.
     </p>
     <pre><code class="javascript">
 angular.module('myApp')
@@ -266,15 +266,17 @@ angular.module('myApp')
     eehNavigation.sidebarMenuItem('myMenuItem').text = 'New Menu Item Text;
 }]);
     </code></pre>
-    <p>It is possible to create a menu item in a controller, but it is not recommended.
-        Instead, create the menu item .config and only do minimal wiring in controllers or services.</p>
+    <p>It is possible to create a menu item with the <strong>eehNavigation</strong> service, but it is not recommended.
+        Instead, create the menu item in <strong>.config</strong> and only do minimal wiring/contextual configuration elsewhere
+        with the <strong>eehNavigation</strong> service.</p>
     <pre><code class="javascript">
 // In .config, setup a logout menu item.
 eehNavigationProvider
     .sidebarMenuItem('logout', {
         text: 'Logout'
     });
-// In a controller, set the click property of the menu item.
+// ...
+// In a controller or service, set the click property of the menu item.
 eehNavigation.sidebarMenuItem('logout').click = function () {
     // Call custom logout code (e.g. destroy a cookie, delete user object, send logout request to server).
 };
