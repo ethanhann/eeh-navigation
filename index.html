@@ -43,9 +43,9 @@
                 <ul class="list-unstyled nav">
                     <li><a href="#menu-item-actions">Menu Item Actions</a></li>
                     <li><a href="#icons">Icons</a></li>
+                    <li><a href="#menu-item-visibility">Menu Item Visibility</a></li>
                     <li><a href="#sidebar-menu-item-ordering">Sidebar Menu Item Ordering</a></li>
                     <li><a href="#nested-sidebar-menu-items">Nested Sidebar Menu Items</a></li>
-                    <li><a href="#menu-item-visibility">Menu Item Visibility</a></li>
                 </ul>
             </li>
 
@@ -56,8 +56,8 @@
 </div>
 <div class="col-md-8">
     <h2 id="about">About</h2>
-    <p>The <em>eeh-navigation</em> component provides a configurable, responsive navbar and sidebar AngularJS directive.
-    The directive supports navigation of UI-Router states, ng-click binding, and plain old href links.</p>
+    <p>The <em>eeh-navigation</em> AngularJS module provides a configurable, responsive navbar and sidebar directive and companion configuration service.
+    The directive supports navigation of <strong>UI-Router</strong> states, <strong>ng-click</strong> binding, and <strong>ng-href</strong> links.</p>
     <h2 id="dependencies">Dependencies</h2>
     <p>The directive will not work at all without the following dependencies.</p>
     <ul>
@@ -171,6 +171,31 @@ eehNavigationProvider
     });
     </code></pre>
 
+    <h3 id="menu-item-visibility">Menu Item Visibility</h3>
+    <h4>isVisible</h4>
+    <p>A boolean value or callback function that returns a boolean value.</p>
+    <pre><code class="javascript">
+eehNavigationProvider
+    .sidebarMenuItem('myHiddenMenuItem', {
+        text: 'My Hidden Menu Item',
+        isVisible: false
+    });
+    </code></pre>
+    <p>It is often necessary to contextually hide or show menu items.
+        For example, it is common to hide an "admin" menu item for non-admins.
+        This would probably happen in a controller, hence the use of <strong>eehNavigation</strong> instead of
+        <strong>eehNavigationProvider</strong> in the following example.</p>
+    <pre><code class="javascript">
+var isAdmin = function () {
+    return user.hasRole('admin'); // We are going to assume user and user.hasRole are defined.
+};
+eehNavigation
+    .sidebarMenuItem('admin', {
+        text: 'Admin',
+        isVisible: isAdmin
+    });
+    </code></pre>
+
     <h3 id="sidebar-menu-item-ordering">Sidebar Menu Item Ordering</h3>
     <p>Sidebar menu items are ordered based on their <strong>weight</strong>.</p>
     <h4>weight</h4>
@@ -227,31 +252,6 @@ eehNavigationProvider
     .sidebarMenuItem('root.foo', {
         text: 'Foo',
         href: '/some/path'
-    });
-    </code></pre>
-
-    <h3 id="menu-item-visibility">Menu Item Visibility</h3>
-    <h4>isVisible</h4>
-    <p>A boolean value or callback function that returns a boolean value.</p>
-    <pre><code class="javascript">
-eehNavigationProvider
-    .sidebarMenuItem('myHiddenMenuItem', {
-        text: 'My Hidden Menu Item',
-        isVisible: false
-    });
-    </code></pre>
-    <p>It is often necessary to contextually hide or show menu items.
-        For example, it is common to hide an "admin" menu item for non-admins.
-        This would probably happen in a controller, hence the use of <strong>eehNavigation</strong> instead of
-        <strong>eehNavigationProvider</strong> in the following example.</p>
-    <pre><code class="javascript">
-var isAdmin = function () {
-    return user.hasRole('admin'); // We are going to assume user and user.hasRole are defined.
-};
-eehNavigation
-    .sidebarMenuItem('admin', {
-        text: 'Admin',
-        isVisible: isAdmin
     });
     </code></pre>
 
