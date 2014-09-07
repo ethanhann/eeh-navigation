@@ -183,11 +183,14 @@ eehNavigationProvider
     </code></pre>
     <p>It is often necessary to contextually hide or show menu items.
         For example, it is common to hide an "admin" menu item for non-admins.
-        This would probably happen in a controller, hence the use of <strong>eehNavigation</strong> instead of
+        This would probably happen in a <a href="#accessing-menu-items">controller or service</a>,
+        hence the use of <strong>eehNavigation</strong> instead of
         <strong>eehNavigationProvider</strong> in the following example.</p>
     <pre><code class="javascript">
 var isAdmin = function () {
-    return user.hasRole('admin'); // We are going to assume user and user.hasRole are defined.
+    /* We are going to assume user and user.hasRole are defined
+       and that user.hasRole evaluates to a boolean value. */
+    return user.hasRole('admin');
 };
 eehNavigation
     .sidebarMenuItem('admin', {
