@@ -50,6 +50,17 @@
             </li>
 
             <li><a href="#accessing-menu-items">Accessing Menu Items</a></li>
+            <li><a href="#language-translation">Language Translation</a></li>
+            <li>
+                <ul class="list-unstyled nav">
+                    <li><a href="#install-angular-translate-via-bower">Install angular-translate (via Bower)</a></li>
+                    <li><a href="#include-angular-translate-javascript">Include angular-translate JavaScript</a></li>
+                    <li><a href="#enable-angular-translate-javascript">Enable angular-translate Module</a></li>
+                    <li><a href="#add-menu-items-to-translate">Add Menu Items to Translate</a></li>
+                    <li><a href="#add-a-translation">Add a Translation</a></li>
+                    <li><a href="#add-dropdown-to-toggle-between-languages">Add Dropdown to Toggle Between Languages</a></li>
+                </ul>
+            </li>
             <li><a href="#undocumented-features">Undocumented Features</a></li>
         </ul>
     </div>
@@ -68,8 +79,9 @@
     </ul>
     <p>The following dependencies are optional. The directive will work without them, but some functionality will not be available.</p>
     <ul>
-        <li>Angular UI Router</li>
         <li>FontAwesome</li>
+        <li>Angular Translate</li>
+        <li>Angular UI Router</li>
     </ul>
     <h2 id="getting-started">Getting Started</h2>
     <p>Install, include, configure.</p>
@@ -283,6 +295,95 @@ eehNavigationProvider
 eehNavigation.sidebarMenuItem('logout').click = function () {
     // Call custom logout code (e.g. destroy a cookie, delete user object, send logout request to server).
 };
+    </code></pre>
+
+    <h2 id="language-translation">Language Translation</h2>
+    <p>Language translation is an optional feature.
+    <h3 id="install-angular-translate-via-bower">Install angular-translate (via bower)</h3>
+    <pre><code class="bash">bower install angular-translate</code></pre>
+    <h3 id="include-angular-translate-javascript">Include angular-translate JavaScript</h3>
+    <pre><code class="html">&lt;script src="bower_components/angular-translate/angular-translate.js"&gt;&lt;/script&gt;</code></pre>
+    <h3 id="enable-angular-translate-javascript">Enable angular-translate Module</h3>
+    <pre><code class="javascript">
+angular.module('myApp', ['pascalprecht.translate']);
+    </code></pre>
+    <h3 id="add-menu-items-to-translate">Add Menu Items to Translate</h3>
+    <pre><code class="javascript">
+angular.module('myApp').config(['eehNavigationProvider',
+function (eehNavigationProvider) {
+    eehNavigationProvider
+        .sidebarMenuItem('home', {
+            text: 'Home',
+            href: '/home',
+        })
+        .sidebarMenuItem('logout', {
+            text: 'Logout',
+            href: '/logout',
+        });
+}]);
+    </code></pre>
+    <h3 id="add-a-translation">Add a Translation</h3>
+    <pre><code class="javascript">
+angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
+function ($translateProvider, eehNavigationProvider) {
+    eehNavigationProvider
+        .sidebarMenuItem('home', {
+            text: 'Home',
+            href: '/home',
+        })
+        .sidebarMenuItem('logout', {
+            text: 'Logout',
+            href: '/logout',
+        });
+
+    // German translation
+    $translateProvider
+        .translations('de', {
+            'Home': 'Zuhause',
+            'Logout': 'Abmelden'
+        });
+}]);
+    </code></pre>
+    <h3 id="add-dropdown-to-toggle-between-languages">Add Dropdown to Toggle Between Languages</h3>
+    <pre><code>
+angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
+function ($translateProvider, eehNavigationProvider) {
+    eehNavigationProvider
+        .sidebarMenuItem('home', {
+            text: 'Home',
+            href: '/home',
+        })
+        .sidebarMenuItem('logout', {
+            text: 'Logout',
+            href: '/logout',
+        });
+
+    // German translation
+    $translateProvider
+        .translations('de', {
+            'Home': 'Zuhause',
+            'Logout': 'Abmelden'
+        });
+
+    // Switch languages via dropdown
+    eehNavigationProvider
+        .navbarMenuItem('language', {
+            text: 'Language',
+            iconClass: 'fa-language'
+        })
+        .navbarMenuItem('language.en', {
+            text: 'English',
+            click: function () {
+                $translateProvider.use('en');
+            }
+        })
+        .navbarMenuItem('language.de', {
+            text: 'Deutsch',
+            click: function () {
+                $translateProvider.use('de');
+            }
+        });
+}]);
     </code></pre>
 
     <h2 id="undocumented-features">Undocumented Features</h2>
