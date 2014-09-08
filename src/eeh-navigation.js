@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('eehNavigation', []);
+angular.module('eehNavigation', ['pascalprecht.translate']);

@@ -1,7 +1,8 @@
 'use strict';
 /* global MenuItem */
 
-var NavigationService = function () {
+var NavigationService = function ($translateProvider) {
+    this.$translateProvider = $translateProvider;
     this.sidebarSearch = {
         isVisible: true,
         model: '',
@@ -19,6 +20,10 @@ var NavigationService = function () {
         }
         return arr;
     };
+};
+
+NavigationService.prototype.$get = function () {
+    return this;
 };
 
 /**
@@ -73,8 +78,14 @@ NavigationService.prototype.navbarMenuItems = function () {
     return this._toArray(items);
 };
 
-NavigationService.prototype.$get = function () {
+NavigationService.prototype.translations = function (languageKey, translationMap) {
+    this.$translateProvider.translations(languageKey, translationMap);
     return this;
 };
 
-angular.module('eehNavigation').provider('eehNavigation', NavigationService);
+NavigationService.prototype.preferredLanguage = function (languageKey) {
+    this.$translateProvider.preferredLanguage(languageKey);
+    return this;
+};
+
+angular.module('eehNavigation').provider('eehNavigation', ['$translateProvider', NavigationService]);

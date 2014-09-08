@@ -1,7 +1,7 @@
 (function(exports, global) {
     global["eeh-navigation"] = exports;
     "use strict";
-    angular.module("eehNavigation", []);
+    angular.module("eehNavigation", [ "pascalprecht.translate" ]);
     "use strict";
     var NavigationDirective = function($window, eehNavigation) {
         return {
@@ -99,7 +99,8 @@
         return true;
     };
     "use strict";
-    var NavigationService = function() {
+    var NavigationService = function($translateProvider) {
+        this.$translateProvider = $translateProvider;
         this.sidebarSearch = {
             isVisible: true,
             model: "",
@@ -117,6 +118,9 @@
             }
             return arr;
         };
+    };
+    NavigationService.prototype.$get = function() {
+        return this;
     };
     NavigationService.prototype.buildAncestorChain = function(name, items, config) {
         var keys = name.split(".");
@@ -162,10 +166,15 @@
         });
         return this._toArray(items);
     };
-    NavigationService.prototype.$get = function() {
+    NavigationService.prototype.translations = function(languageKey, translationMap) {
+        this.$translateProvider.translations(languageKey, translationMap);
         return this;
     };
-    angular.module("eehNavigation").provider("eehNavigation", NavigationService);
+    NavigationService.prototype.preferredLanguage = function(languageKey) {
+        this.$translateProvider.preferredLanguage(languageKey);
+        return this;
+    };
+    angular.module("eehNavigation").provider("eehNavigation", [ "$translateProvider", NavigationService ]);
 })({}, function() {
     return this;
 }());

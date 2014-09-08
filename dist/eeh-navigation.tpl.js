@@ -10,14 +10,14 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "            <span class=\"icon-bar\"></span>\n" +
     "            <span class=\"icon-bar\"></span>\n" +
     "        </button>\n" +
-    "        <a ng-if=\"navbarBrand.state\" class=\"navbar-brand\" ui-sref=\"{{ navbarBrand.state }}\" href=\"#\">{{ navbarBrand.text }}</a>\n" +
+    "        <a ng-if=\"navbarBrand.state\" class=\"navbar-brand\" ui-sref=\"{{ navbarBrand.state }}\" href=\"#\">{{ navbarBrand.text|translate }}</a>\n" +
     "    </div>\n" +
     "\n" +
     "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
     "        <li class=\"dropdown\" ng-repeat=\"navbarMenuItem in navbarMenuItems\">\n" +
     "            <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
     "                <span class=\"fa fa-user fa-fw\"></span>\n" +
-    "                <span> {{ navbarMenuItem.text }}</span>\n" +
+    "                <span> {{ navbarMenuItem.text|translate }}</span>\n" +
     "                <span class=\"fa fa-caret-down\"></span>\n" +
     "            </a>\n" +
     "            <ul ng-if=\"navbarMenuItem.hasChildren()\" class=\"dropdown-menu\">\n" +
@@ -102,7 +102,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "<script type=\"text/ng-template\" id=\"template/eeh-navigation/menu-item-content.html\">\n" +
     "    <span class=\"menu-item-icon fa fa-fw {{ item.iconClass}}\"></span>\n" +
-    "    <span class=\"menu-item-text\"> {{ item.text }}</span>\n" +
+    "    <span class=\"menu-item-text\"> {{ item.text|translate }}</span>\n" +
     "</script>\n"
   );
 

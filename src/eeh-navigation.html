@@ -6,14 +6,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a ng-if="navbarBrand.state" class="navbar-brand" ui-sref="{{ navbarBrand.state }}" href="#">{{ navbarBrand.text }}</a>
+        <a ng-if="navbarBrand.state" class="navbar-brand" ui-sref="{{ navbarBrand.state }}" href="#">{{ navbarBrand.text|translate }}</a>
     </div>
 
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown" ng-repeat="navbarMenuItem in navbarMenuItems">
             <a class="dropdown-toggle" data-toggle="dropdown">
                 <span class="fa fa-user fa-fw"></span>
-                <span> {{ navbarMenuItem.text }}</span>
+                <span> {{ navbarMenuItem.text|translate }}</span>
                 <span class="fa fa-caret-down"></span>
             </a>
             <ul ng-if="navbarMenuItem.hasChildren()" class="dropdown-menu">
@@ -98,5 +98,5 @@
 
 <script type="text/ng-template" id="template/eeh-navigation/menu-item-content.html">
     <span class="menu-item-icon fa fa-fw {{ item.iconClass}}"></span>
-    <span class="menu-item-text"> {{ item.text }}</span>
+    <span class="menu-item-text"> {{ item.text|translate }}</span>
 </script>

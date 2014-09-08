@@ -69,6 +69,18 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
         });
 
     eehNavigationProvider
+        .navbarMenuItem('language', {
+            text: 'Language',
+            iconClass: 'fa-language'
+        })
+        .navbarMenuItem('language.en', {
+            text: 'English'
+        })
+        .navbarMenuItem('language.de', {
+            text: 'Deutsch'
+        });
+
+    eehNavigationProvider
         .sidebarMenuItem('home', {
             text: 'Home',
             iconClass: 'fa-home',
@@ -117,7 +129,7 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             state: 'demo.authenticated.blank'
         })
         .sidebarMenuItem('multilevel.firstlevel3', {
-            text: 'First Level 3',
+            text: 'First level - 3',
             iconClass: 'fa-folder-o',
             isCollapsed: false
         })
@@ -131,4 +143,23 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             iconClass: 'fa-file-o',
             state: 'demo.authenticated.blank'
         });
+
+    eehNavigationProvider
+        .translations('de', {
+            'Blank': 'Leer',
+            'Home': 'Zuhause',
+            'Click': 'Klicken',
+            'Link to example.com': 'Link zu example.com',
+            'Visible': 'Sichtbar',
+            'Multi level': 'Mehrere Ebenen',
+            'First level - 1': 'Erste Ebene - 1',
+            'First level - 2': 'Erste Ebene - 2',
+            'First level - 3': 'Erste Ebene - 3',
+            'Second level - 1': 'Zweite Ebene - 1',
+            'Second level - 2': 'Zweite Ebene - 2',
+            'User Profile': 'Benutzerprofil',
+            'Logout': 'Abmelden'
+        });
+
+    eehNavigationProvider.preferredLanguage('en');
 }]);
