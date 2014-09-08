@@ -1,8 +1,7 @@
 'use strict';
 /* global MenuItem */
 
-var NavigationService = function ($translateProvider) {
-    this.$translateProvider = $translateProvider;
+var NavigationService = function () {
     this.sidebarSearch = {
         isVisible: true,
         model: '',
@@ -78,14 +77,4 @@ NavigationService.prototype.navbarMenuItems = function () {
     return this._toArray(items);
 };
 
-NavigationService.prototype.translations = function (languageKey, translationMap) {
-    this.$translateProvider.translations(languageKey, translationMap);
-    return this;
-};
-
-NavigationService.prototype.preferredLanguage = function (languageKey) {
-    this.$translateProvider.preferredLanguage(languageKey);
-    return this;
-};
-
-angular.module('eehNavigation').provider('eehNavigation', ['$translateProvider', NavigationService]);
+angular.module('eehNavigation').provider('eehNavigation', NavigationService);

@@ -1,9 +1,10 @@
 angular.module('demo', [
     'eehNavigation',
+    'pascalprecht.translate',
     'ui.bootstrap',
     'ui.router'
-]).config(['$stateProvider', '$urlRouterProvider', 'eehNavigationProvider',
-function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
+]).config(['$stateProvider', '$translateProvider', '$urlRouterProvider', 'eehNavigationProvider',
+function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
         .state('demo', {
@@ -144,7 +145,7 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             state: 'demo.authenticated.blank'
         });
 
-    eehNavigationProvider
+    $translateProvider
         .translations('de', {
             'Blank': 'Leer',
             'Home': 'Zuhause',
@@ -161,5 +162,5 @@ function ($stateProvider, $urlRouterProvider, eehNavigationProvider) {
             'Logout': 'Abmelden'
         });
 
-    eehNavigationProvider.preferredLanguage('en');
+    $translateProvider.preferredLanguage('en');
 }]);

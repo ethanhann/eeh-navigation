@@ -61,6 +61,7 @@ module.exports = function (grunt) {
             beautify: {
                 files: {
                     '<%= settings.dist %>/<%= settings.libName %>.js': [
+                        '<%= settings.src %>/eeh-translate.js',
                         '<%= settings.src %>/eeh-navigation.js',
                         '<%= settings.src %>/eeh-navigation-*.js'
                     ]
