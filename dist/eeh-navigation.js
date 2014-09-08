@@ -1,7 +1,29 @@
 (function(exports, global) {
     global["eeh-navigation"] = exports;
     "use strict";
-    angular.module("eehNavigation", [ "pascalprecht.translate" ]);
+    angular.module("eehTranslate", []);
+    var TranslateService = function($injector) {
+        if ($injector.has("$translate")) {
+            this._translate = $injector.get("$translate");
+        }
+    };
+    TranslateService.prototype.isAvailable = function() {
+        return angular.isDefined(this._translate);
+    };
+    TranslateService.prototype.instant = function(translationId, interpolateParams, interpolationId) {
+        return this.isAvailable() ? this._translate.instant(translationId, interpolateParams, interpolationId) : translationId;
+    };
+    angular.module("eehTranslate").service("eehTranslate", [ "$injector", TranslateService ]);
+    var TranslateFilter = function(eehTranslate) {
+        var self = this;
+        self.eehTranslate = eehTranslate;
+        return function(text) {
+            return self.eehTranslate.instant(text);
+        };
+    };
+    angular.module("eehTranslate").filter("eehTranslate", [ "eehTranslate", TranslateFilter ]);
+    "use strict";
+    angular.module("eehNavigation", [ "eehTranslate" ]);
     "use strict";
     var NavigationDirective = function($window, eehNavigation) {
         return {
@@ -99,8 +121,7 @@
         return true;
     };
     "use strict";
-    var NavigationService = function($translateProvider) {
-        this.$translateProvider = $translateProvider;
+    var NavigationService = function() {
         this.sidebarSearch = {
             isVisible: true,
             model: "",
@@ -166,15 +187,7 @@
         });
         return this._toArray(items);
     };
-    NavigationService.prototype.translations = function(languageKey, translationMap) {
-        this.$translateProvider.translations(languageKey, translationMap);
-        return this;
-    };
-    NavigationService.prototype.preferredLanguage = function(languageKey) {
-        this.$translateProvider.preferredLanguage(languageKey);
-        return this;
-    };
-    angular.module("eehNavigation").provider("eehNavigation", [ "$translateProvider", NavigationService ]);
+    angular.module("eehNavigation").provider("eehNavigation", NavigationService);
 })({}, function() {
     return this;
 }());
