@@ -14,17 +14,4 @@ angular.module('demo')
     eehNavigation.sidebarMenuItem('click').click = function () {
         $window.alert('Tada');
     };
-
-    var setLanguage = function (languageKey, languageName) {
-        eehNavigation.navbarMenuItem('language').text = languageName;
-        $translate.use(languageKey);
-    };
-    var defaultLanguageMenuItem = eehNavigation.navbarMenuItem('language.en');
-    setLanguage('en', defaultLanguageMenuItem.text);
-    defaultLanguageMenuItem.click = function () {
-        setLanguage('en', this.text);
-    };
-    eehNavigation.navbarMenuItem('language.de').click = function () {
-        setLanguage('de', this.text);
-    };
 });

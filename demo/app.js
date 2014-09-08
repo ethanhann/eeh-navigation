@@ -69,16 +69,26 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             isVisible: false
         });
 
+    var setLanguage = function (languageKey, languageName) {
+        eehNavigationProvider.navbarMenuItem('language').text = languageName;
+        $translateProvider.use(languageKey);
+    };
     eehNavigationProvider
         .navbarMenuItem('language', {
-            text: 'Language',
+            text: 'English',
             iconClass: 'fa-language'
         })
         .navbarMenuItem('language.en', {
-            text: 'English'
+            text: 'English',
+            click: function () {
+                setLanguage('en', this.text);
+            }
         })
         .navbarMenuItem('language.de', {
-            text: 'Deutsch'
+            text: 'Deutsch',
+            click: function () {
+                setLanguage('de', this.text);
+            }
         });
 
     eehNavigationProvider
@@ -146,6 +156,21 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
         });
 
     $translateProvider
+        .translations('en', {
+            'Blank': 'Blank',
+            'Home': 'Home',
+            'Click': 'Click',
+            'Link to example.com': 'Link to example.com',
+            'Visible': 'Visible',
+            'Multi level': 'Multi level',
+            'First level - 1': 'First level - 1',
+            'First level - 2': 'First level - 2',
+            'First level - 3': 'First level - 3',
+            'Second level - 1': 'Second level - 1',
+            'Second level - 2': 'Second level - 2',
+            'User Profile': 'User Profile',
+            'Logout': 'Logout'
+        })
         .translations('de', {
             'Blank': 'Leer',
             'Home': 'Zuhause',
@@ -161,6 +186,5 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             'User Profile': 'Benutzerprofil',
             'Logout': 'Abmelden'
         });
-
     $translateProvider.preferredLanguage('en');
 }]);

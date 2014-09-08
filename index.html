@@ -57,7 +57,7 @@
                     <li><a href="#include-angular-translate-javascript">Include angular-translate JavaScript</a></li>
                     <li><a href="#enable-angular-translate-javascript">Enable angular-translate Module</a></li>
                     <li><a href="#add-menu-items-to-translate">Add Menu Items to Translate</a></li>
-                    <li><a href="#add-a-translation">Add a Translation</a></li>
+                    <li><a href="#add-translations">Add Translations</a></li>
                     <li><a href="#add-dropdown-to-toggle-between-languages">Add Dropdown to Toggle Between Languages</a></li>
                 </ul>
             </li>
@@ -322,7 +322,7 @@ function (eehNavigationProvider) {
         });
 }]);
     </code></pre>
-    <h3 id="add-a-translation">Add a Translation</h3>
+    <h3 id="add-translations">Add Translations</h3>
     <pre><code class="javascript">
 angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
 function ($translateProvider, eehNavigationProvider) {
@@ -334,6 +334,13 @@ function ($translateProvider, eehNavigationProvider) {
         .sidebarMenuItem('logout', {
             text: 'Logout',
             href: '/logout',
+        });
+
+    // English translation
+    $translateProvider
+        .translations('en', {
+            'Home': 'Home',
+            'Logout': 'Logout'
         });
 
     // German translation
