@@ -1,4 +1,24 @@
-a649b5c (HEAD, origin/master, origin/HEAD, master) Re-render menu when menu items change
+eb04d16 (HEAD, origin/master, origin/HEAD, master) Refactor demo and update doc
+76ea724 Document translation feature
+3d0a2b2 Replace hard-coded icon class with iconClass variable
+0fd2915 Refactor eehTranslate
+b9cd110 Move angular-translate from dev to regular deps
+abf9042 Wrap angular-translate to make it optional dep
+840e5a9 Add initial support for menu translation
+110cf46 Expand doc
+710d562 Refactor docs
+085f50c Expand accessing menu item doc
+abf4aa2 Document a few undocumented features
+6f54787 Refine doc style
+b30e0ab Fix doc footer
+dfd7b73 Improve doc style
+04f20ef Update docs
+06fac89 Fix typo in doc
+ae80d9d Revise doc layout
+c508422 Add advanced configuration
+8516ee8 Update getting started doc
+0420ba1 (tag: 2.1.0) Prepare for release
+a649b5c Re-render menu when menu items change
 6b49964 Allow menu items to be retrieved
 e271dcf (tag: 2.0.1) Prepare for release
 24cf397 Ignore MenuItem

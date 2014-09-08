@@ -16,7 +16,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
     "        <li class=\"dropdown\" ng-repeat=\"navbarMenuItem in navbarMenuItems\">\n" +
     "            <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-    "                <span class=\"fa fa-user fa-fw\"></span>\n" +
+    "                <span class=\"fa fa-fw {{ navbarMenuItem.iconClass }}\"></span>\n" +
     "                <span> {{ navbarMenuItem.text|eehTranslate }}</span>\n" +
     "                <span class=\"fa fa-caret-down\"></span>\n" +
     "            </a>\n" +
