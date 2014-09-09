@@ -32,7 +32,7 @@
             templateUrl: "template/eeh-navigation/eeh-navigation.html",
             link: function(scope, element) {
                 scope.navbarBrand = eehNavigation.navbarBrand;
-                scope.sidebarSearch = eehNavigation.sidebarSearch;
+                scope._sidebarSearch = eehNavigation._sidebarSearch;
                 scope.isNavbarCollapsed = false;
                 scope._navbarMenuItems = eehNavigation._navbarMenuItems;
                 scope.$watch("_navbarMenuItems", function() {
@@ -122,10 +122,10 @@
     };
     "use strict";
     var NavigationService = function() {
-        this.sidebarSearch = {
+        this._sidebarSearch = {
             isVisible: true,
             model: "",
-            click: function() {}
+            submit: function() {}
         };
         this.navbarBrand = {};
         this._navbarMenuItems = {};
@@ -141,6 +141,27 @@
         };
     };
     NavigationService.prototype.$get = function() {
+        return this;
+    };
+    NavigationService.prototype.searchIsVisible = function(value) {
+        if (angular.isUndefined(value)) {
+            return this._sidebarSearch.isVisible;
+        }
+        this._sidebarSearch.isVisible = value;
+        return this;
+    };
+    NavigationService.prototype.searchModel = function(value) {
+        if (angular.isUndefined(value)) {
+            return this._sidebarSearch.model;
+        }
+        this._sidebarSearch.model = value;
+        return this;
+    };
+    NavigationService.prototype.searchSubmit = function(value) {
+        if (angular.isUndefined(value)) {
+            return this._sidebarSearch.submit;
+        }
+        this._sidebarSearch.submit = value;
         return this;
     };
     NavigationService.prototype.buildAncestorChain = function(name, items, config) {

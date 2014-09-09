@@ -14,14 +14,14 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "    </div>\n" +
     "\n" +
     "    <ul class=\"nav navbar-top-links navbar-right\">\n" +
-    "        <li class=\"dropdown\" ng-repeat=\"navbarMenuItem in navbarMenuItems\">\n" +
+    "        <li class=\"dropdown\" ng-repeat=\"navbarMenuItem in navbarMenuItems|orderBy:'weight'\">\n" +
     "            <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
     "                <span class=\"fa fa-fw {{ navbarMenuItem.iconClass }}\"></span>\n" +
     "                <span> {{ navbarMenuItem.text|eehTranslate }}</span>\n" +
     "                <span class=\"fa fa-caret-down\"></span>\n" +
     "            </a>\n" +
     "            <ul ng-if=\"navbarMenuItem.hasChildren()\" class=\"dropdown-menu\">\n" +
-    "                <li ng-repeat=\"item in navbarMenuItem.children()\" ng-class=\"{'divider': item.isDivider}\"\n" +
+    "                <li ng-repeat=\"item in navbarMenuItem.children()|orderBy:'weight'\" ng-class=\"{'divider': item.isDivider}\"\n" +
     "                    ng-if=\"item._isVisible()\">\n" +
     "                    <a ng-if=\"!item.isDivider && item.state\"\n" +
     "                       ui-sref=\"{{ item.state }}\">\n" +
@@ -42,17 +42,18 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "        <div class=\"navbar-default sidebar\" role=\"navigation\">\n" +
     "            <div class=\"sidebar-nav navbar-collapse\">\n" +
     "                <ul class=\"nav\">\n" +
-    "                    <li class=\"sidebar-search\" ng-show=\"!isSidebarTextCollapsed && sidebarSearch.isVisible\">\n" +
-    "                        <div class=\"input-group custom-search-form\">\n" +
-    "                            <input type=\"text\" class=\"form-control\" placeholder=\"Search...\"\n" +
-    "                                   ng-model=\"sidebarSearch.model\"\n" +
-    "                                   ng-click=\"sidebarSearch.click()\">\n" +
-    "                            <span class=\"input-group-btn\">\n" +
-    "                                <button class=\"btn btn-default\" type=\"button\">\n" +
-    "                                    <i class=\"fa fa-search\"></i>\n" +
-    "                                </button>\n" +
-    "                            </span>\n" +
-    "                        </div>\n" +
+    "                    <li class=\"sidebar-search\" ng-show=\"!isSidebarTextCollapsed && _sidebarSearch.isVisible\">\n" +
+    "                        <form ng-submit=\"_sidebarSearch.submit()\">\n" +
+    "                            <div class=\"input-group\">\n" +
+    "                                <input type=\"text\" class=\"form-control search-input\" placeholder=\"{{'Search'|eehTranslate}}\"\n" +
+    "                                   ng-model=\"_sidebarSearch.model\">\n" +
+    "                                <span class=\"input-group-btn\">\n" +
+    "                                    <button class=\"btn btn-default\" type=\"submit\">\n" +
+    "                                        <i class=\"fa fa-search\"></i>\n" +
+    "                                    </button>\n" +
+    "                                </span>\n" +
+    "                            </div>\n" +
+    "                        </form>\n" +
     "                    </li>\n" +
     "                    <li ng-repeat=\"item in sidebarMenuItems | orderBy:'weight'\"\n" +
     "                        ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +

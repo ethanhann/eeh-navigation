@@ -1,4 +1,9 @@
-eb04d16 (HEAD, origin/master, origin/HEAD, master) Refactor demo and update doc
+50f6e39 (HEAD, origin/master, origin/HEAD, master) Implement and document search feature
+eb896ac Move ng-click to search button from search input
+13335f0 Order navbar menu items according to their weight
+87f87dd Refactor docs
+1815427 (tag: 2.2.0) Prepare for release
+eb04d16 Refactor demo and update doc
 76ea724 Document translation feature
 3d0a2b2 Replace hard-coded icon class with iconClass variable
 0fd2915 Refactor eehTranslate
