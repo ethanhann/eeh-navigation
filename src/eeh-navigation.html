@@ -41,10 +41,10 @@
                     <li class="sidebar-search" ng-show="!isSidebarTextCollapsed && sidebarSearch.isVisible">
                         <div class="input-group custom-search-form">
                             <input type="text" class="form-control" placeholder="Search..."
-                                   ng-model="sidebarSearch.model"
-                                   ng-click="sidebarSearch.click()">
+                                   ng-model="sidebarSearch.model">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
+                                <button class="btn btn-default" type="button"
+                                        ng-click="sidebarSearch.click()">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
