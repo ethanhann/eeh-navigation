@@ -76,19 +76,22 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
     eehNavigationProvider
         .navbarMenuItem('language', {
             text: 'English',
-            iconClass: 'fa-language'
+            iconClass: 'fa-language',
+            weight: 0
         })
         .navbarMenuItem('language.en', {
             text: 'English',
             click: function () {
                 setLanguage('en', this.text);
-            }
+            },
+            weight: 1
         })
         .navbarMenuItem('language.de', {
             text: 'Deutsch',
             click: function () {
                 setLanguage('de', this.text);
-            }
+            },
+            weight: 0
         });
 
     eehNavigationProvider
