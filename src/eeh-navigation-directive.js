@@ -7,7 +7,7 @@ var NavigationDirective = function ($window, eehNavigation) {
         templateUrl: 'template/eeh-navigation/eeh-navigation.html',
         link: function (scope, element) {
             scope.navbarBrand = eehNavigation.navbarBrand;
-            scope.sidebarSearch = eehNavigation.sidebarSearch;
+            scope._sidebarSearch = eehNavigation._sidebarSearch;
             scope.isNavbarCollapsed = false;
             scope._navbarMenuItems = eehNavigation._navbarMenuItems;
             scope.$watch('_navbarMenuItems', function () {

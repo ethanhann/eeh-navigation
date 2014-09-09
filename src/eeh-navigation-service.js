@@ -2,10 +2,10 @@
 /* global MenuItem */
 
 var NavigationService = function () {
-    this.sidebarSearch = {
+    this._sidebarSearch = {
         isVisible: true,
         model: '',
-        click: function () {}
+        submit: function () {}
     };
     this.navbarBrand = {};
     this._navbarMenuItems = {};
@@ -22,6 +22,30 @@ var NavigationService = function () {
 };
 
 NavigationService.prototype.$get = function () {
+    return this;
+};
+
+NavigationService.prototype.searchIsVisible = function (value) {
+    if (angular.isUndefined(value)) {
+        return this._sidebarSearch.isVisible;
+    }
+    this._sidebarSearch.isVisible = value;
+    return this;
+};
+
+NavigationService.prototype.searchModel= function (value) {
+    if (angular.isUndefined(value)) {
+        return this._sidebarSearch.model;
+    }
+    this._sidebarSearch.model = value;
+    return this;
+};
+
+NavigationService.prototype.searchSubmit = function (value) {
+    if (angular.isUndefined(value)) {
+        return this._sidebarSearch.submit;
+    }
+    this._sidebarSearch.submit = value;
     return this;
 };
 

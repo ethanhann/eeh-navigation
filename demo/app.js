@@ -31,11 +31,16 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
         .state('demo.authenticated.beta', {
             url: '/beta',
             templateUrl: 'partials/beta.html'
+        })
+        .state('demo.authenticated.search', {
+            url: '/search?query',
+            controller: 'SearchCtrl',
+            templateUrl: 'search/search.html'
         });
 
     eehNavigationProvider.navbarBrand = {
         text: 'eeh-navigation demo',
-        state: 'demo.home'
+        state: 'demo.authenticated.home'
     };
 
     eehNavigationProvider
@@ -190,4 +195,10 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             'Logout': 'Abmelden'
         });
     $translateProvider.preferredLanguage('en');
-}]);
+}])
+.run(function($state, eehNavigation) {
+    'use strict';
+    eehNavigation.searchSubmit(function () {
+        $state.go('demo.authenticated.search', { query: eehNavigation.searchModel() });
+    });
+});

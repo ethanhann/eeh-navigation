@@ -38,17 +38,18 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav">
-                    <li class="sidebar-search" ng-show="!isSidebarTextCollapsed && sidebarSearch.isVisible">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search..."
-                                   ng-model="sidebarSearch.model">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"
-                                        ng-click="sidebarSearch.click()">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
+                    <li class="sidebar-search" ng-show="!isSidebarTextCollapsed && _sidebarSearch.isVisible">
+                        <form ng-submit="_sidebarSearch.submit()">
+                            <div class="input-group">
+                                <input type="text" class="form-control search-input" placeholder="{{'Search'|eehTranslate}}"
+                                   ng-model="_sidebarSearch.model">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
                     </li>
                     <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
                         ng-include="'template/eeh-navigation/sidebar-menu-item.html'"

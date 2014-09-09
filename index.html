@@ -61,7 +61,13 @@
                     <li><a href="#add-dropdown-to-toggle-between-languages">Add Dropdown to Toggle Between Languages</a></li>
                 </ul>
             </li>
-            <li><a href="#undocumented-features">Undocumented Features</a></li>
+            <li><a href="#sidebar-search-menu-item">Sidebar Search Menu Item</a></li>
+            <li>
+                <ul class="list-unstyled nav">
+                    <li><a href="#sidebar-search-model">Model</a></li>
+                    <li><a href="#sidebar-search-click">Click</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
@@ -344,7 +350,7 @@ function ($translateProvider, eehNavigationProvider) {
 }]);
     </code></pre>
     <h3 id="add-dropdown-to-toggle-between-languages">Add Dropdown to Toggle Between Languages</h3>
-    <pre><code>
+    <pre><code class="javascript">
 angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
 function ($translateProvider, eehNavigationProvider) {
     // ...
@@ -370,11 +376,24 @@ function ($translateProvider, eehNavigationProvider) {
 }]);
     </code></pre>
 
-    <h2 id="undocumented-features">Undocumented Features</h2>
-    <ul>
-        <li>Navbar dropdowns</li>
-        <li>Search input</li>
-    </ul>
+    <h2 id="sidebar-search-menu-item">Sidebar Search Menu Item</h2>
+    <p>The sidebar search menu item is a special type of menu item. It is not sortable with a <strong>weight</strong> property,
+        or nestable by specifying children. It is also hidden when the sidebar text is collapsed to only show icons.
+        It can be shown or hidden like other menu items with the <a href="#menu-item-visibility">isVisible</a> property.</p>
+    <h3 id="sidebar-search-model">model</h3>
+    <p>A text value. Assigned to <strong>ng-model</strong> on the search text input.</p>
+    <pre><code class="javascript">
+var searchText = 'some search text';
+eehNavigationProvider.searchModel = searchText;
+    </code></pre>
+    <h3 id="sidebar-search-submit">submit</h3>
+    <p>A function. Called, via <strong>ng-submit</strong>,
+        when the search button is clicked or enter is pressed while the search input is in focus.</p>
+    <pre><code class="javascript">
+eehNavigationProvider.searchSubmit = function () {
+    // Do something like submit an HTTP request or navigate to a state
+};
+    </code></pre>
 </div>
 </div>
     <div class="footer text-center">
