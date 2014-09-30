@@ -64,8 +64,9 @@
             <li><a href="#sidebar-search-menu-item">Sidebar Search Menu Item</a></li>
             <li>
                 <ul class="list-unstyled nav">
-                    <li><a href="#sidebar-search-model">Model</a></li>
-                    <li><a href="#sidebar-search-click">Click</a></li>
+                    <li><a href="#sidebar-search-is-visible">searchIsVisibile</a></li>
+                    <li><a href="#sidebar-search-model">searchModel</a></li>
+                    <li><a href="#sidebar-search-submit">searchSubmit</a></li>
                 </ul>
             </li>
         </ul>
@@ -378,15 +379,22 @@ function ($translateProvider, eehNavigationProvider) {
 
     <h2 id="sidebar-search-menu-item">Sidebar Search Menu Item</h2>
     <p>The sidebar search menu item is a special type of menu item. It is not sortable with a <strong>weight</strong> property,
-        or nestable by specifying children. It is also hidden when the sidebar text is collapsed to only show icons.
-        It can be shown or hidden like other menu items with the <a href="#menu-item-visibility">isVisible</a> property.</p>
-    <h3 id="sidebar-search-model">model</h3>
+        or nestable by specifying children. It is also hidden when the sidebar text is collapsed to only show icons.</p>
+    <h3 id="sidebar-search-is-visible">searchIsVisible</h3>
+    <p>A boolean value. Assigned to <strong>ng-show</strong> on the search text input.</p>
+    <pre><code class="javascript">
+// Hide search input
+eehNavigationProvider.searchIsVisible(false);
+// Show search input
+eehNavigationProvider.searchIsVisible(true);
+    </code></pre>
+    <h3 id="sidebar-search-model">searchModel</h3>
     <p>A text value. Assigned to <strong>ng-model</strong> on the search text input.</p>
     <pre><code class="javascript">
 var searchText = 'some search text';
 eehNavigationProvider.searchModel = searchText;
     </code></pre>
-    <h3 id="sidebar-search-submit">submit</h3>
+    <h3 id="sidebar-search-submit">searchSubmit</h3>
     <p>A function. Called, via <strong>ng-submit</strong>,
         when the search button is clicked or enter is pressed while the search input is in focus.</p>
     <pre><code class="javascript">
