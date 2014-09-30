@@ -41,11 +41,12 @@
             <li><a href="#configuration-options">Configuration Options</a></li>
             <li>
                 <ul class="list-unstyled nav">
-                    <li><a href="#menu-item-actions">Menu Item Actions</a></li>
                     <li><a href="#icons">Icons</a></li>
-                    <li><a href="#menu-item-visibility">Menu Item Visibility</a></li>
+                    <li><a href="#menu-item-actions">Menu Item Actions</a></li>
                     <li><a href="#menu-item-ordering">Menu Item Ordering</a></li>
+                    <li><a href="#menu-item-visibility">Menu Item Visibility</a></li>
                     <li><a href="#nested-sidebar-menu-items">Nested Sidebar Menu Items</a></li>
+                    <li><a href="#sidebar-text-collapse-menu-item">Sidebar Text Collapse Menu Item</a></li>
                 </ul>
             </li>
 
@@ -140,6 +141,20 @@ function (eehNavigationProvider) {
     </code></pre>
 
     <h2 id="configuration-options">Configuration Options</h2>
+
+    <h3 id="icons">Icons</h3>
+    <p>Icons are optional.</p>
+    <h4>iconClass</h4>
+    <p>A CSS class that corresponds to an icon in a library like FontAwesome.</p>
+    <pre><code class="javascript">
+eehNavigationProvider
+    .sidebarMenuItem('mySidebarItem', {
+        text: 'My Sidebar Item',
+        href: '/my-sidebar-item'
+        iconClass: 'fa-wrench'
+    });
+    </code></pre>
+
     <h3 id="menu-item-actions">Menu Item Actions</h3>
     <p>There are three mutually exclusive, configurable menu item actions:
         <strong>href</strong>, <strong>click</strong>, and <strong>state</strong>. These actions are available for both navbar and sidebar menu items.</p>
@@ -177,16 +192,21 @@ eehNavigationProvider
     });
     </code></pre>
 
-    <h3 id="icons">Icons</h3>
-    <p>Icons are optional.</p>
-    <h4>iconClass</h4>
-    <p>A CSS class that corresponds to an icon in a library like FontAwesome.</p>
+    <h3 id="menu-item-ordering">Menu Item Ordering</h3>
+    <p>Menu items are ordered based on their <strong>weight</strong>.</p>
+    <h4>weight</h4>
+    <p>An integer value. Items that are heavier (i.e. greater weight value) sink to the bottom.</p>
     <pre><code class="javascript">
 eehNavigationProvider
-    .sidebarMenuItem('mySidebarItem', {
-        text: 'My Sidebar Item',
-        href: '/my-sidebar-item'
-        iconClass: 'fa-wrench'
+    .sidebarMenuItem('bottomSidebarItem', {
+        text: 'Bottom Sidebar Item',
+        href: '/bottom-sidebar-item'
+        weight: 1
+    })
+    .sidebarMenuItem('topSidebarItem', {
+        text: 'Top Sidebar Item',
+        href: '/top-sidebar-item'
+        weight: -1
     });
     </code></pre>
 
@@ -218,23 +238,32 @@ eehNavigation
     });
     </code></pre>
 
-    <h3 id="menu-item-ordering">Menu Item Ordering</h3>
-    <p>Menu items are ordered based on their <strong>weight</strong>.</p>
-    <h4>weight</h4>
-    <p>An integer value. Items that are heavier (i.e. greater weight value) sink to the bottom.</p>
+    <h3 id="sidebar-text-collapse-menu-item">Sidebar Text Collapse Menu Item</h3>
+    <p>The text collapse menu item toggles the visiblity of the text in the sidebar items.</p>
+    <h4>sidebarTextCollapseIsCollapsed</h4>
+    <p>A function that takes a boolean value which sets the collapsed state of the sidebar menu items' text.</p>
     <pre><code class="javascript">
-eehNavigationProvider
-    .sidebarMenuItem('bottomSidebarItem', {
-        text: 'Bottom Sidebar Item',
-        href: '/bottom-sidebar-item'
-        weight: 1
-    })
-    .sidebarMenuItem('topSidebarItem', {
-        text: 'Top Sidebar Item',
-        href: '/top-sidebar-item'
-        weight: -1
-    });
+// Collapse/hide text
+eehNavigationProvider.sidebarTextCollapseIsCollapsed(true);
+// Expand/show text
+eehNavigationProvider.sidebarTextCollapseIsCollapsed(false);
     </code></pre>
+
+    <h4>sidebarTextCollapseIsVisible</h4>
+    <p>A function that takes a boolean value which sets the visibility of the text collapse menu item (not the collapse state).</p>
+    <pre><code class="javascript">
+// Hide text collapse button
+eehNavigationProvider.sidebarTextCollapseIsVisible(false);
+// Show text collapse button
+eehNavigationProvider.sidebarTextCollapseIsVisible(true);
+    </code></pre>
+
+    <h4>sidebarTextCollapseToggleCollapsed</h4>
+    <p>A parameterless function which toggles the collapse state of the sidebar collapse menu item.</p>
+    <pre><code class="javascript">
+eehNavigationProvider.sidebarTextCollapseToggleCollapsed();
+    </code></pre>
+
     <h3 id="nested-sidebar-menu-items">Nested Sidebar Menu Items</h3>
     <p>Sidebar menu items can be nested by using a <strong>.</strong> in the first parameter of sidebarMenuItem.
     If a menu item has children, do not assign a menu item action to it.</p>

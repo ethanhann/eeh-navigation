@@ -7,6 +7,11 @@ var NavigationService = function () {
         model: '',
         submit: function () {}
     };
+
+    this._sidebarTextCollapse = {
+        isVisible: true,
+        isCollapsed: false
+    };
     this.navbarBrand = {};
     this._navbarMenuItems = {};
     this._sidebarMenuItems = {};
@@ -99,6 +104,27 @@ NavigationService.prototype.navbarMenuItems = function () {
         self.buildAncestorChain(name, items, config);
     });
     return this._toArray(items);
+};
+
+NavigationService.prototype.sidebarTextCollapseIsVisible = function (value) {
+    if (angular.isUndefined(value)) {
+        return this._sidebarTextCollapse.isVisible;
+    }
+    this._sidebarTextCollapse.isVisible = value;
+    return this;
+};
+
+NavigationService.prototype.sidebarTextCollapseIsCollapsed = function (value) {
+    if (angular.isUndefined(value)) {
+        return this._sidebarTextCollapse.isCollapsed;
+    }
+    this._sidebarTextCollapse.isCollapsed = value;
+    return this;
+};
+
+NavigationService.prototype.sidebarTextCollapseToggleCollapsed = function () {
+    this._sidebarTextCollapse.isCollapsed = !this._sidebarTextCollapse.isCollapsed;
+    return this;
 };
 
 angular.module('eehNavigation').provider('eehNavigation', NavigationService);

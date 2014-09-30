@@ -38,7 +38,7 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav">
-                    <li class="sidebar-search" ng-show="!isSidebarTextCollapsed && _sidebarSearch.isVisible">
+                    <li class="sidebar-search" ng-show="!_sidebarTextCollapse.isCollapsed && _sidebarSearch.isVisible">
                         <form ng-submit="_sidebarSearch.submit()">
                             <div class="input-group">
                                 <input type="text" class="form-control search-input" placeholder="{{'Search'|eehTranslate}}"
@@ -54,10 +54,10 @@
                     <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
                         ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
                         ng-if="item._isVisible()"></li>
-                    <li ng-click="toggleSidebarTextCollapse()">
+                    <li ng-click="toggleSidebarTextCollapse()" ng-if="_sidebarTextCollapse.isVisible">
                         <a>
                             <span class="fa fa-fw"
-                                  ng-class="isSidebarTextCollapsed ? 'fa-arrow-right' : 'fa-arrow-left'"></span>
+                                  ng-class="_sidebarTextCollapse.isCollapsed ? 'fa-arrow-right' : 'fa-arrow-left'"></span>
                         </a>
                     </li>
                 </ul>
@@ -84,13 +84,13 @@
     <a ng-if="item.href" ng-href="{{item.href}}">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
     </a>
-    <a ng-if="!item.state && item.hasChildren() && !isSidebarTextCollapsed"
+    <a ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed"
        ng-click="item.isCollapsed = !item.isCollapsed">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
         <span class="navbar-right sidebar-arrow fa fa-fw"
               ng-class="item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'"></span>
     </a>
-    <ul ng-if="!item.state && item.hasChildren() && !isSidebarTextCollapsed" collapse="item.isCollapsed" class="nav">
+    <ul ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed" collapse="item.isCollapsed" class="nav">
         <li ng-repeat="item in item.children()"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
             ng-if="item._isVisible()"></li>

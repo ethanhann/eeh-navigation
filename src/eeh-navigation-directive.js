@@ -7,6 +7,7 @@ var NavigationDirective = function ($window, eehNavigation) {
         templateUrl: 'template/eeh-navigation/eeh-navigation.html',
         link: function (scope, element) {
             scope.navbarBrand = eehNavigation.navbarBrand;
+            scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
             scope._sidebarSearch = eehNavigation._sidebarSearch;
             scope.isNavbarCollapsed = false;
             scope._navbarMenuItems = eehNavigation._navbarMenuItems;
@@ -55,13 +56,32 @@ var NavigationDirective = function ($window, eehNavigation) {
                 }
             }, true);
 
-            scope.isSidebarTextCollapsed = false;
             scope.toggleSidebarTextCollapse = function() {
-                scope.isSidebarTextCollapsed = !scope.isSidebarTextCollapsed;
-                transcludedWrapper.toggleClass('sidebar-text-collapsed');
-                element.find('.sidebar').toggleClass('sidebar-text-collapsed');
-                element.find('.sidebar .menu-item-text').toggleClass('hidden');
+                eehNavigation.sidebarTextCollapseToggleCollapsed();
+                setTextCollapseState();
             };
+            function setTextCollapseState() {
+                var sidebarMenuItemTextElements = element.find('.sidebar .menu-item-text');
+                var sidebarElement = element.find('.sidebar');
+                if (eehNavigation.sidebarTextCollapseIsCollapsed()) {
+                    transcludedWrapper.addClass('sidebar-text-collapsed');
+                    sidebarElement.addClass('sidebar-text-collapsed');
+                    sidebarMenuItemTextElements.addClass('hidden');
+                } else {
+                    transcludedWrapper.removeClass('sidebar-text-collapsed');
+                    sidebarElement.removeClass('sidebar-text-collapsed');
+                    sidebarMenuItemTextElements.removeClass('hidden');
+                }
+            }
+            /**
+             * $includeContentLoaded is emitted when ng-include templates are finished loading.
+             * The text collapse state needs to be evaluated after the sidebar menu templates (which are loaded via
+             * ng-include) are loaded. If not, the sidebar menu item will not be hidden if the initial state of the
+             * sidebar text is collapsed as the menu items will not exist when the state is initially evaluated.
+             */
+            scope.$on('$includeContentLoaded', function () {
+                setTextCollapseState();
+            });
         }
     };
 };
