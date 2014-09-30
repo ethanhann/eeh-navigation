@@ -32,6 +32,7 @@
             templateUrl: "template/eeh-navigation/eeh-navigation.html",
             link: function(scope, element) {
                 scope.navbarBrand = eehNavigation.navbarBrand;
+                scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
                 scope._sidebarSearch = eehNavigation._sidebarSearch;
                 scope.isNavbarCollapsed = false;
                 scope._navbarMenuItems = eehNavigation._navbarMenuItems;
@@ -76,13 +77,26 @@
                         transcludedWrapper.css("min-height", height + "px");
                     }
                 }, true);
-                scope.isSidebarTextCollapsed = false;
                 scope.toggleSidebarTextCollapse = function() {
-                    scope.isSidebarTextCollapsed = !scope.isSidebarTextCollapsed;
-                    transcludedWrapper.toggleClass("sidebar-text-collapsed");
-                    element.find(".sidebar").toggleClass("sidebar-text-collapsed");
-                    element.find(".sidebar .menu-item-text").toggleClass("hidden");
+                    eehNavigation.sidebarTextCollapseToggleCollapsed();
+                    setTextCollapseState();
                 };
+                function setTextCollapseState() {
+                    var sidebarMenuItemTextElements = element.find(".sidebar .menu-item-text");
+                    var sidebarElement = element.find(".sidebar");
+                    if (eehNavigation.sidebarTextCollapseIsCollapsed()) {
+                        transcludedWrapper.addClass("sidebar-text-collapsed");
+                        sidebarElement.addClass("sidebar-text-collapsed");
+                        sidebarMenuItemTextElements.addClass("hidden");
+                    } else {
+                        transcludedWrapper.removeClass("sidebar-text-collapsed");
+                        sidebarElement.removeClass("sidebar-text-collapsed");
+                        sidebarMenuItemTextElements.removeClass("hidden");
+                    }
+                }
+                scope.$on("$includeContentLoaded", function() {
+                    setTextCollapseState();
+                });
             }
         };
     };
@@ -126,6 +140,10 @@
             isVisible: true,
             model: "",
             submit: function() {}
+        };
+        this._sidebarTextCollapse = {
+            isVisible: true,
+            isCollapsed: false
         };
         this.navbarBrand = {};
         this._navbarMenuItems = {};
@@ -207,6 +225,24 @@
             self.buildAncestorChain(name, items, config);
         });
         return this._toArray(items);
+    };
+    NavigationService.prototype.sidebarTextCollapseIsVisible = function(value) {
+        if (angular.isUndefined(value)) {
+            return this._sidebarTextCollapse.isVisible;
+        }
+        this._sidebarTextCollapse.isVisible = value;
+        return this;
+    };
+    NavigationService.prototype.sidebarTextCollapseIsCollapsed = function(value) {
+        if (angular.isUndefined(value)) {
+            return this._sidebarTextCollapse.isCollapsed;
+        }
+        this._sidebarTextCollapse.isCollapsed = value;
+        return this;
+    };
+    NavigationService.prototype.sidebarTextCollapseToggleCollapsed = function() {
+        this._sidebarTextCollapse.isCollapsed = !this._sidebarTextCollapse.isCollapsed;
+        return this;
     };
     angular.module("eehNavigation").provider("eehNavigation", NavigationService);
 })({}, function() {
