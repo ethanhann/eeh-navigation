@@ -6,7 +6,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a ng-if="navbarBrand.state" class="navbar-brand" ui-sref="{{ navbarBrand.state }}" href="#">{{ navbarBrand.text|eehTranslate }}</a>
+        <a ng-if="_navbarBrand.state && !_navbarBrand.href" class="navbar-brand" ui-sref="{{ _navbarBrand.state }}">
+            <span ng-include="'template/eeh-navigation/navbar-brand.html'"></span>
+        </a>
+        <a ng-if="!_navbarBrand.state && _navbarBrand.href" class="navbar-brand" ng-href="{{ _navbarBrand.href }}">
+            <span ng-include="'template/eeh-navigation/navbar-brand.html'"></span>
+        </a>
     </div>
 
     <ul class="nav navbar-top-links navbar-right">
@@ -73,6 +78,11 @@
         </div>
     </div>
 </div>
+
+<script type="text/ng-template" id="template/eeh-navigation/navbar-brand.html">
+    <img ng-if="_navbarBrand.src" ng-src="{{_navbarBrand.src}}">
+    <span ng-if="_navbarBrand.text">{{ _navbarBrand.text|eehTranslate }}</span>
+</script>
 
 <script type="text/ng-template" id="template/eeh-navigation/sidebar-menu-item.html">
     <a ng-if="item.state" ui-sref="{{item.state}}" ui-sref-active="active">

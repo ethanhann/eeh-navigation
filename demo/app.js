@@ -38,10 +38,8 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             templateUrl: 'search/search.html'
         });
 
-    eehNavigationProvider.navbarBrand = {
-        text: 'eeh-navigation demo',
-        state: 'demo.authenticated.home'
-    };
+    eehNavigationProvider.navbarBrand.text = 'eeh-navigation demo';
+    eehNavigationProvider.navbarBrand.state = 'demo.authenticated.home';
 
     eehNavigationProvider
         .navbarMenuItem('user', {

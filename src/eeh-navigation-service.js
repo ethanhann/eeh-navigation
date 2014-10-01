@@ -7,12 +7,16 @@ var NavigationService = function () {
         model: '',
         submit: function () {}
     };
-
     this._sidebarTextCollapse = {
         isVisible: true,
         isCollapsed: false
     };
-    this.navbarBrand = {};
+    this.navbarBrand = this._navbarBrand = {
+        text: '',
+        state: '',
+        href: '',
+        src: ''
+    };
     this._navbarMenuItems = {};
     this._sidebarMenuItems = {};
     this._toArray = function (items) {
