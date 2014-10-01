@@ -18,7 +18,17 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "        </button>\r" +
     "\n" +
-    "        <a ng-if=\"navbarBrand.state\" class=\"navbar-brand\" ui-sref=\"{{ navbarBrand.state }}\" href=\"#\">{{ navbarBrand.text|eehTranslate }}</a>\r" +
+    "        <a ng-if=\"_navbarBrand.state && !_navbarBrand.href\" class=\"navbar-brand\" ui-sref=\"{{ _navbarBrand.state }}\">\r" +
+    "\n" +
+    "            <span ng-include=\"'template/eeh-navigation/navbar-brand.html'\"></span>\r" +
+    "\n" +
+    "        </a>\r" +
+    "\n" +
+    "        <a ng-if=\"!_navbarBrand.state && _navbarBrand.href\" class=\"navbar-brand\" ng-href=\"{{ _navbarBrand.href }}\">\r" +
+    "\n" +
+    "            <span ng-include=\"'template/eeh-navigation/navbar-brand.html'\"></span>\r" +
+    "\n" +
+    "        </a>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +
@@ -151,6 +161,16 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "    </div>\r" +
     "\n" +
     "</div>\r" +
+    "\n" +
+    "\r" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/navbar-brand.html\">\r" +
+    "\n" +
+    "    <img ng-if=\"_navbarBrand.src\" ng-src=\"{{_navbarBrand.src}}\">\r" +
+    "\n" +
+    "    <span ng-if=\"_navbarBrand.text\">{{ _navbarBrand.text|eehTranslate }}</span>\r" +
+    "\n" +
+    "</script>\r" +
     "\n" +
     "\r" +
     "\n" +

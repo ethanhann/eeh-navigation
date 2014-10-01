@@ -1,4 +1,6 @@
-8564b2c (HEAD, origin/master, origin/HEAD, master) Add programmatic API for sidebar collapse menu item.
+fa2a9ed (HEAD, origin/master, origin/HEAD, master) Add support for image and links in navbar brand
+2d9037d (tag: 2.4.0) Prepare for release
+8564b2c Add programmatic API for sidebar collapse menu item.
 82c0ea6 Correct search input documentation
 e465445 (tag: 2.3.0) Bump version
 813ebec Prepare for release

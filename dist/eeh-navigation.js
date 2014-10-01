@@ -31,7 +31,7 @@
             transclude: true,
             templateUrl: "template/eeh-navigation/eeh-navigation.html",
             link: function(scope, element) {
-                scope.navbarBrand = eehNavigation.navbarBrand;
+                scope._navbarBrand = eehNavigation._navbarBrand;
                 scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
                 scope._sidebarSearch = eehNavigation._sidebarSearch;
                 scope.isNavbarCollapsed = false;
@@ -145,7 +145,12 @@
             isVisible: true,
             isCollapsed: false
         };
-        this.navbarBrand = {};
+        this.navbarBrand = this._navbarBrand = {
+            text: "",
+            state: "",
+            href: "",
+            src: ""
+        };
         this._navbarMenuItems = {};
         this._sidebarMenuItems = {};
         this._toArray = function(items) {
