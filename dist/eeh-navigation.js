@@ -37,7 +37,13 @@
                 scope.isNavbarCollapsed = false;
                 scope._navbarMenuItems = eehNavigation._navbarMenuItems;
                 scope.$watch("_navbarMenuItems", function() {
-                    scope.navbarMenuItems = eehNavigation.navbarMenuItems();
+                    var navbarMenuItems = eehNavigation.navbarMenuItems();
+                    scope.leftNavbarMenuItems = navbarMenuItems.filter(function(item) {
+                        return !item.isHeavy();
+                    });
+                    scope.rightNavbarMenuItems = navbarMenuItems.filter(function(item) {
+                        return item.isHeavy();
+                    });
                 });
                 scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
                 scope.$watch("_sidebarMenuItems", function() {
@@ -103,6 +109,7 @@
     angular.module("eehNavigation").directive("eehNavigation", [ "$window", "eehNavigation", NavigationDirective ]);
     "use strict";
     var MenuItem = function(config) {
+        this.weight = 0;
         angular.extend(this, config);
     };
     MenuItem.prototype.children = function() {
@@ -133,6 +140,11 @@
     };
     MenuItem.prototype.isVisible = function() {
         return true;
+    };
+    MenuItem.prototype.isHeavy = function() {
+        if (this.hasOwnProperty("weight")) {
+            return this.weight >= 0;
+        }
     };
     "use strict";
     var NavigationService = function() {

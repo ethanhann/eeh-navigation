@@ -1,4 +1,7 @@
-fa2a9ed (HEAD, origin/master, origin/HEAD, master) Add support for image and links in navbar brand
+334ad9c (HEAD, origin/master, origin/HEAD, master) Pull heavy navbar items to the right, and light navbar items to the left.
+0fb3a10 Add css map
+a596d06 (tag: 2.5.0) Prepare for release
+fa2a9ed Add support for image and links in navbar brand
 2d9037d (tag: 2.4.0) Prepare for release
 8564b2c Add programmatic API for sidebar collapse menu item.
 82c0ea6 Correct search input documentation
