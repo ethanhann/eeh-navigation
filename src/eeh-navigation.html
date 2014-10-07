@@ -13,32 +13,18 @@
             <span ng-include="'template/eeh-navigation/navbar-brand.html'"></span>
         </a>
     </div>
-
-    <ul class="nav navbar-top-links navbar-right">
-        <li class="dropdown" ng-repeat="navbarMenuItem in navbarMenuItems|orderBy:'weight'">
-            <a class="dropdown-toggle" data-toggle="dropdown">
-                <span class="fa fa-fw {{ navbarMenuItem.iconClass }}"></span>
-                <span> {{ navbarMenuItem.text|eehTranslate }}</span>
-                <span class="fa fa-caret-down"></span>
-            </a>
-            <ul ng-if="navbarMenuItem.hasChildren()" class="dropdown-menu">
-                <li ng-repeat="item in navbarMenuItem.children()|orderBy:'weight'" ng-class="{'divider': item.isDivider}"
-                    ng-if="item._isVisible()">
-                    <a ng-if="!item.isDivider && item.state"
-                       ui-sref="{{ item.state }}">
-                        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
-                    </a>
-                    <a ng-if="item.click" ng-click="item.click()">
-                        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
-                    </a>
-                    <a ng-if="item.href" ng-href="{{item.href}}">
-                        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
-                    </a>
-                </li>
-            </ul>
-        </li>
+    <ul class="nav navbar-top-links navbar-left">
+        <li ng-repeat="item in leftNavbarMenuItems | orderBy:'weight'"
+            ng-include="'template/eeh-navigation/navbar-menu-item.html'"
+            ng-if="item._isVisible()"
+            class="dropdown"></li>
     </ul>
-
+    <ul class="nav navbar-top-links navbar-right">
+        <li ng-repeat="item in rightNavbarMenuItems | orderBy:'weight'"
+            ng-include="'template/eeh-navigation/navbar-menu-item.html'"
+            ng-if="item._isVisible()"
+            class="dropdown"></li>
+    </ul>
     <div collapse="isNavbarCollapsed">
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
@@ -47,7 +33,7 @@
                         <form ng-submit="_sidebarSearch.submit()">
                             <div class="input-group">
                                 <input type="text" class="form-control search-input" placeholder="{{'Search'|eehTranslate}}"
-                                   ng-model="_sidebarSearch.model">
+                                       ng-model="_sidebarSearch.model">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">
                                         <i class="fa fa-search"></i>
@@ -82,6 +68,29 @@
 <script type="text/ng-template" id="template/eeh-navigation/navbar-brand.html">
     <img ng-if="_navbarBrand.src" ng-src="{{_navbarBrand.src}}">
     <span ng-if="_navbarBrand.text">{{ _navbarBrand.text|eehTranslate }}</span>
+</script>
+
+<script type="text/ng-template" id="template/eeh-navigation/navbar-menu-item.html">
+    <a ng-if="!item.isDivider && item.state" ui-sref="{{ item.state }}">
+        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+    </a>
+    <a ng-if="item.click" ng-click="item.click()">
+        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+    </a>
+    <a ng-if="item.href" ng-href="{{item.href}}">
+        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+    </a>
+    <a ng-if="item.hasChildren()" class="dropdown-toggle">
+        <span class="fa fa-fw {{ item.iconClass }}"></span>
+        <span> {{ item.text|eehTranslate }}</span>
+        <span class="fa fa-caret-down"></span>
+    </a>
+    <ul ng-if="item.hasChildren()" class="dropdown-menu">
+        <li ng-repeat="item in item.children()|orderBy:'weight'"
+            ng-class="{'divider': item.isDivider}"
+            ng-include="'template/eeh-navigation/navbar-menu-item.html'"
+            ng-if="item._isVisible()">
+    </ul>
 </script>
 
 <script type="text/ng-template" id="template/eeh-navigation/sidebar-menu-item.html">

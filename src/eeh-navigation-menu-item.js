@@ -1,6 +1,7 @@
 'use strict';
 
 var MenuItem = function (config) {
+    this.weight = 0;
     angular.extend(this, config);
 };
 
@@ -35,4 +36,10 @@ MenuItem.prototype._isVisible = function () {
 
 MenuItem.prototype.isVisible = function () {
     return true;
+};
+
+MenuItem.prototype.isHeavy = function () {
+    if (this.hasOwnProperty('weight')) {
+        return this.weight >= 0;
+    }
 };

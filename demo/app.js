@@ -42,6 +42,14 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
     eehNavigationProvider.navbarBrand.state = 'demo.authenticated.home';
 
     eehNavigationProvider
+        .navbarMenuItem('home', {
+            text: 'Home',
+            iconClass: 'fa-home',
+            state: 'demo.authenticated.home',
+            weight: -10
+        });
+
+    eehNavigationProvider
         .navbarMenuItem('user', {
             text: 'me',
             iconClass: 'fa-user'
