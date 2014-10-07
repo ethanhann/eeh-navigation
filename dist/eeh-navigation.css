@@ -45,6 +45,9 @@
   .navbar-top-links .dropdown-tasks,
   .navbar-top-links .dropdown-alerts {
     margin-left: auto; } }
+.navbar-top-links a.active {
+  background-color: #eee; }
+
 .sidebar .sidebar-nav.navbar-collapse {
   padding-right: 0;
   padding-left: 0; }

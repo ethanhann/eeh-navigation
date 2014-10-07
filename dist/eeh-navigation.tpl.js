@@ -148,7 +148,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "<script type=\"text/ng-template\" id=\"template/eeh-navigation/navbar-menu-item.html\">\r" +
     "\n" +
-    "    <a ng-if=\"!item.isDivider && item.state\" ui-sref=\"{{ item.state }}\">\r" +
+    "    <a ng-if=\"!item.isDivider && item.state\" ui-sref=\"{{ item.state }}\" ui-sref-active=\"active\">\r" +
     "\n" +
     "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\r" +
     "\n" +
