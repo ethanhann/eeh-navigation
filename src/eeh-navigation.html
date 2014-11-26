@@ -89,7 +89,7 @@
         <li ng-repeat="item in item.children()|orderBy:'weight'"
             ng-class="{'divider': item.isDivider}"
             ng-include="'template/eeh-navigation/navbar-menu-item.html'"
-            ng-if="item._isVisible()">
+            ng-if="item._isVisible()"></li>
     </ul>
 </script>
 

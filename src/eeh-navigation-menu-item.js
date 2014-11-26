@@ -25,6 +25,20 @@ MenuItem.prototype.hasChildren = function () {
 };
 
 MenuItem.prototype._isVisible = function () {
+    var hasVisibleChildren = false;
+    for (var key in this) {
+        if (this.hasOwnProperty(key) && angular.isObject(this[key]) &&
+            this[key] instanceof MenuItem && this[key].visible !== false) {
+            hasVisibleChildren = true;
+            break;
+        }
+    }
+    if (!hasVisibleChildren &&
+        angular.isUndefined(this.state) &&
+        angular.isUndefined(this.href) &&
+        !this.isDivider)
+        return false;
+
     if (angular.isFunction(this.isVisible)) {
         return this.isVisible();
     }
