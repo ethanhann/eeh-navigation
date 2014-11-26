@@ -36,8 +36,9 @@ MenuItem.prototype._isVisible = function () {
     if (!hasVisibleChildren &&
         angular.isUndefined(this.state) &&
         angular.isUndefined(this.href) &&
-        !this.isDivider)
+        !this.isDivider) {
         return false;
+    }
 
     if (angular.isFunction(this.isVisible)) {
         return this.isVisible();
