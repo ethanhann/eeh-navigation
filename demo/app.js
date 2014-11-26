@@ -57,6 +57,10 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             text: 'Hidden Child',
             visible: false
         })
+        .navbarMenuItem('hiddenChildren.anotherHiddenChildren', {
+            text: 'Another Hidden Child',
+            visible: false
+        })
         .navbarMenuItem('user', {
             text: 'me',
             iconClass: 'fa-user'
