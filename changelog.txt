@@ -1,4 +1,6 @@
-2659c6d (HEAD, origin/master, origin/HEAD, master) Fix jsHint issue
+676c666 (HEAD, origin/master, origin/HEAD, master) Refactor
+1efe667 (tag: 2.7.1) Prepare for release
+2659c6d Fix jsHint issue
 e5da9e0 Hide parent navbar items that do not have visible children
 da69951 Loosen dep requirements
 63bf0e0 (tag: 2.7.0) Prepare for release

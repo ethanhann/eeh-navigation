@@ -115,29 +115,20 @@
     MenuItem.prototype.children = function() {
         var children = [];
         angular.forEach(this, function(property) {
-            if (angular.isObject(property)) {
+            if (angular.isObject(property) && property instanceof MenuItem) {
                 children.push(property);
             }
         });
         return children;
     };
     MenuItem.prototype.hasChildren = function() {
-        for (var key in this) {
-            if (this.hasOwnProperty(key) && angular.isObject(this[key])) {
-                return true;
-            }
-        }
-        return false;
+        return this.children().length > 0;
     };
     MenuItem.prototype._isVisible = function() {
-        var hasVisibleChildren = false;
-        for (var key in this) {
-            if (this.hasOwnProperty(key) && angular.isObject(this[key]) && this[key] instanceof MenuItem && this[key].visible !== false) {
-                hasVisibleChildren = true;
-                break;
-            }
-        }
-        if (!hasVisibleChildren && angular.isUndefined(this.state) && angular.isUndefined(this.href) && !this.isDivider) {
+        var hasVisibleChildren = this.children().filter(function(child) {
+            return child._isVisible() !== false;
+        }).length > 0;
+        if (!hasVisibleChildren && angular.isUndefined(this.state) && angular.isUndefined(this.href) && angular.isUndefined(this.click) && !this.isDivider) {
             return false;
         }
         if (angular.isFunction(this.isVisible)) {
