@@ -184,7 +184,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "            ng-include=\"'template/eeh-navigation/navbar-menu-item.html'\"\r" +
     "\n" +
-    "            ng-if=\"item._isVisible()\">\r" +
+    "            ng-if=\"item._isVisible()\"></li>\r" +
     "\n" +
     "    </ul>\r" +
     "\n" +

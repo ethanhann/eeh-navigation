@@ -1,4 +1,8 @@
-673c802 (HEAD, origin/master, origin/HEAD, master) Add active class to navbar menu items with state
+2659c6d (HEAD, origin/master, origin/HEAD, master) Fix jsHint issue
+e5da9e0 Hide parent navbar items that do not have visible children
+da69951 Loosen dep requirements
+63bf0e0 (tag: 2.7.0) Prepare for release
+673c802 Add active class to navbar menu items with state
 419849d (tag: 2.6.0) Prepare for release
 334ad9c Pull heavy navbar items to the right, and light navbar items to the left.
 0fb3a10 Add css map
