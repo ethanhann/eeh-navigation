@@ -69,11 +69,6 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             text: 'Blank',
             state: 'demo.authenticated.blank'
         })
-        .navbarMenuItem('user.profile', {
-            text: 'User Profile',
-            iconClass: 'fa-user',
-            state: 'demo.authenticated.home'
-        })
         .navbarMenuItem('user.example-com', {
             text: 'example.com',
             iconClass: 'fa-external-link',

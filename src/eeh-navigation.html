@@ -71,16 +71,16 @@
 </script>
 
 <script type="text/ng-template" id="template/eeh-navigation/navbar-menu-item.html">
-    <a ng-if="!item.isDivider && item.state" ui-sref="{{ item.state }}" ui-sref-active="active">
+    <a ng-if="!item.isDivider && item.state" ui-sref="{{ item.state }}" ui-sref-active="active" eeh-active-parent-menu-item>
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
     </a>
     <a ng-if="item.click" ng-click="item.click()">
-        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+        <span ng-include="'template/eeh-navigation/menu-item-content.html'" eeh-active-parent-menu-item></span>
     </a>
     <a ng-if="item.href" ng-href="{{item.href}}">
-        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+        <span ng-include="'template/eeh-navigation/menu-item-content.html'" eeh-active-parent-menu-item></span>
     </a>
-    <a ng-if="item.hasChildren()" class="dropdown-toggle">
+    <a ng-if="item.hasChildren()" class="dropdown-toggle" eeh-is-active-menu-item>
         <span class="fa fa-fw {{ item.iconClass }}"></span>
         <span> {{ item.text|eehTranslate }}</span>
         <span class="fa fa-caret-down"></span>

@@ -88,3 +88,19 @@ var NavigationDirective = function ($window, eehNavigation) {
 };
 
 angular.module('eehNavigation').directive('eehNavigation', ['$window', 'eehNavigation', NavigationDirective]);
+
+var ActiveParentMenuItemDirective = function ($location) {
+    return {
+        restrict: 'A',
+        link: function (scope, element) {
+            var parent = element.parent().parent().prev();
+            scope.$watch(function () {
+                return $location.url();
+            }, function () {
+                element.hasClass('active') ? parent.addClass('active') : parent.removeClass('active');
+            });
+        }
+    };
+};
+
+angular.module('eehNavigation').directive('eehActiveParentMenuItem', ActiveParentMenuItemDirective);
