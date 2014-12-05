@@ -78,6 +78,9 @@ NavigationService.prototype.buildAncestorChain = function (name, items, config) 
 
 NavigationService.prototype.sidebarMenuItem = function (name, config) {
     if (angular.isUndefined(config)) {
+        if (angular.isUndefined(this._sidebarMenuItems[name])) {
+            throw name + ' is not a sidebar menu item';
+        }
         return this._sidebarMenuItems[name];
     }
     this._sidebarMenuItems[name] = new MenuItem(config);
@@ -95,6 +98,9 @@ NavigationService.prototype.sidebarMenuItems = function () {
 
 NavigationService.prototype.navbarMenuItem = function (name, config) {
     if (angular.isUndefined(config)) {
+        if (angular.isUndefined(this._navbarMenuItems[name])) {
+            throw name + ' is not a navbar menu item';
+        }
         return this._navbarMenuItems[name];
     }
     this._navbarMenuItems[name] = new MenuItem(config);
