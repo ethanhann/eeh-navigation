@@ -97,7 +97,7 @@ var ActiveParentMenuItemDirective = function ($location) {
             scope.$watch(function () {
                 return $location.url();
             }, function () {
-                element.hasClass('active') ? parent.addClass('active') : parent.removeClass('active');
+                parent.toggleClass('active', element.hasClass(activeClass));
             });
         }
     };
