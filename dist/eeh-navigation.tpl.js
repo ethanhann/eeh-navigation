@@ -148,7 +148,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "<script type=\"text/ng-template\" id=\"template/eeh-navigation/navbar-menu-item.html\">\r" +
     "\n" +
-    "    <a ng-if=\"!item.isDivider && item.state\" ui-sref=\"{{ item.state }}\" ui-sref-active=\"active\">\r" +
+    "    <a ng-if=\"!item.isDivider && item.state\" ui-sref=\"{{ item.state }}\" ui-sref-active=\"active\" eeh-active-parent-menu-item>\r" +
     "\n" +
     "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\r" +
     "\n" +
@@ -156,17 +156,17 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "    <a ng-if=\"item.click\" ng-click=\"item.click()\">\r" +
     "\n" +
-    "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\r" +
+    "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\" eeh-active-parent-menu-item></span>\r" +
     "\n" +
     "    </a>\r" +
     "\n" +
     "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\">\r" +
     "\n" +
-    "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\r" +
+    "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\" eeh-active-parent-menu-item></span>\r" +
     "\n" +
     "    </a>\r" +
     "\n" +
-    "    <a ng-if=\"item.hasChildren()\" class=\"dropdown-toggle\">\r" +
+    "    <a ng-if=\"item.hasChildren()\" class=\"dropdown-toggle\" eeh-is-active-menu-item>\r" +
     "\n" +
     "        <span class=\"fa fa-fw {{ item.iconClass }}\"></span>\r" +
     "\n" +
