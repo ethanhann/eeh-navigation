@@ -1,4 +1,6 @@
-5d38dd1 (HEAD, origin/master, origin/HEAD, master) Fix refactor
+b69cf35 (HEAD, master) Throw an exception if non-existing menu item is accessed
+cf2e9a9 (tag: 2.7.3, origin/master, origin/HEAD) Prepare for release
+5d38dd1 Fix refactor
 b83937e Small refactor
 ba115d9 Make navbar toggle 'active' when a child is 'active'
 9044bcf (tag: 2.7.2) Prepare for release
