@@ -94,10 +94,11 @@ var ActiveParentMenuItemDirective = function ($location) {
         restrict: 'A',
         link: function (scope, element) {
             var parent = element.parent().parent().prev();
+            var activeClass = 'active';
             scope.$watch(function () {
                 return $location.url();
             }, function () {
-                parent.toggleClass('active', element.hasClass(activeClass));
+                parent.toggleClass(activeClass, element.hasClass(activeClass));
             });
         }
     };
