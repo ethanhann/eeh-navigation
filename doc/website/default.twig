@@ -6,8 +6,8 @@
 
     <title>{{ title }}</title>
 
-    <link rel="stylesheet" href="{{ baseUrl }}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ baseUrl }}/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ baseUrl }}/bower_components/bootswatch/superhero/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ baseUrl }}/bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ baseUrl }}/css/highlight.tomorrow-night.css">
     <link rel="stylesheet" href="{{ baseUrl }}/css/main.css">
     <link rel="stylesheet" href="{{ baseUrl }}/css/eeh-navigation.css">
@@ -24,6 +24,7 @@
     </a>
 
     <ul class="nav navbar-nav navbar-right">
+        <li><a href="/demo/index.html">Demo</a></li>
         <li><a href="https://github.com/ethanhann/eeh-navigation">Code</a></li>
         <li><a href="http://ethanhann.com">Author</a></li>
     </ul>
@@ -71,7 +72,7 @@
 </main>
 
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="{{ baseUrl }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
 
 <script>
