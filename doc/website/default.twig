@@ -23,7 +23,7 @@
         </small>
     </a>
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right hidden-xs hidden-sm">
         <li><a href="{{ baseUrl }}/demo/index.html">Demo</a></li>
         <li><a href="https://github.com/ethanhann/eeh-navigation">Code</a></li>
         <li><a href="http://ethanhann.com">Author</a></li>
@@ -61,9 +61,14 @@
             {{ content|raw }}
             <hr>
             <div class="footer text-center">
+                <div class="hidden-md hidden-lg">
+                    <div>Try the <a href="{{ baseUrl }}/demo/index.html">Demo</a></div>
+                    <span class="fa fa-star"></span>
+                    <div>Fork the <a href="https://github.com/ethanhann/eeh-navigation">Code</a></div>
+                    <span class="fa fa-star"></span>
+                </div>
                 <div>Created by <a href="http://ethanhann.com">Ethan Hann</a></div>
                 <span class="fa fa-star"></span>
-
                 <div>Inspired by <a href="http://startbootstrap.com/template-overviews/sb-admin-2">SB Admin 2</a></div>
             </div>
         </section>
