@@ -1,0 +1,18 @@
+
+#sidebar {
+    font-size: 14px;
+}
+
+#sidebar > .nav > li > a {
+    padding: 5px 0 5px 8px
+}
+
+header > ul.nav.navbar-nav > li > a {
+    height: auto;
+    line-height: 50px;
+    padding-top: 10px;
+}
+
+header > ul.nav.navbar-nav > li:last-child {
+    padding-right: 30px;
+}
