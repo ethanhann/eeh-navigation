@@ -8,7 +8,7 @@ Icons are optional.
 
 ## iconClass
 
-A CSS class that corresponds to an icon in a library like FontAwesome.
+A CSS class that corresponds to an icon in a library like [Font Awesome](http://fortawesome.github.io/Font-Awesome/icons/).
 
 ```
 eehNavigationProvider

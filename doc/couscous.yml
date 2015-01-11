@@ -20,9 +20,6 @@ menu:
         configuration:
             name: Configuration
             items:
-                icons:
-                    text: Icons
-                    relativeUrl: configuration/icons.html
                 menu-item-basics:
                     text: Menu Item Basics
                     relativeUrl: configuration/menu-item-basics.html
@@ -38,10 +35,13 @@ menu:
                 sidebar-search-menu-item:
                     text: Sidebar Search Menu Item
                     relativeUrl: configuration/sidebar-search-menu-item.html
-        features:
+        optional-features:
             name: Optional Features
             items:
+                icons:
+                    text: Icons
+                    relativeUrl: optional-features/icons.html
                 language-translation:
                     text: Language Translation
-                    relativeUrl: features/language-translation.html
+                    relativeUrl: optional-features/language-translation.html
 
