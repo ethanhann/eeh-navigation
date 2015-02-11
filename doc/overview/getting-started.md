@@ -22,6 +22,25 @@ bower install eeh-navigation
     <script src="bower_components/eeh-navigation/dist/eeh-navigation.tpl.js"></script>
 ```
 
+## Use the "eeh-navigation" Directive
+
+The directive should wrap some set of nested sub controllers.
+
+```html
+<eeh-navigation>
+    ... my sub controllers ...
+</eeh-navigation>
+```
+
+If ui-router is used, which is recommended, then the directive should wrap a _ui-view_ directive.
+It should also be in a template that is at the top of the state hierarchy.
+
+```html
+<eeh-navigation>
+    <ui-view></ui-view>
+</eeh-navigation>
+```
+
 ## Configuration Example
 ```
 angular.module('myApp', ['eehNavigation']).config(['eehNavigationProvider',
