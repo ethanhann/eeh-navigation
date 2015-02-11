@@ -5,7 +5,8 @@ currentMenu: nested-sidebar-menu-items
 # Nested Sidebar Menu Items
 
 Sidebar menu items can be nested by using a **.** in the first parameter of sidebarMenuItem.
-    If a menu item has children, do not assign a menu item action to it.
+
+If a menu item has children, do not assign a menu item action to it.
 
 ```
 eehNavigationProvider
