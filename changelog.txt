@@ -1,4 +1,6 @@
-060b584 (HEAD, origin/master, origin/HEAD, master) Apply rule to .navbar-top-links
+ce5cd58 Exposed target attribute for links
+4206e13 (tag: 3.0.3) Prepare for release
+060b584 Apply rule to .navbar-top-links
 0f7387f (tag: 3.0.2) Increment version number
 245a337 Prepare for release
 2d16a67 Fix margin issue that caused the whole page to be too wide

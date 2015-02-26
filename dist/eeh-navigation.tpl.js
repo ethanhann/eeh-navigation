@@ -24,7 +24,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "        </a>\r" +
     "\n" +
-    "        <a ng-if=\"!_navbarBrand.state && _navbarBrand.href\" class=\"navbar-brand\" ng-href=\"{{ _navbarBrand.href }}\">\r" +
+    "        <a ng-if=\"!_navbarBrand.state && _navbarBrand.href\" class=\"navbar-brand\" ng-href=\"{{ _navbarBrand.href }}\" target=\"{{item.target ? item.target : '_self'}}\">\r" +
     "\n" +
     "            <span ng-include=\"'template/eeh-navigation/navbar-brand.html'\"></span>\r" +
     "\n" +
@@ -160,7 +160,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "    </a>\r" +
     "\n" +
-    "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\">\r" +
+    "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\" target=\"{{item.target ? item.target : '_self'}}\">\r" +
     "\n" +
     "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\" eeh-active-parent-menu-item></span>\r" +
     "\n" +
@@ -206,7 +206,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "    </a>\r" +
     "\n" +
-    "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\">\r" +
+    "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\" target=\"{{item.target ? item.target : '_self'}}\">\r" +
     "\n" +
     "        <span ng-include=\"'template/eeh-navigation/menu-item-content.html'\"></span>\r" +
     "\n" +

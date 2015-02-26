@@ -135,7 +135,8 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
         .sidebarMenuItem('external', {
             text: 'Link to example.com',
             iconClass: 'fa-external-link',
-            href: 'http://example.com'
+            href: 'http://example.com',
+            target: '_blank'
         })
         .sidebarMenuItem('visible', {
             text: 'Visible',

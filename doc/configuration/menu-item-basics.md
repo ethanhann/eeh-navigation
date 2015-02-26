@@ -21,6 +21,17 @@ eehNavigationProvider
     });
 ```
 
+To make the link open in a new tab, set the _target_ property to '_blank' (the default value is '_self').
+
+```
+eehNavigationProvider
+    .sidebarMenuItem('mySidebarItem', {
+        text: 'My Sidebar Item',
+        href: '/my-sidebar-item',
+        target: '_blank'
+    });
+```
+
 ### click
 
 A parameterless function. This value is plugged into a ng-click attribute behind the scenes.
