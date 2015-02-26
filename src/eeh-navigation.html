@@ -9,7 +9,7 @@
         <a ng-if="_navbarBrand.state && !_navbarBrand.href" class="navbar-brand" ui-sref="{{ _navbarBrand.state }}">
             <span ng-include="'template/eeh-navigation/navbar-brand.html'"></span>
         </a>
-        <a ng-if="!_navbarBrand.state && _navbarBrand.href" class="navbar-brand" ng-href="{{ _navbarBrand.href }}">
+        <a ng-if="!_navbarBrand.state && _navbarBrand.href" class="navbar-brand" ng-href="{{ _navbarBrand.href }}" target="{{item.target ? item.target : '_self'}}">
             <span ng-include="'template/eeh-navigation/navbar-brand.html'"></span>
         </a>
     </div>
@@ -77,7 +77,7 @@
     <a ng-if="item.click" ng-click="item.click()">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'" eeh-active-parent-menu-item></span>
     </a>
-    <a ng-if="item.href" ng-href="{{item.href}}">
+    <a ng-if="item.href" ng-href="{{item.href}}" target="{{item.target ? item.target : '_self'}}">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'" eeh-active-parent-menu-item></span>
     </a>
     <a ng-if="item.hasChildren()" class="dropdown-toggle" eeh-is-active-menu-item>
@@ -100,7 +100,7 @@
     <a ng-if="item.click" ng-click="item.click()">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
     </a>
-    <a ng-if="item.href" ng-href="{{item.href}}">
+    <a ng-if="item.href" ng-href="{{item.href}}" target="{{item.target ? item.target : '_self'}}">
         <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
     </a>
     <a ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed"
