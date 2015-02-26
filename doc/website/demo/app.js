@@ -72,7 +72,8 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
         .navbarMenuItem('user.example-com', {
             text: 'example.com',
             iconClass: 'fa-external-link',
-            href: 'http://example.com'
+            href: 'http://example.com',
+            target: '_blank'
         })
         .navbarMenuItem('user.divider1', {
             isDivider: true
