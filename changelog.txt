@@ -1,5 +1,15 @@
-b69cf35 (HEAD, master) Throw an exception if non-existing menu item is accessed
-cf2e9a9 (tag: 2.7.3, origin/master, origin/HEAD) Prepare for release
+2d16a67 (HEAD, origin/master, origin/HEAD, master) Fix margin issue that caused the whole page to be too wide
+1a42b1a Add eeh-navigation directive explanation in "Getting Started"
+d2709ce Fix doc format issue
+26d63ff =Use responsive utility classes to hide menu items at small screen sizes
+de2cb75 Move icon doc under optional-features
+770c028 Fix demo url
+765b693 Fix demo url
+6db580a Use bower for demo
+dbda5a8 locally fork theme
+45c10d8 (tag: 3.0.0) Prepare for release
+b69cf35 Throw an exception if non-existing menu item is accessed
+cf2e9a9 (tag: 2.7.3) Prepare for release
 5d38dd1 Fix refactor
 b83937e Small refactor
 ba115d9 Make navbar toggle 'active' when a child is 'active'
@@ -53,7 +63,7 @@ e271dcf (tag: 2.0.1) Prepare for release
 ce90627 Add a MenuItem class and factor out functions from directive
 5397bde (tag: 2.0.0) Prepare for release
 7d42fda Fix CS issue
-0282574 (origin/flat-config) Add ability to weight menu items (heavier items sink)
+0282574 (origin/flat-config, flat-config) Add ability to weight menu items (heavier items sink)
 97c4cc1 Separate js into multiple files and prefix lib files with eeh-
 e43336a Refactor navigation service
 9a4bf44 Flatten navbar item configuration
