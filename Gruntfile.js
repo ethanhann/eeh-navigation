@@ -25,6 +25,11 @@ module.exports = function (grunt) {
                 '<%= settings.src %>/{,*/}*.js'
             ]
         },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
+        },
         ngtemplates: {
             eehNavigation: {
                 cwd: '<%= settings.src %>',
@@ -105,6 +110,11 @@ module.exports = function (grunt) {
 
     grunt.registerTask('lint', [
         'jshint:src'
+    ]);
+
+    grunt.registerTask('test', [
+        'lint',
+        'karma:unit'
     ]);
 
     grunt.registerTask('build', [
