@@ -37,7 +37,7 @@ menu:
                     relativeUrl: configuration/sidebar-search-menu-item.html
                 language-translation:
                     text: Language Translation
-                    relativeUrl: optional-features/language-translation.html
+                    relativeUrl: configuration/language-translation.html
         optional-features:
             name: Optional Features
             items:
