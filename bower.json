@@ -35,8 +35,5 @@
     "font-awesome": ">=4.0",
     "bootstrap": ">=3.0",
     "jquery": ">=1.9"
-  },
-  "devDependencies": {
-    "angular-highlightjs": "~0.3.0"
   }
 }
