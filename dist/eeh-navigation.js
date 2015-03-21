@@ -1,29 +1,7 @@
 (function(exports, global) {
     global["eeh-navigation"] = exports;
     "use strict";
-    angular.module("eehTranslate", []);
-    var TranslateService = function($injector) {
-        if ($injector.has("$translate")) {
-            this._translate = $injector.get("$translate");
-        }
-    };
-    TranslateService.prototype.isAvailable = function() {
-        return angular.isDefined(this._translate);
-    };
-    TranslateService.prototype.instant = function(translationId, interpolateParams, interpolationId) {
-        return this.isAvailable() ? this._translate.instant(translationId, interpolateParams, interpolationId) : translationId;
-    };
-    angular.module("eehTranslate").service("eehTranslate", [ "$injector", TranslateService ]);
-    var TranslateFilter = function(eehTranslate) {
-        var self = this;
-        self.eehTranslate = eehTranslate;
-        return function(text) {
-            return self.eehTranslate.instant(text);
-        };
-    };
-    angular.module("eehTranslate").filter("eehTranslate", [ "eehTranslate", TranslateFilter ]);
-    "use strict";
-    angular.module("eehNavigation", [ "eehTranslate" ]);
+    angular.module("eehNavigation", [ "pascalprecht.translate" ]);
     "use strict";
     var NavigationDirective = function($window, eehNavigation) {
         return {
@@ -103,6 +81,9 @@
                 scope.$on("$includeContentLoaded", function() {
                     setTextCollapseState();
                 });
+                scope.isSidebarVisible = function() {
+                    return eehNavigation.isSidebarVisible();
+                };
             }
         };
     };
@@ -282,6 +263,11 @@
     NavigationService.prototype.sidebarTextCollapseToggleCollapsed = function() {
         this._sidebarTextCollapse.isCollapsed = !this._sidebarTextCollapse.isCollapsed;
         return this;
+    };
+    NavigationService.prototype.isSidebarVisible = function() {
+        return this.searchIsVisible() || this.sidebarMenuItems().filter(function(item) {
+            return item._isVisible();
+        }).length > 0;
     };
     angular.module("eehNavigation").provider("eehNavigation", NavigationService);
 })({}, function() {

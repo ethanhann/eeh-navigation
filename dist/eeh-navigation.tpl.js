@@ -70,7 +70,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "                            <div class=\"input-group\">\r" +
     "\n" +
-    "                                <input type=\"text\" class=\"form-control search-input\" placeholder=\"{{'Search'|eehTranslate}}\"\r" +
+    "                                <input type=\"text\" class=\"form-control search-input\" placeholder=\"{{'Search'|translate}}\"\r" +
     "\n" +
     "                                       ng-model=\"_sidebarSearch.model\">\r" +
     "\n" +
@@ -96,7 +96,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "                        ng-if=\"item._isVisible()\"></li>\r" +
     "\n" +
-    "                    <li ng-click=\"toggleSidebarTextCollapse()\" ng-if=\"_sidebarTextCollapse.isVisible\">\r" +
+    "                    <li ng-click=\"toggleSidebarTextCollapse()\" ng-if=\"_sidebarTextCollapse.isVisible && isSidebarVisible()\">\r" +
     "\n" +
     "                        <a>\r" +
     "\n" +
@@ -120,7 +120,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "\r" +
     "\n" +
-    "<div id=\"eeh-navigation-page-wrapper\">\r" +
+    "<div id=\"eeh-navigation-page-wrapper\" ng-class=\"{ 'sidebar-invisible': !isSidebarVisible() }\">\r" +
     "\n" +
     "    <div class=\"row\">\r" +
     "\n" +
@@ -140,7 +140,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "    <img ng-if=\"_navbarBrand.src\" ng-src=\"{{_navbarBrand.src}}\">\r" +
     "\n" +
-    "    <span ng-if=\"_navbarBrand.text\">{{ _navbarBrand.text|eehTranslate }}</span>\r" +
+    "    <span ng-if=\"_navbarBrand.text\">{{ _navbarBrand.text|translate }}</span>\r" +
     "\n" +
     "</script>\r" +
     "\n" +
@@ -170,7 +170,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "        <span class=\"fa fa-fw {{ item.iconClass }}\"></span>\r" +
     "\n" +
-    "        <span> {{ item.text|eehTranslate }}</span>\r" +
+    "        <span> {{ item.text|translate }}</span>\r" +
     "\n" +
     "        <span class=\"fa fa-caret-down\"></span>\r" +
     "\n" +
@@ -242,7 +242,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "    <span class=\"menu-item-icon fa fa-fw {{ item.iconClass}}\"></span>\r" +
     "\n" +
-    "    <span class=\"menu-item-text\"> {{ item.text|eehTranslate }}</span>\r" +
+    "    <span class=\"menu-item-text\"> {{ item.text|translate }}</span>\r" +
     "\n" +
     "</script>\r" +
     "\n"

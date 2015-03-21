@@ -7,17 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "eeh-navigation": "~3.1.0",
-    "angular": ">=1.3",
-    "angular-ui-router": "~0.2.10",
-    "angular-bootstrap": "~0.11.0",
-    "angular-translate": "~2.2.0",
     "bootswatch": ">=3.3.1",
-    "font-awesome": ">=4.0",
-    "bootstrap": ">=3.0",
-    "jquery": ">=1.9",
     "angular-highlightjs": "~0.3.0"
-  },
-  "resolutions": {
-    "angular-translate": "~2.2.0"
   }
 }

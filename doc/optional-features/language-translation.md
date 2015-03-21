@@ -4,13 +4,9 @@ currentMenu: language-translation
 
 # Language Translation
 
-Language translation is an optional feature. To use it, do the following.
+This doc provides an example of how to use [angular-translate](http://angular-translate.github.io/) with [eeh-navigation](http://ethanhann.com/eeh-navigation/).
 
-## Install angular-translate (via bower)
-
-```
-bower install angular-translate
-```
+Internally, all menu item names are passed through the angular-translate module's _translate_ filter.
 
 ## Include angular-translate JavaScript
 
@@ -43,7 +39,7 @@ function (eehNavigationProvider) {
 
 ## Add Translations
 
-```
+```js
 angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
 function ($translateProvider, eehNavigationProvider) {
     // ...

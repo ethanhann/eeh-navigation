@@ -17,9 +17,9 @@ The directive will not work at all without the following dependencies.
 * AngularJS
 * Angular Bootstrap
 * Twitter Bootstrap (CSS only)
+* Angular Translate
 
 The following dependencies are optional. The directive will work without them, but some functionality will not be available.
 
 * FontAwesome
-* Angular Translate
 * Angular UI Router

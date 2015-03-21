@@ -32,7 +32,7 @@
                     <li class="sidebar-search" ng-show="!_sidebarTextCollapse.isCollapsed && _sidebarSearch.isVisible">
                         <form ng-submit="_sidebarSearch.submit()">
                             <div class="input-group">
-                                <input type="text" class="form-control search-input" placeholder="{{'Search'|eehTranslate}}"
+                                <input type="text" class="form-control search-input" placeholder="{{'Search'|translate}}"
                                        ng-model="_sidebarSearch.model">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">
@@ -67,7 +67,7 @@
 
 <script type="text/ng-template" id="template/eeh-navigation/navbar-brand.html">
     <img ng-if="_navbarBrand.src" ng-src="{{_navbarBrand.src}}">
-    <span ng-if="_navbarBrand.text">{{ _navbarBrand.text|eehTranslate }}</span>
+    <span ng-if="_navbarBrand.text">{{ _navbarBrand.text|translate }}</span>
 </script>
 
 <script type="text/ng-template" id="template/eeh-navigation/navbar-menu-item.html">
@@ -82,7 +82,7 @@
     </a>
     <a ng-if="item.hasChildren()" class="dropdown-toggle" eeh-is-active-menu-item>
         <span class="fa fa-fw {{ item.iconClass }}"></span>
-        <span> {{ item.text|eehTranslate }}</span>
+        <span> {{ item.text|translate }}</span>
         <span class="fa fa-caret-down"></span>
     </a>
     <ul ng-if="item.hasChildren()" class="dropdown-menu">
@@ -118,5 +118,5 @@
 
 <script type="text/ng-template" id="template/eeh-navigation/menu-item-content.html">
     <span class="menu-item-icon fa fa-fw {{ item.iconClass}}"></span>
-    <span class="menu-item-text"> {{ item.text|eehTranslate }}</span>
+    <span class="menu-item-text"> {{ item.text|translate }}</span>
 </script>
