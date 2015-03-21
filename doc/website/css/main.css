@@ -10,9 +10,6 @@ section {
     margin-bottom: 50px;
 }
 
-h1, h2, h3, h4 {
-    color: #df691a;
-}
 h3 {
     font-size: 23px;
 }
@@ -28,6 +25,7 @@ img {
 header.navbar {
     opacity: 0.9;
 }
+
 .navbar .navbar-brand {
     font-size: 28px;
     height: auto;
@@ -35,14 +33,16 @@ header.navbar {
     margin-left: 20px;
     color: #df691a;
 }
-.navbar a.navbar-brand:hover {
-    color: #df691a;
-}
+
 .navbar .navbar-brand small {
     font-size: 18px;
     font-weight: 300;
     margin-left: 10px;
-    color: white;
+    color: #DDDDDD;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+    background-color: #293139;
 }
 
 @media (min-width: 768px) {
