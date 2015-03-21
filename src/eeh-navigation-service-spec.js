@@ -102,6 +102,7 @@ describe('eehNavigationService', function () {
             var service = eehNavigation.sidebarMenuItem(name, config);
 
             expect(service).toBe(eehNavigation);
+            /* global MenuItem */
             expect(eehNavigation.sidebarMenuItem(name) instanceof MenuItem).toBe(true);
         });
 
