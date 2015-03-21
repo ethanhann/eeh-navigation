@@ -42,7 +42,7 @@ NavigationService.prototype.searchIsVisible = function (value) {
     return this;
 };
 
-NavigationService.prototype.searchModel= function (value) {
+NavigationService.prototype.searchModel = function (value) {
     if (angular.isUndefined(value)) {
         return this._sidebarSearch.model;
     }
