@@ -39,7 +39,7 @@ function (eehNavigationProvider) {
 
 ## Add Translations
 
-```js
+```
 angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
 function ($translateProvider, eehNavigationProvider) {
     // ...

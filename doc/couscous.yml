@@ -35,13 +35,12 @@ menu:
                 sidebar-search-menu-item:
                     text: Sidebar Search Menu Item
                     relativeUrl: configuration/sidebar-search-menu-item.html
+                language-translation:
+                    text: Language Translation
+                    relativeUrl: optional-features/language-translation.html
         optional-features:
             name: Optional Features
             items:
                 icons:
                     text: Icons
                     relativeUrl: optional-features/icons.html
-                language-translation:
-                    text: Language Translation
-                    relativeUrl: optional-features/language-translation.html
-
