@@ -45,7 +45,7 @@
                     <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
                         ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
                         ng-if="item._isVisible()"></li>
-                    <li ng-click="toggleSidebarTextCollapse()" ng-if="_sidebarTextCollapse.isVisible">
+                    <li ng-click="toggleSidebarTextCollapse()" ng-if="_sidebarTextCollapse.isVisible && isSidebarVisible()">
                         <a>
                             <span class="fa fa-fw"
                                   ng-class="_sidebarTextCollapse.isCollapsed ? 'fa-arrow-right' : 'fa-arrow-left'"></span>
@@ -57,7 +57,7 @@
     </div>
 </nav>
 
-<div id="eeh-navigation-page-wrapper">
+<div id="eeh-navigation-page-wrapper" ng-class="{ 'sidebar-invisible': !isSidebarVisible() }">
     <div class="row">
         <div class="col-lg-12">
             <div ng-transclude></div>

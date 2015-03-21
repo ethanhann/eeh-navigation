@@ -14,6 +14,24 @@ describe('eehNavigationService', function () {
         expect(service).toBe(eehNavigation);
     });
 
+    it('should indicate that the sidebar is visible by default', function () {
+        var expected = true;
+
+        var actual = eehNavigation.isSidebarVisible();
+
+        expect(actual).toEqual(expected);
+    });
+
+    it('should indicate that the sidebar is hidden if the search menu item is not visible and there are no visible menu items', function () {
+        var expected = false;
+        eehNavigation.searchIsVisible(false);
+
+        var actual = eehNavigation.isSidebarVisible();
+
+        expect(eehNavigation.sidebarMenuItems().length).toEqual(0);
+        expect(actual).toEqual(expected);
+    });
+
     describe('Search Menu Item', function () {
         it('should get default sidebar search menu item visibility', function () {
             var expected = true;

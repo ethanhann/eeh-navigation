@@ -137,4 +137,10 @@ NavigationService.prototype.sidebarTextCollapseToggleCollapsed = function () {
     return this;
 };
 
+NavigationService.prototype.isSidebarVisible = function () {
+    return this.searchIsVisible() || this.sidebarMenuItems()
+            .filter(function (item) { return item._isVisible(); })
+            .length > 0;
+};
+
 angular.module('eehNavigation').provider('eehNavigation', NavigationService);

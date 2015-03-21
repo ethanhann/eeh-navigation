@@ -83,6 +83,10 @@ var NavigationDirective = function ($window, eehNavigation) {
             scope.$on('$includeContentLoaded', function () {
                 setTextCollapseState();
             });
+
+            scope.isSidebarVisible = function () {
+                return eehNavigation.isSidebarVisible();
+            };
         }
     };
 };
