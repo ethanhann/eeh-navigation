@@ -63,7 +63,8 @@ module.exports = function (grunt) {
                     '<%= settings.dist %>/<%= settings.libName %>.js': [
                         '<%= settings.src %>/eeh-translate.js',
                         '<%= settings.src %>/eeh-navigation.js',
-                        '<%= settings.src %>/eeh-navigation-*.js'
+                        '<%= settings.src %>/eeh-navigation-*.js',
+                        '!<%= settings.src %>/*-spec.js'
                     ]
                 },
                 options: {
@@ -75,7 +76,10 @@ module.exports = function (grunt) {
             },
             minify: {
                 files: {
-                    '<%= settings.dist %>/<%= settings.libName %>.min.js': ['<%= settings.src %>/*.js'],
+                    '<%= settings.dist %>/<%= settings.libName %>.min.js': [
+                        '<%= settings.src %>/*.js',
+                        '!<%= settings.src %>/*-spec.js'
+                    ],
                     '<%= settings.dist %>/<%= settings.libName %>.tpl.min.js': ['<%= settings.dist %>/*.tpl.js']
                 },
                 options: {
