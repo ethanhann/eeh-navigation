@@ -102,6 +102,7 @@
             }
         };
     };
+    ActiveParentMenuItemDirective.$inject = [ "$location" ];
     angular.module("eehNavigation").directive("eehActiveParentMenuItem", ActiveParentMenuItemDirective);
     "use strict";
     var MenuItem = function(config) {
