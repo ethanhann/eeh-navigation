@@ -6,6 +6,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         settings: {
             src: 'src',
+            build: 'build',
             dist: 'dist',
             libName: 'eeh-navigation'
         },
@@ -28,6 +29,18 @@ module.exports = function (grunt) {
         karma: {
             unit: {
                 configFile: 'karma.conf.js'
+            }
+        },
+        ngAnnotate: {
+            eehNavigation: {
+                files: {
+                    '<%= settings.build %>/<%= settings.libName %>.annotated.js': [
+                        '<%= settings.src %>/eeh-translate.js',
+                        '<%= settings.src %>/eeh-navigation.js',
+                        '<%= settings.src %>/eeh-navigation-*.js',
+                        '!<%= settings.src %>/*-spec.js'
+                    ]
+                }
             }
         },
         ngtemplates: {
@@ -66,10 +79,7 @@ module.exports = function (grunt) {
             beautify: {
                 files: {
                     '<%= settings.dist %>/<%= settings.libName %>.js': [
-                        '<%= settings.src %>/eeh-translate.js',
-                        '<%= settings.src %>/eeh-navigation.js',
-                        '<%= settings.src %>/eeh-navigation-*.js',
-                        '!<%= settings.src %>/*-spec.js'
+                        '<%= settings.build %>/<%= settings.libName %>.annotated.js'
                     ]
                 },
                 options: {
@@ -82,8 +92,7 @@ module.exports = function (grunt) {
             minify: {
                 files: {
                     '<%= settings.dist %>/<%= settings.libName %>.min.js': [
-                        '<%= settings.src %>/*.js',
-                        '!<%= settings.src %>/*-spec.js'
+                        '<%= settings.build %>/<%= settings.libName %>.annotated.js'
                     ],
                     '<%= settings.dist %>/<%= settings.libName %>.tpl.min.js': ['<%= settings.dist %>/*.tpl.js']
                 },
@@ -120,6 +129,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'sass:dist',
         'ngtemplates',
+        'ngAnnotate',
         'uglify:beautify',
         'uglify:minify'
     ]);
