@@ -80,7 +80,7 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: ['src/**/*.*'],
-                tasks: ['build'],
+                tasks: ['build', 'copy:dev'],
                 options: {
                     spawn: false
                 }
@@ -142,7 +142,6 @@ module.exports = function (grunt) {
         'ngtemplates',
         'ngAnnotate',
         'uglify:beautify',
-        'copy:dev',
         'uglify:minify'
     ]);
 
