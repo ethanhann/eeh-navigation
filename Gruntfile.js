@@ -8,7 +8,18 @@ module.exports = function (grunt) {
             src: 'src',
             build: 'build',
             dist: 'dist',
-            libName: 'eeh-navigation'
+            libName: 'eeh-navigation',
+            docDev: 'doc/.couscous/generated/bower_components/eeh-navigation/dist'
+        },
+        copy: {
+            dev: {
+                files: [{
+                        expand: true,
+                        flatten: true,
+                        src: ['<%= settings.dist %>/*'],
+                        dest: '<%= settings.docDev %>'
+                }]
+            }
         },
         exec: {
             generateChangelog: {
@@ -131,6 +142,7 @@ module.exports = function (grunt) {
         'ngtemplates',
         'ngAnnotate',
         'uglify:beautify',
+        'copy:dev',
         'uglify:minify'
     ]);
 
