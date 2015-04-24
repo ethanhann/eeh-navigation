@@ -4,7 +4,7 @@ var NavigationDirective = function ($window, eehNavigation) {
     return {
         restrict: 'AE',
         transclude: true,
-        templateUrl: 'template/eeh-navigation/eeh-navigation.html',
+        templateUrl: 'template/eeh-navigation/combined/eeh-navigation.html',
         link: function (scope, element) {
             scope._navbarBrand = eehNavigation._navbarBrand;
             scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-default navbar-static-top eeh-navigation" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" ng-click="isNavbarCollapsed = !isNavbarCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a ng-if="_navbarBrand.state && !_navbarBrand.href" class="navbar-brand" ui-sref="{{ _navbarBrand.state }}">
+            <span ng-include="'template/eeh-navigation/navbar-brand.html'"></span>
+        </a>
+        <a ng-if="!_navbarBrand.state && _navbarBrand.href" class="navbar-brand" ng-href="{{ _navbarBrand.href }}" target="{{item.target ? item.target : '_self'}}">
+            <span ng-include="'template/eeh-navigation/navbar-brand.html'"></span>
+        </a>
+    </div>
+    <ul class="nav navbar-top-links navbar-left">
+        <li ng-repeat="item in leftNavbarMenuItems | orderBy:'weight'"
+            ng-include="'template/eeh-navigation/navbar-menu-item.html'"
+            ng-if="item._isVisible()"
+            class="dropdown"></li>
+    </ul>
+    <ul class="nav navbar-top-links navbar-right">
+        <li ng-repeat="item in rightNavbarMenuItems | orderBy:'weight'"
+            ng-include="'template/eeh-navigation/navbar-menu-item.html'"
+            ng-if="item._isVisible()"
+            class="dropdown"></li>
+    </ul>
+    <div collapse="isNavbarCollapsed">
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav">
+                    <li class="sidebar-search" ng-show="!_sidebarTextCollapse.isCollapsed && _sidebarSearch.isVisible">
+                        <form ng-submit="_sidebarSearch.submit()">
+                            <div class="input-group">
+                                <input type="text" class="form-control search-input" placeholder="{{'Search'|translate}}"
+                                       ng-model="_sidebarSearch.model">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </li>
+                    <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
+                        ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
+                        ng-if="item._isVisible()"></li>
+                    <li ng-click="toggleSidebarTextCollapse()" ng-if="_sidebarTextCollapse.isVisible && isSidebarVisible()">
+                        <a>
+                            <span class="fa fa-fw"
+                                  ng-class="_sidebarTextCollapse.isCollapsed ? 'fa-arrow-right' : 'fa-arrow-left'"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
