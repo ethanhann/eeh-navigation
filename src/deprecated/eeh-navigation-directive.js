@@ -1,10 +1,13 @@
 'use strict';
 
+/**
+ * @deprecated Will be removed in 4.0.0
+ */
 var NavigationDirective = function ($window, eehNavigation) {
     return {
         restrict: 'AE',
         transclude: true,
-        templateUrl: 'template/eeh-navigation/eeh-navigation.html',
+        templateUrl: 'template/eeh-navigation/deprecated/eeh-navigation.html',
         link: function (scope, element) {
             scope._navbarBrand = eehNavigation._navbarBrand;
             scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
@@ -92,20 +95,3 @@ var NavigationDirective = function ($window, eehNavigation) {
 };
 
 angular.module('eehNavigation').directive('eehNavigation', ['$window', 'eehNavigation', NavigationDirective]);
-
-var ActiveParentMenuItemDirective = function ($location) {
-    return {
-        restrict: 'A',
-        link: function (scope, element) {
-            var parent = element.parent().parent().prev();
-            var activeClass = 'active';
-            scope.$watch(function () {
-                return $location.url();
-            }, function () {
-                parent.toggleClass(activeClass, element.hasClass(activeClass));
-            });
-        }
-    };
-};
-
-angular.module('eehNavigation').directive('eehActiveParentMenuItem', ActiveParentMenuItemDirective);

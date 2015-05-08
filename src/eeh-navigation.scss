@@ -1,0 +1,15 @@
+// @deprecated Will be removed in 4.0.0
+@import "deprecated/navbar";
+// @deprecated Will be removed in 4.0.0
+@import "deprecated/sidebar";
+
+@import "sidebar/sidebar";
+@import "sidebar/transcluded-wrapper";
+
+.eeh-navigation {
+  margin-bottom: 0;
+}
+
+.eeh-navigation a {
+  cursor: pointer;
+}

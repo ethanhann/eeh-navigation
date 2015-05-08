@@ -1,0 +1,59 @@
+<nav class="eeh-navigation eeh-navigation-sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse" collapse="isNavbarCollapsed">
+        <ul class="nav">
+            <li class="sidebar-search" ng-show="!_sidebarTextCollapse.isCollapsed && _sidebarSearch.isVisible">
+                <form ng-submit="_sidebarSearch.submit()">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-input" placeholder="{{'Search'|translate}}"
+                               ng-model="_sidebarSearch.model">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                    </div>
+                </form>
+            </li>
+            <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
+                ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
+                ng-if="item._isVisible()"></li>
+            <li ng-click="toggleSidebarTextCollapse()" ng-if="_sidebarTextCollapse.isVisible && isSidebarVisible()">
+                <a>
+                    <span class="fa fa-fw" ng-class="_sidebarTextCollapse.isCollapsed ? 'fa-arrow-right' : 'fa-arrow-left'"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="eeh-navigation-page-wrapper" ng-class="{ 'sidebar-invisible': !isSidebarVisible() }">
+    <div class="row">
+        <div class="col-lg-12">
+            <div ng-transclude></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="template/eeh-navigation/sidebar-menu-item.html">
+    <a ng-if="item.state" ui-sref="{{item.state}}" ui-sref-active="active">
+        <span eeh-navigation-menu-item-content="item"></span>
+    </a>
+    <a ng-if="item.click" ng-click="item.click()">
+        <span eeh-navigation-menu-item-content="item"></span>
+    </a>
+    <a ng-if="item.href" ng-href="{{item.href}}" target="{{item.target ? item.target : '_self'}}">
+        <span eeh-navigation-menu-item-content="item"></span>
+    </a>
+    <a ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed"
+       ng-click="item.isCollapsed = !item.isCollapsed">
+        <span eeh-navigation-menu-item-content="item"></span>
+        <span class="navbar-right sidebar-arrow fa fa-fw"
+              ng-class="item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'"></span>
+    </a>
+    <ul ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed" collapse="item.isCollapsed"
+        class="nav">
+        <li ng-repeat="item in item.children()"
+            ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
+            ng-if="item._isVisible()"></li>
+    </ul>
+</script>

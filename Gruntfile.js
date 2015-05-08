@@ -8,7 +8,18 @@ module.exports = function (grunt) {
             src: 'src',
             build: 'build',
             dist: 'dist',
-            libName: 'eeh-navigation'
+            libName: 'eeh-navigation',
+            docDev: 'doc/.couscous/generated/bower_components/eeh-navigation/dist'
+        },
+        copy: {
+            dev: {
+                files: [{
+                        expand: true,
+                        flatten: true,
+                        src: ['<%= settings.dist %>/*'],
+                        dest: '<%= settings.docDev %>'
+                }]
+            }
         },
         exec: {
             generateChangelog: {
@@ -38,7 +49,8 @@ module.exports = function (grunt) {
                         '<%= settings.src %>/eeh-translate.js',
                         '<%= settings.src %>/eeh-navigation.js',
                         '<%= settings.src %>/eeh-navigation-*.js',
-                        '!<%= settings.src %>/*-spec.js'
+                        '<%= settings.src %>/*/eeh-navigation-*.js',
+                        '!<%= settings.src %>/**/*-spec.js'
                     ]
                 }
             }
@@ -46,7 +58,7 @@ module.exports = function (grunt) {
         ngtemplates: {
             eehNavigation: {
                 cwd: '<%= settings.src %>',
-                src: 'eeh-navigation.html',
+                src: ['**/*.html'],
                 dest: '<%= settings.dist %>/eeh-navigation.tpl.js',
                 options:  {
                     url: function (url) {
@@ -59,9 +71,10 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= settings.src %>/scss/',
+                    cwd: '<%= settings.src %>/',
                     src: ['**/*.scss'],
                     dest: '<%= settings.dist %>',
+                    flatten: true,
                     ext: '.css'
                 }]
             }
@@ -69,7 +82,7 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: ['src/**/*.*'],
-                tasks: ['build'],
+                tasks: ['build', 'copy:dev'],
                 options: {
                     spawn: false
                 }

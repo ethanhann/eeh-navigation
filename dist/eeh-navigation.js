@@ -3,108 +3,6 @@
     "use strict";
     angular.module("eehNavigation", [ "pascalprecht.translate" ]);
     "use strict";
-    var NavigationDirective = function($window, eehNavigation) {
-        return {
-            restrict: "AE",
-            transclude: true,
-            templateUrl: "template/eeh-navigation/eeh-navigation.html",
-            link: function(scope, element) {
-                scope._navbarBrand = eehNavigation._navbarBrand;
-                scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
-                scope._sidebarSearch = eehNavigation._sidebarSearch;
-                scope.isNavbarCollapsed = false;
-                scope._navbarMenuItems = eehNavigation._navbarMenuItems;
-                scope.$watch("_navbarMenuItems", function() {
-                    var navbarMenuItems = eehNavigation.navbarMenuItems();
-                    scope.leftNavbarMenuItems = navbarMenuItems.filter(function(item) {
-                        return !item.isHeavy();
-                    });
-                    scope.rightNavbarMenuItems = navbarMenuItems.filter(function(item) {
-                        return item.isHeavy();
-                    });
-                });
-                scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
-                scope.$watch("_sidebarMenuItems", function() {
-                    scope.sidebarMenuItems = eehNavigation.sidebarMenuItems();
-                });
-                var windowElement = angular.element($window);
-                windowElement.bind("resize", function() {
-                    scope.$apply();
-                });
-                var getWindowDimensions = function() {
-                    return {
-                        height: windowElement.height(),
-                        width: windowElement.width(),
-                        innerHeight: windowElement.innerHeight(),
-                        innerWidth: windowElement.innerWidth()
-                    };
-                };
-                var topOffset = 50;
-                var transcludedWrapper = element.find("#eeh-navigation-page-wrapper");
-                scope.$watch(getWindowDimensions, function(newValue) {
-                    if (angular.isUndefined(newValue)) {
-                        return;
-                    }
-                    var width = newValue.innerWidth > 0 ? newValue.innerWidth : $window.screen.width;
-                    if (width < 768) {
-                        scope.isNavbarCollapsed = true;
-                        topOffset = 100;
-                    } else {
-                        scope.isNavbarCollapsed = false;
-                    }
-                    var height = newValue.innerHeight > 0 ? newValue.innerHeight : $window.screen.height;
-                    height = height - topOffset;
-                    if (height < 1) {
-                        height = 1;
-                    }
-                    if (height > topOffset) {
-                        transcludedWrapper.css("min-height", height + "px");
-                    }
-                }, true);
-                scope.toggleSidebarTextCollapse = function() {
-                    eehNavigation.sidebarTextCollapseToggleCollapsed();
-                    setTextCollapseState();
-                };
-                function setTextCollapseState() {
-                    var sidebarMenuItemTextElements = element.find(".sidebar .menu-item-text");
-                    var sidebarElement = element.find(".sidebar");
-                    if (eehNavigation.sidebarTextCollapseIsCollapsed()) {
-                        transcludedWrapper.addClass("sidebar-text-collapsed");
-                        sidebarElement.addClass("sidebar-text-collapsed");
-                        sidebarMenuItemTextElements.addClass("hidden");
-                    } else {
-                        transcludedWrapper.removeClass("sidebar-text-collapsed");
-                        sidebarElement.removeClass("sidebar-text-collapsed");
-                        sidebarMenuItemTextElements.removeClass("hidden");
-                    }
-                }
-                scope.$on("$includeContentLoaded", function() {
-                    setTextCollapseState();
-                });
-                scope.isSidebarVisible = function() {
-                    return eehNavigation.isSidebarVisible();
-                };
-            }
-        };
-    };
-    angular.module("eehNavigation").directive("eehNavigation", [ "$window", "eehNavigation", NavigationDirective ]);
-    var ActiveParentMenuItemDirective = function($location) {
-        return {
-            restrict: "A",
-            link: function(scope, element) {
-                var parent = element.parent().parent().prev();
-                var activeClass = "active";
-                scope.$watch(function() {
-                    return $location.url();
-                }, function() {
-                    parent.toggleClass(activeClass, element.hasClass(activeClass));
-                });
-            }
-        };
-    };
-    ActiveParentMenuItemDirective.$inject = [ "$location" ];
-    angular.module("eehNavigation").directive("eehActiveParentMenuItem", ActiveParentMenuItemDirective);
-    "use strict";
     var MenuItem = function(config) {
         this.weight = 0;
         angular.extend(this, config);
@@ -271,6 +169,236 @@
         }).length > 0;
     };
     angular.module("eehNavigation").provider("eehNavigation", NavigationService);
+    "use strict";
+    var NavigationDirective = function($window, eehNavigation) {
+        return {
+            restrict: "AE",
+            transclude: true,
+            templateUrl: "template/eeh-navigation/deprecated/eeh-navigation.html",
+            link: function(scope, element) {
+                scope._navbarBrand = eehNavigation._navbarBrand;
+                scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
+                scope._sidebarSearch = eehNavigation._sidebarSearch;
+                scope.isNavbarCollapsed = false;
+                scope._navbarMenuItems = eehNavigation._navbarMenuItems;
+                scope.$watch("_navbarMenuItems", function() {
+                    var navbarMenuItems = eehNavigation.navbarMenuItems();
+                    scope.leftNavbarMenuItems = navbarMenuItems.filter(function(item) {
+                        return !item.isHeavy();
+                    });
+                    scope.rightNavbarMenuItems = navbarMenuItems.filter(function(item) {
+                        return item.isHeavy();
+                    });
+                });
+                scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
+                scope.$watch("_sidebarMenuItems", function() {
+                    scope.sidebarMenuItems = eehNavigation.sidebarMenuItems();
+                });
+                var windowElement = angular.element($window);
+                windowElement.bind("resize", function() {
+                    scope.$apply();
+                });
+                var getWindowDimensions = function() {
+                    return {
+                        height: windowElement.height(),
+                        width: windowElement.width(),
+                        innerHeight: windowElement.innerHeight(),
+                        innerWidth: windowElement.innerWidth()
+                    };
+                };
+                var topOffset = 50;
+                var transcludedWrapper = element.find("#eeh-navigation-page-wrapper");
+                scope.$watch(getWindowDimensions, function(newValue) {
+                    if (angular.isUndefined(newValue)) {
+                        return;
+                    }
+                    var width = newValue.innerWidth > 0 ? newValue.innerWidth : $window.screen.width;
+                    if (width < 768) {
+                        scope.isNavbarCollapsed = true;
+                        topOffset = 100;
+                    } else {
+                        scope.isNavbarCollapsed = false;
+                    }
+                    var height = newValue.innerHeight > 0 ? newValue.innerHeight : $window.screen.height;
+                    height = height - topOffset;
+                    if (height < 1) {
+                        height = 1;
+                    }
+                    if (height > topOffset) {
+                        transcludedWrapper.css("min-height", height + "px");
+                    }
+                }, true);
+                scope.toggleSidebarTextCollapse = function() {
+                    eehNavigation.sidebarTextCollapseToggleCollapsed();
+                    setTextCollapseState();
+                };
+                function setTextCollapseState() {
+                    var sidebarMenuItemTextElements = element.find(".sidebar .menu-item-text");
+                    var sidebarElement = element.find(".sidebar");
+                    if (eehNavigation.sidebarTextCollapseIsCollapsed()) {
+                        transcludedWrapper.addClass("sidebar-text-collapsed");
+                        sidebarElement.addClass("sidebar-text-collapsed");
+                        sidebarMenuItemTextElements.addClass("hidden");
+                    } else {
+                        transcludedWrapper.removeClass("sidebar-text-collapsed");
+                        sidebarElement.removeClass("sidebar-text-collapsed");
+                        sidebarMenuItemTextElements.removeClass("hidden");
+                    }
+                }
+                scope.$on("$includeContentLoaded", function() {
+                    setTextCollapseState();
+                });
+                scope.isSidebarVisible = function() {
+                    return eehNavigation.isSidebarVisible();
+                };
+            }
+        };
+    };
+    angular.module("eehNavigation").directive("eehNavigation", [ "$window", "eehNavigation", NavigationDirective ]);
+    "use strict";
+    var MenuItemContentDirective = function() {
+        return {
+            restrict: "A",
+            scope: {
+                menuItem: "=eehNavigationMenuItemContent"
+            },
+            templateUrl: "template/eeh-navigation/menu-item-content/eeh-navigation-menu-item-content.html"
+        };
+    };
+    angular.module("eehNavigation").directive("eehNavigationMenuItemContent", MenuItemContentDirective);
+    "use strict";
+    var ActiveParentMenuItemDirective = function($state) {
+        return {
+            restrict: "A",
+            scope: {
+                menuItem: "=eehNavigationActiveMenuItem"
+            },
+            link: function(scope, element) {
+                var checkIsActive = function() {
+                    if (scope.menuItem.hasChildren()) {
+                        var isActive = scope.menuItem.children().filter(function(childMenuItem) {
+                            return angular.isDefined(childMenuItem.state) && $state.includes(childMenuItem.state);
+                        }).length > 0;
+                        element.toggleClass("active", isActive);
+                    }
+                };
+                scope.$on("$stateChangeSuccess", checkIsActive);
+                checkIsActive();
+            }
+        };
+    };
+    ActiveParentMenuItemDirective.$inject = [ "$state" ];
+    angular.module("eehNavigation").directive("eehNavigationActiveMenuItem", ActiveParentMenuItemDirective);
+    "use strict";
+    var NavbarDirective = function($window, eehNavigation) {
+        return {
+            restrict: "AE",
+            templateUrl: "template/eeh-navigation/navbar/eeh-navigation-navbar.html",
+            link: function(scope) {
+                scope._navbarBrand = eehNavigation._navbarBrand;
+                scope.isNavbarCollapsed = false;
+                scope._navbarMenuItems = eehNavigation._navbarMenuItems;
+                scope.$watch("_navbarMenuItems", function() {
+                    var navbarMenuItems = eehNavigation.navbarMenuItems();
+                    scope.leftNavbarMenuItems = navbarMenuItems.filter(function(item) {
+                        return !item.isHeavy();
+                    });
+                    scope.rightNavbarMenuItems = navbarMenuItems.filter(function(item) {
+                        return item.isHeavy();
+                    });
+                });
+                var windowElement = angular.element($window);
+                windowElement.bind("resize", function() {
+                    scope.$apply();
+                });
+                var getWindowDimensions = function() {
+                    return {
+                        height: windowElement.height(),
+                        width: windowElement.width(),
+                        innerHeight: windowElement.innerHeight(),
+                        innerWidth: windowElement.innerWidth()
+                    };
+                };
+                scope.$watch(getWindowDimensions, function(newValue) {
+                    if (angular.isUndefined(newValue)) {
+                        return;
+                    }
+                    var width = newValue.innerWidth > 0 ? newValue.innerWidth : $window.screen.width;
+                    if (width >= 768) {
+                        scope.isNavbarCollapsed = false;
+                    }
+                }, true);
+            }
+        };
+    };
+    angular.module("eehNavigation").directive("eehNavigationNavbar", [ "$window", "eehNavigation", NavbarDirective ]);
+    "use strict";
+    var SidebarDirective = function($window, eehNavigation) {
+        return {
+            restrict: "AE",
+            transclude: true,
+            templateUrl: "template/eeh-navigation/sidebar/eeh-navigation-sidebar.html",
+            link: function(scope, element) {
+                scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
+                scope._sidebarSearch = eehNavigation._sidebarSearch;
+                scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
+                scope.$watch("_sidebarMenuItems", function() {
+                    scope.sidebarMenuItems = eehNavigation.sidebarMenuItems();
+                });
+                var windowElement = angular.element($window);
+                windowElement.bind("resize", function() {
+                    scope.$apply();
+                });
+                var getWindowDimensions = function() {
+                    return {
+                        height: windowElement.height(),
+                        width: windowElement.width(),
+                        innerHeight: windowElement.innerHeight(),
+                        innerWidth: windowElement.innerWidth()
+                    };
+                };
+                var topOffset = 50;
+                var transcludedWrapper = element.find("#eeh-navigation-page-wrapper");
+                scope.$watch(getWindowDimensions, function(newValue) {
+                    if (angular.isUndefined(newValue)) {
+                        return;
+                    }
+                    var height = newValue.innerHeight > 0 ? newValue.innerHeight : $window.screen.height;
+                    height = height - topOffset;
+                    if (height < 1) {
+                        height = 1;
+                    }
+                    if (height > topOffset) {
+                        transcludedWrapper.css("min-height", height + "px");
+                    }
+                }, true);
+                scope.toggleSidebarTextCollapse = function() {
+                    eehNavigation.sidebarTextCollapseToggleCollapsed();
+                    setTextCollapseState();
+                };
+                function setTextCollapseState() {
+                    var sidebarMenuItemTextElements = element.find(".menu-item-text");
+                    var sidebarElement = element.find(".eeh-navigation-sidebar");
+                    if (eehNavigation.sidebarTextCollapseIsCollapsed()) {
+                        transcludedWrapper.addClass("sidebar-text-collapsed");
+                        sidebarElement.addClass("sidebar-text-collapsed");
+                        sidebarMenuItemTextElements.addClass("hidden");
+                    } else {
+                        transcludedWrapper.removeClass("sidebar-text-collapsed");
+                        sidebarElement.removeClass("sidebar-text-collapsed");
+                        sidebarMenuItemTextElements.removeClass("hidden");
+                    }
+                }
+                scope.$on("$includeContentLoaded", function() {
+                    setTextCollapseState();
+                });
+                scope.isSidebarVisible = function() {
+                    return eehNavigation.isSidebarVisible();
+                };
+            }
+        };
+    };
+    angular.module("eehNavigation").directive("eehNavigationSidebar", [ "$window", "eehNavigation", SidebarDirective ]);
 })({}, function() {
     return this;
 }());

@@ -1,0 +1,66 @@
+.eeh-navigation-sidebar {
+  .sidebar-nav.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .sidebar-search {
+    padding: 15px;
+  }
+
+  ul li {
+    border-bottom: 1px solid #e7e7e7;
+  }
+
+  ul li a.active {
+    background-color: #eee;
+  }
+
+  /* Triangle added to active menu item in sidebar */
+  ul li a.active:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 100%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: #eee;
+  }
+
+  > .sidebar-nav > ul > li > ul > li,
+  > .sidebar-nav > ul > li > ul > li > ul > li {
+    border-bottom: 0 !important;
+  }
+
+  /* Indent second level menu items */
+  > .sidebar-nav > ul > li > ul > li a {
+    padding-left: 37px;
+  }
+
+  /* Indent third level menu items */
+  > .sidebar-nav > ul > li > ul > li > ul > li a {
+    padding-left: 52px;
+  }
+
+  .sidebar-arrow {
+    line-height: 1.5em;
+  }
+}
+
+@media(min-width: 768px) {
+  .eeh-navigation-sidebar {
+    z-index: 1;
+    position: absolute;
+    width: 250px;
+  }
+
+  .eeh-navigation-sidebar.sidebar-text-collapsed {
+    width: 50px;
+  }
+
+  #eeh-navigation-page-wrapper.sidebar-text-collapsed {
+    margin-left: 50px;
+  }
+}
