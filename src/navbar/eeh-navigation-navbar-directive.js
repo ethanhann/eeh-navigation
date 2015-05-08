@@ -3,7 +3,7 @@
 var NavbarDirective = function ($window, eehNavigation) {
     return {
         restrict: 'AE',
-        templateUrl: 'template/eeh-navigation/decoupled/eeh-navigation-navbar.html',
+        templateUrl: 'template/eeh-navigation/navbar/eeh-navigation-navbar.html',
         link: function (scope) {
             scope._navbarBrand = eehNavigation._navbarBrand;
             scope.isNavbarCollapsed = false;

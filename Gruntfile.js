@@ -49,8 +49,7 @@ module.exports = function (grunt) {
                         '<%= settings.src %>/eeh-translate.js',
                         '<%= settings.src %>/eeh-navigation.js',
                         '<%= settings.src %>/eeh-navigation-*.js',
-                        '<%= settings.src %>/combined/eeh-navigation-*.js',
-                        '<%= settings.src %>/decoupled/eeh-navigation-*.js',
+                        '<%= settings.src %>/*/eeh-navigation-*.js',
                         '!<%= settings.src %>/**/*-spec.js'
                     ]
                 }

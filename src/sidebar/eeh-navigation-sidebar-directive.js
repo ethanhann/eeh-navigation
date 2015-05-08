@@ -4,7 +4,7 @@ var SidebarDirective = function ($window, eehNavigation) {
     return {
         restrict: 'AE',
         transclude: true,
-        templateUrl: 'template/eeh-navigation/decoupled/eeh-navigation-sidebar.html',
+        templateUrl: 'template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
         link: function (scope, element) {
             scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
             scope._sidebarSearch = eehNavigation._sidebarSearch;
@@ -47,8 +47,8 @@ var SidebarDirective = function ($window, eehNavigation) {
                 setTextCollapseState();
             };
             function setTextCollapseState() {
-                var sidebarMenuItemTextElements = element.find('.sidebar .menu-item-text');
-                var sidebarElement = element.find('.sidebar');
+                var sidebarMenuItemTextElements = element.find('.menu-item-text');
+                var sidebarElement = element.find('.eeh-navigation-sidebar');
                 if (eehNavigation.sidebarTextCollapseIsCollapsed()) {
                     transcludedWrapper.addClass('sidebar-text-collapsed');
                     sidebarElement.addClass('sidebar-text-collapsed');

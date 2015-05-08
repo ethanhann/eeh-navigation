@@ -6,6 +6,7 @@ var ActiveParentMenuItemDirective = function ($state) {
         scope: {
             menuItem: '=eehNavigationActiveMenuItem'
         },
+
         link: function (scope, element) {
             var checkIsActive = function () {
                 if (scope.menuItem.hasChildren()) {

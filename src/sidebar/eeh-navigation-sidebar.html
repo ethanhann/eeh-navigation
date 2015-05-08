@@ -1,4 +1,4 @@
-<nav class="eeh-navigation navbar-default sidebar" role="navigation">
+<nav class="eeh-navigation eeh-navigation-sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse" collapse="isNavbarCollapsed">
         <ul class="nav">
             <li class="sidebar-search" ng-show="!_sidebarTextCollapse.isCollapsed && _sidebarSearch.isVisible">
@@ -6,11 +6,11 @@
                     <div class="input-group">
                         <input type="text" class="form-control search-input" placeholder="{{'Search'|translate}}"
                                ng-model="_sidebarSearch.model">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
                     </div>
                 </form>
             </li>

@@ -1,10 +1,13 @@
 'use strict';
 
+/**
+ * @deprecated Will be removed in 4.0.0
+ */
 var NavigationDirective = function ($window, eehNavigation) {
     return {
         restrict: 'AE',
         transclude: true,
-        templateUrl: 'template/eeh-navigation/combined/eeh-navigation.html',
+        templateUrl: 'template/eeh-navigation/deprecated/eeh-navigation.html',
         link: function (scope, element) {
             scope._navbarBrand = eehNavigation._navbarBrand;
             scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
