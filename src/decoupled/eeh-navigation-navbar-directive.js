@@ -4,7 +4,7 @@ var NavbarDirective = function ($window, eehNavigation) {
     return {
         restrict: 'AE',
         templateUrl: 'template/eeh-navigation/decoupled/eeh-navigation-navbar.html',
-        link: function (scope, element) {
+        link: function (scope) {
             scope._navbarBrand = eehNavigation._navbarBrand;
             scope.isNavbarCollapsed = false;
             scope._navbarMenuItems = eehNavigation._navbarMenuItems;
@@ -28,7 +28,6 @@ var NavbarDirective = function ($window, eehNavigation) {
                 };
             };
 
-            var topOffset = 50;
             scope.$watch(getWindowDimensions, function (newValue) {
                 if (angular.isUndefined(newValue)) {
                     return;
