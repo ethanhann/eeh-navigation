@@ -100,6 +100,50 @@
 
   #eeh-navigation-page-wrapper.sidebar-text-collapsed {
     margin-left: 50px; } }
+.eeh-navigation-sidebar {
+  /* Triangle added to active menu item in sidebar */
+  /* Indent second level menu items */
+  /* Indent third level menu items */ }
+  .eeh-navigation-sidebar .sidebar-nav.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0; }
+  .eeh-navigation-sidebar .sidebar-search {
+    padding: 15px; }
+  .eeh-navigation-sidebar ul li {
+    border-bottom: 1px solid #e7e7e7; }
+  .eeh-navigation-sidebar ul li a.active {
+    background-color: #eee; }
+  .eeh-navigation-sidebar ul li a.active:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 100%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: #eee; }
+  .eeh-navigation-sidebar > .sidebar-nav > ul > li > ul > li,
+  .eeh-navigation-sidebar > .sidebar-nav > ul > li > ul > li > ul > li {
+    border-bottom: 0 !important; }
+  .eeh-navigation-sidebar > .sidebar-nav > ul > li > ul > li a {
+    padding-left: 37px; }
+  .eeh-navigation-sidebar > .sidebar-nav > ul > li > ul > li > ul > li a {
+    padding-left: 52px; }
+  .eeh-navigation-sidebar .sidebar-arrow {
+    line-height: 1.5em; }
+
+@media (min-width: 768px) {
+  .eeh-navigation-sidebar {
+    z-index: 1;
+    position: absolute;
+    width: 250px; }
+
+  .eeh-navigation-sidebar.sidebar-text-collapsed {
+    width: 50px; }
+
+  #eeh-navigation-page-wrapper.sidebar-text-collapsed {
+    margin-left: 50px; } }
 #eeh-navigation-page-wrapper {
   padding: 0 15px;
   min-height: 568px;
