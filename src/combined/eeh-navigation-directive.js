@@ -92,20 +92,3 @@ var NavigationDirective = function ($window, eehNavigation) {
 };
 
 angular.module('eehNavigation').directive('eehNavigation', ['$window', 'eehNavigation', NavigationDirective]);
-
-var ActiveParentMenuItemDirective = function ($location) {
-    return {
-        restrict: 'A',
-        link: function (scope, element) {
-            var parent = element.parent().parent().prev();
-            var activeClass = 'active';
-            scope.$watch(function () {
-                return $location.url();
-            }, function () {
-                parent.toggleClass(activeClass, element.hasClass(activeClass));
-            });
-        }
-    };
-};
-
-angular.module('eehNavigation').directive('eehActiveParentMenuItem', ActiveParentMenuItemDirective);

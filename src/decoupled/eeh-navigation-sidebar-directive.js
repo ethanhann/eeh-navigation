@@ -6,16 +6,8 @@ var SidebarDirective = function ($window, eehNavigation) {
         transclude: true,
         templateUrl: 'template/eeh-navigation/decoupled/eeh-navigation-sidebar.html',
         link: function (scope, element) {
-            scope._sidebarBrand = eehNavigation._sidebarBrand;
             scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
             scope._sidebarSearch = eehNavigation._sidebarSearch;
-            scope.isSidebarCollapsed = false;
-            scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
-            scope.$watch('_sidebarMenuItems', function () {
-                var sidebarMenuItems = eehNavigation.sidebarMenuItems();
-                scope.leftSidebarMenuItems = sidebarMenuItems.filter(function (item) { return !item.isHeavy(); });
-                scope.rightSidebarMenuItems = sidebarMenuItems.filter(function (item) { return item.isHeavy(); });
-            });
             scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
             scope.$watch('_sidebarMenuItems', function () {
                 scope.sidebarMenuItems = eehNavigation.sidebarMenuItems();
@@ -39,13 +31,6 @@ var SidebarDirective = function ($window, eehNavigation) {
             scope.$watch(getWindowDimensions, function (newValue) {
                 if (angular.isUndefined(newValue)) {
                     return;
-                }
-                var width = (newValue.innerWidth > 0) ? newValue.innerWidth : $window.screen.width;
-                if (width < 768) {
-                    scope.isSidebarCollapsed = true;
-                    topOffset = 100; // 2-row-menu
-                } else {
-                    scope.isSidebarCollapsed = false;
                 }
                 var height = (newValue.innerHeight > 0) ? newValue.innerHeight : $window.screen.height;
                 height = height - topOffset;
