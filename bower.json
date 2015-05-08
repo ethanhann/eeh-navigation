@@ -29,7 +29,7 @@
   ],
   "dependencies": {
     "angular": ">=1.2",
-    "angular-ui-router": "~0.2.10",
+    "angular-ui-router": "~0.2.13",
     "angular-bootstrap": "~0.11.0",
     "angular-translate": "~2.6.0",
     "font-awesome": ">=4.0",
