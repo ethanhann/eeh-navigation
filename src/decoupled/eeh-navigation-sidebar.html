@@ -36,17 +36,17 @@
 
 <script type="text/ng-template" id="template/eeh-navigation/sidebar-menu-item.html">
     <a ng-if="item.state" ui-sref="{{item.state}}" ui-sref-active="active">
-        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+        <span eeh-navigation-menu-item-content="item"></span>
     </a>
     <a ng-if="item.click" ng-click="item.click()">
-        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+        <span eeh-navigation-menu-item-content="item"></span>
     </a>
     <a ng-if="item.href" ng-href="{{item.href}}" target="{{item.target ? item.target : '_self'}}">
-        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+        <span eeh-navigation-menu-item-content="item"></span>
     </a>
     <a ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed"
        ng-click="item.isCollapsed = !item.isCollapsed">
-        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+        <span eeh-navigation-menu-item-content="item"></span>
         <span class="navbar-right sidebar-arrow fa fa-fw"
               ng-class="item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'"></span>
     </a>
@@ -56,9 +56,4 @@
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
             ng-if="item._isVisible()"></li>
     </ul>
-</script>
-
-<script type="text/ng-template" id="template/eeh-navigation/menu-item-content.html">
-    <span class="menu-item-icon fa fa-fw {{ item.iconClass}}"></span>
-    <span class="menu-item-text"> {{ item.text|translate }}</span>
 </script>

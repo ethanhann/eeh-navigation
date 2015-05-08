@@ -40,13 +40,13 @@
 
 <script type="text/ng-template" id="template/eeh-navigation/navbar-menu-item.html">
     <a ng-if="!item.isDivider && item.state" ui-sref="{{ item.state }}">
-        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+        <span eeh-navigation-menu-item-content="item"></span>
     </a>
     <a ng-if="item.click" ng-click="item.click()">
-        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+        <span eeh-navigation-menu-item-content="item"></span>
     </a>
     <a ng-if="item.href" ng-href="{{item.href}}" target="{{item.target ? item.target : '_self'}}">
-        <span ng-include="'template/eeh-navigation/menu-item-content.html'"></span>
+        <span eeh-navigation-menu-item-content="item"></span>
     </a>
     <a ng-if="item.hasChildren()" class="dropdown-toggle">
         <span class="fa fa-fw {{ item.iconClass }}"></span>
@@ -60,9 +60,4 @@
             ng-if="item._isVisible()"
             ui-sref-active-eq="active"></li>
     </ul>
-</script>
-
-<script type="text/ng-template" id="template/eeh-navigation/menu-item-content.html">
-    <span class="menu-item-icon fa fa-fw {{ item.iconClass}}"></span>
-    <span class="menu-item-text"> {{ item.text|translate }}</span>
 </script>
