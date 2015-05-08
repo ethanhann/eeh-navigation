@@ -1,5 +1,21 @@
-f712681 (HEAD, origin/master, origin/HEAD, master) Use ngAnnotate
-22786d6 Prepare for release
+b1283c8 (origin/decoupled-menus, decoupled-menus) Add dist before merge
+d311eb0 Update docs
+f0bd6ef Use new directives in demo
+e058f2d Refactor components
+c96b574 Fix a few CS issues
+8e5cbc4 Depend on state change event rather than watching $location
+a39afea Transform menu-item-content template into a directive
+46825e5 Fix file name
+d1d9cec Rework active menu item directive
+892ab73 Begin DRYing out directives
+dd1316c Slightly newer version of UI router is needed for adding active class to nested menu items
+32e63ec Decouple sidebar and navbar
+fb7c44f Start decoupling menus
+0c54ae8 Copy dist into docs for dev
+e209678 Copy dist into docs for dev
+01a98e5 (tag: 3.2.1) Prepare for release
+f712681 Use ngAnnotate
+22786d6 (tag: 3.2.0) Prepare for release
 f1023e9 Fix doc url
 5a89dac Add build status badge to readme
 464aae5 Update test config
@@ -20,7 +36,7 @@ ce5cd58 Exposed target attribute for links
 4206e13 (tag: 3.0.3) Prepare for release
 060b584 Apply rule to .navbar-top-links
 0f7387f (tag: 3.0.2) Increment version number
-245a337 Prepare for release
+245a337 (tag: 3.0.1) Prepare for release
 2d16a67 Fix margin issue that caused the whole page to be too wide
 1a42b1a Add eeh-navigation directive explanation in "Getting Started"
 d2709ce Fix doc format issue
