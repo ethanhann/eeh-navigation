@@ -1,4 +1,4 @@
-<nav class="eeh-navigation eeh-navigation-sidebar" role="navigation">
+<nav class="navbar navbar-default eeh-navigation eeh-navigation-sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse" collapse="isNavbarCollapsed">
         <ul class="nav">
             <li class="sidebar-search" ng-show="!_sidebarTextCollapse.isCollapsed && _sidebarSearch.isVisible">
@@ -16,7 +16,8 @@
             </li>
             <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
                 ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
-                ng-if="item._isVisible()"></li>
+                ng-if="item._isVisible()"
+                ui-sref-active-eq="active"></li>
             <li ng-click="toggleSidebarTextCollapse()" ng-if="_sidebarTextCollapse.isVisible && isSidebarVisible()">
                 <a>
                     <span class="fa fa-fw" ng-class="_sidebarTextCollapse.isCollapsed ? 'fa-arrow-right' : 'fa-arrow-left'"></span>
@@ -35,7 +36,7 @@
 </div>
 
 <script type="text/ng-template" id="template/eeh-navigation/sidebar-menu-item.html">
-    <a ng-if="item.state" ui-sref="{{item.state}}" ui-sref-active="active">
+    <a ng-if="item.state" ui-sref="{{item.state}}">
         <span eeh-navigation-menu-item-content="item"></span>
     </a>
     <a ng-if="item.click" ng-click="item.click()">

@@ -1,7 +1,13 @@
+@import "../variables";
 .eeh-navigation-sidebar {
   .sidebar-nav.navbar-collapse {
     padding-right: 0;
     padding-left: 0;
+  }
+
+  .navbar-default .sidebar-nav > .active {
+    background-color: $menu-item-bg;
+    color: $menu-item-active-color;
   }
 
   .sidebar-search {
@@ -12,12 +18,8 @@
     border-bottom: 1px solid #e7e7e7;
   }
 
-  ul li a.active {
-    background-color: #eee;
-  }
-
   /* Triangle added to active menu item in sidebar */
-  ul li a.active:after {
+  ul li.active:after {
     content: '';
     display: block;
     position: absolute;
