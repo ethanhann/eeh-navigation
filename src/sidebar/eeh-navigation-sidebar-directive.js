@@ -9,6 +9,9 @@ var SidebarDirective = function ($window, eehNavigation) {
             topOffset: '@topOffset'
         },
         link: function (scope, element) {
+            if (angular.isUndefined(scope.topOffset)) {
+                scope.topOffset = 51; // 51 is the default height of the navbar component
+            }
             scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
             scope._sidebarSearch = eehNavigation._sidebarSearch;
             scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
