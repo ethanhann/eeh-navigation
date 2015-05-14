@@ -5,6 +5,9 @@ var SidebarDirective = function ($window, eehNavigation) {
         restrict: 'AE',
         transclude: true,
         templateUrl: 'template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
+        scope: {
+            topOffset: '@topOffset'
+        },
         link: function (scope, element) {
             scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
             scope._sidebarSearch = eehNavigation._sidebarSearch;
@@ -26,18 +29,17 @@ var SidebarDirective = function ($window, eehNavigation) {
                 };
             };
 
-            var topOffset = 50;
             var transcludedWrapper = element.find('#eeh-navigation-page-wrapper');
             scope.$watch(getWindowDimensions, function (newValue) {
                 if (angular.isUndefined(newValue)) {
                     return;
                 }
                 var height = (newValue.innerHeight > 0) ? newValue.innerHeight : $window.screen.height;
-                height = height - topOffset;
+                height = height - scope.topOffset;
                 if (height < 1) {
                     height = 1;
                 }
-                if (height > topOffset) {
+                if (height > scope.topOffset) {
                     transcludedWrapper.css('min-height', (height) + 'px');
                 }
             }, true);
