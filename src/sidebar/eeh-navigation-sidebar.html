@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default eeh-navigation eeh-navigation-sidebar" role="navigation">
-    <div class="sidebar-nav navbar-collapse" collapse="isNavbarCollapsed">
-        <ul class="nav">
+    <div class="navbar-collapse" collapse="isNavbarCollapsed">
+        <ul class="nav sidebar-nav">
             <li class="sidebar-search" ng-show="!_sidebarTextCollapse.isCollapsed && _sidebarSearch.isVisible">
                 <form ng-submit="_sidebarSearch.submit()">
                     <div class="input-group">
@@ -52,7 +52,7 @@
               ng-class="item.isCollapsed ? 'fa-chevron-left' : 'fa-chevron-down'"></span>
     </a>
     <ul ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed" collapse="item.isCollapsed"
-        class="nav">
+        class="nav sidebar-nav">
         <li ng-repeat="item in item.children()"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
             ng-if="item._isVisible()"></li>
