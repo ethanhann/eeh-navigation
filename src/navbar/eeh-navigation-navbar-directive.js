@@ -5,6 +5,9 @@ var NavbarDirective = function ($window, eehNavigation) {
         restrict: 'AE',
         templateUrl: 'template/eeh-navigation/navbar/eeh-navigation-navbar.html',
         link: function (scope) {
+            scope.iconBaseClass = function () {
+                return eehNavigation.iconBaseClass();
+            };
             scope._navbarBrand = eehNavigation._navbarBrand;
             scope.isNavbarCollapsed = false;
             scope._navbarMenuItems = eehNavigation._navbarMenuItems;

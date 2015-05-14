@@ -5,7 +5,7 @@ angular.module('demo')
 
     eehNavigation.navbarMenuItem('user.logout', {
         text: 'Logout',
-        iconClass: 'fa-sign-out',
+        iconClass: 'glyphicon-log-out',
         click: function () {
             $window.alert('Faux logout');
         }

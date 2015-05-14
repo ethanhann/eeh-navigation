@@ -2,6 +2,7 @@
 /* global MenuItem */
 
 var NavigationService = function () {
+    this._iconBaseClass = '';
     this._sidebarSearch = {
         isVisible: true,
         model: '',
@@ -31,6 +32,14 @@ var NavigationService = function () {
 };
 
 NavigationService.prototype.$get = function () {
+    return this;
+};
+
+NavigationService.prototype.iconBaseClass = function (value) {
+    if (angular.isUndefined(value)) {
+        return this._iconBaseClass;
+    }
+    this._iconBaseClass = value;
     return this;
 };
 

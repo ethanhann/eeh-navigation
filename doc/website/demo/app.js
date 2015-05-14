@@ -40,11 +40,12 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
 
     eehNavigationProvider.navbarBrand.text = 'eeh-navigation demo';
     eehNavigationProvider.navbarBrand.state = 'demo.authenticated.home';
+    eehNavigationProvider.iconBaseClass('glyphicon');
 
     eehNavigationProvider
         .navbarMenuItem('home', {
             text: 'Home',
-            iconClass: 'fa-home',
+            iconClass: 'glyphicon-home',
             state: 'demo.authenticated.home',
             weight: -10
         });
@@ -63,15 +64,16 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
         })
         .navbarMenuItem('user', {
             text: 'me',
-            iconClass: 'fa-user'
+            iconClass: 'glyphicon-user'
         })
         .navbarMenuItem('user.blank', {
             text: 'Blank',
+            iconClass: 'glyphicon-star',
             state: 'demo.authenticated.blank'
         })
         .navbarMenuItem('user.example-com', {
             text: 'example.com',
-            iconClass: 'fa-external-link',
+            iconClass: 'glyphicon-link',
             href: 'http://example.com',
             target: '_blank'
         })
@@ -80,13 +82,13 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
         })
         .navbarMenuItem('user.visible', {
             text: 'Visible',
-            iconClass: 'fa-eye',
+            iconClass: 'glyphicon-eye-open',
             href: 'http://example.com',
             isVisible: true
         })
         .navbarMenuItem('user.hidden', {
             text: 'Hidden',
-            iconClass: 'fa-eye-slash',
+            iconClass: 'glyphicon-eye-slash',
             href: 'http://example.com',
             isVisible: false
         });
@@ -98,7 +100,7 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
     eehNavigationProvider
         .navbarMenuItem('language', {
             text: 'English',
-            iconClass: 'fa-language',
+            iconClass: 'glyphicon-globe',
             weight: 0
         })
         .navbarMenuItem('language.en', {
@@ -119,65 +121,65 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
     eehNavigationProvider
         .sidebarMenuItem('home', {
             text: 'Home',
-            iconClass: 'fa-home',
+            iconClass: 'glyphicon-home',
             state: 'demo.authenticated.home',
             weight: 0
         })
         .sidebarMenuItem('blank', {
             text: 'Blank',
-            iconClass: 'fa-star',
+            iconClass: 'glyphicon-star',
             state: 'demo.authenticated.blank'
         })
         .sidebarMenuItem('click', {
             text: 'Click',
-            iconClass: 'fa-asterisk'
+            iconClass: 'glyphicon-asterisk'
         })
         .sidebarMenuItem('external', {
             text: 'Link to example.com',
-            iconClass: 'fa-external-link',
+            iconClass: 'glyphicon-link',
             href: 'http://example.com',
             target: '_blank'
         })
         .sidebarMenuItem('visible', {
             text: 'Visible',
-            iconClass: 'fa-eye',
+            iconClass: 'glyphicon-eye-open',
             href: 'http://example.com',
             isVisible: true
         })
         .sidebarMenuItem('hidden', {
             text: 'Hidden',
-            iconClass: 'fa-eye-slash',
+            iconClass: 'glyphicon-eye-closed',
             href: 'http://example.com',
             isVisible: false
         })
         .sidebarMenuItem('multilevel', {
             text: 'Multi level',
-            iconClass: 'fa-sitemap',
+            iconClass: 'glyphicon-folder-close',
             isCollapsed: true
         })
         .sidebarMenuItem('multilevel.firstlevel1', {
             text: 'First level - 1',
-            iconClass: 'fa-file-o',
+            iconClass: 'glyphicon-file',
             state: 'demo.authenticated.blank'
         })
         .sidebarMenuItem('multilevel.firstlevel2', {
             text: 'First level - 2',
-            iconClass: 'fa-file-o',
+            iconClass: 'glyphicon-file',
             state: 'demo.authenticated.blank'
         })
         .sidebarMenuItem('multilevel.firstlevel3', {
             text: 'First level - 3',
-            iconClass: 'fa-folder-o',
+            iconClass: 'glyphicon-folder-close',
             isCollapsed: false
         })
         .sidebarMenuItem('multilevel.firstlevel3.secondlevel1', {
             text: 'Second level - 1',
-            iconClass: 'fa-file-o',
+            iconClass: 'glyphicon-file',
             state: 'demo.authenticated.blank'
         })
         .sidebarMenuItem('multilevel.firstlevel3.secondlevel2', {
             text: 'Second level - 2',
-            iconClass: 'fa-file-o',
+            iconClass: 'glyphicon-file',
             state: 'demo.authenticated.blank'
         });
 

@@ -49,9 +49,9 @@
         <span eeh-navigation-menu-item-content="item"></span>
     </a>
     <a ng-if="item.hasChildren()" dropdown-toggle>
-        <span class="fa fa-fw {{ item.iconClass }}"></span>
+        <span class="{{ iconBaseClass() }} {{ item.iconClass }}"></span>
         <span> {{ item.text|translate }}</span>
-        <span class="fa fa-caret-down"></span>
+        <span class="caret"></span>
     </a>
     <ul ng-if="item.hasChildren()" class="dropdown-menu">
         <li ng-repeat="item in item.children()|orderBy:'weight'"
