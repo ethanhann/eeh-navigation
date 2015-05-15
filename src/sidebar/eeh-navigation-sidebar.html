@@ -55,6 +55,7 @@
         class="nav sidebar-nav">
         <li ng-repeat="item in item.children()"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
-            ng-if="item._isVisible()"></li>
+            ng-if="item._isVisible()"
+            ui-sref-active-eq="active"></li>
     </ul>
 </script>
