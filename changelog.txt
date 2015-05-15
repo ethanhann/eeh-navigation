@@ -1,3 +1,17 @@
+2392ec7 (HEAD, origin/master, origin/HEAD, master) Make sidebar active mark an indent and only show it on larger screens
+ede8d58 Set nested child sidebar menu items to be active if they have an active state
+0c21b45 Make "system" icons configurable
+e97a999 Make font library (mostly) configurable
+d50ca12 Made sidebar-nav a derivation of navbar-nav
+0531b07 Set the default value of topOffset if it isn't defined
+0e86bb4 Refactor sidebar style and remove borders
+a1e75ee Make sidebar's topOffset property configurable
+20f93ff Re-add fix for navbar padding issue
+2795e34 Upgrade angular-bootstrap to latest version
+c599da5 Start using bootstrap-sass package for theming
+cd79013 Refactor core file location
+8d6808b Remove deprecated files
+83581a8 (tag: 3.3.0) Prepare for release
 b1283c8 (origin/decoupled-menus, decoupled-menus) Add dist before merge
 d311eb0 Update docs
 f0bd6ef Use new directives in demo
