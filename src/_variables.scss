@@ -1,4 +1,8 @@
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 
-$menu-item-active-bg: $navbar-default-link-active-bg;
-$menu-item-active-color: $navbar-default-link-active-bg;
+// Menu Items
+$menu-item-active-bg: $navbar-default-link-active-bg !default;
+$menu-item-active-color: $navbar-default-link-active-bg !default;
+
+// Sidebar Menu Items
+$sidebar-menu-item-active-indent-color: #FFF !default;
