@@ -3,11 +3,6 @@
 
 var NavigationService = function () {
     this._iconBaseClass = 'glyphicon';
-    this._sidebarSearch = {
-        isVisible: true,
-        model: '',
-        submit: function () {}
-    };
     this._sidebarTextCollapse = {
         isVisible: true,
         isCollapsed: false
@@ -44,29 +39,7 @@ NavigationService.prototype.iconBaseClass = function (value) {
     return this;
 };
 
-NavigationService.prototype.searchIsVisible = function (value) {
-    if (angular.isUndefined(value)) {
-        return this._sidebarSearch.isVisible;
-    }
-    this._sidebarSearch.isVisible = value;
-    return this;
-};
 
-NavigationService.prototype.searchModel = function (value) {
-    if (angular.isUndefined(value)) {
-        return this._sidebarSearch.model;
-    }
-    this._sidebarSearch.model = value;
-    return this;
-};
-
-NavigationService.prototype.searchSubmit = function (value) {
-    if (angular.isUndefined(value)) {
-        return this._sidebarSearch.submit;
-    }
-    this._sidebarSearch.submit = value;
-    return this;
-};
 
 /**
  * Recursively map a flat array of menu items to a nested object suitable to generate hierarchical HTML from.
@@ -140,12 +113,6 @@ NavigationService.prototype.sidebarTextCollapseIsCollapsed = function (value) {
 NavigationService.prototype.sidebarTextCollapseToggleCollapsed = function () {
     this._sidebarTextCollapse.isCollapsed = !this._sidebarTextCollapse.isCollapsed;
     return this;
-};
-
-NavigationService.prototype.isSidebarVisible = function () {
-    return this.searchIsVisible() || this.sidebarMenuItems()
-            .filter(function (item) { return item._isVisible(); })
-            .length > 0;
 };
 
 angular.module('eehNavigation').provider('eehNavigation', NavigationService);

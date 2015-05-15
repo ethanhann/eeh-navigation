@@ -1,5 +1,5 @@
 angular.module('demo')
-.controller('AuthenticatedCtrl', function ($state, $window, eehNavigation) {
+.controller('AuthenticatedCtrl', function ($scope, $state, $window, eehNavigation) {
     'use strict';
     eehNavigation.menuItem('menuOne.user').text = 'Ethan';
 
@@ -13,5 +13,10 @@ angular.module('demo')
 
     eehNavigation.menuItem('menuTwo.click').click = function () {
         $window.alert('Tada');
+    };
+
+    $scope.searchModel = '';
+    $scope.searchSubmit = function () {
+        $state.go('demo.authenticated.search', { query: $scope.searchModel });
     };
 });

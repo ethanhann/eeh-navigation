@@ -6,13 +6,15 @@ var SidebarDirective = function ($window, eehNavigation) {
         transclude: true,
         templateUrl: 'template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
         scope: {
-            rootMenuName: '=rootMenuName',
-            topOffset: '@topOffset',
-            collapsedMenuItemIconClass: '@collapsedMenuItemIconClass',
-            expandedMenuItemIconClass: '@expandedMenuItemIconClass',
-            collapsedSidebarIconClass: '@collapsedSidebarIconClass',
-            expandedSidebarIconClass: '@expandedSidebarIconClass',
-            searchIconClass: '@searchIconClass'
+            rootMenuName: '=',
+            topOffset: '@',
+            collapsedMenuItemIconClass: '@',
+            expandedMenuItemIconClass: '@',
+            collapsedSidebarIconClass: '@',
+            expandedSidebarIconClass: '@',
+            searchInputIsVisible: '@',
+            searchInputModel: '@',
+            searchInputSubmit: '@'
         },
         link: function (scope, element) {
             scope.topOffset = scope.topOffset || 51; // 51 is the default height of the navbar component
@@ -20,13 +22,10 @@ var SidebarDirective = function ($window, eehNavigation) {
             scope.expandedMenuItemIconClass = scope.expandedMenuItemIconClass || 'glyphicon-chevron-down';
             scope.collapsedSidebarIconClass = scope.collapsedSidebarIconClass || 'glyphicon-arrow-right';
             scope.expandedSidebarIconClass = scope.expandedSidebarIconClass || 'glyphicon-arrow-left';
-            scope.searchIconClass = scope.searchIconClass || 'glyphicon-search';
-
             scope.iconBaseClass = function () {
                 return eehNavigation.iconBaseClass();
             };
             scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
-            scope._sidebarSearch = eehNavigation._sidebarSearch;
             var menuItems = function () {
                 return eehNavigation.menuItems();
             };
@@ -91,7 +90,9 @@ var SidebarDirective = function ($window, eehNavigation) {
             });
 
             scope.isSidebarVisible = function () {
-                return eehNavigation.isSidebarVisible();
+                return scope.searchInputIsVisible || (angular.isArray(scope.sidebarMenuItems) && scope.sidebarMenuItems
+                        .filter(function (item) { return item._isVisible(); })
+                        .length > 0);
             };
         }
     };

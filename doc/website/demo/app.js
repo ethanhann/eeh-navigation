@@ -213,10 +213,4 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             'Logout': 'Abmelden'
         });
     $translateProvider.preferredLanguage('en');
-}])
-.run(function($state, eehNavigation) {
-    'use strict';
-    eehNavigation.searchSubmit(function () {
-        $state.go('demo.authenticated.search', { query: eehNavigation.searchModel() });
-    });
-});
+}]);
