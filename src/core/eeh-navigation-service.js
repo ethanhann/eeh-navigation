@@ -18,6 +18,7 @@ var NavigationService = function () {
         href: '',
         src: ''
     };
+    this._menuItems = {};
     this._navbarMenuItems = {};
     this._sidebarMenuItems = {};
     this._toArray = function (items) {
@@ -68,7 +69,7 @@ NavigationService.prototype.searchSubmit = function (value) {
 };
 
 /**
- * Recursively map a flat array of menu items to a nested object suitable to generate HTML lists from.
+ * Recursively map a flat array of menu items to a nested object suitable to generate hierarchical HTML from.
  */
 NavigationService.prototype.buildAncestorChain = function (name, items, config) {
     var keys = name.split('.');
@@ -85,6 +86,44 @@ NavigationService.prototype.buildAncestorChain = function (name, items, config) 
     this.buildAncestorChain(keys.join('.'), items[key], config);
 };
 
+NavigationService.prototype.menuItemTree = function (rootMenuName) {
+    var items = {};
+    var self = this;
+    var menuItemsToTransform = {};
+    if (angular.isDefined(rootMenuName)) {
+        var rootMenuNameRegex = new RegExp('^' + rootMenuName + '.');
+        angular.forEach(this._menuItems, function (menuItem, menuItemName) {
+            if (menuItemName.match(rootMenuNameRegex) !== null) {
+                menuItemsToTransform[menuItemName.replace(rootMenuNameRegex, '')] = menuItem;
+            }
+        });
+    } else {
+        menuItemsToTransform = this._menuItems;
+    }
+    angular.forEach(menuItemsToTransform, function (config, name) {
+        self.buildAncestorChain(name, items, config);
+    });
+    return this._toArray(items);
+};
+
+NavigationService.prototype.menuItem = function (name, config) {
+    if (angular.isUndefined(config)) {
+        if (angular.isUndefined(this._menuItems[name])) {
+            throw name + ' is not a menu item';
+        }
+        return this._menuItems[name];
+    }
+    this._menuItems[name] = new MenuItem(config);
+    return this;
+};
+
+NavigationService.prototype.menuItems = function () {
+    return this._menuItems;
+};
+
+/**
+ * @deprecated Will be removed in version 4.0.0
+ */
 NavigationService.prototype.sidebarMenuItem = function (name, config) {
     if (angular.isUndefined(config)) {
         if (angular.isUndefined(this._sidebarMenuItems[name])) {
@@ -96,30 +135,13 @@ NavigationService.prototype.sidebarMenuItem = function (name, config) {
     return this;
 };
 
+/**
+ * @deprecated Will be removed in version 4.0.0
+ */
 NavigationService.prototype.sidebarMenuItems = function () {
     var items = {};
     var self = this;
     angular.forEach(this._sidebarMenuItems, function (config, name) {
-        self.buildAncestorChain(name, items, config);
-    });
-    return this._toArray(items);
-};
-
-NavigationService.prototype.navbarMenuItem = function (name, config) {
-    if (angular.isUndefined(config)) {
-        if (angular.isUndefined(this._navbarMenuItems[name])) {
-            throw name + ' is not a navbar menu item';
-        }
-        return this._navbarMenuItems[name];
-    }
-    this._navbarMenuItems[name] = new MenuItem(config);
-    return this;
-};
-
-NavigationService.prototype.navbarMenuItems = function () {
-    var items = {};
-    var self = this;
-    angular.forEach(this._navbarMenuItems, function (config, name) {
         self.buildAncestorChain(name, items, config);
     });
     return this._toArray(items);

@@ -43,50 +43,48 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
     eehNavigationProvider.iconBaseClass('glyphicon');
 
     eehNavigationProvider
-        .navbarMenuItem('home', {
+        .menuItem('menuOne.home', {
             text: 'Home',
             iconClass: 'glyphicon-home',
             state: 'demo.authenticated.home',
             weight: -10
-        });
-
-    eehNavigationProvider
-        .navbarMenuItem('hiddenChildren', {
+        })
+        .menuItem('menuOne.hiddenChildren', {
             text: 'Hidden Children'
         })
-        .navbarMenuItem('hiddenChildren.hiddenChildren', {
+        .menuItem('menuOne.hiddenChildren.hiddenChildren', {
             text: 'Hidden Child',
             visible: false
         })
-        .navbarMenuItem('hiddenChildren.anotherHiddenChildren', {
+        .menuItem('menuOne.hiddenChildren.anotherHiddenChildren', {
             text: 'Another Hidden Child',
             visible: false
         })
-        .navbarMenuItem('user', {
+        .menuItem('menuOne.user', {
             text: 'me',
             iconClass: 'glyphicon-user'
         })
-        .navbarMenuItem('user.blank', {
+        .menuItem('menuOne.user.blank', {
             text: 'Blank',
             iconClass: 'glyphicon-star',
             state: 'demo.authenticated.blank'
         })
-        .navbarMenuItem('user.example-com', {
+        .menuItem('menuOne.user.example-com', {
             text: 'example.com',
             iconClass: 'glyphicon-link',
             href: 'http://example.com',
             target: '_blank'
         })
-        .navbarMenuItem('user.divider1', {
+        .menuItem('menuOne.user.divider1', {
             isDivider: true
         })
-        .navbarMenuItem('user.visible', {
+        .menuItem('menuOne.user.visible', {
             text: 'Visible',
             iconClass: 'glyphicon-eye-open',
             href: 'http://example.com',
             isVisible: true
         })
-        .navbarMenuItem('user.hidden', {
+        .menuItem('menuOne.user.hidden', {
             text: 'Hidden',
             iconClass: 'glyphicon-eye-slash',
             href: 'http://example.com',
@@ -94,23 +92,23 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
         });
 
     var setLanguage = function (languageKey, languageName) {
-        eehNavigationProvider.navbarMenuItem('language').text = languageName;
+        eehNavigationProvider.menuItem('menuOne.language').text = languageName;
         $translateProvider.use(languageKey);
     };
     eehNavigationProvider
-        .navbarMenuItem('language', {
+        .menuItem('menuOne.language', {
             text: 'English',
             iconClass: 'glyphicon-globe',
             weight: 0
         })
-        .navbarMenuItem('language.en', {
+        .menuItem('menuOne.language.en', {
             text: 'English',
             click: function () {
                 setLanguage('en', this.text);
             },
             weight: 1
         })
-        .navbarMenuItem('language.de', {
+        .menuItem('menuOne.language.de', {
             text: 'Deutsch',
             click: function () {
                 setLanguage('de', this.text);

@@ -4,17 +4,22 @@ var NavbarDirective = function ($window, eehNavigation) {
     return {
         restrict: 'AE',
         templateUrl: 'template/eeh-navigation/navbar/eeh-navigation-navbar.html',
+        scope: {
+            rootMenuName: '=rootMenuName'
+        },
         link: function (scope) {
             scope.iconBaseClass = function () {
                 return eehNavigation.iconBaseClass();
             };
             scope._navbarBrand = eehNavigation._navbarBrand;
             scope.isNavbarCollapsed = false;
-            scope._navbarMenuItems = eehNavigation._navbarMenuItems;
-            scope.$watch('_navbarMenuItems', function () {
-                var navbarMenuItems = eehNavigation.navbarMenuItems();
-                scope.leftNavbarMenuItems = navbarMenuItems.filter(function (item) { return !item.isHeavy(); });
-                scope.rightNavbarMenuItems = navbarMenuItems.filter(function (item) { return item.isHeavy(); });
+            scope.menuItems = function () {
+                return eehNavigation.menuItemTree(scope.rootMenuName);
+            };
+            scope.$watch('menuItems', function () {
+                var menuItems = eehNavigation.menuItemTree(scope.rootMenuName);
+                scope.leftNavbarMenuItems = menuItems.filter(function (item) { return !item.isHeavy(); });
+                scope.rightNavbarMenuItems = menuItems.filter(function (item) { return item.isHeavy(); });
             });
 
             var windowElement = angular.element($window);

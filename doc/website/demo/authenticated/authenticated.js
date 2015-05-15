@@ -1,9 +1,9 @@
 angular.module('demo')
 .controller('AuthenticatedCtrl', function ($state, $window, eehNavigation) {
     'use strict';
-    eehNavigation.navbarMenuItem('user').text = 'Ethan';
+    eehNavigation.menuItem('menuOne.user').text = 'Ethan';
 
-    eehNavigation.navbarMenuItem('user.logout', {
+    eehNavigation.menuItem('menuOne.user.logout', {
         text: 'Logout',
         iconClass: 'glyphicon-log-out',
         click: function () {
