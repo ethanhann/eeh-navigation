@@ -8,7 +8,7 @@
                                ng-model="_sidebarSearch.model">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
-                                    <span class="{{ iconBaseClass() }} glyphicon-search"></span>
+                                    <span class="icon-fw {{ iconBaseClass() }} {{ searchIconClass }}"></span>
                                 </button>
                             </span>
                     </div>
@@ -20,7 +20,7 @@
                 ui-sref-active-eq="active"></li>
             <li ng-click="toggleSidebarTextCollapse()" ng-if="_sidebarTextCollapse.isVisible && isSidebarVisible()">
                 <a>
-                    <span class="glyphicon" ng-class="_sidebarTextCollapse.isCollapsed ? 'glyphicon-arrow-right' : 'glyphicon-arrow-left'"></span>
+                    <span class="icon-fw {{ iconBaseClass() }}" ng-class="_sidebarTextCollapse.isCollapsed ? collapsedSidebarIconClass : expandedSidebarIconClass"></span>
                 </a>
             </li>
         </ul>
@@ -48,8 +48,8 @@
     <a ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed"
        ng-click="item.isCollapsed = !item.isCollapsed">
         <span eeh-navigation-menu-item-content="item"></span>
-        <span class="navbar-right sidebar-arrow glyphicon"
-              ng-class="item.isCollapsed ? 'glyphicon-chevron-left' : 'glyphicon-chevron-down'"></span>
+        <span class="navbar-right sidebar-arrow icon-fw {{ iconBaseClass() }}"
+              ng-class="item.isCollapsed ? collapsedMenuItemIconClass : expandedMenuItemIconClass"></span>
     </a>
     <ul ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed" collapse="item.isCollapsed"
         class="nav sidebar-nav">
