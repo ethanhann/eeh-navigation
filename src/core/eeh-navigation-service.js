@@ -2,7 +2,7 @@
 /* global MenuItem */
 
 var NavigationService = function () {
-    this._iconBaseClass = '';
+    this._iconBaseClass = 'glyphicon';
     this._sidebarSearch = {
         isVisible: true,
         model: '',
