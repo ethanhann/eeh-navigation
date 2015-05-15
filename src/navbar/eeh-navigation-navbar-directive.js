@@ -13,15 +13,14 @@ var NavbarDirective = function ($window, eehNavigation) {
             };
             scope._navbarBrand = eehNavigation._navbarBrand;
             scope.isNavbarCollapsed = false;
-            scope.menuItems = function () {
-                return eehNavigation.menuItemTree(scope.rootMenuName);
+            var menuItems = function () {
+                return eehNavigation.menuItems();
             };
-            scope.$watch('menuItems', function () {
+            scope.$watch(menuItems, function () {
                 var menuItems = eehNavigation.menuItemTree(scope.rootMenuName);
                 scope.leftNavbarMenuItems = menuItems.filter(function (item) { return !item.isHeavy(); });
                 scope.rightNavbarMenuItems = menuItems.filter(function (item) { return item.isHeavy(); });
             });
-
             var windowElement = angular.element($window);
             windowElement.bind('resize', function () {
                 scope.$apply();

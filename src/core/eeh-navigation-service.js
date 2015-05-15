@@ -121,32 +121,6 @@ NavigationService.prototype.menuItems = function () {
     return this._menuItems;
 };
 
-/**
- * @deprecated Will be removed in version 4.0.0
- */
-NavigationService.prototype.sidebarMenuItem = function (name, config) {
-    if (angular.isUndefined(config)) {
-        if (angular.isUndefined(this._sidebarMenuItems[name])) {
-            throw name + ' is not a sidebar menu item';
-        }
-        return this._sidebarMenuItems[name];
-    }
-    this._sidebarMenuItems[name] = new MenuItem(config);
-    return this;
-};
-
-/**
- * @deprecated Will be removed in version 4.0.0
- */
-NavigationService.prototype.sidebarMenuItems = function () {
-    var items = {};
-    var self = this;
-    angular.forEach(this._sidebarMenuItems, function (config, name) {
-        self.buildAncestorChain(name, items, config);
-    });
-    return this._toArray(items);
-};
-
 NavigationService.prototype.sidebarTextCollapseIsVisible = function (value) {
     if (angular.isUndefined(value)) {
         return this._sidebarTextCollapse.isVisible;

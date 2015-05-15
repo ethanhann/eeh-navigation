@@ -117,65 +117,65 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
         });
 
     eehNavigationProvider
-        .sidebarMenuItem('home', {
+        .menuItem('menuTwo.home', {
             text: 'Home',
             iconClass: 'glyphicon-home',
             state: 'demo.authenticated.home',
             weight: 0
         })
-        .sidebarMenuItem('blank', {
+        .menuItem('menuTwo.blank', {
             text: 'Blank',
             iconClass: 'glyphicon-star',
             state: 'demo.authenticated.blank'
         })
-        .sidebarMenuItem('click', {
+        .menuItem('menuTwo.click', {
             text: 'Click',
             iconClass: 'glyphicon-asterisk'
         })
-        .sidebarMenuItem('external', {
+        .menuItem('menuTwo.external', {
             text: 'Link to example.com',
             iconClass: 'glyphicon-link',
             href: 'http://example.com',
             target: '_blank'
         })
-        .sidebarMenuItem('visible', {
+        .menuItem('menuTwo.visible', {
             text: 'Visible',
             iconClass: 'glyphicon-eye-open',
             href: 'http://example.com',
             isVisible: true
         })
-        .sidebarMenuItem('hidden', {
+        .menuItem('menuTwo.hidden', {
             text: 'Hidden',
             iconClass: 'glyphicon-eye-closed',
             href: 'http://example.com',
             isVisible: false
         })
-        .sidebarMenuItem('multilevel', {
+        .menuItem('menuTwo.multilevel', {
             text: 'Multi level',
             iconClass: 'glyphicon-folder-close',
             isCollapsed: true
         })
-        .sidebarMenuItem('multilevel.firstlevel1', {
+        .menuItem('menuTwo.multilevel.firstlevel1', {
             text: 'First level - 1',
             iconClass: 'glyphicon-file',
             state: 'demo.authenticated.blank'
         })
-        .sidebarMenuItem('multilevel.firstlevel2', {
+        .menuItem('menuTwo.multilevel.firstlevel2', {
             text: 'First level - 2',
             iconClass: 'glyphicon-file',
             state: 'demo.authenticated.blank'
         })
-        .sidebarMenuItem('multilevel.firstlevel3', {
+        .menuItem('menuTwo.multilevel.firstlevel3', {
             text: 'First level - 3',
             iconClass: 'glyphicon-folder-close',
             isCollapsed: false
         })
-        .sidebarMenuItem('multilevel.firstlevel3.secondlevel1', {
+        .menuItem('menuTwo.multilevel.firstlevel3.secondlevel1', {
             text: 'Second level - 1',
             iconClass: 'glyphicon-file',
             state: 'demo.authenticated.blank'
         })
-        .sidebarMenuItem('multilevel.firstlevel3.secondlevel2', {
+        .menuItem('menuTwo.multilevel.firstlevel3.secondlevel2', {
             text: 'Second level - 2',
             iconClass: 'glyphicon-file',
             state: 'demo.authenticated.blank'

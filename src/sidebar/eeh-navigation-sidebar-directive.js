@@ -6,6 +6,7 @@ var SidebarDirective = function ($window, eehNavigation) {
         transclude: true,
         templateUrl: 'template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
         scope: {
+            rootMenuName: '=rootMenuName',
             topOffset: '@topOffset',
             collapsedMenuItemIconClass: '@collapsedMenuItemIconClass',
             expandedMenuItemIconClass: '@expandedMenuItemIconClass',
@@ -26,9 +27,11 @@ var SidebarDirective = function ($window, eehNavigation) {
             };
             scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
             scope._sidebarSearch = eehNavigation._sidebarSearch;
-            scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
-            scope.$watch('_sidebarMenuItems', function () {
-                scope.sidebarMenuItems = eehNavigation.sidebarMenuItems();
+            var menuItems = function () {
+                return eehNavigation.menuItems();
+            };
+            scope.$watch(menuItems, function () {
+                scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.rootMenuName);
             });
             var windowElement = angular.element($window);
             windowElement.bind('resize', function () {

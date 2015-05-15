@@ -11,7 +11,7 @@ angular.module('demo')
         }
     });
 
-    eehNavigation.sidebarMenuItem('click').click = function () {
+    eehNavigation.menuItem('menuTwo.click').click = function () {
         $window.alert('Tada');
     };
 });
