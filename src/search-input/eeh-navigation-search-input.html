@@ -1,6 +1,9 @@
-<form ng-submit="submit()">
+<form ng-submit="submit()" class="navbar-form navbar-right">
     <div class="input-group">
-        <input type="text" class="form-control search-input" placeholder="{{'Search'|translate}}" ng-model="searchTerm">
+        <input type="text"
+               class="form-control search-input"
+               placeholder="{{'Search'|translate}}"
+               ng-model="searchTerm">
         <span class="input-group-btn">
             <button class="btn btn-default" type="submit">
                 <span class="icon-fw {{ iconBaseClass() }} {{ searchIconClass }}"></span>
