@@ -44,12 +44,7 @@
     };
     "use strict";
     var NavigationService = function() {
-        this._iconBaseClass = "";
-        this._sidebarSearch = {
-            isVisible: true,
-            model: "",
-            submit: function() {}
-        };
+        this._iconBaseClass = "glyphicon";
         this._sidebarTextCollapse = {
             isVisible: true,
             isCollapsed: false
@@ -60,6 +55,7 @@
             href: "",
             src: ""
         };
+        this._menuItems = {};
         this._navbarMenuItems = {};
         this._sidebarMenuItems = {};
         this._toArray = function(items) {
@@ -82,27 +78,6 @@
         this._iconBaseClass = value;
         return this;
     };
-    NavigationService.prototype.searchIsVisible = function(value) {
-        if (angular.isUndefined(value)) {
-            return this._sidebarSearch.isVisible;
-        }
-        this._sidebarSearch.isVisible = value;
-        return this;
-    };
-    NavigationService.prototype.searchModel = function(value) {
-        if (angular.isUndefined(value)) {
-            return this._sidebarSearch.model;
-        }
-        this._sidebarSearch.model = value;
-        return this;
-    };
-    NavigationService.prototype.searchSubmit = function(value) {
-        if (angular.isUndefined(value)) {
-            return this._sidebarSearch.submit;
-        }
-        this._sidebarSearch.submit = value;
-        return this;
-    };
     NavigationService.prototype.buildAncestorChain = function(name, items, config) {
         var keys = name.split(".");
         if (name.length === 0 || keys.length === 0) {
@@ -117,41 +92,37 @@
         }
         this.buildAncestorChain(keys.join("."), items[key], config);
     };
-    NavigationService.prototype.sidebarMenuItem = function(name, config) {
-        if (angular.isUndefined(config)) {
-            if (angular.isUndefined(this._sidebarMenuItems[name])) {
-                throw name + " is not a sidebar menu item";
-            }
-            return this._sidebarMenuItems[name];
-        }
-        this._sidebarMenuItems[name] = new MenuItem(config);
-        return this;
-    };
-    NavigationService.prototype.sidebarMenuItems = function() {
+    NavigationService.prototype.menuItemTree = function(rootMenuName) {
         var items = {};
         var self = this;
-        angular.forEach(this._sidebarMenuItems, function(config, name) {
+        var menuItemsToTransform = {};
+        if (angular.isDefined(rootMenuName)) {
+            var rootMenuNameRegex = new RegExp("^" + rootMenuName + ".");
+            angular.forEach(this._menuItems, function(menuItem, menuItemName) {
+                if (menuItemName.match(rootMenuNameRegex) !== null) {
+                    menuItemsToTransform[menuItemName.replace(rootMenuNameRegex, "")] = menuItem;
+                }
+            });
+        } else {
+            menuItemsToTransform = this._menuItems;
+        }
+        angular.forEach(menuItemsToTransform, function(config, name) {
             self.buildAncestorChain(name, items, config);
         });
         return this._toArray(items);
     };
-    NavigationService.prototype.navbarMenuItem = function(name, config) {
+    NavigationService.prototype.menuItem = function(name, config) {
         if (angular.isUndefined(config)) {
-            if (angular.isUndefined(this._navbarMenuItems[name])) {
-                throw name + " is not a navbar menu item";
+            if (angular.isUndefined(this._menuItems[name])) {
+                throw name + " is not a menu item";
             }
-            return this._navbarMenuItems[name];
+            return this._menuItems[name];
         }
-        this._navbarMenuItems[name] = new MenuItem(config);
+        this._menuItems[name] = new MenuItem(config);
         return this;
     };
-    NavigationService.prototype.navbarMenuItems = function() {
-        var items = {};
-        var self = this;
-        angular.forEach(this._navbarMenuItems, function(config, name) {
-            self.buildAncestorChain(name, items, config);
-        });
-        return this._toArray(items);
+    NavigationService.prototype.menuItems = function() {
+        return this._menuItems;
     };
     NavigationService.prototype.sidebarTextCollapseIsVisible = function(value) {
         if (angular.isUndefined(value)) {
@@ -170,11 +141,6 @@
     NavigationService.prototype.sidebarTextCollapseToggleCollapsed = function() {
         this._sidebarTextCollapse.isCollapsed = !this._sidebarTextCollapse.isCollapsed;
         return this;
-    };
-    NavigationService.prototype.isSidebarVisible = function() {
-        return this.searchIsVisible() || this.sidebarMenuItems().filter(function(item) {
-            return item._isVisible();
-        }).length > 0;
     };
     angular.module("eehNavigation").provider("eehNavigation", NavigationService);
     "use strict";
@@ -222,19 +188,24 @@
         return {
             restrict: "AE",
             templateUrl: "template/eeh-navigation/navbar/eeh-navigation-navbar.html",
+            scope: {
+                rootMenuName: "=rootMenuName"
+            },
             link: function(scope) {
                 scope.iconBaseClass = function() {
                     return eehNavigation.iconBaseClass();
                 };
                 scope._navbarBrand = eehNavigation._navbarBrand;
                 scope.isNavbarCollapsed = false;
-                scope._navbarMenuItems = eehNavigation._navbarMenuItems;
-                scope.$watch("_navbarMenuItems", function() {
-                    var navbarMenuItems = eehNavigation.navbarMenuItems();
-                    scope.leftNavbarMenuItems = navbarMenuItems.filter(function(item) {
+                var menuItems = function() {
+                    return eehNavigation.menuItems();
+                };
+                scope.$watch(menuItems, function() {
+                    var menuItems = eehNavigation.menuItemTree(scope.rootMenuName);
+                    scope.leftNavbarMenuItems = menuItems.filter(function(item) {
                         return !item.isHeavy();
                     });
-                    scope.rightNavbarMenuItems = navbarMenuItems.filter(function(item) {
+                    scope.rightNavbarMenuItems = menuItems.filter(function(item) {
                         return item.isHeavy();
                     });
                 });
@@ -268,14 +239,38 @@
         return {
             restrict: "AE",
             transclude: true,
+            templateUrl: "template/eeh-navigation/search-input/eeh-navigation-search-input.html",
+            scope: {
+                searchIconClass: "@",
+                searchTerm: "=",
+                submit: "="
+            },
+            link: function(scope) {
+                scope.searchIconClass = scope.searchIconClass || "glyphicon-search";
+                scope.iconBaseClass = function() {
+                    return eehNavigation.iconBaseClass();
+                };
+                scope._sidebarSearch = eehNavigation._sidebarSearch;
+            }
+        };
+    };
+    angular.module("eehNavigation").directive("eehNavigationSearchInput", [ "$window", "eehNavigation", SidebarDirective ]);
+    "use strict";
+    var SidebarDirective = function($window, eehNavigation) {
+        return {
+            restrict: "AE",
+            transclude: true,
             templateUrl: "template/eeh-navigation/sidebar/eeh-navigation-sidebar.html",
             scope: {
-                topOffset: "@topOffset",
-                collapsedMenuItemIconClass: "@collapsedMenuItemIconClass",
-                expandedMenuItemIconClass: "@expandedMenuItemIconClass",
-                collapsedSidebarIconClass: "@collapsedSidebarIconClass",
-                expandedSidebarIconClass: "@expandedSidebarIconClass",
-                searchIconClass: "@searchIconClass"
+                rootMenuName: "=",
+                topOffset: "@",
+                collapsedMenuItemIconClass: "@",
+                expandedMenuItemIconClass: "@",
+                collapsedSidebarIconClass: "@",
+                expandedSidebarIconClass: "@",
+                searchInputIsVisible: "@",
+                searchInputModel: "@",
+                searchInputSubmit: "@"
             },
             link: function(scope, element) {
                 scope.topOffset = scope.topOffset || 51;
@@ -283,15 +278,15 @@
                 scope.expandedMenuItemIconClass = scope.expandedMenuItemIconClass || "glyphicon-chevron-down";
                 scope.collapsedSidebarIconClass = scope.collapsedSidebarIconClass || "glyphicon-arrow-right";
                 scope.expandedSidebarIconClass = scope.expandedSidebarIconClass || "glyphicon-arrow-left";
-                scope.searchIconClass = scope.searchIconClass || "glyphicon-search";
                 scope.iconBaseClass = function() {
                     return eehNavigation.iconBaseClass();
                 };
                 scope._sidebarTextCollapse = eehNavigation._sidebarTextCollapse;
-                scope._sidebarSearch = eehNavigation._sidebarSearch;
-                scope._sidebarMenuItems = eehNavigation._sidebarMenuItems;
-                scope.$watch("_sidebarMenuItems", function() {
-                    scope.sidebarMenuItems = eehNavigation.sidebarMenuItems();
+                var menuItems = function() {
+                    return eehNavigation.menuItems();
+                };
+                scope.$watch(menuItems, function() {
+                    scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.rootMenuName);
                 });
                 var windowElement = angular.element($window);
                 windowElement.bind("resize", function() {
@@ -340,7 +335,9 @@
                     setTextCollapseState();
                 });
                 scope.isSidebarVisible = function() {
-                    return eehNavigation.isSidebarVisible();
+                    return scope.searchInputIsVisible || angular.isArray(scope.sidebarMenuItems) && scope.sidebarMenuItems.filter(function(item) {
+                        return item._isVisible();
+                    }).length > 0;
                 };
             }
         };

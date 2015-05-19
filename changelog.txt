@@ -1,4 +1,15 @@
-2392ec7 (HEAD, origin/master, origin/HEAD, master) Make sidebar active mark an indent and only show it on larger screens
+f77833e (HEAD, origin/master, origin/HEAD, master) Fix CS issue
+9d05650 Add deps to sample config
+dcded65 Update docs
+8a75160 Make search input compatible with navbar
+61c81fa Begin refactoring search input into a separate directive
+2d31dcf Replace sidebarMenuItem(s) with menuItem(s) and menuItemTree methods and refactor
+aa3f17e Replace navbarMenuItem(s) with menuItem(s) and menuItemTree methods
+2f0e99c Set default icon base class to "glyphicon".
+3dcd78d Set nav version in demo
+31ba8ca Prepare for release
+3bdedd5 Incre
+2392ec7 Make sidebar active mark an indent and only show it on larger screens
 ede8d58 Set nested child sidebar menu items to be active if they have an active state
 0c21b45 Make "system" icons configurable
 e97a999 Make font library (mostly) configurable

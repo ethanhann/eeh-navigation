@@ -141,6 +141,35 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
   );
 
 
+  $templateCache.put('template/eeh-navigation/search-input/eeh-navigation-search-input.html',
+    "<form ng-submit=\"submit()\" class=\"navbar-form navbar-right\">\r" +
+    "\n" +
+    "    <div class=\"input-group\">\r" +
+    "\n" +
+    "        <input type=\"text\"\r" +
+    "\n" +
+    "               class=\"form-control search-input\"\r" +
+    "\n" +
+    "               placeholder=\"{{'Search'|translate}}\"\r" +
+    "\n" +
+    "               ng-model=\"searchTerm\">\r" +
+    "\n" +
+    "        <span class=\"input-group-btn\">\r" +
+    "\n" +
+    "            <button class=\"btn btn-default\" type=\"submit\">\r" +
+    "\n" +
+    "                <span class=\"icon-fw {{ iconBaseClass() }} {{ searchIconClass }}\"></span>\r" +
+    "\n" +
+    "            </button>\r" +
+    "\n" +
+    "        </span>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</form>"
+  );
+
+
   $templateCache.put('template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
     "<nav class=\"navbar navbar-default eeh-navigation eeh-navigation-sidebar\" role=\"navigation\">\r" +
     "\n" +
@@ -150,27 +179,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "            <li class=\"sidebar-search\" ng-show=\"!_sidebarTextCollapse.isCollapsed && _sidebarSearch.isVisible\">\r" +
     "\n" +
-    "                <form ng-submit=\"_sidebarSearch.submit()\">\r" +
-    "\n" +
-    "                    <div class=\"input-group\">\r" +
-    "\n" +
-    "                        <input type=\"text\" class=\"form-control search-input\" placeholder=\"{{'Search'|translate}}\"\r" +
-    "\n" +
-    "                               ng-model=\"_sidebarSearch.model\">\r" +
-    "\n" +
-    "                            <span class=\"input-group-btn\">\r" +
-    "\n" +
-    "                                <button class=\"btn btn-default\" type=\"submit\">\r" +
-    "\n" +
-    "                                    <span class=\"icon-fw {{ iconBaseClass() }} {{ searchIconClass }}\"></span>\r" +
-    "\n" +
-    "                                </button>\r" +
-    "\n" +
-    "                            </span>\r" +
-    "\n" +
-    "                    </div>\r" +
-    "\n" +
-    "                </form>\r" +
+    "                <eeh-navigation-search-input search-term=\"searchInputModel\" submit=\"searchInputSubmit\" ng-if=\"searchInputIsVisible\"></eeh-navigation-search-input>\r" +
     "\n" +
     "            </li>\r" +
     "\n" +

@@ -1,6 +1,6 @@
 {
   "name": "eeh-navigation",
-  "version": "4.0.0-alpha1",
+  "version": "4.0.0-alpha2",
   "description": "A data-driven AngularJS, Bootstrap navigation directive.",
   "main": "Gruntfile.js",
   "scripts": {
