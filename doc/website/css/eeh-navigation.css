@@ -16,3 +16,7 @@ header > ul.nav.navbar-nav > li > a {
 header > ul.nav.navbar-nav > li:last-child {
     padding-right: 30px;
 }
+
+.alert {
+    color: #000000;
+}

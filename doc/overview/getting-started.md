@@ -7,19 +7,38 @@ currentMenu: getting-started
 Install, include, configure.
 
 ## Install (via bower)
-```
+```sh
 bower install eeh-navigation
 ```
 
-## Include CSS
+## Include Dependencies
+
+__CSS__
+```html
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" />
+``` 
+
+__JavaScript__
+```html
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 ```
+
+## Include eeh-navigation Module
+
+__CSS__
+```html
 <link rel="stylesheet" href="bower_components/eeh-navigation/dist/eeh-navigation.css"/>
 ```
 
-## Include JavaScript
-```
-    <script src="bower_components/eeh-navigation/dist/eeh-navigation.js"></script>
-    <script src="bower_components/eeh-navigation/dist/eeh-navigation.tpl.js"></script>
+__JavaScript__
+```html
+<script src="bower_components/eeh-navigation/dist/eeh-navigation.js"></script>
+<script src="bower_components/eeh-navigation/dist/eeh-navigation.tpl.js"></script>
 ```
 
 ## Use the "eeh-navigation" Directive <small>&le; v3.3</small>
@@ -63,15 +82,14 @@ It should also be in a template that is at the top of the state hierarchy.
 ```
 
 ## Configuration Example
-```
+
+```javascript
 angular.module('myApp', ['eehNavigation']).config(['eehNavigationProvider',
 function (eehNavigationProvider) {
     // Configure navbar branding and the link to navigate to when clicked.
-    eehNavigationProvider.navbarBrand = {
-        text: 'My Product',
-        href: '/home'
-    };
-
+    eehNavigationProvider.navbarBrand.text = 'My Product';
+    eehNavigationProvider.navbarBrand.href = '/home';
+                                                
     // Add a drowndown menu for user links to the navbar.
     eehNavigationProvider
         .navbarMenuItem('user', {
