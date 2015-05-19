@@ -10,7 +10,7 @@ var SidebarDirective = function ($window, eehNavigation) {
             searchTerm: '=',
             submit: '='
         },
-        link: function (scope, element) {
+        link: function (scope) {
             scope.searchIconClass = scope.searchIconClass || 'glyphicon-search';
 
             scope.iconBaseClass = function () {
