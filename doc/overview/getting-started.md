@@ -84,8 +84,13 @@ It should also be in a template that is at the top of the state hierarchy.
 ## Configuration Example
 
 ```javascript
-angular.module('myApp', ['eehNavigation']).config(['eehNavigationProvider',
-function (eehNavigationProvider) {
+angular.module('myApp', [
+    'eehNavigation',
+    'pascalprecht.translate',
+    'ui.bootstrap',
+    'ui.router'
+])
+.config(['eehNavigationProvider', function (eehNavigationProvider) {
     // Configure navbar branding and the link to navigate to when clicked.
     eehNavigationProvider.navbarBrand.text = 'My Product';
     eehNavigationProvider.navbarBrand.href = '/home';
