@@ -7,7 +7,7 @@
             <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
                 ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
                 ng-if="item._isVisible()"
-                ui-sref-active-eq="active"></li>
+                ui-sref-active-eq="active" eeh-navigation-active-menu-item="item"></li>
             <li ng-click="toggleSidebarTextCollapse()" ng-if="_sidebarTextCollapse.isVisible && isSidebarVisible()">
                 <a>
                     <span class="icon-fw {{ iconBaseClass() }}" ng-class="_sidebarTextCollapse.isCollapsed ? collapsedSidebarIconClass : expandedSidebarIconClass"></span>
