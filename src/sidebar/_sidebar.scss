@@ -80,7 +80,7 @@
   }
 
   .sidebar-nav {
-    > .active > a {
+    > .active.leaf > a {
       &:after {
         content: '';
         display: block;

@@ -171,9 +171,9 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             isCollapsed: false
         })
         .menuItem('menuTwo.multilevel.firstlevel3.secondlevel1', {
-            text: 'Second level - 1',
+            text: 'Second level - 1: Home',
             iconClass: 'glyphicon-file',
-            state: 'demo.authenticated.blank'
+            state: 'demo.authenticated.alpha'
         })
         .menuItem('menuTwo.multilevel.firstlevel3.secondlevel2', {
             text: 'Second level - 2',
