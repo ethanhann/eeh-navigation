@@ -3,6 +3,40 @@
     "use strict";
     angular.module("eehNavigation", [ "pascalprecht.translate" ]);
     "use strict";
+    function isMenuItemActive(menuItem, $state) {
+        if (!menuItem.hasChildren()) {
+            return angular.isDefined(menuItem.state) && $state.includes(menuItem.state);
+        }
+        var children = menuItem.children();
+        for (var i = 0; i < children.length; i++) {
+            if (angular.isDefined(children[i].state) && $state.includes(children[i].state)) {
+                return true;
+            }
+            if (isMenuItemActive(children[i], $state)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    var ActiveMenuItemDirective = function($state) {
+        return {
+            restrict: "A",
+            scope: {
+                menuItem: "=eehNavigationActiveMenuItem"
+            },
+            link: function(scope, element) {
+                var checkIsActive = function() {
+                    var isActive = isMenuItemActive(scope.menuItem, $state);
+                    element.toggleClass("active", isActive);
+                };
+                scope.$on("$stateChangeSuccess", checkIsActive);
+                checkIsActive();
+            }
+        };
+    };
+    ActiveMenuItemDirective.$inject = [ "$state" ];
+    angular.module("eehNavigation").directive("eehNavigationActiveMenuItem", ActiveMenuItemDirective);
+    "use strict";
     var MenuItem = function(config) {
         this.weight = 0;
         angular.extend(this, config);
@@ -160,29 +194,6 @@
     };
     MenuItemContentDirective.$inject = [ "eehNavigation" ];
     angular.module("eehNavigation").directive("eehNavigationMenuItemContent", MenuItemContentDirective);
-    "use strict";
-    var ActiveParentMenuItemDirective = function($state) {
-        return {
-            restrict: "A",
-            scope: {
-                menuItem: "=eehNavigationActiveMenuItem"
-            },
-            link: function(scope, element) {
-                var checkIsActive = function() {
-                    if (scope.menuItem.hasChildren()) {
-                        var isActive = scope.menuItem.children().filter(function(childMenuItem) {
-                            return angular.isDefined(childMenuItem.state) && $state.includes(childMenuItem.state);
-                        }).length > 0;
-                        element.toggleClass("active", isActive);
-                    }
-                };
-                scope.$on("$stateChangeSuccess", checkIsActive);
-                checkIsActive();
-            }
-        };
-    };
-    ActiveParentMenuItemDirective.$inject = [ "$state" ];
-    angular.module("eehNavigation").directive("eehNavigationActiveMenuItem", ActiveParentMenuItemDirective);
     "use strict";
     var NavbarDirective = function($window, eehNavigation) {
         return {

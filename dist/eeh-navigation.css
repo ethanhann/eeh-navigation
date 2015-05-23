@@ -47,7 +47,7 @@
   #eeh-navigation-page-wrapper.sidebar-text-collapsed {
     margin-left: 50px; }
 
-  .sidebar-nav > .active > a:after {
+  .sidebar-nav > .active.leaf > a:after {
     content: '';
     display: block;
     position: absolute;

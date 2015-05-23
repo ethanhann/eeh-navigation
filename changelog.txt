@@ -1,4 +1,9 @@
-f77833e (HEAD, origin/master, origin/HEAD, master) Fix CS issue
+727603d (HEAD, origin/master, origin/HEAD, master) Refactor location of active menu item directive
+0dfad8c Recursively determine active status of nested menu items
+ed722f4 In sidebar parent element have active class, if any of children is active
+2f8089d Fix up tests
+57f9e86 Prepare for release
+f77833e Fix CS issue
 9d05650 Add deps to sample config
 dcded65 Update docs
 8a75160 Make search input compatible with navbar
@@ -23,7 +28,7 @@ c599da5 Start using bootstrap-sass package for theming
 cd79013 Refactor core file location
 8d6808b Remove deprecated files
 83581a8 (tag: 3.3.0) Prepare for release
-b1283c8 (origin/decoupled-menus, decoupled-menus) Add dist before merge
+b1283c8 (origin/decoupled-menus) Add dist before merge
 d311eb0 Update docs
 f0bd6ef Use new directives in demo
 e058f2d Refactor components
