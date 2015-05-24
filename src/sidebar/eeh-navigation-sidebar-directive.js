@@ -80,6 +80,10 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
                     sidebarElement.removeClass('sidebar-text-collapsed');
                     sidebarMenuItemTextElements.removeClass('hidden');
                 }
+
+                scope.sidebarMenuItems.forEach(function (menuItem) {
+                    menuItem.isCollapsed = true;
+                });
             }
 
             /**
@@ -99,12 +103,12 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             };
 
             scope.topLevelMenuItemClickHandler = function (clickedMenuItem) {
-                if (!clickedMenuItem.hasChildren()) {
+                if (!scope._sidebarTextCollapse || !clickedMenuItem.hasChildren()) {
                     return;
                 }
                 scope.sidebarMenuItems
                 .filter(function (menuItem) {
-                    return menuItem.hasChildren() && clickedMenuItem != menuItem;
+                    return menuItem.hasChildren() && clickedMenuItem !== menuItem;
                 })
                 .forEach(function (menuItem) {
                     menuItem.isCollapsed = true;
@@ -115,3 +119,4 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
 };
 
 angular.module('eehNavigation').directive('eehNavigationSidebar', SidebarDirective);
+
