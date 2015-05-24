@@ -200,6 +200,21 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             text: 'First level - 5: Home',
             iconClass: 'glyphicon-file',
             state: 'demo.authenticated.home'
+        })
+        .menuItem('menuTwo.chess', {
+            text: 'Chess',
+            iconClass: 'glyphicon-king',
+            isCollapsed: true
+        })
+        .menuItem('menuTwo.chess.knight', {
+            text: 'knight',
+            iconClass: 'glyphicon-knight',
+            state: 'demo.authenticated.alpha'
+        })
+        .menuItem('menuTwo.chess.bishop', {
+            text: 'Bishop',
+            iconClass: 'glyphicon-bishop',
+            state: 'demo.authenticated.beta'
         });
 
     $translateProvider
