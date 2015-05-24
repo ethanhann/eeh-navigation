@@ -66,7 +66,10 @@ var SidebarDirective = function ($window, eehNavigation) {
                 setTextCollapseState();
             };
             function setTextCollapseState() {
-                var sidebarMenuItemTextElements = element.find('.menu-item-text');
+                var menuItemSelectorBase = 'ul.sidebar-nav:not(.sidebar-nav-nested) > li > a > ';
+                var topLevelMenuItemTextSelector = menuItemSelectorBase + 'span > .menu-item-text';
+                var topLevelSidebarArrowSelector = menuItemSelectorBase + '.sidebar-arrow';
+                var sidebarMenuItemTextElements = element.find(topLevelMenuItemTextSelector + ',' + topLevelSidebarArrowSelector);
                 var sidebarElement = element.find('.eeh-navigation-sidebar');
                 if (eehNavigation.sidebarTextCollapseIsCollapsed()) {
                     transcludedWrapper.addClass('sidebar-text-collapsed');

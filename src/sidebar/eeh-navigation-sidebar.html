@@ -37,14 +37,15 @@
     <a ng-if="item.href" ng-href="{{item.href}}" target="{{item.target ? item.target : '_self'}}">
         <span eeh-navigation-menu-item-content="item"></span>
     </a>
-    <a ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed"
+    <a ng-if="!item.state && item.hasChildren()"
        ng-click="item.isCollapsed = !item.isCollapsed">
         <span eeh-navigation-menu-item-content="item"></span>
         <span class="navbar-right sidebar-arrow icon-fw {{ iconBaseClass() }}"
               ng-class="item.isCollapsed ? collapsedMenuItemIconClass : expandedMenuItemIconClass"></span>
     </a>
-    <ul ng-if="!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed" collapse="item.isCollapsed"
-        class="nav sidebar-nav">
+    <ul ng-if="!item.state && item.hasChildren()" collapse="item.isCollapsed"
+        ng-class="{ 'text-collapsed': _sidebarTextCollapse.isCollapsed }"
+        class="nav sidebar-nav sidebar-nav-nested">
         <li ng-repeat="item in item.children()"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
             ng-class="{ 'leaf': !item.hasChildren() }"

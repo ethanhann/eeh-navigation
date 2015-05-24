@@ -95,6 +95,7 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
         eehNavigationProvider.menuItem('menuOne.language').text = languageName;
         $translateProvider.use(languageKey);
     };
+
     eehNavigationProvider
         .menuItem('menuOne.language', {
             text: 'English',
@@ -171,7 +172,7 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             isCollapsed: false
         })
         .menuItem('menuTwo.multilevel.firstlevel3.secondlevel1', {
-            text: 'Second level - 1: Home',
+            text: 'Second level - 1: Alpha',
             iconClass: 'glyphicon-file',
             state: 'demo.authenticated.alpha'
         })
@@ -179,6 +180,26 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             text: 'Second level - 2',
             iconClass: 'glyphicon-file',
             state: 'demo.authenticated.blank'
+        })
+        .menuItem('menuTwo.multilevel.firstlevel4', {
+            text: 'First level - 4',
+            iconClass: 'glyphicon-folder-close',
+            isCollapsed: false
+        })
+        .menuItem('menuTwo.multilevel.firstlevel4.secondlevel1', {
+            text: 'Second level - 1: Beta',
+            iconClass: 'glyphicon-file',
+            state: 'demo.authenticated.beta'
+        })
+        .menuItem('menuTwo.multilevel.firstlevel4.secondlevel2', {
+            text: 'Second level - 2',
+            iconClass: 'glyphicon-file',
+            state: 'demo.authenticated.blank'
+        })
+        .menuItem('menuTwo.multilevel.firstlevel5', {
+            text: 'First level - 5: Home',
+            iconClass: 'glyphicon-file',
+            state: 'demo.authenticated.home'
         });
 
     $translateProvider
