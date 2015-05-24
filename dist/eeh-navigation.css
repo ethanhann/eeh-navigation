@@ -13,9 +13,9 @@
       /* Indent second level menu items */
       /* Indent third level menu items */ }
       .eeh-navigation-sidebar > .navbar-collapse > ul.sidebar-nav > li > ul > li > a {
-        padding-left: 37px; }
+        padding-left: 30px; }
       .eeh-navigation-sidebar > .navbar-collapse > ul.sidebar-nav > li > ul > li > ul > li > a {
-        padding-left: 52px; }
+        padding-left: 45px; }
   .eeh-navigation-sidebar .navbar-default > .active {
     background-color: #e7e7e7;
     color: #e7e7e7; }
@@ -47,17 +47,19 @@
   #eeh-navigation-page-wrapper.sidebar-text-collapsed {
     margin-left: 50px; }
 
-  .sidebar-nav > .active.leaf > a:after {
-    content: '';
-    display: block;
+  .sidebar-nav-nested.text-collapsed {
     position: absolute;
-    top: 10px;
-    left: 93%;
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-right-color: #FFF;
-    z-index: 9000; } }
+    left: 51px;
+    top: 0;
+    width: 250px;
+    background-color: #f8f8f8; }
+    .sidebar-nav-nested.text-collapsed a {
+      padding-left: 15px !important; }
+    .sidebar-nav-nested.text-collapsed .sidebar-nav-nested.text-collapsed {
+      position: relative;
+      left: 0; }
+      .sidebar-nav-nested.text-collapsed .sidebar-nav-nested.text-collapsed a {
+        padding-left: 30px !important; } }
 #eeh-navigation-page-wrapper {
   padding: 0 15px;
   min-height: 568px;

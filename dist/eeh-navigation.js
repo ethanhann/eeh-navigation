@@ -267,7 +267,7 @@
     };
     angular.module("eehNavigation").directive("eehNavigationSearchInput", [ "$window", "eehNavigation", SidebarDirective ]);
     "use strict";
-    var SidebarDirective = function($window, eehNavigation) {
+    var SidebarDirective = function($document, $window, eehNavigation) {
         return {
             restrict: "AE",
             transclude: true,
@@ -330,7 +330,10 @@
                     setTextCollapseState();
                 };
                 function setTextCollapseState() {
-                    var sidebarMenuItemTextElements = element.find(".menu-item-text");
+                    var menuItemSelectorBase = "ul.sidebar-nav:not(.sidebar-nav-nested) > li > a > ";
+                    var topLevelMenuItemTextSelector = menuItemSelectorBase + "span > .menu-item-text";
+                    var topLevelSidebarArrowSelector = menuItemSelectorBase + ".sidebar-arrow";
+                    var sidebarMenuItemTextElements = element.find(topLevelMenuItemTextSelector + "," + topLevelSidebarArrowSelector);
                     var sidebarElement = element.find(".eeh-navigation-sidebar");
                     if (eehNavigation.sidebarTextCollapseIsCollapsed()) {
                         transcludedWrapper.addClass("sidebar-text-collapsed");
@@ -341,6 +344,9 @@
                         sidebarElement.removeClass("sidebar-text-collapsed");
                         sidebarMenuItemTextElements.removeClass("hidden");
                     }
+                    scope.sidebarMenuItems.forEach(function(menuItem) {
+                        menuItem.isCollapsed = true;
+                    });
                 }
                 scope.$on("$includeContentLoaded", function() {
                     setTextCollapseState();
@@ -350,10 +356,21 @@
                         return item._isVisible();
                     }).length > 0;
                 };
+                scope.topLevelMenuItemClickHandler = function(clickedMenuItem) {
+                    if (!scope._sidebarTextCollapse || !clickedMenuItem.hasChildren()) {
+                        return;
+                    }
+                    scope.sidebarMenuItems.filter(function(menuItem) {
+                        return menuItem.hasChildren() && clickedMenuItem !== menuItem;
+                    }).forEach(function(menuItem) {
+                        menuItem.isCollapsed = true;
+                    });
+                };
             }
         };
     };
-    angular.module("eehNavigation").directive("eehNavigationSidebar", [ "$window", "eehNavigation", SidebarDirective ]);
+    SidebarDirective.$inject = [ "$document", "$window", "eehNavigation" ];
+    angular.module("eehNavigation").directive("eehNavigationSidebar", SidebarDirective);
 })({}, function() {
     return this;
 }());

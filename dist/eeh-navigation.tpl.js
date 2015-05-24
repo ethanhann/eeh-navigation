@@ -191,6 +191,8 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "                ng-if=\"item._isVisible()\"\r" +
     "\n" +
+    "                ng-click=\"topLevelMenuItemClickHandler(item)\"\r" +
+    "\n" +
     "                ui-sref-active-eq=\"active\"\r" +
     "\n" +
     "                eeh-navigation-active-menu-item=\"item\"></li>\r" +
@@ -249,7 +251,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "    </a>\r" +
     "\n" +
-    "    <a ng-if=\"!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed\"\r" +
+    "    <a ng-if=\"!item.state && item.hasChildren()\"\r" +
     "\n" +
     "       ng-click=\"item.isCollapsed = !item.isCollapsed\">\r" +
     "\n" +
@@ -261,9 +263,11 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "\n" +
     "    </a>\r" +
     "\n" +
-    "    <ul ng-if=\"!item.state && item.hasChildren() && !_sidebarTextCollapse.isCollapsed\" collapse=\"item.isCollapsed\"\r" +
+    "    <ul ng-if=\"!item.state && item.hasChildren()\" collapse=\"item.isCollapsed\"\r" +
     "\n" +
-    "        class=\"nav sidebar-nav\">\r" +
+    "        ng-class=\"{ 'text-collapsed': _sidebarTextCollapse.isCollapsed }\"\r" +
+    "\n" +
+    "        class=\"nav sidebar-nav sidebar-nav-nested\">\r" +
     "\n" +
     "        <li ng-repeat=\"item in item.children()\"\r" +
     "\n" +
