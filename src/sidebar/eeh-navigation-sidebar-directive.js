@@ -1,6 +1,6 @@
 'use strict';
 
-var SidebarDirective = function ($window, eehNavigation) {
+var SidebarDirective = function ($document, $window, eehNavigation) {
     return {
         restrict: 'AE',
         transclude: true,
@@ -97,8 +97,21 @@ var SidebarDirective = function ($window, eehNavigation) {
                         .filter(function (item) { return item._isVisible(); })
                         .length > 0);
             };
+
+            scope.topLevelMenuItemClickHandler = function (clickedMenuItem) {
+                if (!clickedMenuItem.hasChildren()) {
+                    return;
+                }
+                scope.sidebarMenuItems
+                .filter(function (menuItem) {
+                    return menuItem.hasChildren() && clickedMenuItem != menuItem;
+                })
+                .forEach(function (menuItem) {
+                    menuItem.isCollapsed = true;
+                });
+            };
         }
     };
 };
 
-angular.module('eehNavigation').directive('eehNavigationSidebar', ['$window', 'eehNavigation', SidebarDirective]);
+angular.module('eehNavigation').directive('eehNavigationSidebar', SidebarDirective);

@@ -8,6 +8,7 @@
                 ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
                 ng-class="{ 'leaf': !item.hasChildren() }"
                 ng-if="item._isVisible()"
+                ng-click="topLevelMenuItemClickHandler(item)"
                 ui-sref-active-eq="active"
                 eeh-navigation-active-menu-item="item"></li>
             <li ng-click="toggleSidebarTextCollapse()" ng-if="_sidebarTextCollapse.isVisible && isSidebarVisible()">
