@@ -32,6 +32,14 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             url: '/beta',
             templateUrl: 'partials/beta.html'
         })
+        .state('demo.authenticated.knight', {
+            url: '/knight',
+            templateUrl: 'partials/knight.html'
+        })
+        .state('demo.authenticated.bishop', {
+            url: '/bishop',
+            templateUrl: 'partials/bishop.html'
+        })
         .state('demo.authenticated.search', {
             url: '/search?query',
             controller: 'SearchCtrl',
@@ -207,14 +215,14 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             isCollapsed: true
         })
         .menuItem('menuTwo.chess.knight', {
-            text: 'knight',
+            text: 'Knight',
             iconClass: 'glyphicon-knight',
-            state: 'demo.authenticated.alpha'
+            state: 'demo.authenticated.knight'
         })
         .menuItem('menuTwo.chess.bishop', {
             text: 'Bishop',
             iconClass: 'glyphicon-bishop',
-            state: 'demo.authenticated.beta'
+            state: 'demo.authenticated.bishop'
         });
 
     $translateProvider
