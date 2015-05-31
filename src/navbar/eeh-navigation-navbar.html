@@ -6,12 +6,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a ng-if="_navbarBrand.state && !_navbarBrand.href" class="navbar-brand" ui-sref="{{ _navbarBrand.state }}">
-            <span ng-include="'template/eeh-navigation/navbar-brand.html'"></span>
-        </a>
-        <a ng-if="!_navbarBrand.state && _navbarBrand.href" class="navbar-brand" ng-href="{{ _navbarBrand.href }}" target="{{item.target ? item.target : '_self'}}">
-            <span ng-include="'template/eeh-navigation/navbar-brand.html'"></span>
-        </a>
+        <eeh-navigation-navbar-brand text="brandText"
+                                     state="brandState"
+                                     href="brandHref"
+                                     target="brandTarget"
+                                     src="brandSrc"
+                                     click="brandClick"></eeh-navigation-navbar-brand>
     </div>
     <div collapse="isNavbarCollapsed" class="navbar-collapse">
         <ul class="nav navbar-nav navbar-left">
@@ -32,11 +32,6 @@
         </ul>
     </div>
 </nav>
-
-<script type="text/ng-template" id="template/eeh-navigation/navbar-brand.html">
-    <img ng-if="_navbarBrand.src" ng-src="{{_navbarBrand.src}}">
-    <span ng-if="_navbarBrand.text">{{ _navbarBrand.text|translate }}</span>
-</script>
 
 <script type="text/ng-template" id="template/eeh-navigation/navbar-menu-item.html">
     <a ng-if="!item.isDivider && item.state" ui-sref="{{ item.state }}">

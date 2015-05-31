@@ -22,6 +22,7 @@
         "angular": false
     },
     "predef": [
+        "angular",
         "jasmine",
         "describe",
         "xdescribe",

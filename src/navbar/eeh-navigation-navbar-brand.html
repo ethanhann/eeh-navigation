@@ -1,0 +1,23 @@
+<a ng-if="state && !linkUrl && text"
+   class="navbar-brand"
+   ui-sref="{{ state }}">
+    <span ng-include="'template/eeh-navigation/navbar-brand-content.html'"></span>
+</a>
+
+<a ng-if="!state && linkUrl && text"
+   class="navbar-brand"
+   ng-href="{{ linkUrl }}"
+   target="{{ linkTarget ? linkTarget : '_self'}}">
+    <span ng-include="'template/eeh-navigation/navbar-brand-content.html'"></span>
+</a>
+
+<span ng-if="!state && !linkUrl && text"
+      class="navbar-brand">
+    <span ng-include="'template/eeh-navigation/navbar-brand-content.html'"></span>
+</span>
+
+<script type="text/ng-template" id="template/eeh-navigation/navbar-brand-content.html">
+    <img ng-if="imageUrl" ng-src="{{ imageUrl }}">
+    <span ng-if="text">{{ text|translate }}</span>
+</script>
+

@@ -5,7 +5,13 @@ var NavbarDirective = function ($window, eehNavigation) {
         restrict: 'AE',
         templateUrl: 'template/eeh-navigation/navbar/eeh-navigation-navbar.html',
         scope: {
-            rootMenuName: '=rootMenuName'
+            rootMenuName: '=',
+            brandText: '=',
+            brandState: '=',
+            brandHref: '=',
+            brandTarget: '=',
+            brandSrc: '=',
+            brandClick: '='
         },
         link: function (scope) {
             scope.iconBaseClass = function () {

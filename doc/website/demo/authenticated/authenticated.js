@@ -19,4 +19,9 @@ angular.module('demo')
     $scope.searchSubmit = function () {
         $state.go('demo.authenticated.search', { query: $scope.searchModel });
     };
+
+    $scope.navbarBrand = {
+        text: 'eeh-navigation Demo',
+        state: 'demo.authenticated.home'
+    };
 });

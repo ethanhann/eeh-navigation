@@ -46,8 +46,6 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             templateUrl: 'search/search.html'
         });
 
-    eehNavigationProvider.navbarBrand.text = 'eeh-navigation demo';
-    eehNavigationProvider.navbarBrand.state = 'demo.authenticated.home';
     eehNavigationProvider.iconBaseClass('glyphicon');
 
     eehNavigationProvider
@@ -226,6 +224,7 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
         });
 
     $translateProvider
+        .useSanitizeValueStrategy('escaped')
         .translations('en', {
             'Blank': 'Blank',
             'Home': 'Home',
@@ -238,8 +237,13 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             'First level - 3': 'First level - 3',
             'Second level - 1': 'Second level - 1',
             'Second level - 2': 'Second level - 2',
+            'First level - 4': 'First level - 4',
+            'First level - 5': 'First level - 5',
             'User Profile': 'User Profile',
-            'Logout': 'Logout'
+            'Logout': 'Logout',
+            'Chess': 'Chess',
+            'Bishop': 'Bishop',
+            'Knight': 'Knight'
         })
         .translations('de', {
             'Blank': 'Leer',
@@ -253,8 +257,13 @@ function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationP
             'First level - 3': 'Erste Ebene - 3',
             'Second level - 1': 'Zweite Ebene - 1',
             'Second level - 2': 'Zweite Ebene - 2',
+            'Erste Ebene - 4': 'Erste Ebene - 4',
+            'Erste Ebene - 5': 'Erste Ebene - 5',
             'User Profile': 'Benutzerprofil',
-            'Logout': 'Abmelden'
+            'Logout': 'Abmelden',
+            'Chess': 'Schach',
+            'Bishop': 'Bischof',
+            'Knight': 'Ritter'
         });
     $translateProvider.preferredLanguage('en');
 }]);
