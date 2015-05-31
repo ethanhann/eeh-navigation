@@ -3,10 +3,6 @@
 
 var NavigationService = function () {
     this._iconBaseClass = 'glyphicon';
-    this._sidebarTextCollapse = {
-        isVisible: true,
-        isCollapsed: false
-    };
     this._menuItems = {};
     this._toArray = function (items) {
         var arr = [];
@@ -84,27 +80,6 @@ NavigationService.prototype.menuItem = function (name, config) {
 
 NavigationService.prototype.menuItems = function () {
     return this._menuItems;
-};
-
-NavigationService.prototype.sidebarTextCollapseIsVisible = function (value) {
-    if (angular.isUndefined(value)) {
-        return this._sidebarTextCollapse.isVisible;
-    }
-    this._sidebarTextCollapse.isVisible = value;
-    return this;
-};
-
-NavigationService.prototype.sidebarTextCollapseIsCollapsed = function (value) {
-    if (angular.isUndefined(value)) {
-        return this._sidebarTextCollapse.isCollapsed;
-    }
-    this._sidebarTextCollapse.isCollapsed = value;
-    return this;
-};
-
-NavigationService.prototype.sidebarTextCollapseToggleCollapsed = function () {
-    this._sidebarTextCollapse.isCollapsed = !this._sidebarTextCollapse.isCollapsed;
-    return this;
 };
 
 angular.module('eehNavigation').provider('eehNavigation', NavigationService);

@@ -11,9 +11,9 @@
                 ng-click="topLevelMenuItemClickHandler(item)"
                 ui-sref-active-eq="active"
                 eeh-navigation-active-menu-item="item"></li>
-            <li ng-click="toggleSidebarTextCollapse()" ng-if="_sidebarTextCollapse.isVisible && isSidebarVisible()">
+            <li ng-click="toggleSidebarTextCollapse()" ng-if="isTextCollapseButtonVisible && isSidebarVisible()">
                 <a>
-                    <span class="icon-fw {{ iconBaseClass() }}" ng-class="_sidebarTextCollapse.isCollapsed ? collapsedSidebarIconClass : expandedSidebarIconClass"></span>
+                    <span class="icon-fw {{ iconBaseClass() }}" ng-class="isTextCollapsed ? collapsedSidebarIconClass : expandedSidebarIconClass"></span>
                 </a>
             </li>
         </ul>
