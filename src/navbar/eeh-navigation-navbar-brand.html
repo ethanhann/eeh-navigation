@@ -1,17 +1,20 @@
 <a ng-if="state && !linkUrl && text"
    class="navbar-brand"
+   ng-click="click()"
    ui-sref="{{ state }}">
     <span ng-include="'template/eeh-navigation/navbar-brand-content.html'"></span>
 </a>
 
 <a ng-if="!state && linkUrl && text"
    class="navbar-brand"
+   ng-click="click()"
    ng-href="{{ linkUrl }}"
    target="{{ linkTarget ? linkTarget : '_self'}}">
     <span ng-include="'template/eeh-navigation/navbar-brand-content.html'"></span>
 </a>
 
 <span ng-if="!state && !linkUrl && text"
+      ng-click="click()"
       class="navbar-brand">
     <span ng-include="'template/eeh-navigation/navbar-brand-content.html'"></span>
 </span>
