@@ -7,15 +7,7 @@ var NavigationService = function () {
         isVisible: true,
         isCollapsed: false
     };
-    this.navbarBrand = this._navbarBrand = {
-        text: '',
-        state: '',
-        href: '',
-        src: ''
-    };
     this._menuItems = {};
-    this._navbarMenuItems = {};
-    this._sidebarMenuItems = {};
     this._toArray = function (items) {
         var arr = [];
         for (var key in items) {
