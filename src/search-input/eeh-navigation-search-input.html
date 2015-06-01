@@ -1,13 +1,34 @@
-<form ng-submit="submit()" class="navbar-form navbar-right">
-    <div class="input-group">
-        <input type="text"
-               class="form-control search-input"
-               placeholder="{{'Search'|translate}}"
-               ng-model="searchTerm">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">
+<div ng-include="'template/eeh-navigation/search-input.html'"
+     ng-if="!isCollapsed"
+     class="eeh-navigation-search-input"></div>
+
+<a class="eeh-navigation-search-input" ng-href="" ng-if="isCollapsed"
+   popover-placement="right"
+   popover-append-to-body="'true'"
+   popover-template="'template/eeh-navigation/search-input-popover.html'">
+    <span class="menu-item-icon icon-fw {{ iconBaseClass() }} {{ searchIconClass }}"></span>
+</a>
+
+<script type="text/ng-template" id="template/eeh-navigation/search-input-popover.html">
+    <div class="row search-input-popover">
+        <div class="col-xs-12">
+            <div ng-include="'template/eeh-navigation/search-input.html'"></div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="template/eeh-navigation/search-input.html">
+    <form ng-submit="submit(model.query)" class="navbar-form" ng-class="classes">
+        <div class="input-group">
+            <input type="text"
+                   class="form-control"
+                   placeholder="{{'Search'|translate}}"
+                   ng-model="model.query">
+        <span class="input-group-btn" ng-if="!isCollapsed">
+            <button class="btn btn-default">
                 <span class="icon-fw {{ iconBaseClass() }} {{ searchIconClass }}"></span>
             </button>
         </span>
-    </div>
-</form>
+        </div>
+    </form>
+</script>

@@ -13,7 +13,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             collapsedSidebarIconClass: '@',
             expandedSidebarIconClass: '@',
             searchInputIsVisible: '@',
-            searchInputModel: '@',
+            searchInputSubmit: '=',
             isTextCollapseButtonVisible: '@',
             isTextCollapsed: '@'
         },
@@ -25,6 +25,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             scope.expandedSidebarIconClass = scope.expandedSidebarIconClass || 'glyphicon-arrow-left';
             scope.isTextCollapseButtonVisible = scope.isTextCollapseButtonVisible || true;
             scope.isTextCollapsed = scope.isTextCollapsed || false;
+            scope.searchInputIsVisible = scope.searchInputIsVisible || true;
             scope.iconBaseClass = function () {
                 return eehNavigation.iconBaseClass();
             };
@@ -105,7 +106,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             };
 
             scope.topLevelMenuItemClickHandler = function (clickedMenuItem) {
-                if (!scope._sidebarTextCollapse || !clickedMenuItem.hasChildren()) {
+                if (!scope.isTextCollapsed || !clickedMenuItem.hasChildren()) {
                     return;
                 }
                 scope.sidebarMenuItems

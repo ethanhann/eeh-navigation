@@ -7,17 +7,18 @@ var SidebarDirective = function ($window, eehNavigation) {
         templateUrl: 'template/eeh-navigation/search-input/eeh-navigation-search-input.html',
         scope: {
             searchIconClass: '@',
-            searchTerm: '=',
-            submit: '='
+            submit: '=',
+            classes: '=',
+            isCollapsed: '='
         },
         link: function (scope) {
+            scope.model = {
+                query: ''
+            };
             scope.searchIconClass = scope.searchIconClass || 'glyphicon-search';
-
             scope.iconBaseClass = function () {
                 return eehNavigation.iconBaseClass();
             };
-
-            scope._sidebarSearch = eehNavigation._sidebarSearch;
         }
     };
 };

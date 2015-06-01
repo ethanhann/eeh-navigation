@@ -1,8 +1,10 @@
 <nav class="navbar navbar-default eeh-navigation eeh-navigation-sidebar" role="navigation">
     <div class="navbar-collapse" collapse="isNavbarCollapsed">
         <ul class="nav sidebar-nav">
-            <li class="sidebar-search" ng-show="!_sidebarTextCollapse.isCollapsed && _sidebarSearch.isVisible">
-                <eeh-navigation-search-input search-term="searchInputModel" submit="searchInputSubmit" ng-if="searchInputIsVisible"></eeh-navigation-search-input>
+            <li class="sidebar-search" ng-if="searchInputIsVisible">
+                <eeh-navigation-search-input class="sidebar-search-input"
+                                             submit="searchInputSubmit"
+                                             is-collapsed="isTextCollapsed"></eeh-navigation-search-input>
             </li>
             <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
                 ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
@@ -45,7 +47,7 @@
               ng-class="item.isCollapsed ? collapsedMenuItemIconClass : expandedMenuItemIconClass"></span>
     </a>
     <ul ng-if="!item.state && item.hasChildren()" collapse="item.isCollapsed"
-        ng-class="{ 'text-collapsed': _sidebarTextCollapse.isCollapsed }"
+        ng-class="{ 'text-collapsed': isTextCollapsed }"
         class="nav sidebar-nav sidebar-nav-nested">
         <li ng-repeat="item in item.children()"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"

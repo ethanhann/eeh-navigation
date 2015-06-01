@@ -15,9 +15,8 @@ angular.module('demo')
         $window.alert('Tada');
     };
 
-    $scope.searchModel = '';
-    $scope.searchSubmit = function () {
-        $state.go('demo.authenticated.search', { query: $scope.searchModel });
+    $scope.searchSubmit = function (query) {
+        $state.go('demo.authenticated.search', { query: query });
     };
 
     $scope.navbarBrand = {

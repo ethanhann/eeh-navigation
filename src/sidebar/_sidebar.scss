@@ -28,7 +28,13 @@
   }
 
   .sidebar-search {
-    padding: 15px;
+    .sidebar-search-input {
+      a {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+      }
+    }
   }
 
   .sidebar-arrow {
@@ -36,7 +42,7 @@
   }
 
   .sidebar-nav {
-    > li > a {
+    > li a {
       color: $navbar-default-link-color;
 
       &:hover,
