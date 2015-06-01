@@ -1,4 +1,13 @@
-d5dfd73 (HEAD, origin/master, origin/HEAD, master) Only act on popped out sidebar when the sidebar is collapsed.
+c51641c (HEAD, origin/master, origin/HEAD, master) Fix sass file name
+1db8945 Make search input available when sidebar is collapsed
+8be6ba8 Move sidebar related variables from core service into sidebar directive
+17970a4 Remove some unneeded internal variables in core nav service
+d0caabd Add ng-click directive to navbar brand directive
+9de94e5 Refactor navbar brand into a directive
+1aef233 Add some demo content
+5def8c7 Bump version in demo
+400ac30 Prepare for release
+d5dfd73 Only act on popped out sidebar when the sidebar is collapsed.
 da3cd30 Add a second nested sidebar menu item set
 ea75194 Do not allow multiple collapsed nested sidebar menu items to overlap
 193418c Make nested sidebar items available when sidebar is collapsed
@@ -46,7 +55,7 @@ d1d9cec Rework active menu item directive
 892ab73 Begin DRYing out directives
 dd1316c Slightly newer version of UI router is needed for adding active class to nested menu items
 32e63ec Decouple sidebar and navbar
-fb7c44f Start decoupling menus
+fb7c44f (decoupled-menus) Start decoupling menus
 0c54ae8 Copy dist into docs for dev
 e209678 Copy dist into docs for dev
 01a98e5 (tag: 3.2.1) Prepare for release
@@ -138,7 +147,7 @@ e271dcf (tag: 2.0.1) Prepare for release
 ce90627 Add a MenuItem class and factor out functions from directive
 5397bde (tag: 2.0.0) Prepare for release
 7d42fda Fix CS issue
-0282574 (origin/flat-config) Add ability to weight menu items (heavier items sink)
+0282574 (origin/flat-config, flat-config) Add ability to weight menu items (heavier items sink)
 97c4cc1 Separate js into multiple files and prefix lib files with eeh-
 e43336a Refactor navigation service
 9a4bf44 Flatten navbar item configuration

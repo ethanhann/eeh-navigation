@@ -2,289 +2,202 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
   'use strict';
 
   $templateCache.put('template/eeh-navigation/menu-item-content/eeh-navigation-menu-item-content.html',
-    "<span class=\"menu-item-icon icon-fw {{ iconBaseClass() }} {{ menuItem.iconClass}}\"></span>\r" +
+    "<span class=\"menu-item-icon icon-fw {{ iconBaseClass() }} {{ menuItem.iconClass}}\"></span>\n" +
+    "<span class=\"menu-item-text\"> {{ menuItem.text|translate }}</span>\n" +
+    "\n"
+  );
+
+
+  $templateCache.put('template/eeh-navigation/navbar/eeh-navigation-navbar-brand.html',
+    "<a ng-if=\"state && !linkUrl && text\"\n" +
+    "   class=\"navbar-brand\"\n" +
+    "   ng-click=\"click()\"\n" +
+    "   ui-sref=\"{{ state }}\">\n" +
+    "    <span ng-include=\"'template/eeh-navigation/navbar-brand-content.html'\"></span>\n" +
+    "</a>\n" +
     "\n" +
-    "<span class=\"menu-item-text\"> {{ menuItem.text|translate }}</span>\r" +
+    "<a ng-if=\"!state && linkUrl && text\"\n" +
+    "   class=\"navbar-brand\"\n" +
+    "   ng-click=\"click()\"\n" +
+    "   ng-href=\"{{ linkUrl }}\"\n" +
+    "   target=\"{{ linkTarget ? linkTarget : '_self'}}\">\n" +
+    "    <span ng-include=\"'template/eeh-navigation/navbar-brand-content.html'\"></span>\n" +
+    "</a>\n" +
     "\n" +
-    "\r" +
+    "<span ng-if=\"!state && !linkUrl && text\"\n" +
+    "      ng-click=\"click()\"\n" +
+    "      class=\"navbar-brand\">\n" +
+    "    <span ng-include=\"'template/eeh-navigation/navbar-brand-content.html'\"></span>\n" +
+    "</span>\n" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/navbar-brand-content.html\">\n" +
+    "    <img ng-if=\"imageUrl\" ng-src=\"{{ imageUrl }}\">\n" +
+    "    <span ng-if=\"text\">{{ text|translate }}</span>\n" +
+    "</script>\n" +
     "\n"
   );
 
 
   $templateCache.put('template/eeh-navigation/navbar/eeh-navigation-navbar.html',
-    "<nav class=\"navbar navbar-default navbar-static-top eeh-navigation eeh-navigation-navbar\" role=\"navigation\">\r" +
+    "<nav class=\"navbar navbar-default navbar-static-top eeh-navigation eeh-navigation-navbar\" role=\"navigation\">\n" +
+    "    <div class=\"navbar-header\">\n" +
+    "        <button type=\"button\" class=\"navbar-toggle\" ng-click=\"isNavbarCollapsed = !isNavbarCollapsed\">\n" +
+    "            <span class=\"sr-only\">Toggle navigation</span>\n" +
+    "            <span class=\"icon-bar\"></span>\n" +
+    "            <span class=\"icon-bar\"></span>\n" +
+    "            <span class=\"icon-bar\"></span>\n" +
+    "        </button>\n" +
+    "        <eeh-navigation-navbar-brand text=\"brandText\"\n" +
+    "                                     state=\"brandState\"\n" +
+    "                                     href=\"brandHref\"\n" +
+    "                                     target=\"brandTarget\"\n" +
+    "                                     src=\"brandSrc\"\n" +
+    "                                     click=\"brandClick\"></eeh-navigation-navbar-brand>\n" +
+    "    </div>\n" +
+    "    <div collapse=\"isNavbarCollapsed\" class=\"navbar-collapse\">\n" +
+    "        <ul class=\"nav navbar-nav navbar-left\">\n" +
+    "            <li ng-repeat=\"item in leftNavbarMenuItems | orderBy:'weight'\"\n" +
+    "                ng-include=\"'template/eeh-navigation/navbar-menu-item.html'\"\n" +
+    "                ng-if=\"item._isVisible()\"\n" +
+    "                dropdown\n" +
+    "                ui-sref-active-eq=\"active\"\n" +
+    "                eeh-navigation-active-menu-item=\"item\"></li>\n" +
+    "        </ul>\n" +
+    "        <ul class=\"nav navbar-nav navbar-right\">\n" +
+    "            <li ng-repeat=\"item in rightNavbarMenuItems | orderBy:'weight'\"\n" +
+    "                ng-include=\"'template/eeh-navigation/navbar-menu-item.html'\"\n" +
+    "                ng-if=\"item._isVisible()\"\n" +
+    "                dropdown\n" +
+    "                ui-sref-active-eq=\"active\"\n" +
+    "                eeh-navigation-active-menu-item=\"item\"></li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
+    "</nav>\n" +
     "\n" +
-    "    <div class=\"navbar-header\">\r" +
-    "\n" +
-    "        <button type=\"button\" class=\"navbar-toggle\" ng-click=\"isNavbarCollapsed = !isNavbarCollapsed\">\r" +
-    "\n" +
-    "            <span class=\"sr-only\">Toggle navigation</span>\r" +
-    "\n" +
-    "            <span class=\"icon-bar\"></span>\r" +
-    "\n" +
-    "            <span class=\"icon-bar\"></span>\r" +
-    "\n" +
-    "            <span class=\"icon-bar\"></span>\r" +
-    "\n" +
-    "        </button>\r" +
-    "\n" +
-    "        <a ng-if=\"_navbarBrand.state && !_navbarBrand.href\" class=\"navbar-brand\" ui-sref=\"{{ _navbarBrand.state }}\">\r" +
-    "\n" +
-    "            <span ng-include=\"'template/eeh-navigation/navbar-brand.html'\"></span>\r" +
-    "\n" +
-    "        </a>\r" +
-    "\n" +
-    "        <a ng-if=\"!_navbarBrand.state && _navbarBrand.href\" class=\"navbar-brand\" ng-href=\"{{ _navbarBrand.href }}\" target=\"{{item.target ? item.target : '_self'}}\">\r" +
-    "\n" +
-    "            <span ng-include=\"'template/eeh-navigation/navbar-brand.html'\"></span>\r" +
-    "\n" +
-    "        </a>\r" +
-    "\n" +
-    "    </div>\r" +
-    "\n" +
-    "    <div collapse=\"isNavbarCollapsed\" class=\"navbar-collapse\">\r" +
-    "\n" +
-    "        <ul class=\"nav navbar-nav navbar-left\">\r" +
-    "\n" +
-    "            <li ng-repeat=\"item in leftNavbarMenuItems | orderBy:'weight'\"\r" +
-    "\n" +
-    "                ng-include=\"'template/eeh-navigation/navbar-menu-item.html'\"\r" +
-    "\n" +
-    "                ng-if=\"item._isVisible()\"\r" +
-    "\n" +
-    "                dropdown\r" +
-    "\n" +
-    "                ui-sref-active-eq=\"active\"\r" +
-    "\n" +
-    "                eeh-navigation-active-menu-item=\"item\"></li>\r" +
-    "\n" +
-    "        </ul>\r" +
-    "\n" +
-    "        <ul class=\"nav navbar-nav navbar-right\">\r" +
-    "\n" +
-    "            <li ng-repeat=\"item in rightNavbarMenuItems | orderBy:'weight'\"\r" +
-    "\n" +
-    "                ng-include=\"'template/eeh-navigation/navbar-menu-item.html'\"\r" +
-    "\n" +
-    "                ng-if=\"item._isVisible()\"\r" +
-    "\n" +
-    "                dropdown\r" +
-    "\n" +
-    "                ui-sref-active-eq=\"active\"\r" +
-    "\n" +
-    "                eeh-navigation-active-menu-item=\"item\"></li>\r" +
-    "\n" +
-    "        </ul>\r" +
-    "\n" +
-    "    </div>\r" +
-    "\n" +
-    "</nav>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/navbar-brand.html\">\r" +
-    "\n" +
-    "    <img ng-if=\"_navbarBrand.src\" ng-src=\"{{_navbarBrand.src}}\">\r" +
-    "\n" +
-    "    <span ng-if=\"_navbarBrand.text\">{{ _navbarBrand.text|translate }}</span>\r" +
-    "\n" +
-    "</script>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/navbar-menu-item.html\">\r" +
-    "\n" +
-    "    <a ng-if=\"!item.isDivider && item.state\" ui-sref=\"{{ item.state }}\">\r" +
-    "\n" +
-    "        <span eeh-navigation-menu-item-content=\"item\"></span>\r" +
-    "\n" +
-    "    </a>\r" +
-    "\n" +
-    "    <a ng-if=\"item.click\" ng-click=\"item.click()\">\r" +
-    "\n" +
-    "        <span eeh-navigation-menu-item-content=\"item\"></span>\r" +
-    "\n" +
-    "    </a>\r" +
-    "\n" +
-    "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\" target=\"{{item.target ? item.target : '_self'}}\">\r" +
-    "\n" +
-    "        <span eeh-navigation-menu-item-content=\"item\"></span>\r" +
-    "\n" +
-    "    </a>\r" +
-    "\n" +
-    "    <a ng-if=\"item.hasChildren()\" dropdown-toggle>\r" +
-    "\n" +
-    "        <span class=\"icon-fw {{ iconBaseClass() }} {{ item.iconClass }}\"></span>\r" +
-    "\n" +
-    "        <span> {{ item.text|translate }}</span>\r" +
-    "\n" +
-    "        <span class=\"caret\"></span>\r" +
-    "\n" +
-    "    </a>\r" +
-    "\n" +
-    "    <ul ng-if=\"item.hasChildren()\" class=\"dropdown-menu\">\r" +
-    "\n" +
-    "        <li ng-repeat=\"item in item.children()|orderBy:'weight'\"\r" +
-    "\n" +
-    "            ng-class=\"{'divider': item.isDivider}\"\r" +
-    "\n" +
-    "            ng-include=\"'template/eeh-navigation/navbar-menu-item.html'\"\r" +
-    "\n" +
-    "            ng-if=\"item._isVisible()\"\r" +
-    "\n" +
-    "            ui-sref-active-eq=\"active\"></li>\r" +
-    "\n" +
-    "    </ul>\r" +
-    "\n" +
-    "</script>\r" +
-    "\n"
+    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/navbar-menu-item.html\">\n" +
+    "    <a ng-if=\"!item.isDivider && item.state\" ui-sref=\"{{ item.state }}\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"item.click\" ng-click=\"item.click()\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\" target=\"{{item.target ? item.target : '_self'}}\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"item.hasChildren()\" dropdown-toggle>\n" +
+    "        <span class=\"icon-fw {{ iconBaseClass() }} {{ item.iconClass }}\"></span>\n" +
+    "        <span> {{ item.text|translate }}</span>\n" +
+    "        <span class=\"caret\"></span>\n" +
+    "    </a>\n" +
+    "    <ul ng-if=\"item.hasChildren()\" class=\"dropdown-menu\">\n" +
+    "        <li ng-repeat=\"item in item.children()|orderBy:'weight'\"\n" +
+    "            ng-class=\"{'divider': item.isDivider}\"\n" +
+    "            ng-include=\"'template/eeh-navigation/navbar-menu-item.html'\"\n" +
+    "            ng-if=\"item._isVisible()\"\n" +
+    "            ui-sref-active-eq=\"active\"></li>\n" +
+    "    </ul>\n" +
+    "</script>\n"
   );
 
 
   $templateCache.put('template/eeh-navigation/search-input/eeh-navigation-search-input.html',
-    "<form ng-submit=\"submit()\" class=\"navbar-form navbar-right\">\r" +
+    "<div ng-include=\"'template/eeh-navigation/search-input.html'\"\n" +
+    "     ng-if=\"!isCollapsed\"\n" +
+    "     class=\"eeh-navigation-search-input\"></div>\n" +
     "\n" +
-    "    <div class=\"input-group\">\r" +
+    "<a class=\"eeh-navigation-search-input\" ng-href=\"\" ng-if=\"isCollapsed\"\n" +
+    "   popover-placement=\"right\"\n" +
+    "   popover-append-to-body=\"'true'\"\n" +
+    "   popover-template=\"'template/eeh-navigation/search-input-popover.html'\">\n" +
+    "    <span class=\"menu-item-icon icon-fw {{ iconBaseClass() }} {{ searchIconClass }}\"></span>\n" +
+    "</a>\n" +
     "\n" +
-    "        <input type=\"text\"\r" +
+    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/search-input-popover.html\">\n" +
+    "    <div class=\"row search-input-popover\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
+    "            <div ng-include=\"'template/eeh-navigation/search-input.html'\"></div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</script>\n" +
     "\n" +
-    "               class=\"form-control search-input\"\r" +
-    "\n" +
-    "               placeholder=\"{{'Search'|translate}}\"\r" +
-    "\n" +
-    "               ng-model=\"searchTerm\">\r" +
-    "\n" +
-    "        <span class=\"input-group-btn\">\r" +
-    "\n" +
-    "            <button class=\"btn btn-default\" type=\"submit\">\r" +
-    "\n" +
-    "                <span class=\"icon-fw {{ iconBaseClass() }} {{ searchIconClass }}\"></span>\r" +
-    "\n" +
-    "            </button>\r" +
-    "\n" +
-    "        </span>\r" +
-    "\n" +
-    "    </div>\r" +
-    "\n" +
-    "</form>"
+    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/search-input.html\">\n" +
+    "    <form ng-submit=\"submit(model.query)\" class=\"navbar-form\" ng-class=\"classes\">\n" +
+    "        <div class=\"input-group\">\n" +
+    "            <input type=\"text\"\n" +
+    "                   class=\"form-control\"\n" +
+    "                   placeholder=\"{{'Search'|translate}}\"\n" +
+    "                   ng-model=\"model.query\">\n" +
+    "        <span class=\"input-group-btn\" ng-if=\"!isCollapsed\">\n" +
+    "            <button class=\"btn btn-default\">\n" +
+    "                <span class=\"icon-fw {{ iconBaseClass() }} {{ searchIconClass }}\"></span>\n" +
+    "            </button>\n" +
+    "        </span>\n" +
+    "        </div>\n" +
+    "    </form>\n" +
+    "</script>\n"
   );
 
 
   $templateCache.put('template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
-    "<nav class=\"navbar navbar-default eeh-navigation eeh-navigation-sidebar\" role=\"navigation\">\r" +
+    "<nav class=\"navbar navbar-default eeh-navigation eeh-navigation-sidebar\" role=\"navigation\">\n" +
+    "    <div class=\"navbar-collapse\" collapse=\"isNavbarCollapsed\">\n" +
+    "        <ul class=\"nav sidebar-nav\">\n" +
+    "            <li class=\"sidebar-search\" ng-if=\"searchInputIsVisible\">\n" +
+    "                <eeh-navigation-search-input class=\"sidebar-search-input\"\n" +
+    "                                             submit=\"searchInputSubmit\"\n" +
+    "                                             is-collapsed=\"isTextCollapsed\"></eeh-navigation-search-input>\n" +
+    "            </li>\n" +
+    "            <li ng-repeat=\"item in sidebarMenuItems | orderBy:'weight'\"\n" +
+    "                ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
+    "                ng-class=\"{ 'leaf': !item.hasChildren() }\"\n" +
+    "                ng-if=\"item._isVisible()\"\n" +
+    "                ng-click=\"topLevelMenuItemClickHandler(item)\"\n" +
+    "                ui-sref-active-eq=\"active\"\n" +
+    "                eeh-navigation-active-menu-item=\"item\"></li>\n" +
+    "            <li ng-click=\"toggleSidebarTextCollapse()\" ng-if=\"isTextCollapseButtonVisible && isSidebarVisible()\">\n" +
+    "                <a>\n" +
+    "                    <span class=\"icon-fw {{ iconBaseClass() }}\" ng-class=\"isTextCollapsed ? collapsedSidebarIconClass : expandedSidebarIconClass\"></span>\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
+    "</nav>\n" +
     "\n" +
-    "    <div class=\"navbar-collapse\" collapse=\"isNavbarCollapsed\">\r" +
+    "<div id=\"eeh-navigation-page-wrapper\" ng-class=\"{ 'sidebar-invisible': !isSidebarVisible() }\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-lg-12\">\n" +
+    "            <div ng-transclude></div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "\n" +
-    "        <ul class=\"nav sidebar-nav\">\r" +
-    "\n" +
-    "            <li class=\"sidebar-search\" ng-show=\"!_sidebarTextCollapse.isCollapsed && _sidebarSearch.isVisible\">\r" +
-    "\n" +
-    "                <eeh-navigation-search-input search-term=\"searchInputModel\" submit=\"searchInputSubmit\" ng-if=\"searchInputIsVisible\"></eeh-navigation-search-input>\r" +
-    "\n" +
-    "            </li>\r" +
-    "\n" +
-    "            <li ng-repeat=\"item in sidebarMenuItems | orderBy:'weight'\"\r" +
-    "\n" +
-    "                ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\r" +
-    "\n" +
-    "                ng-class=\"{ 'leaf': !item.hasChildren() }\"\r" +
-    "\n" +
-    "                ng-if=\"item._isVisible()\"\r" +
-    "\n" +
-    "                ng-click=\"topLevelMenuItemClickHandler(item)\"\r" +
-    "\n" +
-    "                ui-sref-active-eq=\"active\"\r" +
-    "\n" +
-    "                eeh-navigation-active-menu-item=\"item\"></li>\r" +
-    "\n" +
-    "            <li ng-click=\"toggleSidebarTextCollapse()\" ng-if=\"_sidebarTextCollapse.isVisible && isSidebarVisible()\">\r" +
-    "\n" +
-    "                <a>\r" +
-    "\n" +
-    "                    <span class=\"icon-fw {{ iconBaseClass() }}\" ng-class=\"_sidebarTextCollapse.isCollapsed ? collapsedSidebarIconClass : expandedSidebarIconClass\"></span>\r" +
-    "\n" +
-    "                </a>\r" +
-    "\n" +
-    "            </li>\r" +
-    "\n" +
-    "        </ul>\r" +
-    "\n" +
-    "    </div>\r" +
-    "\n" +
-    "</nav>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "<div id=\"eeh-navigation-page-wrapper\" ng-class=\"{ 'sidebar-invisible': !isSidebarVisible() }\">\r" +
-    "\n" +
-    "    <div class=\"row\">\r" +
-    "\n" +
-    "        <div class=\"col-lg-12\">\r" +
-    "\n" +
-    "            <div ng-transclude></div>\r" +
-    "\n" +
-    "        </div>\r" +
-    "\n" +
-    "    </div>\r" +
-    "\n" +
-    "</div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/sidebar-menu-item.html\">\r" +
-    "\n" +
-    "    <a ng-if=\"item.state\" ui-sref=\"{{item.state}}\">\r" +
-    "\n" +
-    "        <span eeh-navigation-menu-item-content=\"item\"></span>\r" +
-    "\n" +
-    "    </a>\r" +
-    "\n" +
-    "    <a ng-if=\"item.click\" ng-click=\"item.click()\">\r" +
-    "\n" +
-    "        <span eeh-navigation-menu-item-content=\"item\"></span>\r" +
-    "\n" +
-    "    </a>\r" +
-    "\n" +
-    "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\" target=\"{{item.target ? item.target : '_self'}}\">\r" +
-    "\n" +
-    "        <span eeh-navigation-menu-item-content=\"item\"></span>\r" +
-    "\n" +
-    "    </a>\r" +
-    "\n" +
-    "    <a ng-if=\"!item.state && item.hasChildren()\"\r" +
-    "\n" +
-    "       ng-click=\"item.isCollapsed = !item.isCollapsed\">\r" +
-    "\n" +
-    "        <span eeh-navigation-menu-item-content=\"item\"></span>\r" +
-    "\n" +
-    "        <span class=\"navbar-right sidebar-arrow icon-fw {{ iconBaseClass() }}\"\r" +
-    "\n" +
-    "              ng-class=\"item.isCollapsed ? collapsedMenuItemIconClass : expandedMenuItemIconClass\"></span>\r" +
-    "\n" +
-    "    </a>\r" +
-    "\n" +
-    "    <ul ng-if=\"!item.state && item.hasChildren()\" collapse=\"item.isCollapsed\"\r" +
-    "\n" +
-    "        ng-class=\"{ 'text-collapsed': _sidebarTextCollapse.isCollapsed }\"\r" +
-    "\n" +
-    "        class=\"nav sidebar-nav sidebar-nav-nested\">\r" +
-    "\n" +
-    "        <li ng-repeat=\"item in item.children()\"\r" +
-    "\n" +
-    "            ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\r" +
-    "\n" +
-    "            ng-class=\"{ 'leaf': !item.hasChildren() }\"\r" +
-    "\n" +
-    "            ng-if=\"item._isVisible()\"\r" +
-    "\n" +
-    "            ui-sref-active-eq=\"active\"\r" +
-    "\n" +
-    "            eeh-navigation-active-menu-item=\"item\"></li>\r" +
-    "\n" +
-    "    </ul>\r" +
-    "\n" +
-    "</script>\r" +
-    "\n"
+    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/sidebar-menu-item.html\">\n" +
+    "    <a ng-if=\"item.state\" ui-sref=\"{{item.state}}\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"item.click\" ng-click=\"item.click()\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\" target=\"{{item.target ? item.target : '_self'}}\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"!item.state && item.hasChildren()\"\n" +
+    "       ng-click=\"item.isCollapsed = !item.isCollapsed\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "        <span class=\"navbar-right sidebar-arrow icon-fw {{ iconBaseClass() }}\"\n" +
+    "              ng-class=\"item.isCollapsed ? collapsedMenuItemIconClass : expandedMenuItemIconClass\"></span>\n" +
+    "    </a>\n" +
+    "    <ul ng-if=\"!item.state && item.hasChildren()\" collapse=\"item.isCollapsed\"\n" +
+    "        ng-class=\"{ 'text-collapsed': isTextCollapsed }\"\n" +
+    "        class=\"nav sidebar-nav sidebar-nav-nested\">\n" +
+    "        <li ng-repeat=\"item in item.children()\"\n" +
+    "            ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
+    "            ng-class=\"{ 'leaf': !item.hasChildren() }\"\n" +
+    "            ng-if=\"item._isVisible()\"\n" +
+    "            ui-sref-active-eq=\"active\"\n" +
+    "            eeh-navigation-active-menu-item=\"item\"></li>\n" +
+    "    </ul>\n" +
+    "</script>\n"
   );
 
 }]);

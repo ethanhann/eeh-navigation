@@ -19,13 +19,15 @@
   .eeh-navigation-sidebar .navbar-default > .active {
     background-color: #e7e7e7;
     color: #e7e7e7; }
-  .eeh-navigation-sidebar .sidebar-search {
-    padding: 15px; }
+  .eeh-navigation-sidebar .sidebar-search .sidebar-search-input a {
+    position: relative;
+    display: block;
+    padding: 10px 15px; }
   .eeh-navigation-sidebar .sidebar-arrow {
     line-height: 1.5em; }
-  .eeh-navigation-sidebar .sidebar-nav > li > a {
+  .eeh-navigation-sidebar .sidebar-nav > li a {
     color: #777; }
-    .eeh-navigation-sidebar .sidebar-nav > li > a:hover, .eeh-navigation-sidebar .sidebar-nav > li > a:focus {
+    .eeh-navigation-sidebar .sidebar-nav > li a:hover, .eeh-navigation-sidebar .sidebar-nav > li a:focus {
       color: #333;
       background-color: transparent; }
   .eeh-navigation-sidebar .sidebar-nav > .active > a, .eeh-navigation-sidebar .sidebar-nav > .active > a:hover, .eeh-navigation-sidebar .sidebar-nav > .active > a:focus {
@@ -75,6 +77,10 @@
     margin: 0 0 0 250px;
     padding: 0 30px;
     border-left: 1px solid #e7e7e7; } }
+.search-input-popover .navbar-form {
+  padding: 0;
+  margin: 0; }
+
 .eeh-navigation {
   margin-bottom: 0; }
   .eeh-navigation a {
