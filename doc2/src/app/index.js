@@ -24,7 +24,7 @@ angular.module('doc2').config(function ($stateProvider, $translateProvider, $url
         })
         .state('docs.gettingStarted', {
             url: '/getting-started',
-            template: '<marked ng-include="\'content-started.md\'"></marked>'
+            template: '<marked ng-include="\'content/getting-started.md\'"></marked>'
         })
         .state('docs.changeLog', {
             url: '/change-log',
