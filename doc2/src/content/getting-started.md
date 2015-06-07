@@ -1,14 +1,13 @@
 # Getting Started
 
-Install, include, configure.
-
-## Install (via bower)
+## 1. Install
 ```sh
 bower install eeh-navigation
 ```
 
-## Include Dependencies
+## 2. Include
 
+### Include Dependencies
 __CSS__
 ```html
 &lt;link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" /&gt;
@@ -24,7 +23,7 @@ __JavaScript__
 &lt;script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"&gt;&lt;/script&gt;
 ```
 
-## Include eeh-navigation Module
+### Include eeh-navigation
 
 __CSS__
 ```html
@@ -37,47 +36,7 @@ __JavaScript__
 &lt;script src="bower_components/eeh-navigation/dist/eeh-navigation.tpl.js"&gt;&lt;/script&gt;
 ```
 
-## Use the "eeh-navigation" Directive &lt;small&gt;&le; v3.3&lt;/small&gt;
-
-&lt;div class="alert alert-warning"&gt;&lt;span class="fa fa-fw fa-warning"&gt;&lt;/span&gt;The &lt;em&gt;eeh-navigation&lt;/em&gt; directive is deprecated and will be removed in version 4.0.0&lt;/div&gt;
-The directive should wrap some set of nested sub controllers.
-
-```html
-&lt;eeh-navigation&gt;
-    ... my sub controllers ...
-&lt;/eeh-navigation&gt;
-```
-
-If ui-router is used, which is recommended, then the directive should wrap a _ui-view_ directive.
-It should also be in a template that is at the top of the state hierarchy.
-
-```html
-&lt;eeh-navigation&gt;
-    &lt;ui-view&gt;&lt;/ui-view&gt;
-&lt;/eeh-navigation&gt;
-```
-
-## Use the "eeh-navigation-navbar" and/or "eeh-navigation-sidebar" directives &lt;small&gt;&ge; v3.3&lt;/small&gt;
-
-Beginning with version 3.3.0, the _eeh-navigation_ directive has been decomposed into two separate directives:
-the _eeh-navigation-navbar_ directive and the _eeh-navigation-sidebar_ directive.
-
-The navbar directive is used like so:
-```html
-&lt;eeh-navigation-navbar&gt;&lt;/eeh-navigation-navbar&gt;
-```
-
-The sidebar directive is used in the same way as the deprecated _eeh-navigation_ directive.
-If ui-router is used, which is recommended, then the sidebar directive should wrap a _ui-view_ directive.
-It should also be in a template that is at the top of the state hierarchy.
-
-```html
-&lt;eeh-navigation-sidebar&gt;
-    &lt;ui-view&gt;&lt;/ui-view&gt;
-&lt;/eeh-navigation-sidebar&gt;
-```
-
-## Configuration Example
+## 3. Add Menu Items
 
 ```javascript
 angular.module('myApp', [
@@ -87,28 +46,48 @@ angular.module('myApp', [
     'ui.router'
 ])
 .config(['eehNavigationProvider', function (eehNavigationProvider) {
-    // Configure navbar branding and the link to navigate to when clicked.
-    eehNavigationProvider.navbarBrand.text = 'My Product';
-    eehNavigationProvider.navbarBrand.href = '/home';
-                                                
-    // Add a drowndown menu for user links to the navbar.
+    // Add nested user links to the "foo" menu.
     eehNavigationProvider
-        .navbarMenuItem('user', {
+        .menuItem('foo.user', {
             text: 'Me',
             iconClass: 'fa-user'
         })
-        .navbarMenuItem('user.profile', {
+        .menuItem('foo.user.profile', {
             text: 'User Profile',
             iconClass: 'fa-user',
             href: '/user-profile'
         });
 
-    // Add a menu item for /home to the sidebar.
+    // Add a menu item that links to "/home" to the "bar" menu.
     eehNavigationProvider
-        .sidebarMenuItem('home', {
+        .menuItem('bar.home', {
             text: 'Home',
             iconClass: 'fa-home',
             href: '/home'
         });
 }]);
+```
+
+## 4. Use At Least One Navigation Directive
+
+### eeh-navigation-navbar
+
+This directive adds a Twitter Bootstrap based navbar to the template.
+To associate the directive with the "myFirstMenu" menu defined in the previous step, use the __root-menu-name__ attribute.
+
+The navbar directive is used like so:
+```html
+&lt;eeh-navigation-navbar root-menu-name="'foo'"&gt;&lt;/eeh-navigation-navbar&gt;
+```
+
+### eeh-navigation-sidebar
+
+This directive adds a sidebar, loosely based on the Twitter Bootstrap navbar component, to the template.
+If ui-router is used (which is recommended) then the sidebar directive should wrap a __ui-view__ element.
+It should also be in a template that is at or near the top of the state hierarchy.
+
+```html
+&lt;eeh-navigation-sidebar root-menu-name="'bar'"&gt;
+    &lt;ui-view&gt;&lt;/ui-view&gt;
+&lt;/eeh-navigation-sidebar&gt;
 ```

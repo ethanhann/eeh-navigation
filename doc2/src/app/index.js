@@ -4,9 +4,8 @@ angular.module('doc2', ['eehNavigation', 'hc.marked', 'ngAnimate', 'ngCookies', 
 angular.module('doc2').config(function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationProvider, markedProvider) {
     markedProvider.setOptions({
         gfm: true,
-        sanitize: false,
-        highlight: function (code) {
-            return hljs.highlightAuto(code).value;
+        highlight: function (code, language) {
+            return hljs.highlight(language, code).value;
         }
     });
     $translateProvider.useSanitizeValueStrategy('sanitize');
@@ -30,10 +29,6 @@ angular.module('doc2').config(function ($stateProvider, $translateProvider, $url
             url: '/change-log',
             template: '<marked ng-include="\'content/change-log.md\'"></marked>'
         })
-        .state('docs.accessingMenuItems', {
-            url: '/change-log',
-            template: '<marked ng-include="\'content/accessing-menu-items.md\'"></marked>'
-        })
         .state('docs.icons', {
             url: '/icons',
             template: '<marked ng-include="\'content/icons.md\'"></marked>'
@@ -42,13 +37,13 @@ angular.module('doc2').config(function ($stateProvider, $translateProvider, $url
             url: '/language-translation',
             template: '<marked ng-include="\'content/language-translation.md\'"></marked>'
         })
-        .state('docs.menuItemBasics', {
-            url: '/menu-item-basics',
-            template: '<marked ng-include="\'content/menu-item-basics.md\'"></marked>'
+        .state('docs.eehNavigationService', {
+            url: '/eeh-navigation-service',
+            template: '<marked ng-include="\'content/eeh-navigation-service.md\'"></marked>'
         })
-        .state('docs.nestedSidebarMenuItems', {
-            url: '/nested-sidebar-menu-items',
-            template: '<marked ng-include="\'content/nested-sidebar-menu-items.md\'"></marked>'
+        .state('docs.eehNavigationSidebar', {
+            url: '/eeh-navigation-sidebar',
+            template: '<marked ng-include="\'content/eeh-navigation-sidebar.md\'"></marked>'
         })
         .state('docs.sidebarSearchMenuItem', {
             url: '/sidebar-search-menu-item',
@@ -75,26 +70,26 @@ angular.module('doc2').config(function ($stateProvider, $translateProvider, $url
             text: 'Configuration',
             iconClass: 'fa-book'
         })
-        .menuItem('nav.configuration.menuItemBasics', {
-            text: 'Menu Item Basics',
-            state: 'docs.menuItemBasics'
+        .menuItem('nav.configuration.eehNavigationService', {
+            text: 'eehNavigation Service',
+            state: 'docs.eehNavigationService'
         })
-        .menuItem('nav.configuration.accessingMenuItems', {
-            text: 'Accessing Menu Items',
-            state: 'docs.accessingMenuItems'
+        .menuItem('nav.configuration.eehNavigationSidebar', {
+            text: 'Sidebar Directive',
+            state: 'docs.eehNavigationSidebar'
         })
-        .menuItem('nav.configuration.nestedSidebarMenuItems', {
-            text: 'Nested Sidebar Menu Items',
-            state: 'docs.nestedSidebarMenuItems'
-        })
-        .menuItem('nav.configuration.sidebarTextCollapseMenuItem', {
-            text: 'Sidebar Text Collapse Menu Item',
-            state: 'docs.sidebarTextCollapseMenuItem'
-        })
-        .menuItem('nav.configuration.sidebarSearchMenuItem', {
-            text: 'Sidebar Search Menu Item',
-            state: 'docs.sidebarSearchMenuItem'
-        })
+        //.menuItem('nav.configuration.nestedSidebarMenuItems', {
+        //    text: 'Nested Sidebar Menu Items',
+        //    state: 'docs.nestedSidebarMenuItems'
+        //})
+        //.menuItem('nav.configuration.sidebarTextCollapseMenuItem', {
+        //    text: 'Sidebar Text Collapse Menu Item',
+        //    state: 'docs.sidebarTextCollapseMenuItem'
+        //})
+        //.menuItem('nav.configuration.sidebarSearchMenuItem', {
+        //    text: 'Sidebar Search Menu Item',
+        //    state: 'docs.sidebarSearchMenuItem'
+        //})
         .menuItem('nav.configuration.languageTranslation', {
             text: 'Language Translation',
             state: 'docs.languageTranslation'
