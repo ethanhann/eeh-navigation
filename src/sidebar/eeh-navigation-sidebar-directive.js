@@ -1,5 +1,35 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name eeh-navigation-sidebar
+ * @restrict AE
+ *
+ * @description
+ * This directive adds a sidebar, loosely based on the Twitter Bootstrap navbar component, to the template.
+ * If ui-router is used (which is recommended) then the sidebar directive should wrap a __ui-view__ element.
+ * It should also be in a template that is at or near the top of the state hierarchy.
+ *
+ * @param {string} rootMenuName Sets the name of the menu that the directive will render.
+ * @param {number=} [topOffset=51]
+ * This attribute offsets the top position of the sidebar.
+ * It should equal the height of the navbar, or 0 if there is no navbar.
+ * This attribute should be used if the navbar's height is something different or if the navbar is not used.
+ * @param {string=} [collapsedMenuItemIconClass="glyphicon-chevron-left"]
+ * This attribute sets the icon used to indicate that a parent of a nested menu item is collapsed.
+ * @param {string=} [expandedMenuItemIconClass="glyphicon-chevron-down"]
+ * This attribute sets the icon used to indicate that a parent of a nested menu item is expanded.
+ * @param {string=} [collapsedSidebarIconClass="glyphicon-arrow-right"]
+ * This attribute sets the icon used to indicate that the sidebar is collapsed.
+ * @param {string=} [expandedSidebarIconClass="glyphicon-arrow-left"]
+ * This attribute sets the icon used to indicate that the sidebar is collapsed.
+ * @param {boolean=} [searchInputIsVisible=true]
+ * This attribute causes the search input to be shown or hidden.
+ * @param {boolean=} [isTextCollapseButtonVisible=true]
+ * This attribute causes the text collapse toggle button to be shown or hidden.
+ * @param {boolean=} [isTextCollapsed=false]
+ * This attribute sets the state of the text collapse button.
+ */
 var SidebarDirective = function ($document, $window, eehNavigation) {
     return {
         restrict: 'AE',

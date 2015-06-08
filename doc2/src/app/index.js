@@ -43,15 +43,12 @@ angular.module('doc2').config(function ($stateProvider, $translateProvider, $url
         })
         .state('docs.eehNavigationSidebar', {
             url: '/eeh-navigation-sidebar',
-            template: '<marked ng-include="\'content/eeh-navigation-sidebar.md\'"></marked>'
+            templateUrl: 'partials/api/sidebar/directive/eeh-navigation-sidebar.html'
+            //template: '<marked ng-include="\'content/eeh-navigation-sidebar.md\'"></marked>'
         })
         .state('docs.sidebarSearchMenuItem', {
             url: '/sidebar-search-menu-item',
             template: '<marked ng-include="\'content/sidebar-search-menu-item.md\'"></marked>'
-        })
-        .state('docs.sidebarTextCollapseMenuItem', {
-            url: '/sidebar-text-collapse-menu-item',
-            template: '<marked ng-include="\'content/sidebar-text-collapse-menu-item.md\'"></marked>'
         });
 
     eehNavigationProvider

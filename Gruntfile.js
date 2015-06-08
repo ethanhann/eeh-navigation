@@ -28,6 +28,16 @@ module.exports = function (grunt) {
                 }
             }
         },
+        dgeni: {
+            options: {
+                // Specify the base path used when resolving relative paths to source files
+                basePath: '<%= settings.src %>'
+            },
+            // Process all js files in `src` and its subfolders ...
+            src: ['<%= settings.src %>/**/*.js'],
+            // Specify where write our generated doc files directory
+            dest: 'build/docs'
+        },
         jshint: {
             options: {
                 jshintrc: '.jshintrc',
