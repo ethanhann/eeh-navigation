@@ -22,6 +22,8 @@
  * @param {string=} [collapsedSidebarIconClass="glyphicon-arrow-right"]
  * This attribute sets the icon used to indicate that the sidebar is collapsed.
  * @param {string=} [expandedSidebarIconClass="glyphicon-arrow-left"]
+ * This attribute sets the icon used to indicate that the search input is use for searching.
+ * @param {string=} [searchInputIconClass="glyphicon-search"]
  * This attribute sets the icon used to indicate that the sidebar is collapsed.
  * @param {boolean=} [searchInputIsVisible=true]
  * This attribute causes the search input to be shown or hidden.
@@ -42,6 +44,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             expandedMenuItemIconClass: '=?',
             collapsedSidebarIconClass: '=?',
             expandedSidebarIconClass: '=?',
+            searchInputIconClass: '=?',
             searchInputIsVisible: '=?',
             searchInputSubmit: '=',
             isTextCollapseButtonVisible: '=?',
@@ -53,6 +56,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             scope.expandedMenuItemIconClass = scope.expandedMenuItemIconClass || 'glyphicon-chevron-down';
             scope.collapsedSidebarIconClass = scope.collapsedSidebarIconClass || 'glyphicon-arrow-right';
             scope.expandedSidebarIconClass = scope.expandedSidebarIconClass || 'glyphicon-arrow-left';
+            scope.searchInputIconClass = scope.searchInputIconClass || 'glyphicon-search';
             scope.isTextCollapseButtonVisible = scope.isTextCollapseButtonVisible || true;
             scope.isTextCollapsed = scope.isTextCollapsed || false;
             scope.searchInputIsVisible = scope.searchInputIsVisible || true;

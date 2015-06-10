@@ -139,6 +139,8 @@
  *
  * ## Menu Item Visibility
  *
+ * Menu items are made shown or hidden according to their __isVisible__ property.
+ *
  * ### isVisible
  *
  * A boolean value or callback function that returns a boolean value.
@@ -166,6 +168,32 @@
  *     text: 'Admin',
  *     isVisible: isAdmin
  * });
+ * ```
+ * ## Menu Item Icons
+ *
+ * Menu items are decorated with icons based on their __iconClass__.
+ *
+ * ### iconClass
+ *
+ * A CSS class that corresponds to an icon in a library like
+ * [Glyphicons](http://getbootstrap.com/components/#glyphicons) or
+ * [Font Awesome](http://fortawesome.github.io/Font-Awesome/icons/).
+ *
+ * ```javascript
+ * eehNavigationProvider
+ * .sidebarMenuItem('foo.home', {
+ *     text: 'Home',
+ *     href: '/home'
+ *     iconClass: 'glyphicon-home'
+ * });
+ * ```
+ *
+ * Glyphicons are supported by default.
+ * To use another library like Font Awesome, the base icon class needs to be set.
+ * For example, "fa" is the base icon class of font awesome.
+ *
+ * ```javascript
+ * eehNavigationProvider.iconBaseClass('fa');
  * ```
  */
 var NavigationService = function () {
