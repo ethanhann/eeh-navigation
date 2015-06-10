@@ -17,12 +17,12 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $url
         })
         .state('docs.gettingStarted', {
             url: '/getting-started',
-            templateUrl: 'partials/api/eehNavigation/index.html'
+            templateUrl: 'partials/getting-started.html'
             //template: '<marked ng-include="\'content/getting-started.md\'"></marked>'
         })
         .state('docs.changeLog', {
             url: '/change-log',
-            template: '<marked ng-include="\'content/change-log.md\'"></marked>'
+            templateUrl: 'partials/change-log.html'
         })
         .state('docs.icons', {
             url: '/icons',
@@ -106,8 +106,11 @@ angular.module('docs').directive('pre', function($window) {
         restrict: 'E',
         link: function postLink(scope, element) {
             scope.$on('$viewContentLoaded', function(){
-                //element.html($window.prettyPrint(element.html(), '', true));
-                $window.hljs.initHighlightingOnLoad();
+                element.addClass('prettyprint');
+                element.html($window.prettyPrint(element.html(), '', true));
+                //$window.hljs.initHighlightingOnLoad();
+                //element.html($window.hljs.highlightBlock(element.html()));
+                //$window.hljs.highlightAuto('<pre>' + element.html() + '</pre>');
             });
         }
     };

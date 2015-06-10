@@ -1,5 +1,7 @@
 'use strict';
 
+var Dgeni = require('dgeni');
+
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
@@ -92,7 +94,7 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: ['src/**/*.*'],
-                tasks: ['build', 'copy:dev'],
+                tasks: ['build', 'copy:dev', 'dgeni'],
                 options: {
                     spawn: false
                 }
@@ -130,6 +132,12 @@ module.exports = function (grunt) {
                 hideUpToDate : true
             }
         }
+    });
+
+    grunt.registerTask('dgeni', 'Generate docs via dgeni.', function() {
+        var done = this.async();
+        var dgeni = new Dgeni([require('./docs/dgeni.conf')]);
+        dgeni.generate().then(done);
     });
 
     grunt.registerTask('dev', [

@@ -13,7 +13,6 @@
  * A menu item is added to a menu by using the service's __menuItem__ method.
  * In the code below "foo" is the name of the menu.
  *
- * @example
  * ```javascript
  * eehNavigationProvider
  * .menuItem('foo.home', {

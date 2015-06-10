@@ -1,7 +1,7 @@
 'use strict';
 
 var Dgeni = require('dgeni');
-var packages = [require('./dgeni.conf')];
+var packages = [require('./docs/dgeni.conf')];
 var dgeni = new Dgeni(packages);
 
 dgeni.generate().then(function(docs) {
