@@ -1,5 +1,37 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name eeh-navigation-sidebar
+ * @restrict AE
+ *
+ * @description
+ * This directive adds a sidebar, based on the Twitter Bootstrap navbar component, to the template.
+ * If Angular UI Router is used (which is recommended), then the sidebar directive should wrap a __ui-view__ element.
+ * It should also be in a template that is at or near the top of the state hierarchy.
+ *
+ * @param {string} rootMenuName Sets the name of the menu that the directive will render.
+ * @param {number=} [topOffset=51]
+ * This attribute offsets the top position of the sidebar.
+ * It should equal the height of the navbar, or 0 if there is no navbar.
+ * This attribute should be used if the navbar's height is something different or if the navbar is not used.
+ * @param {string=} [collapsedMenuItemIconClass="glyphicon-chevron-left"]
+ * This attribute sets the icon used to indicate that a parent of a nested menu item is collapsed.
+ * @param {string=} [expandedMenuItemIconClass="glyphicon-chevron-down"]
+ * This attribute sets the icon used to indicate that a parent of a nested menu item is expanded.
+ * @param {string=} [collapsedSidebarIconClass="glyphicon-arrow-right"]
+ * This attribute sets the icon used to indicate that the sidebar is collapsed.
+ * @param {string=} [expandedSidebarIconClass="glyphicon-arrow-left"]
+ * This attribute sets the icon used to indicate that the search input is use for searching.
+ * @param {string=} [searchInputIconClass="glyphicon-search"]
+ * This attribute sets the icon used to indicate that the sidebar is collapsed.
+ * @param {boolean=} [searchInputIsVisible=true]
+ * This attribute causes the search input to be shown or hidden.
+ * @param {boolean=} [isTextCollapseButtonVisible=true]
+ * This attribute causes the text collapse toggle button to be shown or hidden.
+ * @param {boolean=} [isTextCollapsed=false]
+ * This attribute sets the state of the text collapse button.
+ */
 var SidebarDirective = function ($document, $window, eehNavigation) {
     return {
         restrict: 'AE',
@@ -7,15 +39,16 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
         templateUrl: 'template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
         scope: {
             rootMenuName: '=',
-            topOffset: '@',
-            collapsedMenuItemIconClass: '@',
-            expandedMenuItemIconClass: '@',
-            collapsedSidebarIconClass: '@',
-            expandedSidebarIconClass: '@',
-            searchInputIsVisible: '@',
+            topOffset: '=?',
+            collapsedMenuItemIconClass: '=?',
+            expandedMenuItemIconClass: '=?',
+            collapsedSidebarIconClass: '=?',
+            expandedSidebarIconClass: '=?',
+            searchInputIconClass: '=?',
+            searchInputIsVisible: '=?',
             searchInputSubmit: '=',
-            isTextCollapseButtonVisible: '@',
-            isTextCollapsed: '@'
+            isTextCollapseButtonVisible: '=?',
+            isTextCollapsed: '=?'
         },
         link: function (scope, element) {
             scope.topOffset = scope.topOffset || 51; // 51 is the default height of the navbar component
@@ -23,6 +56,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             scope.expandedMenuItemIconClass = scope.expandedMenuItemIconClass || 'glyphicon-chevron-down';
             scope.collapsedSidebarIconClass = scope.collapsedSidebarIconClass || 'glyphicon-arrow-right';
             scope.expandedSidebarIconClass = scope.expandedSidebarIconClass || 'glyphicon-arrow-left';
+            scope.searchInputIconClass = scope.searchInputIconClass || 'glyphicon-search';
             scope.isTextCollapseButtonVisible = scope.isTextCollapseButtonVisible || true;
             scope.isTextCollapsed = scope.isTextCollapsed || false;
             scope.searchInputIsVisible = scope.searchInputIsVisible || true;

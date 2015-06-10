@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('doc2').controller('DocsController', function ($scope) {
+angular.module('docs').controller('DocsController', function ($scope) {
     $scope.navbarBrand = {
         text: 'eeh-navigation',
         state: 'home'

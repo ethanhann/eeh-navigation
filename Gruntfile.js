@@ -1,5 +1,7 @@
 'use strict';
 
+var Dgeni = require('dgeni');
+
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
@@ -27,6 +29,16 @@ module.exports = function (grunt) {
                     return 'git log --oneline --decorate --no-merges > changelog.txt';
                 }
             }
+        },
+        dgeni: {
+            options: {
+                // Specify the base path used when resolving relative paths to source files
+                basePath: '<%= settings.src %>'
+            },
+            // Process all js files in `src` and its subfolders ...
+            src: ['<%= settings.src %>/**/*.js'],
+            // Specify where write our generated doc files directory
+            dest: 'build/docs'
         },
         jshint: {
             options: {
@@ -82,7 +94,7 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: ['src/**/*.*'],
-                tasks: ['build', 'copy:dev'],
+                tasks: ['build', 'copy:dev', 'dgeni'],
                 options: {
                     spawn: false
                 }
@@ -120,6 +132,12 @@ module.exports = function (grunt) {
                 hideUpToDate : true
             }
         }
+    });
+
+    grunt.registerTask('dgeni', 'Generate docs via dgeni.', function() {
+        var done = this.async();
+        var dgeni = new Dgeni([require('./docs/dgeni.conf')]);
+        dgeni.generate().then(done);
     });
 
     grunt.registerTask('dev', [
