@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('doc2').controller('MainController', function () {});
+angular.module('docs').controller('MainController', function () {});

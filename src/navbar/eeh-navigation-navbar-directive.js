@@ -1,5 +1,21 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name eeh-navigation-navbar
+ * @restrict AE
+ *
+ * @description
+ * This directive allows for the creation of a Twitter Bootstrap navbar component.
+ *
+ * @param {string} rootMenuName Sets the name of the menu that the directive will render.
+ * @param {string=} brandText Sets the text of the brand element.
+ * @param {string=} brandState Sets ui-sref of the brand element.
+ * @param {string=} brandHref Sets the href attribute of the brand element.
+ * @param {string=} brandTarget Sets target attribute of the brand element.
+ * @param {string=} brandSrc Sets the src attribute of the image in the brand element.
+ * @param {function=} brandClick Sets the callback function of the brand element.
+ */
 var NavbarDirective = function ($window, eehNavigation) {
     return {
         restrict: 'AE',
