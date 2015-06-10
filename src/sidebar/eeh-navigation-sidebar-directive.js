@@ -37,15 +37,15 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
         templateUrl: 'template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
         scope: {
             rootMenuName: '=',
-            topOffset: '@',
-            collapsedMenuItemIconClass: '@',
-            expandedMenuItemIconClass: '@',
-            collapsedSidebarIconClass: '@',
-            expandedSidebarIconClass: '@',
-            searchInputIsVisible: '@',
+            topOffset: '=?',
+            collapsedMenuItemIconClass: '=?',
+            expandedMenuItemIconClass: '=?',
+            collapsedSidebarIconClass: '=?',
+            expandedSidebarIconClass: '=?',
+            searchInputIsVisible: '=?',
             searchInputSubmit: '=',
-            isTextCollapseButtonVisible: '@',
-            isTextCollapsed: '@'
+            isTextCollapseButtonVisible: '=?',
+            isTextCollapsed: '=?'
         },
         link: function (scope, element) {
             scope.topOffset = scope.topOffset || 51; // 51 is the default height of the navbar component
