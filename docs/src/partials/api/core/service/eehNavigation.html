@@ -119,6 +119,7 @@ eehNavigationProvider
 });
 </code></pre>
 <h2 id="menu-item-visibility">Menu Item Visibility</h2>
+<p>Menu items are made shown or hidden according to their <strong>isVisible</strong> property.</p>
 <h3 id="isvisible">isVisible</h3>
 <p>A boolean value or callback function that returns a boolean value.</p>
 <pre><code class="lang-javascript">eehNavigationProvider
@@ -140,6 +141,24 @@ eehNavigation
     text: &#39;Admin&#39;,
     isVisible: isAdmin
 });
+</code></pre>
+<h2 id="menu-item-icons">Menu Item Icons</h2>
+<p>Menu items are decorated with icons based on their <strong>iconClass</strong>.</p>
+<h3 id="iconclass">iconClass</h3>
+<p>A CSS class that corresponds to an icon in a library like
+<a href="http://getbootstrap.com/components/#glyphicons">Glyphicons</a> or
+<a href="http://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a>.</p>
+<pre><code class="lang-javascript">eehNavigationProvider
+.sidebarMenuItem(&#39;foo.home&#39;, {
+    text: &#39;Home&#39;,
+    href: &#39;/home&#39;
+    iconClass: &#39;glyphicon-home&#39;
+});
+</code></pre>
+<p>Glyphicons are supported by default.
+To use another library like Font Awesome, the base icon class needs to be set.
+For example, &quot;fa&quot; is the base icon class of font awesome.</p>
+<pre><code class="lang-javascript">eehNavigationProvider.iconBaseClass(&#39;fa&#39;);
 </code></pre>
 
 </div>
