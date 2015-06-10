@@ -44,7 +44,7 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $url
         })
         .state('docs.eehNavigationNavbar', {
             url: '/eeh-navigation-navbar',
-            template: 'partials/api/navbar/directive/eeh-navigation-navbar.html'
+            templateUrl: 'partials/api/navbar/directive/eeh-navigation-navbar.html'
         });
 
     eehNavigationProvider

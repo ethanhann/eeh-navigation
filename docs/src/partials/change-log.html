@@ -2,9 +2,289 @@
 
 
 <h1 id="change-log">Change Log</h1>
-<h2 id="x-x-x">x.x.x</h2>
-<p><strong>Features</strong></p>
+<h2 id="4-0-0">4.0.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Make search input available when sidebar is collapsed.</li>
+<li>Move sidebar related variables from core service into sidebar directive.</li>
+<li>Remove some unneeded internal variables in core nav service.</li>
+<li>Add ng-click directive to navbar brand directive.</li>
+<li>Refactor navbar brand template into a directive.</li>
+<li>Made nested sidebar items available when sidebar is collapsed.</li>
+<li>Refactor location of active menu item directive.</li>
+<li>Recursively determine active status of nested menu items.</li>
+<li>Made search input compatible with navbar.</li>
+<li>Refactor search input template into a separate directive.</li>
+<li>Replace sidebarMenuItem(s) with menuItem(s) and menuItemTree methods and refactor.</li>
+<li>Replace navbarMenuItem(s) with menuItem(s) and menuItemTree methods.</li>
+<li>Set default icon base class to &quot;glyphicon&quot;.</li>
+<li>Set nested child sidebar menu items to be active if they have an active state.</li>
+<li>Made &quot;system&quot; icons configurable.</li>
+<li>Made font library (mostly) configurable.</li>
+<li>Made sidebar-nav a derivation of navbar-nav</li>
+<li>Set the default value of topOffset, in sidebar directive, if it isn&#39;t defined.</li>
+<li>Refactor sidebar style and remove borders.</li>
+<li>Make sidebar&#39;s topOffset property configurable.</li>
+<li>Use bootstrap-sass package to create theme.</li>
+</ul>
 <p><strong>Chores</strong></p>
+<ul>
+<li>Remove deprecated files.</li>
+<li>Refactor core file location.</li>
+<li>Add some demo content.</li>
+<li>Upgrade angular-bootstrap to latest version.</li>
+<li>Set nav version in demo.</li>
+</ul>
 <p><strong>Fixes</strong></p>
+<ul>
+<li>Re-add fix for navbar padding issue.</li>
+</ul>
+<h2 id="3-3-0">3.3.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Decouple navbar and sidebar directives.</li>
+<li>Make active menu item directive recursively scan children to determine active status of parent.</li>
+<li>Transform menu-item-content template into a directive</li>
+</ul>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Copy dist into docs for dev.</li>
+<li>Begin DRYing out directives.</li>
+<li>Depend on state change event rather than watching $location.</li>
+</ul>
+<h2 id="3-2-1">3.2.1</h2>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Use ngAnnotate to make minified lib functional.</li>
+</ul>
+<h2 id="3-2-0">3.2.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Contextually hide the sidebar.</li>
+</ul>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Remove hack that made angular-translate optional.</li>
+<li>Add build status badge to readme.</li>
+<li>Use newest version of component in demo.</li>
+<li>Remove old docs.</li>
+<li>Add some unit tests.</li>
+<li>Don&#39;t concat spec files into dist files.</li>
+<li>Add MenuItem as global in spec to satisfy jshint.</li>
+<li>Remove unused service from demo controller.</li>
+<li>Update test config</li>
+<li>Tweak doc style for readability</li>
+<li>Update language translation doc.</li>
+<li>Upgrade angular-translate.</li>
+</ul>
+<h2 id="3-1-0">3.1.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Exposed target attribute for links.</li>
+</ul>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Update docs.</li>
+</ul>
+<h2 id="3-0-3">3.0.3</h2>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Apply style to .navbar-top-links;</li>
+</ul>
+<h2 id="3-0-2">3.0.2</h2>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Increment version number.</li>
+</ul>
+<h2 id="3-0-1">3.0.1</h2>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Locally for couscous theme.</li>
+<li>Use bower for demo.</li>
+<li>Move icon doc under optional-features.</li>
+<li>Add eeh-navigation directive explanation in &quot;Getting Started&quot; doc.</li>
+</ul>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Fix margin issue that caused the whole page to be too wide</li>
+<li>Fix doc format issue.</li>
+<li>Use responsive utility classes to hide menu items at small screen sizes.</li>
+<li>Fix demo url.</li>
+</ul>
+<h2 id="3-0-0">3.0.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Throw an exception if non-existing menu item is accessed.</li>
+</ul>
+<h2 id="2-7-3">2.7.3</h2>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Make navbar toggle &#39;active&#39; when a child is &#39;active&#39;.</li>
+</ul>
+<h2 id="2-7-2">2.7.2</h2>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Light refactoring.</li>
+</ul>
+<h2 id="2-7-1">2.7.1</h2>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Loosen dep requirements.</li>
+</ul>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Hide parent navbar items that do not have visible children.</li>
+<li>Fix jsHint issue.</li>
+</ul>
+<h2 id="2-7-0">2.7.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Add active class to navbar menu items with state.</li>
+</ul>
+<h2 id="2-6-0">2.6.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Pull heavy navbar items to the right, and light navbar items to the left.</li>
+<li>Add css map.</li>
+</ul>
+<h2 id="2-5-0">2.5.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Add support for image and links in navbar brand.</li>
+</ul>
+<h2 id="2-4-0">2.4.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Add programmatic API for sidebar collapse menu item.</li>
+</ul>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Correct search input documentation.</li>
+</ul>
+<h2 id="2-3-0">2.3.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Implement and document search feature.</li>
+<li>Move ng-click to search button from search input.</li>
+<li>Order navbar menu items according to their weight.</li>
+</ul>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Refactor docs</li>
+</ul>
+<h2 id="2-2-0">2.2.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Add advanced configuration.</li>
+<li>Add support for menu translation.</li>
+<li>Replace hard-coded icon class with iconClass variable.</li>
+</ul>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Refactor demo.</li>
+<li>Document translation feature</li>
+<li>Expand &quot;accessing menu item&quot; doc</li>
+<li>Refine doc style and layout.</li>
+</ul>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Fix doc footer</li>
+<li>Fix typo in docs.</li>
+</ul>
+<h2 id="2-1-0">2.1.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Allow menu items to be retrieved.</li>
+</ul>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Re-render menu when menu items change.</li>
+</ul>
+<h2 id="2-0-1">2.0.1</h2>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Add a MenuItem class and factor out functions from directive.</li>
+</ul>
+<h2 id="2-0-0">2.0.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Add ability to weight menu items (heavier items sink).</li>
+<li>Flatten navbar item configuration.</li>
+</ul>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Separate js into multiple files and add prefix to lib files.</li>
+<li>Refactor navigation service.</li>
+<li>Lint on release, not build to make dev faster.</li>
+<li>Modularize Sass.</li>
+</ul>
+<h2 id="1-3-0">1.3.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Add preliminary support for sidebar text collapse.</li>
+<li>Hide children of menu items when text is collapsed.</li>
+<li>Add search input.</li>
+</ul>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Improve build process.</li>
+</ul>
+<h2 id="1-2-0">1.2.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Vertically center sidebar collapse icon.</li>
+<li>Add href support.</li>
+<li>Add an isVisible menu item property.</li>
+</ul>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Update README.md.</li>
+<li>Add dev task and update description.</li>
+<li>Move demo into main repo.</li>
+<li>Update doc style.</li>
+</ul>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Fix left border of transcluded content.</li>
+</ul>
+<h2 id="1-1-3">1.1.3</h2>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Regenerate /dist.</li>
+</ul>
+<h2 id="1-1-2">1.1.2</h2>
+<p><strong>Chores</strong></p>
+<ul>
+<li>Update README.md.</li>
+<li>Add empty dep list.</li>
+<li>Automate template registration.</li>
+</ul>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Fix version before release.</li>
+</ul>
+<h2 id="1-1-1">1.1.1</h2>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Use ng-transclude as an attribute.</li>
+</ul>
+<h2 id="1-1-0">1.1.0</h2>
+<p><strong>Enhancements</strong></p>
+<ul>
+<li>Rework nav collapse and add page-wrapper resize.</li>
+<li>Add page wrapper class style.</li>
+</ul>
+<h2 id="1-0-2">1.0.2</h2>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Cache template inline for now</li>
+<li>Fix typo</li>
+<li>Add FontAwesome as a dep</li>
+</ul>
+<h2 id="1-0-1">1.0.1</h2>
+<p><strong>Fixes</strong></p>
+<ul>
+<li>Fix main paths</li>
+</ul>
 
 

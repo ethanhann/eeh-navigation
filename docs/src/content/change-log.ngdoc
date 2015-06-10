@@ -6,10 +6,241 @@
 
 # Change Log
 
-## x.x.x
-
-__Features__
+## 4.0.0
+__Enhancements__
+* Make search input available when sidebar is collapsed.
+* Move sidebar related variables from core service into sidebar directive.
+* Remove some unneeded internal variables in core nav service.
+* Add ng-click directive to navbar brand directive.
+* Refactor navbar brand template into a directive.
+* Made nested sidebar items available when sidebar is collapsed.
+* Refactor location of active menu item directive.
+* Recursively determine active status of nested menu items.
+* Made search input compatible with navbar.
+* Refactor search input template into a separate directive.
+* Replace sidebarMenuItem(s) with menuItem(s) and menuItemTree methods and refactor.
+* Replace navbarMenuItem(s) with menuItem(s) and menuItemTree methods.
+* Set default icon base class to "glyphicon".
+* Set nested child sidebar menu items to be active if they have an active state.
+* Made "system" icons configurable.
+* Made font library (mostly) configurable.
+* Made sidebar-nav a derivation of navbar-nav
+* Set the default value of topOffset, in sidebar directive, if it isn't defined.
+* Refactor sidebar style and remove borders.
+* Make sidebar's topOffset property configurable.
+* Use bootstrap-sass package to create theme.
 
 __Chores__
+* Remove deprecated files.
+* Refactor core file location.
+* Add some demo content.
+* Upgrade angular-bootstrap to latest version.
+* Set nav version in demo.
 
 __Fixes__
+* Re-add fix for navbar padding issue.
+
+## 3.3.0
+__Enhancements__
+* Decouple navbar and sidebar directives.
+* Make active menu item directive recursively scan children to determine active status of parent.
+* Transform menu-item-content template into a directive
+
+__Chores__
+* Copy dist into docs for dev.
+* Begin DRYing out directives.
+* Depend on state change event rather than watching $location.
+
+## 3.2.1
+__Fixes__
+* Use ngAnnotate to make minified lib functional.
+
+## 3.2.0
+__Enhancements__
+* Contextually hide the sidebar.
+
+__Chores__
+* Remove hack that made angular-translate optional.
+* Add build status badge to readme.
+* Use newest version of component in demo.
+* Remove old docs.
+* Add some unit tests.
+* Don't concat spec files into dist files.
+* Add MenuItem as global in spec to satisfy jshint.
+* Remove unused service from demo controller.
+* Update test config
+* Tweak doc style for readability
+* Update language translation doc.
+* Upgrade angular-translate.
+
+
+## 3.1.0
+__Enhancements__
+* Exposed target attribute for links.
+
+__Chores__
+* Update docs.
+
+## 3.0.3
+__Fixes__
+* Apply style to .navbar-top-links;
+
+## 3.0.2
+__Fixes__
+* Increment version number.
+
+## 3.0.1
+__Chores__
+* Locally for couscous theme.
+* Use bower for demo.
+* Move icon doc under optional-features.
+* Add eeh-navigation directive explanation in "Getting Started" doc.
+
+__Fixes__
+* Fix margin issue that caused the whole page to be too wide
+* Fix doc format issue.
+* Use responsive utility classes to hide menu items at small screen sizes.
+* Fix demo url.
+
+## 3.0.0
+__Enhancements__
+* Throw an exception if non-existing menu item is accessed.
+
+## 2.7.3
+__Fixes__
+* Make navbar toggle 'active' when a child is 'active'.
+
+## 2.7.2
+__Chores__
+* Light refactoring.
+
+## 2.7.1
+__Chores__
+* Loosen dep requirements.
+
+__Fixes__
+* Hide parent navbar items that do not have visible children.
+* Fix jsHint issue.
+
+## 2.7.0
+__Enhancements__
+* Add active class to navbar menu items with state.
+
+## 2.6.0
+__Enhancements__
+* Pull heavy navbar items to the right, and light navbar items to the left.
+* Add css map.
+
+## 2.5.0
+__Enhancements__
+* Add support for image and links in navbar brand.
+
+## 2.4.0
+__Enhancements__
+* Add programmatic API for sidebar collapse menu item.
+
+__Fixes__
+* Correct search input documentation.
+
+## 2.3.0
+__Enhancements__
+* Implement and document search feature.
+* Move ng-click to search button from search input.
+* Order navbar menu items according to their weight.
+
+__Chores__
+* Refactor docs
+
+## 2.2.0
+__Enhancements__
+* Add advanced configuration.
+* Add support for menu translation.
+* Replace hard-coded icon class with iconClass variable.
+
+__Chores__
+* Refactor demo.
+* Document translation feature
+* Expand "accessing menu item" doc
+* Refine doc style and layout.
+
+__Fixes__
+* Fix doc footer
+* Fix typo in docs.
+
+## 2.1.0
+__Enhancements__
+* Allow menu items to be retrieved.
+
+__Fixes__
+* Re-render menu when menu items change.
+
+## 2.0.1
+__Chores__
+* Add a MenuItem class and factor out functions from directive.
+
+## 2.0.0
+__Enhancements__
+* Add ability to weight menu items (heavier items sink).
+* Flatten navbar item configuration.
+
+__Chores__
+* Separate js into multiple files and add prefix to lib files.
+* Refactor navigation service.
+* Lint on release, not build to make dev faster.
+* Modularize Sass.
+
+## 1.3.0
+__Enhancements__
+* Add preliminary support for sidebar text collapse.
+* Hide children of menu items when text is collapsed.
+* Add search input.
+
+__Chores__
+* Improve build process.
+
+## 1.2.0
+__Enhancements__
+* Vertically center sidebar collapse icon.
+* Add href support.
+* Add an isVisible menu item property.
+
+__Chores__
+* Update README.md.
+* Add dev task and update description.
+* Move demo into main repo.
+* Update doc style.
+
+__Fixes__
+* Fix left border of transcluded content.
+
+## 1.1.3
+__Fixes__
+* Regenerate /dist.
+
+## 1.1.2
+__Chores__
+* Update README.md.
+* Add empty dep list.
+* Automate template registration.
+
+__Fixes__
+* Fix version before release.
+
+## 1.1.1
+__Fixes__
+* Use ng-transclude as an attribute.
+
+## 1.1.0
+__Enhancements__
+* Rework nav collapse and add page-wrapper resize.
+* Add page wrapper class style.
+
+## 1.0.2
+__Fixes__
+* Cache template inline for now
+* Fix typo
+* Add FontAwesome as a dep
+
+## 1.0.1
+__Fixes__
+* Fix main paths
