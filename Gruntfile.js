@@ -46,7 +46,7 @@ module.exports = function (grunt) {
                 reporter: require('jshint-stylish')
             },
             src: [
-                '<%= settings.src %>/{,*/}*.js'
+                '<%= settings.src %>/**/*.js'
             ]
         },
         karma: {
