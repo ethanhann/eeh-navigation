@@ -11,21 +11,21 @@ module.exports = function (grunt) {
             build: 'build',
             dist: 'dist',
             libName: 'eeh-navigation',
-            docDev: 'doc/.couscous/generated/bower_components/eeh-navigation/dist'
+            demo: 'demo/bower_components/eeh-navigation/dist'
         },
         copy: {
             dev: {
                 files: [{
-                        expand: true,
-                        flatten: true,
-                        src: ['<%= settings.dist %>/*'],
-                        dest: '<%= settings.docDev %>'
+                    expand: true,
+                    flatten: true,
+                    src: ['<%= settings.dist %>/*'],
+                    dest: '<%= settings.demo %>'
                 }]
             }
         },
         exec: {
             generateChangelog: {
-                cmd: function() {
+                cmd: function () {
                     return 'git log --oneline --decorate --no-merges > changelog.txt';
                 }
             }
@@ -72,7 +72,7 @@ module.exports = function (grunt) {
                 cwd: '<%= settings.src %>',
                 src: ['**/*.html'],
                 dest: '<%= settings.dist %>/eeh-navigation.tpl.js',
-                options:  {
+                options: {
                     url: function (url) {
                         return 'template/eeh-navigation/' + url;
                     }
@@ -129,12 +129,12 @@ module.exports = function (grunt) {
         },
         versioncheck: {
             options: {
-                hideUpToDate : true
+                hideUpToDate: true
             }
         }
     });
 
-    grunt.registerTask('dgeni', 'Generate docs via dgeni.', function() {
+    grunt.registerTask('dgeni', 'Generate docs via dgeni.', function () {
         var done = this.async();
         var dgeni = new Dgeni([require('./docs/dgeni.conf')]);
         dgeni.generate().then(done);
