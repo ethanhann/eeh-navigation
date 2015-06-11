@@ -109,7 +109,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "   popover-placement=\"right\"\n" +
     "   popover-append-to-body=\"'true'\"\n" +
     "   popover-template=\"'template/eeh-navigation/search-input-popover.html'\">\n" +
-    "    <span class=\"menu-item-icon icon-fw {{ iconBaseClass() }} {{ searchIconClass }}\"></span>\n" +
+    "    <span class=\"menu-item-icon icon-fw {{ iconBaseClass() }} {{ iconClass }}\"></span>\n" +
     "</a>\n" +
     "\n" +
     "<script type=\"text/ng-template\" id=\"template/eeh-navigation/search-input-popover.html\">\n" +
@@ -144,6 +144,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "        <ul class=\"nav sidebar-nav\">\n" +
     "            <li class=\"sidebar-search\" ng-if=\"searchInputIsVisible\">\n" +
     "                <eeh-navigation-search-input class=\"sidebar-search-input\"\n" +
+    "                                             iconClass=\"searchInputIconClass\"\n" +
     "                                             submit=\"searchInputSubmit\"\n" +
     "                                             is-collapsed=\"isTextCollapsed\"></eeh-navigation-search-input>\n" +
     "            </li>\n" +

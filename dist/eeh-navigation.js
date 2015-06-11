@@ -238,13 +238,13 @@
     };
     angular.module("eehNavigation").directive("eehNavigationNavbar", [ "$window", "eehNavigation", NavbarDirective ]);
     "use strict";
-    var SidebarDirective = function($window, eehNavigation) {
+    var SearchInputDirective = function($window, eehNavigation) {
         return {
             restrict: "AE",
             transclude: true,
             templateUrl: "template/eeh-navigation/search-input/eeh-navigation-search-input.html",
             scope: {
-                searchIconClass: "@",
+                iconClass: "=",
                 submit: "=",
                 classes: "=",
                 isCollapsed: "="
@@ -253,14 +253,14 @@
                 scope.model = {
                     query: ""
                 };
-                scope.searchIconClass = scope.searchIconClass || "glyphicon-search";
                 scope.iconBaseClass = function() {
                     return eehNavigation.iconBaseClass();
                 };
             }
         };
     };
-    angular.module("eehNavigation").directive("eehNavigationSearchInput", [ "$window", "eehNavigation", SidebarDirective ]);
+    SearchInputDirective.$inject = [ "$window", "eehNavigation" ];
+    angular.module("eehNavigation").directive("eehNavigationSearchInput", SearchInputDirective);
     "use strict";
     var SidebarDirective = function($document, $window, eehNavigation) {
         return {
@@ -269,15 +269,16 @@
             templateUrl: "template/eeh-navigation/sidebar/eeh-navigation-sidebar.html",
             scope: {
                 rootMenuName: "=",
-                topOffset: "@",
-                collapsedMenuItemIconClass: "@",
-                expandedMenuItemIconClass: "@",
-                collapsedSidebarIconClass: "@",
-                expandedSidebarIconClass: "@",
-                searchInputIsVisible: "@",
+                topOffset: "=?",
+                collapsedMenuItemIconClass: "=?",
+                expandedMenuItemIconClass: "=?",
+                collapsedSidebarIconClass: "=?",
+                expandedSidebarIconClass: "=?",
+                searchInputIconClass: "=?",
+                searchInputIsVisible: "=?",
                 searchInputSubmit: "=",
-                isTextCollapseButtonVisible: "@",
-                isTextCollapsed: "@"
+                isTextCollapseButtonVisible: "=?",
+                isTextCollapsed: "=?"
             },
             link: function(scope, element) {
                 scope.topOffset = scope.topOffset || 51;
@@ -285,6 +286,7 @@
                 scope.expandedMenuItemIconClass = scope.expandedMenuItemIconClass || "glyphicon-chevron-down";
                 scope.collapsedSidebarIconClass = scope.collapsedSidebarIconClass || "glyphicon-arrow-right";
                 scope.expandedSidebarIconClass = scope.expandedSidebarIconClass || "glyphicon-arrow-left";
+                scope.searchInputIconClass = scope.searchInputIconClass || "glyphicon-search";
                 scope.isTextCollapseButtonVisible = scope.isTextCollapseButtonVisible || true;
                 scope.isTextCollapsed = scope.isTextCollapsed || false;
                 scope.searchInputIsVisible = scope.searchInputIsVisible || true;

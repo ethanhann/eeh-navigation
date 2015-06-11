@@ -1,4 +1,19 @@
-c51641c (HEAD, origin/master, origin/HEAD, master) Fix sass file name
+eecfac3 (HEAD, origin/master, origin/HEAD, master) Switch src path pattern for jshint
+fa888ac (origin/try-dgeni, try-dgeni) Update docs
+e0f97c1 Fix issues with search input icon class
+7ad04ec Fix typo in docs
+a27c9d4 Add change log to new docs.
+7b8ed7e Flesh out docs
+a12a073 Flesh out docs
+404f34d Use =? for default properties in sidebar directive
+8c39688 use dgeni for a few docs
+69c85eb Continue to flesh out docs
+f58fde4 Fix path in docs
+b8f7ce2 Update dev deps for docs
+f73e94b Start dog-fooding with docs
+8bc4e9c Bump version in docs
+3ef5774 (tag: 4.0.0-alpha4) Prepare for release
+c51641c Fix sass file name
 1db8945 Make search input available when sidebar is collapsed
 8be6ba8 Move sidebar related variables from core service into sidebar directive
 17970a4 Remove some unneeded internal variables in core nav service
@@ -6,7 +21,7 @@ d0caabd Add ng-click directive to navbar brand directive
 9de94e5 Refactor navbar brand into a directive
 1aef233 Add some demo content
 5def8c7 Bump version in demo
-400ac30 Prepare for release
+400ac30 (tag: 4.0.0-alpha3) Prepare for release
 d5dfd73 Only act on popped out sidebar when the sidebar is collapsed.
 da3cd30 Add a second nested sidebar menu item set
 ea75194 Do not allow multiple collapsed nested sidebar menu items to overlap
@@ -17,7 +32,7 @@ c241d33 Update deps
 0dfad8c Recursively determine active status of nested menu items
 ed722f4 In sidebar parent element have active class, if any of children is active
 2f8089d Fix up tests
-57f9e86 Prepare for release
+57f9e86 (tag: 4.0.0-alpha2) Prepare for release
 f77833e Fix CS issue
 9d05650 Add deps to sample config
 dcded65 Update docs
