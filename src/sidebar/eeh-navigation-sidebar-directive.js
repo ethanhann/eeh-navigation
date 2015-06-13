@@ -10,7 +10,7 @@
  * If Angular UI Router is used (which is recommended), then the sidebar directive should wrap a __ui-view__ element.
  * It should also be in a template that is at or near the top of the state hierarchy.
  *
- * @param {string} rootMenuName Sets the name of the menu that the directive will render.
+ * @param {string} menuName Sets the name of the menu that the directive will render.
  * @param {number=} [topOffset=51]
  * This attribute offsets the top position of the sidebar.
  * It should equal the height of the navbar, or 0 if there is no navbar.
@@ -38,7 +38,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
         transclude: true,
         templateUrl: 'template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
         scope: {
-            rootMenuName: '=',
+            menuName: '=',
             topOffset: '=?',
             collapsedMenuItemIconClass: '=?',
             expandedMenuItemIconClass: '=?',
@@ -57,17 +57,24 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             scope.collapsedSidebarIconClass = scope.collapsedSidebarIconClass || 'glyphicon-arrow-right';
             scope.expandedSidebarIconClass = scope.expandedSidebarIconClass || 'glyphicon-arrow-left';
             scope.searchInputIconClass = scope.searchInputIconClass || 'glyphicon-search';
-            scope.isTextCollapseButtonVisible = scope.isTextCollapseButtonVisible || true;
+            if (scope.isTextCollapseButtonVisible !== false)  {
+                scope.isTextCollapseButtonVisible = true;
+            }
             scope.isTextCollapsed = scope.isTextCollapsed || false;
-            scope.searchInputIsVisible = scope.searchInputIsVisible || true;
+            if (scope.searchInputIsVisible !== false)  {
+                scope.searchInputIsVisible = true;
+            }
+
             scope.iconBaseClass = function () {
                 return eehNavigation.iconBaseClass();
             };
             var menuItems = function () {
                 return eehNavigation.menuItems();
             };
+            console.log(menuItems());
+            console.log(eehNavigation.menuItemTree(scope.menuName));
             scope.$watch(menuItems, function () {
-                scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.rootMenuName);
+                scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.menuName);
             });
             var windowElement = angular.element($window);
             windowElement.bind('resize', function () {
@@ -112,15 +119,14 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
                     transcludedWrapper.addClass('sidebar-text-collapsed');
                     sidebarElement.addClass('sidebar-text-collapsed');
                     sidebarMenuItemTextElements.addClass('hidden');
+                    scope.sidebarMenuItems.forEach(function (menuItem) {
+                        menuItem.isCollapsed = true;
+                    });
                 } else {
                     transcludedWrapper.removeClass('sidebar-text-collapsed');
                     sidebarElement.removeClass('sidebar-text-collapsed');
                     sidebarMenuItemTextElements.removeClass('hidden');
                 }
-
-                scope.sidebarMenuItems.forEach(function (menuItem) {
-                    menuItem.isCollapsed = true;
-                });
             }
 
             /**

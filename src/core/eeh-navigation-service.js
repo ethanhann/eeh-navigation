@@ -242,15 +242,15 @@ NavigationService.prototype.buildAncestorChain = function (name, items, config) 
     this.buildAncestorChain(keys.join('.'), items[key], config);
 };
 
-NavigationService.prototype.menuItemTree = function (rootMenuName) {
+NavigationService.prototype.menuItemTree = function (menuName) {
     var items = {};
     var self = this;
     var menuItemsToTransform = {};
-    if (angular.isDefined(rootMenuName)) {
-        var rootMenuNameRegex = new RegExp('^' + rootMenuName + '.');
+    if (angular.isDefined(menuName)) {
+        var menuNameRegex = new RegExp('^' + menuName + '.');
         angular.forEach(this._menuItems, function (menuItem, menuItemName) {
-            if (menuItemName.match(rootMenuNameRegex) !== null) {
-                menuItemsToTransform[menuItemName.replace(rootMenuNameRegex, '')] = menuItem;
+            if (menuItemName.match(menuNameRegex) !== null) {
+                menuItemsToTransform[menuItemName.replace(menuNameRegex, '')] = menuItem;
             }
         });
     } else {
