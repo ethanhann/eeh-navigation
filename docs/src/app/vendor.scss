@@ -1,12 +1,6 @@
+@import "variables";
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
 $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
-
-$font-size-h1: floor(($font-size-base * 1.8)) !default;
-$font-size-h2: floor(($font-size-base * 1.6)) !default;
-$font-size-h3: ceil(($font-size-base * 1.4)) !default;
-$font-size-h4: ceil(($font-size-base * 1.2)) !default;
-$font-size-h5: $font-size-base !default;
-$font-size-h6: ceil(($font-size-base * 0.8)) !default;
 
 /* Do not remove this comments below. It's the markers used by wiredep to inject
    sass dependencies when defined in the bower.json of your dependencies */

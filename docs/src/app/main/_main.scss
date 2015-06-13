@@ -1,0 +1,34 @@
+main {
+    .jumbo-nav-icons {
+        padding: 2em 0;
+        a:hover {
+            text-decoration: none;
+        }
+    }
+
+    .container {
+        width: 760px;
+    }
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+    padding: 25px 0;
+    font-size: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    opacity: 0.6;
+    transition: opacity .2s ease;
+
+    &:hover {
+        opacity: 1.0;
+        transition: opacity .2s ease;
+    }
+    p {
+        margin: 0;
+    }
+}
+
