@@ -10,7 +10,7 @@
  * If Angular UI Router is used (which is recommended), then the sidebar directive should wrap a __ui-view__ element.
  * It should also be in a template that is at or near the top of the state hierarchy.
  *
- * @param {string} menuName Sets the name of the menu that the directive will render.
+ * @param {string=} menuName Sets the name of the menu that the directive will render.
  * @param {number=} [topOffset=51]
  * This attribute offsets the top position of the sidebar.
  * It should equal the height of the navbar, or 0 if there is no navbar.
