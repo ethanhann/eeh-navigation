@@ -72,6 +72,9 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
                 return eehNavigation.menuItems();
             };
             scope.$watch(menuItems, function () {
+                if (angular.isUndefined(scope.menuName)) {
+                    return;
+                }
                 scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.menuName);
             });
             var windowElement = angular.element($window);
