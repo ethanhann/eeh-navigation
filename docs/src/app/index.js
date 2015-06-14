@@ -1,6 +1,14 @@
 'use strict';
 
-angular.module('docs', ['eehNavigation', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap']);
+angular.module('docs', [
+    'eehNavigation',
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    'ngSanitize',
+    'ngTouch',
+    'ui.bootstrap',
+    'ui.router']);
 angular.module('docs').config(function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationProvider) {
     $translateProvider.useSanitizeValueStrategy('sanitize');
     $urlRouterProvider.otherwise('/');
@@ -18,29 +26,18 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $url
         .state('docs.gettingStarted', {
             url: '/getting-started',
             templateUrl: 'partials/getting-started.html'
-            //template: '<marked ng-include="\'content/getting-started.md\'"></marked>'
         })
         .state('docs.changeLog', {
             url: '/change-log',
             templateUrl: 'partials/change-log.html'
         })
-        .state('docs.icons', {
-            url: '/icons',
-            template: '<marked ng-include="\'content/icons.md\'"></marked>'
-        })
-        .state('docs.languageTranslation', {
-            url: '/language-translation',
-            template: '<marked ng-include="\'content/language-translation.md\'"></marked>'
-        })
         .state('docs.eehNavigationService', {
             url: '/eeh-navigation-service',
             templateUrl: 'partials/api/core/service/eehNavigation.html'
-            //template: '<marked ng-include="\'content/eeh-navigation-service.md\'"></marked>'
         })
         .state('docs.eehNavigationSidebar', {
             url: '/eeh-navigation-sidebar',
             templateUrl: 'partials/api/sidebar/directive/eeh-navigation-sidebar.html'
-            //template: '<marked ng-include="\'content/eeh-navigation-sidebar.md\'"></marked>'
         })
         .state('docs.eehNavigationNavbar', {
             url: '/eeh-navigation-navbar',
@@ -77,40 +74,16 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $url
         .menuItem('nav.directive.eehNavigationNavbar', {
             text: 'eehNavigationNavbar',
             state: 'docs.eehNavigationNavbar'
-        })
-        //.menuItem('nav.configuration.nestedSidebarMenuItems', {
-        //    text: 'Nested Sidebar Menu Items',
-        //    state: 'docs.nestedSidebarMenuItems'
-        //})
-        //.menuItem('nav.configuration.sidebarTextCollapseMenuItem', {
-        //    text: 'Sidebar Text Collapse Menu Item',
-        //    state: 'docs.sidebarTextCollapseMenuItem'
-        //})
-        //.menuItem('nav.configuration.sidebarSearchMenuItem', {
-        //    text: 'Sidebar Search Menu Item',
-        //    state: 'docs.sidebarSearchMenuItem'
-        //})
-        //.menuItem('nav.configuration.languageTranslation', {
-        //    text: 'Language Translation',
-        //    state: 'docs.languageTranslation'
-        //})
-        //.menuItem('nav.configuration.icons', {
-        //    text: 'Icons',
-        //    state: 'docs.icons'
-        //})
-        ;
+        });
 });
 
-angular.module('docs').directive('pre', function($window) {
+angular.module('docs').directive('pre', function ($window) {
     return {
         restrict: 'E',
         link: function postLink(scope, element) {
-            scope.$on('$viewContentLoaded', function(){
+            scope.$on('$viewContentLoaded', function () {
                 element.addClass('prettyprint');
                 element.html($window.prettyPrint(element.html(), '', true));
-                //$window.hljs.initHighlightingOnLoad();
-                //element.html($window.hljs.highlightBlock(element.html()));
-                //$window.hljs.highlightAuto('<pre>' + element.html() + '</pre>');
             });
         }
     };
