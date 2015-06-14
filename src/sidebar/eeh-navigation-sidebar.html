@@ -50,11 +50,11 @@
     <ul ng-if="!item.state && item.hasChildren()" collapse="item.isCollapsed"
         ng-class="{ 'text-collapsed': isTextCollapsed }"
         class="nav sidebar-nav sidebar-nav-nested">
-        <li ng-repeat="childItem in item.children()"
+        <li ng-repeat="item in item.children()"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
-            ng-class="{ 'leaf': !childItem.hasChildren() }"
-            ng-if="childItem._isVisible()"
+            ng-class="{ 'leaf': !item.hasChildren() }"
+            ng-if="item._isVisible()"
             ui-sref-active-eq="active"
-            eeh-navigation-active-menu-item="childItem"></li>
+            eeh-navigation-active-menu-item="item"></li>
     </ul>
 </script>
