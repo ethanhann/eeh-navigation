@@ -1,4 +1,8 @@
-a78b729 (HEAD, origin/master, origin/HEAD, master) Refactor
+2fab7cf (HEAD, origin/master, origin/HEAD, master) Update module in docs
+161cb19 Check if menuName is defined in sidebar directive
+8fb2f6e Revert refactor that caused performance issue
+045fbdd (tag: 4.0.0-beta2) Prepare for release
+a78b729 Refactor
 4379b92 Remove debug statements
 2dbf8b3 Cleanup docs index.js
 14d003b Check if menuName is defined before using it

@@ -190,12 +190,12 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "    <ul ng-if=\"!item.state && item.hasChildren()\" collapse=\"item.isCollapsed\"\n" +
     "        ng-class=\"{ 'text-collapsed': isTextCollapsed }\"\n" +
     "        class=\"nav sidebar-nav sidebar-nav-nested\">\n" +
-    "        <li ng-repeat=\"childItem in item.children()\"\n" +
+    "        <li ng-repeat=\"item in item.children()\"\n" +
     "            ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
-    "            ng-class=\"{ 'leaf': !childItem.hasChildren() }\"\n" +
-    "            ng-if=\"childItem._isVisible()\"\n" +
+    "            ng-class=\"{ 'leaf': !item.hasChildren() }\"\n" +
+    "            ng-if=\"item._isVisible()\"\n" +
     "            ui-sref-active-eq=\"active\"\n" +
-    "            eeh-navigation-active-menu-item=\"childItem\"></li>\n" +
+    "            eeh-navigation-active-menu-item=\"item\"></li>\n" +
     "    </ul>\n" +
     "</script>\n"
   );
