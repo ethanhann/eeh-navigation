@@ -1,4 +1,6 @@
 main {
+    padding-bottom: 30px;
+
     .jumbo-nav-icons {
         padding: 2em 0;
         a:hover {
@@ -7,14 +9,11 @@ main {
     }
 
     .container {
-        width: 760px;
+        max-width: 760px;
     }
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
     background-color: #f5f5f5;
     padding: 25px 0;
     font-size: 15px;
