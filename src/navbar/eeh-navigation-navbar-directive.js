@@ -35,10 +35,10 @@ var NavbarDirective = function ($window, eehNavigation) {
             };
             scope._navbarBrand = eehNavigation._navbarBrand;
             scope.isNavbarCollapsed = false;
-            var menuItems = function () {
-                return eehNavigation.menuItems();
-            };
-            scope.$watch(menuItems, function () {
+            scope.$watch(eehNavigation.menuItems, function () {
+                if (angular.isUndefined(scope.menuName)) {
+                    return;
+                }
                 var menuItems = eehNavigation.menuItemTree(scope.menuName);
                 scope.leftNavbarMenuItems = menuItems.filter(function (item) { return !item.isHeavy(); });
                 scope.rightNavbarMenuItems = menuItems.filter(function (item) { return item.isHeavy(); });
