@@ -11,7 +11,7 @@
                 ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
                 ng-class="{ 'leaf': !item.hasChildren() }"
                 ng-if="item._isVisible()"
-                ng-click="topLevelMenuItemClickHandler(item)"
+                ng-click="topLevelMenuItemClickHandler(item)"fire
                 ui-sref-active-eq="active"
                 eeh-navigation-active-menu-item="item"></li>
             <li ng-click="toggleSidebarTextCollapse()" ng-if="isTextCollapseButtonVisible && isSidebarVisible()">
@@ -50,11 +50,11 @@
     <ul ng-if="!item.state && item.hasChildren()" collapse="item.isCollapsed"
         ng-class="{ 'text-collapsed': isTextCollapsed }"
         class="nav sidebar-nav sidebar-nav-nested">
-        <li ng-repeat="item in item.children()"
+        <li ng-repeat="childItem in item.children()"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
-            ng-class="{ 'leaf': !item.hasChildren() }"
-            ng-if="item._isVisible()"
+            ng-class="{ 'leaf': !childItem.hasChildren() }"
+            ng-if="childItem._isVisible()"
             ui-sref-active-eq="active"
-            eeh-navigation-active-menu-item="item"></li>
+            eeh-navigation-active-menu-item="childItem"></li>
     </ul>
 </script>
