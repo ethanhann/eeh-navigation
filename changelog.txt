@@ -1,4 +1,23 @@
-eecfac3 (HEAD, origin/master, origin/HEAD, master) Switch src path pattern for jshint
+a78b729 (HEAD, origin/master, origin/HEAD, master) Refactor
+4379b92 Remove debug statements
+2dbf8b3 Cleanup docs index.js
+14d003b Check if menuName is defined before using it
+212aeb5 Indicate that menuName is optional in directives
+51a0b9f Polish docs
+0cbb3a1 Refactor "rootMenuName" to "menuName"
+e95bd1c Properly hide search input in doc
+1ed1605 Fix doc icons
+5d0552f Add a link to the demo
+af3bc8c Style new docs
+e17c5dd Add license file
+93246f3 Fix attribute in sidebar directive
+2e1bc06 Build to demo for dev task
+99f32d9 Fix icon class variable in search input template
+27e1823 Remove old demo
+c9ca87d Upgrade lib version in docs
+3fa0796 Remove old doc and move demo to root
+ded1815 (tag: 4.0.0-beta1) Prepare for release
+eecfac3 Switch src path pattern for jshint
 fa888ac (origin/try-dgeni, try-dgeni) Update docs
 e0f97c1 Fix issues with search input icon class
 7ad04ec Fix typo in docs

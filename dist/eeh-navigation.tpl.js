@@ -111,7 +111,6 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "   popover-template=\"'template/eeh-navigation/search-input-popover.html'\">\n" +
     "    <span class=\"menu-item-icon icon-fw {{ iconBaseClass() }} {{ iconClass }}\"></span>\n" +
     "</a>\n" +
-    "\n" +
     "<script type=\"text/ng-template\" id=\"template/eeh-navigation/search-input-popover.html\">\n" +
     "    <div class=\"row search-input-popover\">\n" +
     "        <div class=\"col-xs-12\">\n" +
@@ -129,7 +128,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "                   ng-model=\"model.query\">\n" +
     "        <span class=\"input-group-btn\" ng-if=\"!isCollapsed\">\n" +
     "            <button class=\"btn btn-default\">\n" +
-    "                <span class=\"icon-fw {{ iconBaseClass() }} {{ searchIconClass }}\"></span>\n" +
+    "                <span class=\"icon-fw {{ iconBaseClass() }} {{ iconClass }}\"></span>\n" +
     "            </button>\n" +
     "        </span>\n" +
     "        </div>\n" +
@@ -144,7 +143,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "        <ul class=\"nav sidebar-nav\">\n" +
     "            <li class=\"sidebar-search\" ng-if=\"searchInputIsVisible\">\n" +
     "                <eeh-navigation-search-input class=\"sidebar-search-input\"\n" +
-    "                                             iconClass=\"searchInputIconClass\"\n" +
+    "                                             icon-class=\"searchInputIconClass\"\n" +
     "                                             submit=\"searchInputSubmit\"\n" +
     "                                             is-collapsed=\"isTextCollapsed\"></eeh-navigation-search-input>\n" +
     "            </li>\n" +
@@ -152,7 +151,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "                ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
     "                ng-class=\"{ 'leaf': !item.hasChildren() }\"\n" +
     "                ng-if=\"item._isVisible()\"\n" +
-    "                ng-click=\"topLevelMenuItemClickHandler(item)\"\n" +
+    "                ng-click=\"topLevelMenuItemClickHandler(item)\"fire\n" +
     "                ui-sref-active-eq=\"active\"\n" +
     "                eeh-navigation-active-menu-item=\"item\"></li>\n" +
     "            <li ng-click=\"toggleSidebarTextCollapse()\" ng-if=\"isTextCollapseButtonVisible && isSidebarVisible()\">\n" +
@@ -191,12 +190,12 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "    <ul ng-if=\"!item.state && item.hasChildren()\" collapse=\"item.isCollapsed\"\n" +
     "        ng-class=\"{ 'text-collapsed': isTextCollapsed }\"\n" +
     "        class=\"nav sidebar-nav sidebar-nav-nested\">\n" +
-    "        <li ng-repeat=\"item in item.children()\"\n" +
+    "        <li ng-repeat=\"childItem in item.children()\"\n" +
     "            ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
-    "            ng-class=\"{ 'leaf': !item.hasChildren() }\"\n" +
-    "            ng-if=\"item._isVisible()\"\n" +
+    "            ng-class=\"{ 'leaf': !childItem.hasChildren() }\"\n" +
+    "            ng-if=\"childItem._isVisible()\"\n" +
     "            ui-sref-active-eq=\"active\"\n" +
-    "            eeh-navigation-active-menu-item=\"item\"></li>\n" +
+    "            eeh-navigation-active-menu-item=\"childItem\"></li>\n" +
     "    </ul>\n" +
     "</script>\n"
   );

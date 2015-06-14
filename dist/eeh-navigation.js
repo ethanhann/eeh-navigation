@@ -114,15 +114,15 @@
         }
         this.buildAncestorChain(keys.join("."), items[key], config);
     };
-    NavigationService.prototype.menuItemTree = function(rootMenuName) {
+    NavigationService.prototype.menuItemTree = function(menuName) {
         var items = {};
         var self = this;
         var menuItemsToTransform = {};
-        if (angular.isDefined(rootMenuName)) {
-            var rootMenuNameRegex = new RegExp("^" + rootMenuName + ".");
+        if (angular.isDefined(menuName)) {
+            var menuNameRegex = new RegExp("^" + menuName + ".");
             angular.forEach(this._menuItems, function(menuItem, menuItemName) {
-                if (menuItemName.match(rootMenuNameRegex) !== null) {
-                    menuItemsToTransform[menuItemName.replace(rootMenuNameRegex, "")] = menuItem;
+                if (menuItemName.match(menuNameRegex) !== null) {
+                    menuItemsToTransform[menuItemName.replace(menuNameRegex, "")] = menuItem;
                 }
             });
         } else {
@@ -186,7 +186,7 @@
             restrict: "AE",
             templateUrl: "template/eeh-navigation/navbar/eeh-navigation-navbar.html",
             scope: {
-                rootMenuName: "=",
+                menuName: "=",
                 brandText: "=",
                 brandState: "=",
                 brandHref: "=",
@@ -200,11 +200,11 @@
                 };
                 scope._navbarBrand = eehNavigation._navbarBrand;
                 scope.isNavbarCollapsed = false;
-                var menuItems = function() {
-                    return eehNavigation.menuItems();
-                };
-                scope.$watch(menuItems, function() {
-                    var menuItems = eehNavigation.menuItemTree(scope.rootMenuName);
+                scope.$watch(eehNavigation.menuItems, function() {
+                    if (angular.isUndefined(scope.menuName)) {
+                        return;
+                    }
+                    var menuItems = eehNavigation.menuItemTree(scope.menuName);
                     scope.leftNavbarMenuItems = menuItems.filter(function(item) {
                         return !item.isHeavy();
                     });
@@ -268,7 +268,7 @@
             transclude: true,
             templateUrl: "template/eeh-navigation/sidebar/eeh-navigation-sidebar.html",
             scope: {
-                rootMenuName: "=",
+                menuName: "=",
                 topOffset: "=?",
                 collapsedMenuItemIconClass: "=?",
                 expandedMenuItemIconClass: "=?",
@@ -287,9 +287,13 @@
                 scope.collapsedSidebarIconClass = scope.collapsedSidebarIconClass || "glyphicon-arrow-right";
                 scope.expandedSidebarIconClass = scope.expandedSidebarIconClass || "glyphicon-arrow-left";
                 scope.searchInputIconClass = scope.searchInputIconClass || "glyphicon-search";
-                scope.isTextCollapseButtonVisible = scope.isTextCollapseButtonVisible || true;
+                if (scope.isTextCollapseButtonVisible !== false) {
+                    scope.isTextCollapseButtonVisible = true;
+                }
                 scope.isTextCollapsed = scope.isTextCollapsed || false;
-                scope.searchInputIsVisible = scope.searchInputIsVisible || true;
+                if (scope.searchInputIsVisible !== false) {
+                    scope.searchInputIsVisible = true;
+                }
                 scope.iconBaseClass = function() {
                     return eehNavigation.iconBaseClass();
                 };
@@ -297,7 +301,7 @@
                     return eehNavigation.menuItems();
                 };
                 scope.$watch(menuItems, function() {
-                    scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.rootMenuName);
+                    scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.menuName);
                 });
                 var windowElement = angular.element($window);
                 windowElement.bind("resize", function() {
@@ -339,14 +343,14 @@
                         transcludedWrapper.addClass("sidebar-text-collapsed");
                         sidebarElement.addClass("sidebar-text-collapsed");
                         sidebarMenuItemTextElements.addClass("hidden");
+                        scope.sidebarMenuItems.forEach(function(menuItem) {
+                            menuItem.isCollapsed = true;
+                        });
                     } else {
                         transcludedWrapper.removeClass("sidebar-text-collapsed");
                         sidebarElement.removeClass("sidebar-text-collapsed");
                         sidebarMenuItemTextElements.removeClass("hidden");
                     }
-                    scope.sidebarMenuItems.forEach(function(menuItem) {
-                        menuItem.isCollapsed = true;
-                    });
                 }
                 scope.$on("$includeContentLoaded", function() {
                     setTextCollapseState();
