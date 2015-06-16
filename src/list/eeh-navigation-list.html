@@ -2,6 +2,7 @@
     <li ng-repeat="item in menuItems | orderBy:'weight'"
         ng-include="'template/eeh-navigation/list-menu-item.html'"
         ng-class="{ 'leaf': !item.hasChildren() }"
+        ng-if="item._isVisible()"
         eeh-navigation-active-menu-item="item"></li>
 </ul>
 
@@ -19,14 +20,10 @@
         <span eeh-navigation-menu-item-content="item"></span>
         <span class="icon-fw {{ iconBaseClass() }}"></span>
     </a>
-    <span ng-if="!item.state && !item.click && !item.href && !item.hasChildren()">
-        <span eeh-navigation-menu-item-content="item"></span>
-    </span>
     <ul ng-if="!item.state && item.hasChildren()">
         <li ng-repeat="item in item.children()"
             ng-include="'template/eeh-navigation/list-menu-item.html'"
             ng-if="item._isVisible()"
-            ui-sref-active-eq="active"
             eeh-navigation-active-menu-item="item"></li>
     </ul>
 </script>
