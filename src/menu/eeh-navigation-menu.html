@@ -1,0 +1,29 @@
+<ul>
+    <li ng-repeat="item in menuItems | orderBy:'weight'"
+        ng-include="'template/eeh-navigation/list-menu-item.html'"
+        ng-class="{ 'leaf': !item.hasChildren() }"
+        ng-if="item._isVisible()"
+        eeh-navigation-active-menu-item="item"></li>
+</ul>
+
+<script type="text/ng-template" id="template/eeh-navigation/list-menu-item.html">
+    <a ng-if="item.state" ui-sref="{{item.state}}">
+        <span eeh-navigation-menu-item-content="item"></span>
+    </a>
+    <a ng-if="item.click" ng-click="item.click()">
+        <span eeh-navigation-menu-item-content="item"></span>
+    </a>
+    <a ng-if="item.href" ng-href="{{item.href}}" target="{{item.target ? item.target : '_self'}}">
+        <span eeh-navigation-menu-item-content="item"></span>
+    </a>
+    <a ng-if="!item.state && item.hasChildren()">
+        <span eeh-navigation-menu-item-content="item"></span>
+        <span class="icon-fw {{ iconBaseClass() }}"></span>
+    </a>
+    <ul ng-if="!item.state && item.hasChildren()">
+        <li ng-repeat="item in item.children()"
+            ng-include="'template/eeh-navigation/list-menu-item.html'"
+            ng-if="item._isVisible()"
+            eeh-navigation-active-menu-item="item"></li>
+    </ul>
+</script>
