@@ -13,7 +13,7 @@
  *
  * @param {string} menuName Sets the name of the menu that the directive will render.
  */
-var ListDirective = function (eehNavigation) {
+var MenuDirective = function (eehNavigation) {
     return {
         restrict: 'AE',
         templateUrl: 'template/eeh-navigation/menu/eeh-navigation-menu.html',
@@ -35,4 +35,4 @@ var ListDirective = function (eehNavigation) {
     };
 };
 
-angular.module('eehNavigation').directive('eehNavigationList', ListDirective);
+angular.module('eehNavigation').directive('eehNavigationMenu', MenuDirective);
