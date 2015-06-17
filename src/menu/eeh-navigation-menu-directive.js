@@ -7,7 +7,7 @@
  *
  * @description
  * This directive allows for the creation of a framework-agnostic menu.
- * It is possible to add an a directive that adds behavior to, or otherwise manipulates, this directive.
+ * It is possible to add a directive that adds behavior to, or otherwise manipulates, this directive.
  * Third party jQuery menu plugins, such as Superfish and MetisMenu, can easily be used to style and add behavior to the
  * menu that this directive generates.
  *

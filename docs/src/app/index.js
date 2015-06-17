@@ -35,6 +35,10 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $url
             url: '/eeh-navigation-service',
             templateUrl: 'partials/api/core/service/eehNavigation.html'
         })
+        .state('docs.eehNavigationMenu', {
+            url: '/eeh-navigation-menu',
+            templateUrl: 'partials/api/menu/directive/eeh-navigation-menu.html'
+        })
         .state('docs.eehNavigationSidebar', {
             url: '/eeh-navigation-sidebar',
             templateUrl: 'partials/api/sidebar/directive/eeh-navigation-sidebar.html'
@@ -56,24 +60,24 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $url
             state: 'docs.changeLog',
             iconClass: 'fa-refresh'
         })
-        .menuItem('nav.service', {
-            text: 'Service'
+        .menuItem('nav.apiDocumentation', {
+            text: 'API Documentation'
         })
-        .menuItem('nav.service.eehNavigationService', {
+        .menuItem('nav.apiDocumentation.eehNavigationService', {
             text: 'eehNavigation',
             state: 'docs.eehNavigationService'
         })
-        .menuItem('nav.directive', {
-            text: 'Directive',
-            isCollapsed: false
+        .menuItem('nav.apiDocumentation.eehNavigationMenu', {
+            text: 'eehNavigationMenu',
+            state: 'docs.eehNavigationMenu'
         })
-        .menuItem('nav.directive.eehNavigationSidebar', {
-            text: 'eehNavigationSidebar',
-            state: 'docs.eehNavigationSidebar'
-        })
-        .menuItem('nav.directive.eehNavigationNavbar', {
+        .menuItem('nav.apiDocumentation.eehNavigationNavbar', {
             text: 'eehNavigationNavbar',
             state: 'docs.eehNavigationNavbar'
+        })
+        .menuItem('nav.apiDocumentation.eehNavigationSidebar', {
+            text: 'eehNavigationSidebar',
+            state: 'docs.eehNavigationSidebar'
         });
 });
 
