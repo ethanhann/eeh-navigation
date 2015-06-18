@@ -8,6 +8,7 @@
 
 ## 4.0.0
 __Enhancements__
+* Add framework-agnostic menu directive called __eeh-navigation-menu__.
 * Make search input available when sidebar is collapsed.
 * Move sidebar related variables from core service into sidebar directive.
 * Remove some unneeded internal variables in core nav service.

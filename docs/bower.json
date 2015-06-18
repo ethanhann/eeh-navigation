@@ -12,7 +12,7 @@
     "bootstrap-sass": "~3.3.4",
     "angular-bootstrap": "~0.13.0",
     "angular": "~1.3.4",
-    "eeh-navigation": "4.0.0-beta3",
+    "eeh-navigation": "4.0.0",
     "font-awesome": "~4.3.0",
     "google-code-prettify": "~1.0.4"
   },

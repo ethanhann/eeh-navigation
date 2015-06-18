@@ -1,7 +1,7 @@
 {
   "name": "eeh-navigation",
-  "version": "4.0.0-beta3",
-  "description": "A data-driven AngularJS, Bootstrap navigation directive.",
+  "version": "4.0.0",
+  "description": "An AngularJS menu module.",
   "main": "Gruntfile.js",
   "scripts": {
     "postinstall": "bower install",

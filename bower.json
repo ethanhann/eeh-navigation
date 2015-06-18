@@ -1,6 +1,6 @@
 {
   "name": "eeh-navigation",
-  "version": "4.0.0-beta3",
+  "version": "4.0.0",
   "main": [
     "dist/eeh-navigation.css",
     "dist/eeh-navigation.js",
@@ -10,7 +10,7 @@
   "authors": [
     "Ethan Hann <ethanhann@gmail.com>"
   ],
-  "description": "A data-driven AngularJS, Bootstrap navigation directive.",
+  "description": "An AngularJS menu module",
   "keywords": [
     "AngularJS",
     "Bootstrap",
