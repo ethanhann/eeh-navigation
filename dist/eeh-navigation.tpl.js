@@ -8,6 +8,39 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
   );
 
 
+  $templateCache.put('template/eeh-navigation/menu/eeh-navigation-menu.html',
+    "<ul>\n" +
+    "    <li ng-repeat=\"item in menuItems | orderBy:'weight'\"\n" +
+    "        ng-include=\"'template/eeh-navigation/list-menu-item.html'\"\n" +
+    "        ng-class=\"{ 'leaf': !item.hasChildren() }\"\n" +
+    "        ng-if=\"item._isVisible()\"\n" +
+    "        eeh-navigation-active-menu-item=\"item\"></li>\n" +
+    "</ul>\n" +
+    "\n" +
+    "<script type=\"text/ng-template\" id=\"template/eeh-navigation/list-menu-item.html\">\n" +
+    "    <a ng-if=\"item.state\" ui-sref=\"{{item.state}}\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"item.click\" ng-click=\"item.click()\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\" target=\"{{item.target ? item.target : '_self'}}\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"!item.state && item.hasChildren()\">\n" +
+    "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
+    "        <span class=\"icon-fw {{ iconBaseClass() }}\"></span>\n" +
+    "    </a>\n" +
+    "    <ul ng-if=\"!item.state && item.hasChildren()\">\n" +
+    "        <li ng-repeat=\"item in item.children()\"\n" +
+    "            ng-include=\"'template/eeh-navigation/list-menu-item.html'\"\n" +
+    "            ng-if=\"item._isVisible()\"\n" +
+    "            eeh-navigation-active-menu-item=\"item\"></li>\n" +
+    "    </ul>\n" +
+    "</script>\n"
+  );
+
+
   $templateCache.put('template/eeh-navigation/navbar/eeh-navigation-navbar-brand.html',
     "<a ng-if=\"state && !linkUrl && text\"\n" +
     "   class=\"navbar-brand\"\n" +
@@ -145,7 +178,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "                <eeh-navigation-search-input class=\"sidebar-search-input\"\n" +
     "                                             icon-class=\"searchInputIconClass\"\n" +
     "                                             submit=\"searchInputSubmit\"\n" +
-    "                                             is-collapsed=\"isTextCollapsed\"></eeh-navigation-search-input>\n" +
+    "                                             is-collapsed=\"sidebarIsCollapsed\"></eeh-navigation-search-input>\n" +
     "            </li>\n" +
     "            <li ng-repeat=\"item in sidebarMenuItems | orderBy:'weight'\"\n" +
     "                ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
@@ -154,9 +187,9 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "                ng-click=\"topLevelMenuItemClickHandler(item)\"fire\n" +
     "                ui-sref-active-eq=\"active\"\n" +
     "                eeh-navigation-active-menu-item=\"item\"></li>\n" +
-    "            <li ng-click=\"toggleSidebarTextCollapse()\" ng-if=\"isTextCollapseButtonVisible && isSidebarVisible()\">\n" +
+    "            <li ng-click=\"toggleSidebarTextCollapse()\" ng-if=\"sidebarCollapsedButtonIsVisible && isSidebarVisible()\">\n" +
     "                <a>\n" +
-    "                    <span class=\"icon-fw {{ iconBaseClass() }}\" ng-class=\"isTextCollapsed ? collapsedSidebarIconClass : expandedSidebarIconClass\"></span>\n" +
+    "                    <span class=\"icon-fw {{ iconBaseClass() }}\" ng-class=\"sidebarIsCollapsed ? sidebarCollapsedIconClass : sidebarExpandedIconClass\"></span>\n" +
     "                </a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
@@ -185,10 +218,10 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "       ng-click=\"item.isCollapsed = !item.isCollapsed\">\n" +
     "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
     "        <span class=\"navbar-right sidebar-arrow icon-fw {{ iconBaseClass() }}\"\n" +
-    "              ng-class=\"item.isCollapsed ? collapsedMenuItemIconClass : expandedMenuItemIconClass\"></span>\n" +
+    "              ng-class=\"item.isCollapsed ? menuItemCollapsedIconClass : menuItemExpandedIconClass\"></span>\n" +
     "    </a>\n" +
     "    <ul ng-if=\"!item.state && item.hasChildren()\" collapse=\"item.isCollapsed\"\n" +
-    "        ng-class=\"{ 'text-collapsed': isTextCollapsed }\"\n" +
+    "        ng-class=\"{ 'text-collapsed': sidebarIsCollapsed }\"\n" +
     "        class=\"nav sidebar-nav sidebar-nav-nested\">\n" +
     "        <li ng-repeat=\"item in item.children()\"\n" +
     "            ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +

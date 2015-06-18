@@ -1,4 +1,5 @@
-452fa41 (HEAD, origin/master, origin/HEAD, master) Make sidebar directive scope variables more consistently named
+3cce7cb (HEAD, origin/master, origin/HEAD, master) Prepare for release
+452fa41 Make sidebar directive scope variables more consistently named
 672f23f Update menu doc
 d2e09c0 Update doc state
 c483fe8 Add translation documentation
