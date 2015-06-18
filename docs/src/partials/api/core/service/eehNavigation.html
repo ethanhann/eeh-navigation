@@ -149,7 +149,7 @@ eehNavigation
 <a href="http://getbootstrap.com/components/#glyphicons">Glyphicons</a> or
 <a href="http://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a>.</p>
 <pre><code class="lang-javascript">eehNavigationProvider
-.sidebarMenuItem(&#39;foo.home&#39;, {
+.menuItem(&#39;foo.home&#39;, {
     text: &#39;Home&#39;,
     href: &#39;/home&#39;
     iconClass: &#39;glyphicon-home&#39;
@@ -159,6 +159,118 @@ eehNavigation
 To use another library like Font Awesome, the base icon class needs to be set.
 For example, &quot;fa&quot; is the base icon class of font awesome.</p>
 <pre><code class="lang-javascript">eehNavigationProvider.iconBaseClass(&#39;fa&#39;);
+</code></pre>
+<h2 id="language-translation">Language Translation</h2>
+<p>This doc provides an example of how to use <a href="http://angular-translate.github.io/">angular-translate</a> with <a href="http://ethanhann.com/eeh-navigation/">eeh-navigation</a>.</p>
+<p>Internally, all menu item names are passed through the angular-translate module&#39;s <em>translate</em> filter.</p>
+<h3 id="include-angular-translate-javascript">Include angular-translate JavaScript</h3>
+<pre><code>&lt;script src=&quot;bower_components/angular-translate/angular-translate.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3 id="enable-angular-translate-module">Enable angular-translate Module</h3>
+<pre><code>angular.module(&#39;myApp&#39;, [&#39;pascalprecht.translate&#39;]);
+</code></pre>
+<h3 id="add-menu-items-to-translate">Add Menu Items to Translate</h3>
+<pre><code>angular.module(&#39;myApp&#39;).config([&#39;eehNavigationProvider&#39;,
+function (eehNavigationProvider) {
+    eehNavigationProvider
+        .menuItem(&#39;home&#39;, {
+            text: &#39;Home&#39;,   // Will be translated.
+            href: &#39;/home&#39;,
+        })
+        .menuItem(&#39;logout&#39;, {
+            text: &#39;Logout&#39;, // Will be translated.
+            href: &#39;/logout&#39;,
+        });
+}]);
+</code></pre>
+<h3 id="add-translations">Add Translations</h3>
+<pre><code>angular.module(&#39;myApp&#39;).config([&#39;$translateProvider&#39;, &#39;eehNavigationProvider&#39;,
+function ($translateProvider, eehNavigationProvider) {
+    // ...
+
+    // English translation
+    $translateProvider
+        .translations(&#39;en&#39;, {
+            &#39;Home&#39;: &#39;Home&#39;,
+            &#39;Logout&#39;: &#39;Logout&#39;
+        });
+
+    // German translation
+    $translateProvider
+        .translations(&#39;de&#39;, {
+            &#39;Home&#39;: &#39;Zuhause&#39;,
+            &#39;Logout&#39;: &#39;Abmelden&#39;
+        });
+}]);
+</code></pre>
+<h3 id="add-dropdown-to-toggle-between-languages">Add Dropdown to Toggle Between Languages</h3>
+<pre><code>angular.module(&#39;myApp&#39;).config([&#39;$translateProvider&#39;, &#39;eehNavigationProvider&#39;,
+function ($translateProvider, eehNavigationProvider) {
+    // ...
+
+    // Switch languages via dropdown
+    eehNavigationProvider
+        .menuItem(&#39;language&#39;, {
+            text: &#39;Language&#39;,
+            iconClass: &#39;fa-language&#39;
+        })
+        .menuItem(&#39;language.en&#39;, {
+            text: &#39;English&#39;,
+            click: function () {
+                $translateProvider.use(&#39;en&#39;);
+            }
+        })
+        .menuItem(&#39;language.de&#39;, {
+            text: &#39;Deutsch&#39;,
+            click: function () {
+                $translateProvider.use(&#39;de&#39;);
+            }
+        });
+}]);
+</code></pre>
+<h2 id="nested-menu-items">Nested Menu Items</h2>
+<p>Menu items can be nested by using a <strong>.</strong> in the first parameter of menuItem.
+The below example illustates how to nest child menu items under parent menu items.</p>
+<p>If a menu item has children, do not assign a menu item action (i.e. href, click, or state) to it.
+Menu item actions for parent menu items have not been implemented.</p>
+<p>There is theoretically no limit to the level of nesting that the <strong>eehNavigation</strong> service supports.
+The various menu directives provided by this module may have limits to what they can adequately display.</p>
+<pre><code>eehNavigationProvider
+.menuItem(&#39;menu.root&#39;, { // The root level of the nested menu.
+    text: &#39;Root&#39;
+})
+.menuItem(&#39;menu.root.foo&#39;, { // The first item under root.
+    text: &#39;Foo&#39;,
+    href: &#39;/some/path&#39;
+})
+.menuItem(&#39;menu.root.bar&#39;, { // The second item under root.
+    text: &#39;Bar&#39;,
+    href: &#39;/some/path&#39;
+})
+.menuItem(&#39;menu.root.baz&#39;, { // The third item under root.
+    text: &#39;Baz&#39;
+})
+.menuItem(&#39;menu.root.baz.qux&#39;, { // The first item under root.baz
+    text: &#39;Quz&#39;,
+    href: &#39;/some/path&#39;
+})
+.menuItem(&#39;menu.root.baz.quux&#39;, { // The second item under root.baz
+    text: &#39;Quux&#39;,
+    href: &#39;/some/path&#39;
+});
+</code></pre>
+<h3 id="iscollapsed">isCollapsed</h3>
+<p>A boolean value. Configure the collapse state of a parent menu item.
+Each parent in a nested hierarchy has an independent collapse state.</p>
+<pre><code>eehNavigationProvider
+.menuItem(&#39;menu.root&#39;, {
+    text: &#39;Root&#39;,
+    isCollapsed: true
+})
+.menuItem(&#39;menu.root.foo&#39;, {
+    text: &#39;Foo&#39;,
+    href: &#39;/some/path&#39;
+});
 </code></pre>
 
 </div>

@@ -181,7 +181,7 @@
  *
  * ```javascript
  * eehNavigationProvider
- * .sidebarMenuItem('foo.home', {
+ * .menuItem('foo.home', {
  *     text: 'Home',
  *     href: '/home'
  *     iconClass: 'glyphicon-home'
@@ -194,6 +194,146 @@
  *
  * ```javascript
  * eehNavigationProvider.iconBaseClass('fa');
+ * ```
+ *
+ * ## Language Translation
+ *
+ * This doc provides an example of how to use [angular-translate](http://angular-translate.github.io/) with [eeh-navigation](http://ethanhann.com/eeh-navigation/).
+ *
+ * Internally, all menu item names are passed through the angular-translate module's _translate_ filter.
+ *
+ * ### Include angular-translate JavaScript
+ *
+ * ```
+ * <script src="bower_components/angular-translate/angular-translate.js"></script>
+ * ```
+ *
+ * ### Enable angular-translate Module
+ *
+ * ```
+ * angular.module('myApp', ['pascalprecht.translate']);
+ * ```
+ *
+ * ### Add Menu Items to Translate
+ *
+ * ```
+ * angular.module('myApp').config(['eehNavigationProvider',
+ * function (eehNavigationProvider) {
+ *     eehNavigationProvider
+ *         .menuItem('home', {
+ *             text: 'Home',   // Will be translated.
+ *             href: '/home',
+ *         })
+ *         .menuItem('logout', {
+ *             text: 'Logout', // Will be translated.
+ *             href: '/logout',
+ *         });
+ * }]);
+ * ```
+ *
+ * ### Add Translations
+ *
+ * ```
+ * angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
+ * function ($translateProvider, eehNavigationProvider) {
+ *     // ...
+ *
+ *     // English translation
+ *     $translateProvider
+ *         .translations('en', {
+ *             'Home': 'Home',
+ *             'Logout': 'Logout'
+ *         });
+ *
+ *     // German translation
+ *     $translateProvider
+ *         .translations('de', {
+ *             'Home': 'Zuhause',
+ *             'Logout': 'Abmelden'
+ *         });
+ * }]);
+ * ```
+ *
+ * ### Add Dropdown to Toggle Between Languages
+ *
+ * ```
+ * angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
+ * function ($translateProvider, eehNavigationProvider) {
+ *     // ...
+ *
+ *     // Switch languages via dropdown
+ *     eehNavigationProvider
+ *         .menuItem('language', {
+ *             text: 'Language',
+ *             iconClass: 'fa-language'
+ *         })
+ *         .menuItem('language.en', {
+ *             text: 'English',
+ *             click: function () {
+ *                 $translateProvider.use('en');
+ *             }
+ *         })
+ *         .menuItem('language.de', {
+ *             text: 'Deutsch',
+ *             click: function () {
+ *                 $translateProvider.use('de');
+ *             }
+ *         });
+ * }]);
+ * ```
+ *
+ * ## Nested Menu Items
+ *
+ * Menu items can be nested by using a __.__ in the first parameter of menuItem.
+ * The below example illustates how to nest child menu items under parent menu items.
+ *
+ * If a menu item has children, do not assign a menu item action (i.e. href, click, or state) to it.
+ * Menu item actions for parent menu items have not been implemented.
+ *
+ * There is theoretically no limit to the level of nesting that the __eehNavigation__ service supports.
+ * The various menu directives provided by this module may have limits to what they can adequately display.
+ *
+ * ```
+ * eehNavigationProvider
+ *     .menuItem('menu.root', { // The root level of the nested menu.
+ *         text: 'Root'
+ *     })
+ *     .menuItem('menu.root.foo', { // The first item under root.
+ *         text: 'Foo',
+ *         href: '/some/path'
+ *     })
+ *     .menuItem('menu.root.bar', { // The second item under root.
+ *         text: 'Bar',
+ *         href: '/some/path'
+ *     })
+ *     .menuItem('menu.root.baz', { // The third item under root.
+ *         text: 'Baz'
+ *     })
+ *     .menuItem('menu.root.baz.qux', { // The first item under root.baz
+ *         text: 'Quz',
+ *         href: '/some/path'
+ *     })
+ *     .menuItem('menu.root.baz.quux', { // The second item under root.baz
+ *         text: 'Quux',
+ *         href: '/some/path'
+ *     });
+ * ```
+ *
+ * ### isCollapsed
+ *
+ * A boolean value. Configure the collapse state of a parent menu item.
+ * Each parent in a nested hierarchy has an independent collapse state.
+ *
+ * ```
+ * eehNavigationProvider
+ *     .menuItem('menu.root', {
+ *         text: 'Root',
+ *         isCollapsed: true
+ *     })
+ *     .menuItem('menu.root.foo', {
+ *         text: 'Foo',
+ *         href: '/some/path'
+ *     });
  * ```
  */
 var NavigationService = function () {
