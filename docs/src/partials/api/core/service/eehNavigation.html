@@ -161,17 +161,12 @@ For example, &quot;fa&quot; is the base icon class of font awesome.</p>
 <pre><code class="lang-javascript">eehNavigationProvider.iconBaseClass(&#39;fa&#39;);
 </code></pre>
 <h2 id="language-translation">Language Translation</h2>
-<p>This doc provides an example of how to use <a href="http://angular-translate.github.io/">angular-translate</a> with <a href="http://ethanhann.com/eeh-navigation/">eeh-navigation</a>.</p>
-<p>Internally, all menu item names are passed through the angular-translate module&#39;s <em>translate</em> filter.</p>
-<h3 id="include-angular-translate-javascript">Include angular-translate JavaScript</h3>
-<pre><code>&lt;script src=&quot;bower_components/angular-translate/angular-translate.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-<h3 id="enable-angular-translate-module">Enable angular-translate Module</h3>
-<pre><code>angular.module(&#39;myApp&#39;, [&#39;pascalprecht.translate&#39;]);
-</code></pre>
+<p>This doc provides an example of how to use <a href="http://angular-translate.github.io/">angular-translate</a> to translate menu item text.</p>
+<p>Internally, all menu item names are passed through the angular-translate module&#39;s <em>translate</em> filter.
+If you do not include <strong>angular-translate</strong> or do not specify translations, then the menu item&#39;s text will be displayed normally.</p>
 <h3 id="add-menu-items-to-translate">Add Menu Items to Translate</h3>
-<pre><code>angular.module(&#39;myApp&#39;).config([&#39;eehNavigationProvider&#39;,
-function (eehNavigationProvider) {
+<pre><code>angular.module(&#39;myApp&#39;).config([&#39;$translateProvider&#39;, &#39;eehNavigationProvider&#39;,
+function ($translateProvider, eehNavigationProvider) {
     eehNavigationProvider
         .menuItem(&#39;home&#39;, {
             text: &#39;Home&#39;,   // Will be translated.
@@ -203,7 +198,7 @@ function ($translateProvider, eehNavigationProvider) {
         });
 }]);
 </code></pre>
-<h3 id="add-dropdown-to-toggle-between-languages">Add Dropdown to Toggle Between Languages</h3>
+<h3 id="add-nested-menu-items-to-toggle-between-languages">Add Nested Menu Items to Toggle Between Languages</h3>
 <pre><code>angular.module(&#39;myApp&#39;).config([&#39;$translateProvider&#39;, &#39;eehNavigationProvider&#39;,
 function ($translateProvider, eehNavigationProvider) {
     // ...
@@ -211,8 +206,7 @@ function ($translateProvider, eehNavigationProvider) {
     // Switch languages via dropdown
     eehNavigationProvider
         .menuItem(&#39;language&#39;, {
-            text: &#39;Language&#39;,
-            iconClass: &#39;fa-language&#39;
+            text: &#39;Language&#39;
         })
         .menuItem(&#39;language.en&#39;, {
             text: &#39;English&#39;,
@@ -230,7 +224,7 @@ function ($translateProvider, eehNavigationProvider) {
 </code></pre>
 <h2 id="nested-menu-items">Nested Menu Items</h2>
 <p>Menu items can be nested by using a <strong>.</strong> in the first parameter of menuItem.
-The below example illustates how to nest child menu items under parent menu items.</p>
+The below example illustrates how to nest child menu items under parent menu items.</p>
 <p>If a menu item has children, do not assign a menu item action (i.e. href, click, or state) to it.
 Menu item actions for parent menu items have not been implemented.</p>
 <p>There is theoretically no limit to the level of nesting that the <strong>eehNavigation</strong> service supports.

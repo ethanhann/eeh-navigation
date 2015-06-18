@@ -198,27 +198,16 @@
  *
  * ## Language Translation
  *
- * This doc provides an example of how to use [angular-translate](http://angular-translate.github.io/) with [eeh-navigation](http://ethanhann.com/eeh-navigation/).
+ * This doc provides an example of how to use [angular-translate](http://angular-translate.github.io/) to translate menu item text.
  *
  * Internally, all menu item names are passed through the angular-translate module's _translate_ filter.
- *
- * ### Include angular-translate JavaScript
- *
- * ```
- * <script src="bower_components/angular-translate/angular-translate.js"></script>
- * ```
- *
- * ### Enable angular-translate Module
- *
- * ```
- * angular.module('myApp', ['pascalprecht.translate']);
- * ```
+ * If you do not include __angular-translate__ or do not specify translations, then the menu item's text will be displayed normally.
  *
  * ### Add Menu Items to Translate
  *
  * ```
- * angular.module('myApp').config(['eehNavigationProvider',
- * function (eehNavigationProvider) {
+ * angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
+ * function ($translateProvider, eehNavigationProvider) {
  *     eehNavigationProvider
  *         .menuItem('home', {
  *             text: 'Home',   // Will be translated.
@@ -254,7 +243,7 @@
  * }]);
  * ```
  *
- * ### Add Dropdown to Toggle Between Languages
+ * ### Add Nested Menu Items to Toggle Between Languages
  *
  * ```
  * angular.module('myApp').config(['$translateProvider', 'eehNavigationProvider',
@@ -264,8 +253,7 @@
  *     // Switch languages via dropdown
  *     eehNavigationProvider
  *         .menuItem('language', {
- *             text: 'Language',
- *             iconClass: 'fa-language'
+ *             text: 'Language'
  *         })
  *         .menuItem('language.en', {
  *             text: 'English',
@@ -285,7 +273,7 @@
  * ## Nested Menu Items
  *
  * Menu items can be nested by using a __.__ in the first parameter of menuItem.
- * The below example illustates how to nest child menu items under parent menu items.
+ * The below example illustrates how to nest child menu items under parent menu items.
  *
  * If a menu item has children, do not assign a menu item action (i.e. href, click, or state) to it.
  * Menu item actions for parent menu items have not been implemented.
