@@ -61,7 +61,8 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $url
             iconClass: 'fa-refresh'
         })
         .menuItem('nav.apiDocumentation', {
-            text: 'API Documentation'
+            text: 'API Documentation',
+            iconClass: 'fa-book'
         })
         .menuItem('nav.apiDocumentation.eehNavigationService', {
             text: 'eehNavigation',
