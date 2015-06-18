@@ -5,7 +5,7 @@
                 <eeh-navigation-search-input class="sidebar-search-input"
                                              icon-class="searchInputIconClass"
                                              submit="searchInputSubmit"
-                                             is-collapsed="isTextCollapsed"></eeh-navigation-search-input>
+                                             is-collapsed="sidebarIsCollapsed"></eeh-navigation-search-input>
             </li>
             <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
                 ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
@@ -14,9 +14,9 @@
                 ng-click="topLevelMenuItemClickHandler(item)"fire
                 ui-sref-active-eq="active"
                 eeh-navigation-active-menu-item="item"></li>
-            <li ng-click="toggleSidebarTextCollapse()" ng-if="isTextCollapseButtonVisible && isSidebarVisible()">
+            <li ng-click="toggleSidebarTextCollapse()" ng-if="sidebarCollapsedButtonIsVisible && isSidebarVisible()">
                 <a>
-                    <span class="icon-fw {{ iconBaseClass() }}" ng-class="isTextCollapsed ? collapsedSidebarIconClass : expandedSidebarIconClass"></span>
+                    <span class="icon-fw {{ iconBaseClass() }}" ng-class="sidebarIsCollapsed ? sidebarCollapsedIconClass : sidebarExpandedIconClass"></span>
                 </a>
             </li>
         </ul>
@@ -45,10 +45,10 @@
        ng-click="item.isCollapsed = !item.isCollapsed">
         <span eeh-navigation-menu-item-content="item"></span>
         <span class="navbar-right sidebar-arrow icon-fw {{ iconBaseClass() }}"
-              ng-class="item.isCollapsed ? collapsedMenuItemIconClass : expandedMenuItemIconClass"></span>
+              ng-class="item.isCollapsed ? menuItemCollapsedIconClass : menuItemExpandedIconClass"></span>
     </a>
     <ul ng-if="!item.state && item.hasChildren()" collapse="item.isCollapsed"
-        ng-class="{ 'text-collapsed': isTextCollapsed }"
+        ng-class="{ 'text-collapsed': sidebarIsCollapsed }"
         class="nav sidebar-nav sidebar-nav-nested">
         <li ng-repeat="item in item.children()"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"

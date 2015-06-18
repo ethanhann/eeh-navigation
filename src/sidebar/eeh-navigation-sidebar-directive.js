@@ -15,21 +15,21 @@
  * This attribute offsets the top position of the sidebar.
  * It should equal the height of the navbar, or 0 if there is no navbar.
  * This attribute should be used if the navbar's height is something different or if the navbar is not used.
- * @param {string=} [collapsedMenuItemIconClass="glyphicon-chevron-left"]
+ * @param {string=} [menuItemCollapsedIconClass="glyphicon-chevron-left"]
  * This attribute sets the icon used to indicate that a parent of a nested menu item is collapsed.
- * @param {string=} [expandedMenuItemIconClass="glyphicon-chevron-down"]
+ * @param {string=} [menuItemExpandedIconClass="glyphicon-chevron-down"]
  * This attribute sets the icon used to indicate that a parent of a nested menu item is expanded.
- * @param {string=} [collapsedSidebarIconClass="glyphicon-arrow-right"]
+ * @param {string=} [sidebarCollapsedIconClass="glyphicon-arrow-right"]
  * This attribute sets the icon used to indicate that the sidebar is collapsed.
- * @param {string=} [expandedSidebarIconClass="glyphicon-arrow-left"]
+ * @param {string=} [sidebarExpandedIconClass="glyphicon-arrow-left"]
  * This attribute sets the icon used to indicate that the search input is use for searching.
  * @param {string=} [searchInputIconClass="glyphicon-search"]
  * This attribute sets the icon used to indicate that the sidebar is collapsed.
  * @param {boolean=} [searchInputIsVisible=true]
  * This attribute causes the search input to be shown or hidden.
- * @param {boolean=} [isTextCollapseButtonVisible=true]
+ * @param {boolean=} [sidebarCollapsedButtonIsVisible=true]
  * This attribute causes the text collapse toggle button to be shown or hidden.
- * @param {boolean=} [isTextCollapsed=false]
+ * @param {boolean=} [sidebarIsCollapsed=false]
  * This attribute sets the state of the text collapse button.
  */
 var SidebarDirective = function ($document, $window, eehNavigation) {
@@ -40,27 +40,27 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
         scope: {
             menuName: '=',
             topOffset: '=?',
-            collapsedMenuItemIconClass: '=?',
-            expandedMenuItemIconClass: '=?',
-            collapsedSidebarIconClass: '=?',
-            expandedSidebarIconClass: '=?',
+            menuItemCollapsedIconClass: '=?', //menuItemCollapsedIconClass
+            menuItemExpandedIconClass: '=?', // menuItemExpandedIconClass
+            sidebarCollapsedIconClass: '=?', //sidebarCollapsedIconClass
+            sidebarExpandedIconClass: '=?', //sidebarExpandedIconClass
             searchInputIconClass: '=?',
             searchInputIsVisible: '=?',
             searchInputSubmit: '=',
-            isTextCollapseButtonVisible: '=?',
-            isTextCollapsed: '=?'
+            sidebarCollapsedButtonIsVisible: '=?', // sidebarCollapsedButtonIsVisible
+            sidebarIsCollapsed: '=?' // sidebarIsCollapsed
         },
         link: function (scope, element) {
             scope.topOffset = scope.topOffset || 51; // 51 is the default height of the navbar component
-            scope.collapsedMenuItemIconClass = scope.collapsedMenuItemIconClass || 'glyphicon-chevron-left';
-            scope.expandedMenuItemIconClass = scope.expandedMenuItemIconClass || 'glyphicon-chevron-down';
-            scope.collapsedSidebarIconClass = scope.collapsedSidebarIconClass || 'glyphicon-arrow-right';
-            scope.expandedSidebarIconClass = scope.expandedSidebarIconClass || 'glyphicon-arrow-left';
+            scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || 'glyphicon-chevron-left';
+            scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || 'glyphicon-chevron-down';
+            scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || 'glyphicon-arrow-right';
+            scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || 'glyphicon-arrow-left';
             scope.searchInputIconClass = scope.searchInputIconClass || 'glyphicon-search';
-            if (scope.isTextCollapseButtonVisible !== false)  {
-                scope.isTextCollapseButtonVisible = true;
+            if (scope.sidebarCollapsedButtonIsVisible !== false)  {
+                scope.sidebarCollapsedButtonIsVisible = true;
             }
-            scope.isTextCollapsed = scope.isTextCollapsed || false;
+            scope.sidebarIsCollapsed = scope.sidebarIsCollapsed || false;
             if (scope.searchInputIsVisible !== false)  {
                 scope.searchInputIsVisible = true;
             }
@@ -107,7 +107,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             }, true);
 
             scope.toggleSidebarTextCollapse = function() {
-                scope.isTextCollapsed = !scope.isTextCollapsed;
+                scope.sidebarIsCollapsed = !scope.sidebarIsCollapsed;
                 setTextCollapseState();
             };
             function setTextCollapseState() {
@@ -116,7 +116,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
                 var topLevelSidebarArrowSelector = menuItemSelectorBase + '.sidebar-arrow';
                 var sidebarMenuItemTextElements = element.find(topLevelMenuItemTextSelector + ',' + topLevelSidebarArrowSelector);
                 var sidebarElement = element.find('.eeh-navigation-sidebar');
-                if (scope.isTextCollapsed) {
+                if (scope.sidebarIsCollapsed) {
                     transcludedWrapper.addClass('sidebar-text-collapsed');
                     sidebarElement.addClass('sidebar-text-collapsed');
                     sidebarMenuItemTextElements.addClass('hidden');
@@ -147,7 +147,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             };
 
             scope.topLevelMenuItemClickHandler = function (clickedMenuItem) {
-                if (!scope.isTextCollapsed || !clickedMenuItem.hasChildren()) {
+                if (!scope.sidebarIsCollapsed || !clickedMenuItem.hasChildren()) {
                     return;
                 }
                 scope.sidebarMenuItems
