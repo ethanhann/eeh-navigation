@@ -2,6 +2,11 @@
 header {
     .jumbotron {
         margin-bottom: 0;
+
+        h1 > a:focus,
+        h1 > a:hover {
+            text-decoration: none;
+        }
     }
 }
 
