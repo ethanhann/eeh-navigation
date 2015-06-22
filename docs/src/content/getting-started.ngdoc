@@ -79,11 +79,11 @@ angular.module('myApp', [
 ### eeh-navigation-navbar
 
 This directive adds a Twitter Bootstrap based navbar to the template.
-To associate the directive with the "myFirstMenu" menu defined in the previous step, use the __root-menu-name__ attribute.
+To associate the directive with the "myFirstMenu" menu defined in the previous step, use the __menu-name__ attribute.
 
 The navbar directive is used like so:
 ```html
-<eeh-navigation-navbar root-menu-name="'foo'"></eeh-navigation-navbar>
+<eeh-navigation-navbar menu-name="'foo'"></eeh-navigation-navbar>
 ```
 
 ### eeh-navigation-sidebar
@@ -93,7 +93,7 @@ If ui-router is used (which is recommended) then the sidebar directive should wr
 It should also be in a template that is at or near the top of the state hierarchy.
 
 ```html
-<eeh-navigation-sidebar root-menu-name="'bar'">
+<eeh-navigation-sidebar menu-name="'bar'">
     <ui-view></ui-view>
 </eeh-navigation-sidebar>
 ```
