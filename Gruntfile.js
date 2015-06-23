@@ -11,6 +11,7 @@ module.exports = function (grunt) {
             build: 'build',
             dist: 'dist',
             libName: 'eeh-navigation',
+            docs: 'docs',
             demo: '../eeh-navigation-demo/bower_components/eeh-navigation/dist'
         },
         copy: {
@@ -36,7 +37,7 @@ module.exports = function (grunt) {
                 basePath: '<%= settings.src %>'
             },
             // Process all js files in `src` and its subfolders ...
-            src: ['<%= settings.src %>/**/*.js'],
+            src: ['<%= settings.src %>/**/*.js', '<%= settings.docs %>/content/**/*.ngdoc'],
             // Specify where write our generated doc files directory
             dest: 'build/docs'
         },

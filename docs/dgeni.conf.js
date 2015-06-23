@@ -14,9 +14,9 @@ module.exports = new Package('eeh-navigation', [
         readFilesProcessor.basePath = path.resolve(__dirname);
         readFilesProcessor.sourceFiles = [
             { include: '../src/**/*.js', basePath: '../src' },
-            { include: './src/content/**/*.ngdoc', basePath: './src/content' }
+            { include: 'content/**/*.ngdoc', basePath: 'content' }
         ];
-        writeFilesProcessor.outputFolder = './src';
+        writeFilesProcessor.outputFolder = './src/app';
     })
     .config(function (templateFinder, templateEngine) {
         // Nunjucks and Angular conflict in their template bindings so change the Nunjucks

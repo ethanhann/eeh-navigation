@@ -25,27 +25,27 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $url
         })
         .state('docs.gettingStarted', {
             url: '/getting-started',
-            templateUrl: 'partials/getting-started.html'
+            templateUrl: 'app/partials/getting-started.html'
         })
         .state('docs.changeLog', {
             url: '/change-log',
-            templateUrl: 'partials/change-log.html'
+            templateUrl: 'app/partials/change-log.html'
         })
         .state('docs.eehNavigationService', {
             url: '/eeh-navigation-service',
-            templateUrl: 'partials/api/core/service/eehNavigation.html'
+            templateUrl: 'app/partials/api/core/service/eehNavigation.html'
         })
         .state('docs.eehNavigationMenu', {
             url: '/eeh-navigation-menu',
-            templateUrl: 'partials/api/menu/directive/eeh-navigation-menu.html'
+            templateUrl: 'app/partials/api/menu/directive/eeh-navigation-menu.html'
         })
         .state('docs.eehNavigationSidebar', {
             url: '/eeh-navigation-sidebar',
-            templateUrl: 'partials/api/sidebar/directive/eeh-navigation-sidebar.html'
+            templateUrl: 'app/partials/api/sidebar/directive/eeh-navigation-sidebar.html'
         })
         .state('docs.eehNavigationNavbar', {
             url: '/eeh-navigation-navbar',
-            templateUrl: 'partials/api/navbar/directive/eeh-navigation-navbar.html'
+            templateUrl: 'app/partials/api/navbar/directive/eeh-navigation-navbar.html'
         });
 
     eehNavigationProvider
