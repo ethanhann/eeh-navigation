@@ -11,6 +11,7 @@
  * It should also be in a template that is at or near the top of the state hierarchy.
  *
  * @param {string=} menuName Sets the name of the menu that the directive will render.
+ * @param {string=} [navClass=navbar-default] Sets the ng-class attribute of the top-level nav element.
  * @param {number=} [topOffset=51]
  * This attribute offsets the top position of the sidebar.
  * It should equal the height of the navbar, or 0 if there is no navbar.
@@ -39,6 +40,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
         templateUrl: 'template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
         scope: {
             menuName: '=',
+            navClass: '=?',
             topOffset: '=?',
             menuItemCollapsedIconClass: '=?', //menuItemCollapsedIconClass
             menuItemExpandedIconClass: '=?', // menuItemExpandedIconClass
@@ -52,6 +54,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
         },
         link: function (scope, element) {
             scope.topOffset = scope.topOffset || 51; // 51 is the default height of the navbar component
+            scope.navClass = scope.navClass || 'navbar-default';
             scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || 'glyphicon-chevron-left';
             scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || 'glyphicon-chevron-down';
             scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || 'glyphicon-arrow-right';

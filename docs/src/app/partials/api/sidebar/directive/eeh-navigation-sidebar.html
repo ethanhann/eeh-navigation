@@ -47,10 +47,10 @@ It should also be in a template that is at or near the top of the state hierarch
     
       <li>as element:
       
-      <pre><code>&lt;eeh-navigation-sidebar&#10;  [menu-name=&quot;&quot;]&#10;  [top-offset=&quot;&quot;]&#10;  [menu-item-collapsed-icon-class=&quot;&quot;]&#10;  [menu-item-expanded-icon-class=&quot;&quot;]&#10;  [sidebar-collapsed-icon-class=&quot;&quot;]&#10;  [sidebar-expanded-icon-class=&quot;&quot;]&#10;  [search-input-icon-class=&quot;&quot;]&#10;  [search-input-is-visible=&quot;&quot;]&#10;  [sidebar-collapsed-button-is-visible=&quot;&quot;]&#10;  [sidebar-is-collapsed=&quot;&quot;]&gt;&#10;...&#10;&lt;/eeh-navigation-sidebar&gt;</code></pre>
+      <pre><code>&lt;eeh-navigation-sidebar&#10;  [menu-name=&quot;&quot;]&#10;  [nav-class=&quot;&quot;]&#10;  [top-offset=&quot;&quot;]&#10;  [menu-item-collapsed-icon-class=&quot;&quot;]&#10;  [menu-item-expanded-icon-class=&quot;&quot;]&#10;  [sidebar-collapsed-icon-class=&quot;&quot;]&#10;  [sidebar-expanded-icon-class=&quot;&quot;]&#10;  [search-input-icon-class=&quot;&quot;]&#10;  [search-input-is-visible=&quot;&quot;]&#10;  [sidebar-collapsed-button-is-visible=&quot;&quot;]&#10;  [sidebar-is-collapsed=&quot;&quot;]&gt;&#10;...&#10;&lt;/eeh-navigation-sidebar&gt;</code></pre>
       </li>
     <li>as attribute:
-        <pre><code>&lt;ANY&#10;  [menu-name=&quot;&quot;]&#10;  [top-offset=&quot;&quot;]&#10;  [menu-item-collapsed-icon-class=&quot;&quot;]&#10;  [menu-item-expanded-icon-class=&quot;&quot;]&#10;  [sidebar-collapsed-icon-class=&quot;&quot;]&#10;  [sidebar-expanded-icon-class=&quot;&quot;]&#10;  [search-input-icon-class=&quot;&quot;]&#10;  [search-input-is-visible=&quot;&quot;]&#10;  [sidebar-collapsed-button-is-visible=&quot;&quot;]&#10;  [sidebar-is-collapsed=&quot;&quot;]&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
+        <pre><code>&lt;ANY&#10;  [menu-name=&quot;&quot;]&#10;  [nav-class=&quot;&quot;]&#10;  [top-offset=&quot;&quot;]&#10;  [menu-item-collapsed-icon-class=&quot;&quot;]&#10;  [menu-item-expanded-icon-class=&quot;&quot;]&#10;  [sidebar-collapsed-icon-class=&quot;&quot;]&#10;  [sidebar-expanded-icon-class=&quot;&quot;]&#10;  [search-input-icon-class=&quot;&quot;]&#10;  [search-input-is-visible=&quot;&quot;]&#10;  [sidebar-collapsed-button-is-visible=&quot;&quot;]&#10;  [sidebar-is-collapsed=&quot;&quot;]&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
       </li>
     
   </div>
@@ -81,6 +81,22 @@ It should also be in a template that is at or near the top of the state hierarch
         <p>Sets the name of the menu that the directive will render.</p>
 
         
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        navClass
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Sets the ng-class attribute of the top-level nav element.</p>
+
+        <p><em>(default: navbar-default)</em></p>
       </td>
     </tr>
     
