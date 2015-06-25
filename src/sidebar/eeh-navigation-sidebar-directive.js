@@ -79,7 +79,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
                     return;
                 }
                 scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.menuName);
-            });
+            }, true);
             var windowElement = angular.element($window);
             windowElement.bind('resize', function () {
                 scope.$apply();
@@ -166,4 +166,3 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
 };
 
 angular.module('eehNavigation').directive('eehNavigationSidebar', SidebarDirective);
-
