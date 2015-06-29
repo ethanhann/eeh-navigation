@@ -1,12 +1,28 @@
+@import "../variables";
 
 header {
     .jumbotron {
+        background-color: $brand-primary;
         margin-bottom: 0;
 
-        h1 > a:focus,
-        h1 > a:hover {
-            text-decoration: none;
+        svg {
+            height: 160px;
+
+            g {
+                fill: $logo-fill;
+            }
         }
+
+        h1 {
+            a:focus,
+            a:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .project-details {
+        padding: 15px 0;
     }
 }
 
