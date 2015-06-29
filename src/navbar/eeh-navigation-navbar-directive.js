@@ -44,7 +44,7 @@ var NavbarDirective = function ($window, eehNavigation) {
                 var menuItems = eehNavigation.menuItemTree(scope.menuName);
                 scope.leftNavbarMenuItems = menuItems.filter(function (item) { return !item.isHeavy(); });
                 scope.rightNavbarMenuItems = menuItems.filter(function (item) { return item.isHeavy(); });
-            });
+            }, true);
             var windowElement = angular.element($window);
             windowElement.bind('resize', function () {
                 scope.$apply();
