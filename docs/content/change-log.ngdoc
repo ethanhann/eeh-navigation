@@ -6,6 +6,20 @@
 
 # Change Log
 
+## 4.1.0
+__Enhancements__
+* Add navClass argument to menu directives which sets the ng-class attribute of the top-level nav element of the directive.
+
+__Chores__
+* Remove unneeded comments from sidebar directive.
+* Add logo to docs.
+* Move examples link to project details section.
+* Flesh out and refactor build process for docs.
+
+__Fixes__
+* Adding a deep watch to trigger a digest when a new menu item is added.
+* Fix bootstrap sass path in docs build task.
+
 ## 4.0.0
 __Enhancements__
 * Add framework-agnostic menu directive called __eeh-navigation-menu__.

@@ -48,10 +48,10 @@ bare-bones menu that this directive generates.</p>
     
       <li>as element:
       
-      <pre><code>&lt;eeh-navigation-menu&#10;  menu-name=&quot;&quot;&gt;&#10;...&#10;&lt;/eeh-navigation-menu&gt;</code></pre>
+      <pre><code>&lt;eeh-navigation-menu&#10;  menu-name=&quot;&quot;&#10;  [nav-class=&quot;&quot;]&gt;&#10;...&#10;&lt;/eeh-navigation-menu&gt;</code></pre>
       </li>
     <li>as attribute:
-        <pre><code>&lt;ANY&#10;  menu-name=&quot;&quot;&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
+        <pre><code>&lt;ANY&#10;  menu-name=&quot;&quot;&#10;  [nav-class=&quot;&quot;]&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
       </li>
     
   </div>
@@ -82,6 +82,22 @@ bare-bones menu that this directive generates.</p>
         <p>Sets the name of the menu that the directive will render.</p>
 
         
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        navClass
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Sets the ng-class attribute of the top-level nav element.</p>
+
+        <p><em>(default: navigation-menu)</em></p>
       </td>
     </tr>
     

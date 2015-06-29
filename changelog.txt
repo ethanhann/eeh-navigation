@@ -1,4 +1,27 @@
-3cce7cb (HEAD, origin/master, origin/HEAD, master) Prepare for release
+88bce2c (HEAD, origin/master, origin/HEAD, master) Add navClass and deep watch to eeh-navigation-menu directive
+5ddf179 Add deep watch to navbar
+cf9e0aa Remove unneeded comments
+8bef6f4 Add logo to docs
+6528df7 Adding a deep watch to trigger a digest when a new menu item is added
+725335d Update README.md
+f1f6740 Move examples link to project details section
+abb6181 Flesh out and refactor build process for docs
+bdf832b Fix bootstrap sass path in docs build task
+dcaf42a Update docs/dist
+e0a744b Update sidebar config to use v4.0.0
+30ce1dd Update getting started doc and update package name
+c9fe91c Update docs/dist
+4d41f75 Move examples link to project details section
+0938d22 Add project details, remove alert
+9175ce3 Update /dist
+568017b Update /dist
+279f280 Add link to examples, and make header in jumbotron a link
+22e8c4b Add partials to docs/dist
+1c53d08 Move deploy docs script to root
+a3ef1ad Add built docs
+d494ce4 Allow docs to be deployed
+21d45b3 (tag: 4.0.0) Update dist
+3cce7cb Prepare for release
 452fa41 Make sidebar directive scope variables more consistently named
 672f23f Update menu doc
 d2e09c0 Update doc state

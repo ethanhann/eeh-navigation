@@ -170,9 +170,11 @@
             restrict: "AE",
             templateUrl: "template/eeh-navigation/menu/eeh-navigation-menu.html",
             scope: {
-                menuName: "="
+                menuName: "=",
+                navClass: "=?"
             },
             link: function(scope) {
+                scope.navClass = scope.navClass || "navigation-menu";
                 scope.iconBaseClass = function() {
                     return eehNavigation.iconBaseClass();
                 };
@@ -181,7 +183,7 @@
                         return;
                     }
                     scope.menuItems = eehNavigation.menuItemTree(scope.menuName);
-                });
+                }, true);
             }
         };
     };
@@ -210,6 +212,7 @@
             templateUrl: "template/eeh-navigation/navbar/eeh-navigation-navbar.html",
             scope: {
                 menuName: "=",
+                navClass: "=?",
                 brandText: "=",
                 brandState: "=",
                 brandHref: "=",
@@ -221,7 +224,7 @@
                 scope.iconBaseClass = function() {
                     return eehNavigation.iconBaseClass();
                 };
-                scope._navbarBrand = eehNavigation._navbarBrand;
+                scope.navClass = scope.navClass || "navbar-default navbar-static-top";
                 scope.isNavbarCollapsed = false;
                 scope.$watch(eehNavigation.menuItems, function() {
                     if (angular.isUndefined(scope.menuName)) {
@@ -234,7 +237,7 @@
                     scope.rightNavbarMenuItems = menuItems.filter(function(item) {
                         return item.isHeavy();
                     });
-                });
+                }, true);
                 var windowElement = angular.element($window);
                 windowElement.bind("resize", function() {
                     scope.$apply();
@@ -292,6 +295,7 @@
             templateUrl: "template/eeh-navigation/sidebar/eeh-navigation-sidebar.html",
             scope: {
                 menuName: "=",
+                navClass: "=?",
                 topOffset: "=?",
                 menuItemCollapsedIconClass: "=?",
                 menuItemExpandedIconClass: "=?",
@@ -305,6 +309,7 @@
             },
             link: function(scope, element) {
                 scope.topOffset = scope.topOffset || 51;
+                scope.navClass = scope.navClass || "navbar-default";
                 scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || "glyphicon-chevron-left";
                 scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || "glyphicon-chevron-down";
                 scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || "glyphicon-arrow-right";
@@ -328,7 +333,7 @@
                         return;
                     }
                     scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.menuName);
-                });
+                }, true);
                 var windowElement = angular.element($window);
                 windowElement.bind("resize", function() {
                     scope.$apply();

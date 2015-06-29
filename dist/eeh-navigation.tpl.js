@@ -9,13 +9,15 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('template/eeh-navigation/menu/eeh-navigation-menu.html',
-    "<ul>\n" +
-    "    <li ng-repeat=\"item in menuItems | orderBy:'weight'\"\n" +
-    "        ng-include=\"'template/eeh-navigation/list-menu-item.html'\"\n" +
-    "        ng-class=\"{ 'leaf': !item.hasChildren() }\"\n" +
-    "        ng-if=\"item._isVisible()\"\n" +
-    "        eeh-navigation-active-menu-item=\"item\"></li>\n" +
-    "</ul>\n" +
+    "<nav ng-class=\"navClass\">\n" +
+    "    <ul>\n" +
+    "        <li ng-repeat=\"item in menuItems | orderBy:'weight'\"\n" +
+    "            ng-include=\"'template/eeh-navigation/list-menu-item.html'\"\n" +
+    "            ng-class=\"{ 'leaf': !item.hasChildren() }\"\n" +
+    "            ng-if=\"item._isVisible()\"\n" +
+    "            eeh-navigation-active-menu-item=\"item\"></li>\n" +
+    "    </ul>\n" +
+    "</nav>\n" +
     "\n" +
     "<script type=\"text/ng-template\" id=\"template/eeh-navigation/list-menu-item.html\">\n" +
     "    <a ng-if=\"item.state\" ui-sref=\"{{item.state}}\">\n" +
@@ -72,7 +74,9 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('template/eeh-navigation/navbar/eeh-navigation-navbar.html',
-    "<nav class=\"navbar navbar-default navbar-static-top eeh-navigation eeh-navigation-navbar\" role=\"navigation\">\n" +
+    "<nav class=\"navbar eeh-navigation eeh-navigation-navbar\"\n" +
+    "     ng-class=\"navClass\"\n" +
+    "     role=\"navigation\">\n" +
     "    <div class=\"navbar-header\">\n" +
     "        <button type=\"button\" class=\"navbar-toggle\" ng-click=\"isNavbarCollapsed = !isNavbarCollapsed\">\n" +
     "            <span class=\"sr-only\">Toggle navigation</span>\n" +
@@ -171,7 +175,8 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
-    "<nav class=\"navbar navbar-default eeh-navigation eeh-navigation-sidebar\" role=\"navigation\">\n" +
+    "<nav class=\"navbar navbar-default eeh-navigation eeh-navigation-sidebar\" role=\"navigation\"\n" +
+    "    ng-class=\"{{navClass}}\">\n" +
     "    <div class=\"navbar-collapse\" collapse=\"isNavbarCollapsed\">\n" +
     "        <ul class=\"nav sidebar-nav\">\n" +
     "            <li class=\"sidebar-search\" ng-if=\"searchInputIsVisible\">\n" +
