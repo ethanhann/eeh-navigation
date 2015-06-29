@@ -12,15 +12,19 @@
  * bare-bones menu that this directive generates.
  *
  * @param {string} menuName Sets the name of the menu that the directive will render.
+ * @param {string=} [navClass=navigation-menu] Sets the ng-class attribute of the top-level nav element.
  */
 var MenuDirective = function (eehNavigation) {
     return {
         restrict: 'AE',
         templateUrl: 'template/eeh-navigation/menu/eeh-navigation-menu.html',
         scope: {
-            menuName: '='
+            menuName: '=',
+            navClass: '=?'
         },
         link: function (scope) {
+            scope.navClass = scope.navClass || 'navigation-menu';
+
             scope.iconBaseClass = function () {
                 return eehNavigation.iconBaseClass();
             };
@@ -30,7 +34,7 @@ var MenuDirective = function (eehNavigation) {
                     return;
                 }
                 scope.menuItems = eehNavigation.menuItemTree(scope.menuName);
-            });
+            }, true);
         }
     };
 };

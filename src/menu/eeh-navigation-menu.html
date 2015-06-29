@@ -1,10 +1,12 @@
-<ul>
-    <li ng-repeat="item in menuItems | orderBy:'weight'"
-        ng-include="'template/eeh-navigation/list-menu-item.html'"
-        ng-class="{ 'leaf': !item.hasChildren() }"
-        ng-if="item._isVisible()"
-        eeh-navigation-active-menu-item="item"></li>
-</ul>
+<nav ng-class="navClass">
+    <ul>
+        <li ng-repeat="item in menuItems | orderBy:'weight'"
+            ng-include="'template/eeh-navigation/list-menu-item.html'"
+            ng-class="{ 'leaf': !item.hasChildren() }"
+            ng-if="item._isVisible()"
+            eeh-navigation-active-menu-item="item"></li>
+    </ul>
+</nav>
 
 <script type="text/ng-template" id="template/eeh-navigation/list-menu-item.html">
     <a ng-if="item.state" ui-sref="{{item.state}}">
