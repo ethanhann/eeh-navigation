@@ -42,15 +42,15 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             menuName: '=',
             navClass: '=?',
             topOffset: '=?',
-            menuItemCollapsedIconClass: '=?', //menuItemCollapsedIconClass
-            menuItemExpandedIconClass: '=?', // menuItemExpandedIconClass
-            sidebarCollapsedIconClass: '=?', //sidebarCollapsedIconClass
-            sidebarExpandedIconClass: '=?', //sidebarExpandedIconClass
+            menuItemCollapsedIconClass: '=?',
+            menuItemExpandedIconClass: '=?',
+            sidebarCollapsedIconClass: '=?',
+            sidebarExpandedIconClass: '=?',
             searchInputIconClass: '=?',
             searchInputIsVisible: '=?',
             searchInputSubmit: '=',
-            sidebarCollapsedButtonIsVisible: '=?', // sidebarCollapsedButtonIsVisible
-            sidebarIsCollapsed: '=?' // sidebarIsCollapsed
+            sidebarCollapsedButtonIsVisible: '=?',
+            sidebarIsCollapsed: '=?'
         },
         link: function (scope, element) {
             scope.topOffset = scope.topOffset || 51; // 51 is the default height of the navbar component
