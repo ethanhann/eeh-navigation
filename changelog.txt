@@ -1,4 +1,9 @@
-88bce2c (HEAD, origin/master, origin/HEAD, master) Add navClass and deep watch to eeh-navigation-menu directive
+4aaff1f (HEAD, origin/master, origin/HEAD, master) Fix navClass in sidebar and menu
+5be15be Fix navClass in eeh-navigation-menu
+c73142b Update docs/dist for 4.1.0
+9845f09 Update docs for v4.1.0
+795b386 (tag: 4.1.0) Prepare for release
+88bce2c Add navClass and deep watch to eeh-navigation-menu directive
 5ddf179 Add deep watch to navbar
 cf9e0aa Remove unneeded comments
 8bef6f4 Add logo to docs

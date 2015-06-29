@@ -176,7 +176,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
 
   $templateCache.put('template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
     "<nav class=\"navbar navbar-default eeh-navigation eeh-navigation-sidebar\" role=\"navigation\"\n" +
-    "    ng-class=\"{{navClass}}\">\n" +
+    "    ng-class=\"navClass\">\n" +
     "    <div class=\"navbar-collapse\" collapse=\"isNavbarCollapsed\">\n" +
     "        <ul class=\"nav sidebar-nav\">\n" +
     "            <li class=\"sidebar-search\" ng-if=\"searchInputIsVisible\">\n" +
