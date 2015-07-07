@@ -1,6 +1,6 @@
 {
   "name": "eeh-navigation",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "main": [
     "dist/eeh-navigation.css",
     "dist/eeh-navigation.js",

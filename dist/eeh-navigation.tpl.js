@@ -44,29 +44,29 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('template/eeh-navigation/navbar/eeh-navigation-navbar-brand.html',
-    "<a ng-if=\"state && !linkUrl && text\"\n" +
+    "<a ng-if=\"state && !href && text\"\n" +
     "   class=\"navbar-brand\"\n" +
     "   ng-click=\"click()\"\n" +
     "   ui-sref=\"{{ state }}\">\n" +
     "    <span ng-include=\"'template/eeh-navigation/navbar-brand-content.html'\"></span>\n" +
     "</a>\n" +
     "\n" +
-    "<a ng-if=\"!state && linkUrl && text\"\n" +
+    "<a ng-if=\"!state && href && text\"\n" +
     "   class=\"navbar-brand\"\n" +
     "   ng-click=\"click()\"\n" +
-    "   ng-href=\"{{ linkUrl }}\"\n" +
-    "   target=\"{{ linkTarget ? linkTarget : '_self'}}\">\n" +
+    "   ng-href=\"{{ href }}\"\n" +
+    "   target=\"{{ target ? target : '_self'}}\">\n" +
     "    <span ng-include=\"'template/eeh-navigation/navbar-brand-content.html'\"></span>\n" +
     "</a>\n" +
     "\n" +
-    "<span ng-if=\"!state && !linkUrl && text\"\n" +
+    "<span ng-if=\"!state && !href && text\"\n" +
     "      ng-click=\"click()\"\n" +
     "      class=\"navbar-brand\">\n" +
     "    <span ng-include=\"'template/eeh-navigation/navbar-brand-content.html'\"></span>\n" +
     "</span>\n" +
     "\n" +
     "<script type=\"text/ng-template\" id=\"template/eeh-navigation/navbar-brand-content.html\">\n" +
-    "    <img ng-if=\"imageUrl\" ng-src=\"{{ imageUrl }}\">\n" +
+    "    <img ng-if=\"src\" ng-src=\"{{ src }}\">\n" +
     "    <span ng-if=\"text\">{{ text|translate }}</span>\n" +
     "</script>\n" +
     "\n"

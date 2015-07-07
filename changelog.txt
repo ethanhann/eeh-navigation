@@ -1,4 +1,17 @@
-4aaff1f (HEAD, origin/master, origin/HEAD, master) Fix navClass in sidebar and menu
+0530ed4 (HEAD, origin/master, origin/HEAD, master) Use correct variables in navbar brand directive
+c80531a Update docs/dist
+45bfce4 Use ISO characters in project details
+595b509 Update docs/dist
+435e4c7 Add space before detail separator in docs
+1c41cb1 Rework project details in docs
+80d9f53 Update docs/dist
+2be53b5 Make logo container width smaller for mobile
+00d6a8e Update docs/dist
+3f4d717 Update version in docs
+d1960d9 Update docs/dist
+c79dc8e Update docs for v4.1.1
+041a135 (tag: 4.1.1) Prepare for release
+4aaff1f Fix navClass in sidebar and menu
 5be15be Fix navClass in eeh-navigation-menu
 c73142b Update docs/dist for 4.1.0
 9845f09 Update docs for v4.1.0
