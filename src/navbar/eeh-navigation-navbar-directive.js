@@ -45,15 +45,15 @@ var NavbarDirective = function ($window, eehNavigation) {
                 scope.leftNavbarMenuItems = menuItems.filter(function (item) { return !item.isHeavy(); });
                 scope.rightNavbarMenuItems = menuItems.filter(function (item) { return item.isHeavy(); });
             }, true);
-            var windowElement = angular.element($window);
+            var windowElement = angular.element($window)[0];
             windowElement.bind('resize', function () {
                 scope.$apply();
             });
 
             var getWindowDimensions = function () {
                 return {
-                    innerHeight: windowElement.innerHeight(),
-                    innerWidth: windowElement.innerWidth()
+                    innerHeight: windowElement.innerHeight,
+                    innerWidth: windowElement.innerWidth
                 };
             };
 

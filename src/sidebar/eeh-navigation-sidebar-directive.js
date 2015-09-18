@@ -80,15 +80,15 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
                 }
                 scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.menuName);
             }, true);
-            var windowElement = angular.element($window);
+            var windowElement = angular.element($window)[0];
             windowElement.bind('resize', function () {
                 scope.$apply();
             });
 
             var getWindowDimensions = function () {
                 return {
-                    innerHeight: windowElement.innerHeight(),
-                    innerWidth: windowElement.innerWidth()
+                    innerHeight: windowElement.innerHeight,
+                    innerWidth: windowElement.innerWidth
                 };
             };
 

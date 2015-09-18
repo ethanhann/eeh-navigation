@@ -238,14 +238,14 @@
                         return item.isHeavy();
                     });
                 }, true);
-                var windowElement = angular.element($window);
+                var windowElement = angular.element($window)[0];
                 windowElement.bind("resize", function() {
                     scope.$apply();
                 });
                 var getWindowDimensions = function() {
                     return {
-                        innerHeight: windowElement.innerHeight(),
-                        innerWidth: windowElement.innerWidth()
+                        innerHeight: windowElement.innerHeight,
+                        innerWidth: windowElement.innerWidth
                     };
                 };
                 scope.$watch(getWindowDimensions, function(newValue) {
@@ -332,14 +332,14 @@
                     }
                     scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.menuName);
                 }, true);
-                var windowElement = angular.element($window);
+                var windowElement = angular.element($window)[0];
                 windowElement.bind("resize", function() {
                     scope.$apply();
                 });
                 var getWindowDimensions = function() {
                     return {
-                        innerHeight: windowElement.innerHeight(),
-                        innerWidth: windowElement.innerWidth()
+                        innerHeight: windowElement.innerHeight,
+                        innerWidth: windowElement.innerWidth
                     };
                 };
                 var transcludedWrapper = angular.element(document.querySelectorAll("#eeh-navigation-page-wrapper"));
