@@ -52,7 +52,7 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             sidebarCollapsedButtonIsVisible: '=?',
             sidebarIsCollapsed: '=?'
         },
-        link: function (scope, element) {
+        link: function (scope) {
             scope.topOffset = scope.topOffset || 51; // 51 is the default height of the navbar component
             scope.navClass = scope.navClass || 'navbar-default';
             scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || 'glyphicon-chevron-left';
@@ -87,14 +87,12 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
 
             var getWindowDimensions = function () {
                 return {
-                    height: windowElement.height(),
-                    width: windowElement.width(),
                     innerHeight: windowElement.innerHeight(),
                     innerWidth: windowElement.innerWidth()
                 };
             };
 
-            var transcludedWrapper = element.find('#eeh-navigation-page-wrapper');
+            var transcludedWrapper = angular.element(document.querySelectorAll('#eeh-navigation-page-wrapper'));
             scope.$watch(getWindowDimensions, function (newValue) {
                 if (angular.isUndefined(newValue)) {
                     return;
@@ -114,22 +112,31 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
                 setTextCollapseState();
             };
             function setTextCollapseState() {
-                var menuItemSelectorBase = 'ul.sidebar-nav:not(.sidebar-nav-nested) > li > a > ';
-                var topLevelMenuItemTextSelector = menuItemSelectorBase + 'span > .menu-item-text';
-                var topLevelSidebarArrowSelector = menuItemSelectorBase + '.sidebar-arrow';
-                var sidebarMenuItemTextElements = element.find(topLevelMenuItemTextSelector + ',' + topLevelSidebarArrowSelector);
-                var sidebarElement = element.find('.eeh-navigation-sidebar');
+                var sidebarMenuItems = angular.element(document.querySelectorAll('ul.sidebar-nav:not(.sidebar-nav-nested) > li > a > span'));
+                var sidebarMenuItemText = sidebarMenuItems.find('span');
+                var sidebarMenuItemTextElements = Array.prototype.filter.call(sidebarMenuItemText, function(item){ 
+                                    return item.matches('.menu-item-text');
+                                  });
+                var sidebarMenuItemArrowElements = Array.prototype.filter.call(sidebarMenuItems, function(item){ 
+                                    return item.matches('.sidebar-arrow');
+                                  });
+                var sidebarMenuItemCombinedElements = sidebarMenuItemArrowElements.concat(sidebarMenuItemTextElements);
+                var sidebarElement = angular.element(document.querySelectorAll('.eeh-navigation-sidebar'));
                 if (scope.sidebarIsCollapsed) {
                     transcludedWrapper.addClass('sidebar-text-collapsed');
                     sidebarElement.addClass('sidebar-text-collapsed');
-                    sidebarMenuItemTextElements.addClass('hidden');
-                    scope.sidebarMenuItems.forEach(function (menuItem) {
-                        menuItem.isCollapsed = true;
+                    sidebarMenuItemCombinedElements.forEach(function(menuItem){
+                        angular.element(menuItem).addClass('hidden');
                     });
-                } else {
+                    sidebarMenuItemArrowElements.forEach(function(menuItem){
+                        angular.element(menuItem).addClass('hidden');
+                    });
+                }else{
                     transcludedWrapper.removeClass('sidebar-text-collapsed');
                     sidebarElement.removeClass('sidebar-text-collapsed');
-                    sidebarMenuItemTextElements.removeClass('hidden');
+                    sidebarMenuItemCombinedElements.forEach(function(menuItem){
+                        angular.element(menuItem).removeClass('hidden');
+                    });
                 }
             }
 
