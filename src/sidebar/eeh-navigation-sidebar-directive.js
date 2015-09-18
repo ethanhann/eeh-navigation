@@ -58,11 +58,11 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             };
             scope.topOffset = scope.topOffset || 51; // 51 is the default height of the navbar component
             scope.navClass = scope.navClass || 'navbar-default';
-            scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.iconBaseClass+'-chevron-left';
-            scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.iconBaseClass+'-chevron-down';
-            scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || scope.iconBaseClass+'-arrow-right';
-            scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || scope.iconBaseClass+'-arrow-left';
-            scope.searchInputIconClass = scope.searchInputIconClass || scope.iconBaseClass+'-search';
+            scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.iconBaseClass()+'-chevron-left';
+            scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.iconBaseClass()+'-chevron-down';
+            scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || scope.iconBaseClass()+'-arrow-right';
+            scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || scope.iconBaseClass()+'-arrow-left';
+            scope.searchInputIconClass = scope.searchInputIconClass || scope.iconBaseClass()+'-search';
             if (scope.sidebarCollapsedButtonIsVisible !== false)  {
                 scope.sidebarCollapsedButtonIsVisible = true;
             }
