@@ -306,13 +306,16 @@
                 sidebarIsCollapsed: "=?"
             },
             link: function(scope) {
+                scope.iconBaseClass = function() {
+                    return eehNavigation.iconBaseClass();
+                };
                 scope.topOffset = scope.topOffset || 51;
                 scope.navClass = scope.navClass || "navbar-default";
-                scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || "glyphicon-chevron-left";
-                scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || "glyphicon-chevron-down";
-                scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || "glyphicon-arrow-right";
-                scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || "glyphicon-arrow-left";
-                scope.searchInputIconClass = scope.searchInputIconClass || "glyphicon-search";
+                scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.iconBaseClass + "-chevron-left";
+                scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.iconBaseClass + "-chevron-down";
+                scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || scope.iconBaseClass + "-arrow-right";
+                scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || scope.iconBaseClass + "-arrow-left";
+                scope.searchInputIconClass = scope.searchInputIconClass || scope.iconBaseClass + "-search";
                 if (scope.sidebarCollapsedButtonIsVisible !== false) {
                     scope.sidebarCollapsedButtonIsVisible = true;
                 }
@@ -320,9 +323,6 @@
                 if (scope.searchInputIsVisible !== false) {
                     scope.searchInputIsVisible = true;
                 }
-                scope.iconBaseClass = function() {
-                    return eehNavigation.iconBaseClass();
-                };
                 var menuItems = function() {
                     return eehNavigation.menuItems();
                 };
