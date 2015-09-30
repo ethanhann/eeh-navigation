@@ -79,6 +79,7 @@
     "use strict";
     var NavigationService = function() {
         this._iconBaseClass = "glyphicon";
+        this._defaultIconClassPrefix = "glyphicon";
         this._menuItems = {};
         this._toArray = function(items) {
             var arr = [];
