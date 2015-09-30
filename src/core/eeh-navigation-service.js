@@ -350,6 +350,14 @@ NavigationService.prototype.iconBaseClass = function (value) {
     return this;
 };
 
+NavigationService.prototype.defaultIconClassPrefix = function (value) {
+    if (angular.isUndefined(value)) {
+        return this._defaultIconClassPrefix;
+    }
+    this._defaultIconClassPrefix = value;
+    return this;
+};
+
 
 
 /**
