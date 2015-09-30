@@ -326,6 +326,7 @@
  */
 var NavigationService = function () {
     this._iconBaseClass = 'glyphicon';
+    this._defaultIconClassPrefix = 'glyphicon';
     this._menuItems = {};
     this._toArray = function (items) {
         var arr = [];
@@ -347,6 +348,14 @@ NavigationService.prototype.iconBaseClass = function (value) {
         return this._iconBaseClass;
     }
     this._iconBaseClass = value;
+    return this;
+};
+
+NavigationService.prototype.defaultIconClassPrefix = function (value) {
+    if (angular.isUndefined(value)) {
+        return this._defaultIconClassPrefix;
+    }
+    this._defaultIconClassPrefix = value;
     return this;
 };
 

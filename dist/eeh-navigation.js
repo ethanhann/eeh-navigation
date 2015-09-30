@@ -100,6 +100,13 @@
         this._iconBaseClass = value;
         return this;
     };
+    NavigationService.prototype.defaultIconClassPrefix = function(value) {
+        if (angular.isUndefined(value)) {
+            return this._defaultIconClassPrefix;
+        }
+        this._defaultIconClassPrefix = value;
+        return this;
+    };
     NavigationService.prototype.buildAncestorChain = function(name, items, config) {
         var keys = name.split(".");
         if (name.length === 0 || keys.length === 0) {
@@ -309,13 +316,16 @@
                 scope.iconBaseClass = function() {
                     return eehNavigation.iconBaseClass();
                 };
+                scope.defaultIconClassPrefix = function() {
+                    return eehNavigation.defaultIconClassPrefix();
+                };
                 scope.topOffset = scope.topOffset || 51;
                 scope.navClass = scope.navClass || "navbar-default";
-                scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.iconBaseClass() + "-chevron-left";
-                scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.iconBaseClass() + "-chevron-down";
-                scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || scope.iconBaseClass() + "-arrow-right";
-                scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || scope.iconBaseClass() + "-arrow-left";
-                scope.searchInputIconClass = scope.searchInputIconClass || scope.iconBaseClass() + "-search";
+                scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.defaultIconClassPrefix() + "-chevron-left";
+                scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.defaultIconClassPrefix() + "-chevron-down";
+                scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || scope.defaultIconClassPrefix() + "-arrow-right";
+                scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || scope.defaultIconClassPrefix() + "-arrow-left";
+                scope.searchInputIconClass = scope.searchInputIconClass || scope.defaultIconClassPrefix() + "-search";
                 if (scope.sidebarCollapsedButtonIsVisible !== false) {
                     scope.sidebarCollapsedButtonIsVisible = true;
                 }
