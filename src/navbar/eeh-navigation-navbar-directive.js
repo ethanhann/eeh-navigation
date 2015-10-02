@@ -52,10 +52,8 @@ var NavbarDirective = function ($window, eehNavigation) {
 
             var getWindowDimensions = function () {
                 return {
-                    height: windowElement.height(),
-                    width: windowElement.width(),
-                    innerHeight: windowElement.innerHeight(),
-                    innerWidth: windowElement.innerWidth()
+                    innerHeight: windowElement[0].innerHeight,
+                    innerWidth: windowElement[0].innerWidth
                 };
             };
 

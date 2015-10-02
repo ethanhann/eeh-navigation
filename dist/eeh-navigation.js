@@ -79,6 +79,7 @@
     "use strict";
     var NavigationService = function() {
         this._iconBaseClass = "glyphicon";
+        this._defaultIconClassPrefix = "glyphicon";
         this._menuItems = {};
         this._toArray = function(items) {
             var arr = [];
@@ -98,6 +99,13 @@
             return this._iconBaseClass;
         }
         this._iconBaseClass = value;
+        return this;
+    };
+    NavigationService.prototype.defaultIconClassPrefix = function(value) {
+        if (angular.isUndefined(value)) {
+            return this._defaultIconClassPrefix;
+        }
+        this._defaultIconClassPrefix = value;
         return this;
     };
     NavigationService.prototype.buildAncestorChain = function(name, items, config) {
@@ -244,10 +252,8 @@
                 });
                 var getWindowDimensions = function() {
                     return {
-                        height: windowElement.height(),
-                        width: windowElement.width(),
-                        innerHeight: windowElement.innerHeight(),
-                        innerWidth: windowElement.innerWidth()
+                        innerHeight: windowElement[0].innerHeight,
+                        innerWidth: windowElement[0].innerWidth
                     };
                 };
                 scope.$watch(getWindowDimensions, function(newValue) {
@@ -307,14 +313,20 @@
                 sidebarCollapsedButtonIsVisible: "=?",
                 sidebarIsCollapsed: "=?"
             },
-            link: function(scope, element) {
+            link: function(scope) {
+                scope.iconBaseClass = function() {
+                    return eehNavigation.iconBaseClass();
+                };
+                scope.defaultIconClassPrefix = function() {
+                    return eehNavigation.defaultIconClassPrefix();
+                };
                 scope.topOffset = scope.topOffset || 51;
                 scope.navClass = scope.navClass || "navbar-default";
-                scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || "glyphicon-chevron-left";
-                scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || "glyphicon-chevron-down";
-                scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || "glyphicon-arrow-right";
-                scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || "glyphicon-arrow-left";
-                scope.searchInputIconClass = scope.searchInputIconClass || "glyphicon-search";
+                scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.defaultIconClassPrefix() + "-chevron-left";
+                scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.defaultIconClassPrefix() + "-chevron-down";
+                scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || scope.defaultIconClassPrefix() + "-arrow-right";
+                scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || scope.defaultIconClassPrefix() + "-arrow-left";
+                scope.searchInputIconClass = scope.searchInputIconClass || scope.defaultIconClassPrefix() + "-search";
                 if (scope.sidebarCollapsedButtonIsVisible !== false) {
                     scope.sidebarCollapsedButtonIsVisible = true;
                 }
@@ -322,9 +334,6 @@
                 if (scope.searchInputIsVisible !== false) {
                     scope.searchInputIsVisible = true;
                 }
-                scope.iconBaseClass = function() {
-                    return eehNavigation.iconBaseClass();
-                };
                 var menuItems = function() {
                     return eehNavigation.menuItems();
                 };
@@ -340,13 +349,11 @@
                 });
                 var getWindowDimensions = function() {
                     return {
-                        height: windowElement.height(),
-                        width: windowElement.width(),
-                        innerHeight: windowElement.innerHeight(),
-                        innerWidth: windowElement.innerWidth()
+                        innerHeight: windowElement[0].innerHeight,
+                        innerWidth: windowElement[0].innerWidth
                     };
                 };
-                var transcludedWrapper = element.find("#eeh-navigation-page-wrapper");
+                var transcludedWrapper = angular.element(document.querySelectorAll("#eeh-navigation-page-wrapper"));
                 scope.$watch(getWindowDimensions, function(newValue) {
                     if (angular.isUndefined(newValue)) {
                         return;
@@ -365,22 +372,31 @@
                     setTextCollapseState();
                 };
                 function setTextCollapseState() {
-                    var menuItemSelectorBase = "ul.sidebar-nav:not(.sidebar-nav-nested) > li > a > ";
-                    var topLevelMenuItemTextSelector = menuItemSelectorBase + "span > .menu-item-text";
-                    var topLevelSidebarArrowSelector = menuItemSelectorBase + ".sidebar-arrow";
-                    var sidebarMenuItemTextElements = element.find(topLevelMenuItemTextSelector + "," + topLevelSidebarArrowSelector);
-                    var sidebarElement = element.find(".eeh-navigation-sidebar");
+                    var sidebarMenuItems = angular.element(document.querySelectorAll("ul.sidebar-nav:not(.sidebar-nav-nested) > li > a > span"));
+                    var sidebarMenuItemText = sidebarMenuItems.find("span");
+                    var sidebarMenuItemTextElements = Array.prototype.filter.call(sidebarMenuItemText, function(item) {
+                        return item.matches(".menu-item-text");
+                    });
+                    var sidebarMenuItemArrowElements = Array.prototype.filter.call(sidebarMenuItems, function(item) {
+                        return item.matches(".sidebar-arrow");
+                    });
+                    var sidebarMenuItemCombinedElements = sidebarMenuItemArrowElements.concat(sidebarMenuItemTextElements);
+                    var sidebarElement = angular.element(document.querySelectorAll(".eeh-navigation-sidebar"));
                     if (scope.sidebarIsCollapsed) {
                         transcludedWrapper.addClass("sidebar-text-collapsed");
                         sidebarElement.addClass("sidebar-text-collapsed");
-                        sidebarMenuItemTextElements.addClass("hidden");
-                        scope.sidebarMenuItems.forEach(function(menuItem) {
-                            menuItem.isCollapsed = true;
+                        sidebarMenuItemCombinedElements.forEach(function(menuItem) {
+                            angular.element(menuItem).addClass("hidden");
+                        });
+                        sidebarMenuItemArrowElements.forEach(function(menuItem) {
+                            angular.element(menuItem).addClass("hidden");
                         });
                     } else {
                         transcludedWrapper.removeClass("sidebar-text-collapsed");
                         sidebarElement.removeClass("sidebar-text-collapsed");
-                        sidebarMenuItemTextElements.removeClass("hidden");
+                        sidebarMenuItemCombinedElements.forEach(function(menuItem) {
+                            angular.element(menuItem).removeClass("hidden");
+                        });
                     }
                 }
                 scope.$on("$includeContentLoaded", function() {
