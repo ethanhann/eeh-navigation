@@ -22,6 +22,8 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
+    "docs",
+    "deploy-docs",
     "node_modules",
     "bower_components",
     "test",
@@ -32,8 +34,7 @@
     "angular-ui-router": "~0.2.13",
     "angular-bootstrap": "~0.13.0",
     "angular-translate": "~2.7.0",
-    "bootstrap": ">=3.0",
-    "jquery": ">=1.9"
+    "bootstrap": ">=3.0"
   },
   "devDependencies": {
     "jasmine": "~2.3.4",
