@@ -1,6 +1,8 @@
 'use strict';
+angular.module('eehNavigation').directive('eehNavigationSearchInput', SearchInputDirective);
 
-var SearchInputDirective = function ($window, eehNavigation) {
+/** @ngInject */
+function SearchInputDirective(eehNavigation) {
     return {
         restrict: 'AE',
         transclude: true,
@@ -20,6 +22,4 @@ var SearchInputDirective = function ($window, eehNavigation) {
             };
         }
     };
-};
-
-angular.module('eehNavigation').directive('eehNavigationSearchInput', SearchInputDirective);
+}

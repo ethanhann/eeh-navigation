@@ -1,6 +1,8 @@
 'use strict';
+angular.module('eehNavigation').directive('eehNavigationMenu', MenuDirective);
 
 /**
+ * @ngInject
  * @ngdoc directive
  * @name eeh-navigation-menu
  * @restrict AE
@@ -14,7 +16,7 @@
  * @param {string} menuName Sets the name of the menu that the directive will render.
  * @param {string=} [navClass=navigation-menu] Sets the ng-class attribute of the top-level nav element.
  */
-var MenuDirective = function (eehNavigation) {
+function MenuDirective(eehNavigation) {
     return {
         restrict: 'AE',
         templateUrl: 'template/eeh-navigation/menu/eeh-navigation-menu.html',
@@ -38,5 +40,3 @@ var MenuDirective = function (eehNavigation) {
         }
     };
 };
-
-angular.module('eehNavigation').directive('eehNavigationMenu', MenuDirective);

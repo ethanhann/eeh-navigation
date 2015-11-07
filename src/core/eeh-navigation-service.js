@@ -1,7 +1,9 @@
 'use strict';
 /* global MenuItem */
+angular.module('eehNavigation').provider('eehNavigation', NavigationService);
 
 /**
+ * @ngInject
  * @ngdoc service
  * @name eehNavigation
  *
@@ -324,7 +326,7 @@
  *     });
  * ```
  */
-var NavigationService = function () {
+function NavigationService() {
     this._iconBaseClass = 'glyphicon';
     this._defaultIconClassPrefix = 'glyphicon';
     this._menuItems = {};
@@ -337,7 +339,7 @@ var NavigationService = function () {
         }
         return arr;
     };
-};
+}
 
 NavigationService.prototype.$get = function () {
     return this;
@@ -413,5 +415,3 @@ NavigationService.prototype.menuItem = function (name, config) {
 NavigationService.prototype.menuItems = function () {
     return this._menuItems;
 };
-
-angular.module('eehNavigation').provider('eehNavigation', NavigationService);

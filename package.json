@@ -34,7 +34,7 @@
     "grunt-exec": "^0.4.6",
     "grunt-karma": "^0.10.1",
     "grunt-newer": "~1.1.0",
-    "grunt-ng-annotate": "^0.10.0",
+    "grunt-ng-annotate": "^1.0.1",
     "grunt-version-check": "^0.2.1",
     "jshint-stylish": "~2.0.0",
     "karma-coverage": "^0.3.1",

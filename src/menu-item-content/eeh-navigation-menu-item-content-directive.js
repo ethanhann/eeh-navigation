@@ -1,6 +1,8 @@
 'use strict';
+angular.module('eehNavigation').directive('eehNavigationMenuItemContent', MenuItemContentDirective);
 
-var MenuItemContentDirective = function (eehNavigation) {
+/** @ngInject */
+function MenuItemContentDirective(eehNavigation) {
     return {
         restrict: 'A',
         scope: {
@@ -13,6 +15,4 @@ var MenuItemContentDirective = function (eehNavigation) {
             };
         }
     };
-};
-
-angular.module('eehNavigation').directive('eehNavigationMenuItemContent', MenuItemContentDirective);
+}

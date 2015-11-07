@@ -1,6 +1,8 @@
 'use strict';
+angular.module('eehNavigation').directive('eehNavigationSidebar', SidebarDirective);
 
 /**
+ * @ngInject
  * @ngdoc directive
  * @name eeh-navigation-sidebar
  * @restrict AE
@@ -33,7 +35,7 @@
  * @param {boolean=} [sidebarIsCollapsed=false]
  * This attribute sets the state of the text collapse button.
  */
-var SidebarDirective = function ($document, $window, eehNavigation) {
+function SidebarDirective($window, eehNavigation) {
     return {
         restrict: 'AE',
         transclude: true,
@@ -173,6 +175,4 @@ var SidebarDirective = function ($document, $window, eehNavigation) {
             };
         }
     };
-};
-
-angular.module('eehNavigation').directive('eehNavigationSidebar', SidebarDirective);
+}

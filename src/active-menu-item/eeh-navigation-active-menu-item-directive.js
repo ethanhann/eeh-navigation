@@ -1,4 +1,5 @@
 'use strict';
+angular.module('eehNavigation').directive('eehNavigationActiveMenuItem', ActiveMenuItemDirective);
 
 function isMenuItemActive(menuItem, $state) {
     if (!menuItem.hasChildren()) {
@@ -20,7 +21,8 @@ function isMenuItemActive(menuItem, $state) {
     return false;
 }
 
-var ActiveMenuItemDirective = function ($state) {
+/** @ngInject */
+function ActiveMenuItemDirective($state) {
     return {
         restrict: 'A',
         scope: {
@@ -35,6 +37,4 @@ var ActiveMenuItemDirective = function ($state) {
             checkIsActive();
         }
     };
-};
-
-angular.module('eehNavigation').directive('eehNavigationActiveMenuItem', ActiveMenuItemDirective);
+}
