@@ -39,4 +39,4 @@ function MenuDirective(eehNavigation) {
             }, true);
         }
     };
-};
+}
