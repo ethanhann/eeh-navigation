@@ -9,7 +9,8 @@ angular.module('docs', [
     'ngTouch',
     'ui.bootstrap',
     'ui.router']);
-angular.module('docs').config(function ($stateProvider, $translateProvider, $urlRouterProvider, eehNavigationProvider) {
+angular.module('docs').config(function ($stateProvider, $translateProvider, $uiViewScrollProvider, $urlRouterProvider, eehNavigationProvider) {
+    $uiViewScrollProvider.useAnchorScroll();
     $translateProvider.useSanitizeValueStrategy('sanitize');
     $urlRouterProvider.otherwise('/');
     $stateProvider
@@ -50,19 +51,28 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $url
 
     eehNavigationProvider
         .iconBaseClass('fa')
+        .menuItem('nav.home', {
+            text: 'Home',
+            state: 'home',
+            iconClass: 'fa-home',
+            weight: -11
+        })
         .menuItem('nav.gettingStarted', {
             text: 'Getting Started',
             state: 'docs.gettingStarted',
-            iconClass: 'fa-power-off'
+            iconClass: 'fa-power-off',
+            weight: -10
         })
         .menuItem('nav.changeLog', {
             text: 'Change Log',
             state: 'docs.changeLog',
-            iconClass: 'fa-refresh'
+            iconClass: 'fa-refresh',
+            weight: -9
         })
         .menuItem('nav.apiDocumentation', {
             text: 'API Documentation',
-            iconClass: 'fa-book'
+            iconClass: 'fa-book',
+            weight: -8
         })
         .menuItem('nav.apiDocumentation.eehNavigationService', {
             text: 'eehNavigation',

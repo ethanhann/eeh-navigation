@@ -6,6 +6,18 @@
 
 # Change Log
 
+## 4.2.0
+
+__Enhancements__
+* Use @ngInject, update ngAnnotate.
+* Use iconBaseClass for default icon classes and add defaultIconClassPrefix to specify a prefix (e.g. fa, glyphicon).
+
+__Chores__
+* Remove jQuery dependency.
+
+__Fixes__
+* Allow a navbar brand image to be displayed if there is no text.
+
 ## 4.1.2
 __Fixes__
 * Use correct variables in navbar brand directive.

@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit//../src/core/eeh-navigation-service.js?message=docs(eehNavigation)%3A%20describe%20your%20change...#L4' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit//../src/core/eeh-navigation-service.js?message=docs(eehNavigation)%3A%20describe%20your%20change...#L5' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com///tree//../src/core/eeh-navigation-service.js#L4' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com///tree//../src/core/eeh-navigation-service.js#L5' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -156,9 +156,14 @@ eehNavigation
 });
 </code></pre>
 <p>Glyphicons are supported by default.
-To use another library like Font Awesome, the base icon class needs to be set.
+To use another library, like Font Awesome, the base icon class needs to be set.
 For example, &quot;fa&quot; is the base icon class of font awesome.</p>
 <pre><code class="lang-javascript">eehNavigationProvider.iconBaseClass(&#39;fa&#39;);
+</code></pre>
+<p>Certain directives might use the defaultIconClassPrefix property, if the directive has default icons
+(e.g. the chevrons in the sidebar directive), to specify an icon library&#39;s class prefix.
+For example, the prefix for Font Awesome is the same as the base class.</p>
+<pre><code class="lang-javascript">eehNavigationProvider.defaultIconClassPrefix(&#39;fa&#39;);
 </code></pre>
 <h2 id="language-translation">Language Translation</h2>
 <p>This doc provides an example of how to use <a href="http://angular-translate.github.io/">angular-translate</a> to translate menu item text.</p>

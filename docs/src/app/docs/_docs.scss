@@ -1,22 +1,33 @@
-.navbar-brand img {
-    height: 92%;
-}
+@import "../variables";
 
-.improve-docs, .view-source {
-    display: none;
-}
+.docs {
+    .page-container {
+        padding-top: .5em;
+        padding-bottom: 2em;
+        background: #FFFFFF url('main/logo-alt.svg') no-repeat;
+        background-size: 1000px 1000px;
+    }
 
-.prettyprint {
-    padding: 1em !important;
-    border: solid 1px #DDDDDD;
-}
+    h1 {
+        @extend .page-header;
+    }
 
-.page-header {
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #f28d1a;
-}
+    .improve-docs, .view-source {
+        display: none;
+    }
 
-.naked-list {
-    list-style: none;
+    .prettyprint {
+        padding: 1em !important;
+        border: solid 1px #DDDDDD;
+    }
+
+    .page-header {
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .naked-list {
+        list-style: none;
+    }
 }

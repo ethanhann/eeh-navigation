@@ -191,11 +191,19 @@ angular.module('eehNavigation').provider('eehNavigation', NavigationService);
  * ```
  *
  * Glyphicons are supported by default.
- * To use another library like Font Awesome, the base icon class needs to be set.
+ * To use another library, like Font Awesome, the base icon class needs to be set.
  * For example, "fa" is the base icon class of font awesome.
  *
  * ```javascript
  * eehNavigationProvider.iconBaseClass('fa');
+ * ```
+ *
+ * Certain directives might use the defaultIconClassPrefix property, if the directive has default icons
+ * (e.g. the chevrons in the sidebar directive), to specify an icon library's class prefix.
+ * For example, the prefix for Font Awesome is the same as the base class.
+ *
+ * ```javascript
+ * eehNavigationProvider.defaultIconClassPrefix('fa');
  * ```
  *
  * ## Language Translation
