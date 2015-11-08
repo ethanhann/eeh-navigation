@@ -3,5 +3,5 @@
  */
 'use strict';
 
-angular.module('docs').controller('DocsController', function ($scope) {
+angular.module('docs').controller('DocsController', function () {
 });

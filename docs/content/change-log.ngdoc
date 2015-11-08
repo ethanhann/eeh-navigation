@@ -14,6 +14,7 @@ __Enhancements__
 
 __Chores__
 * Remove jQuery dependency.
+* Visually polish up the doc site.
 
 __Fixes__
 * Allow a navbar brand image to be displayed if there is no text.
