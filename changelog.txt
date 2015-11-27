@@ -1,4 +1,37 @@
-0530ed4 (HEAD, origin/master, origin/HEAD, master) Use correct variables in navbar brand directive
+1238d74 (HEAD, origin/master, origin/HEAD, master) Add some temp fixes for doc dist
+8df35ed Build docs
+2912829 (tag: 4.3.0) Prepare for release
+2e7abd4 Polish docs
+7257cda Build to docs site for dev
+b916daf Resolves #32
+30f73c7 Polish up examples
+985657a Add slideout example
+38bca73 Flesh out examples
+2b55bb3 Start adding codepen examples to docs
+3544aeb Resolves #30
+09007db Add container-class option to navbar
+3df6aad Prepare for docs release
+d16bd59 Prepare for docs release
+c47247d Upgrade docs to 4.2.0, and fix a few minor issues with the site
+afe0cc4 Update docs
+cf2a6df (tag: 4.2.0) Prepare for release
+ad09833 Update docs
+584b404 Allow a navbar brand image to be displayed if there is no text
+d3b14bf Remove unnecessary semicolons
+e3c35b2 Use @ngInject, update ngAnnotate
+e0ad62a Ignore docs
+6c44daf Added defualtIconClassPrefix property
+8e417ff Added defualtIconClassPrefix property
+1db2cfd Fix for windowElement.bind() not a function error
+4a17c99 Set default menu item icons with iconBaseClass to automatically use the font library specified
+527afd7 Set default menu item icons with iconBaseClass to automatically use the font library specified
+8fe30ac Removed jQuery dependencies in navbar and sidebar directives
+7887c67 (chore/remove_jquery_dependency) Add note on moving demo site code
+34501db Bump version in docs and remove link to old docs
+f404f7a Update docs/dist
+2f92e60 Update docs post release
+bac9e89 (tag: 4.1.2) Prepare for release
+0530ed4 Use correct variables in navbar brand directive
 c80531a Update docs/dist
 45bfce4 Use ISO characters in project details
 595b509 Update docs/dist
