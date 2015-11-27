@@ -12,7 +12,7 @@ module.exports = function (grunt) {
             dist: 'dist',
             libName: 'eeh-navigation',
             docs: 'docs',
-            demo: '../eeh-navigation-demo/bower_components/eeh-navigation/dist'
+            demo: 'docs/bower_components/eeh-navigation/dist'
         },
         copy: {
             dev: {
