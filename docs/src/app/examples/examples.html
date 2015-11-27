@@ -1,6 +1,13 @@
 <div class="examples">
-    <div class="page-container">
-        <ui-view></ui-view>
+    <div class="row">
+        <div class="col-md-2">
+            <eeh-navigation-menu menu-name="'examples'"
+                                 eeh-tuxedo-menu="{{ {isFixed: false} }}"
+                                 eeh-metis-menu="{{ {toggle: false} }}"></eeh-navigation-menu>
+        </div>
+        <div class="col-md-10">
+            <ui-view></ui-view>
+        </div>
     </div>
 </div>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>

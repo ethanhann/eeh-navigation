@@ -14,7 +14,9 @@
     "angular": "~1.3.4",
     "eeh-navigation": "4.2.0",
     "font-awesome": "~4.3.0",
-    "google-code-prettify": "~1.0.4"
+    "google-code-prettify": "~1.0.4",
+    "eeh-tuxedo-menu": "~0.1.0",
+    "eeh-metis-menu": "~0.2.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.3.4"

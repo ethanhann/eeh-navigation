@@ -1,0 +1,35 @@
+.examples {
+  .row > div:first-child {
+    padding-right: 0;
+  }
+  .row > div:last-child {
+    padding-left: 0;
+  }
+
+  .tuxedo-menu {
+    background: $brand-primary;
+  }
+
+  .tuxedo-menu ul li a {
+    color: $navbar-default-link-color;
+    font-size: 14px;
+  }
+
+  .tuxedo-menu ul li a {
+    &:hover,
+    &:focus {
+      color: $navbar-default-link-hover-color;
+      background: $navbar-default-link-hover-bg;
+    }
+  }
+
+  .tuxedo-menu ul li.active {
+      color: $navbar-default-link-active-color;
+      background: $navbar-default-link-active-bg;
+  }
+
+  .tuxedo-menu ul li.active li:not([class="ng-scope ng-isolate-scope active"])  {
+    color: $navbar-default-link-color;
+    background: $brand-primary;
+  }
+}

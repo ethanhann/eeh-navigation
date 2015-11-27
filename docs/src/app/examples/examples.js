@@ -33,6 +33,14 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
     .state('examples.slideoutIntegration', {
         url: '/slideout-integration',
         templateUrl: 'app/examples/slideout-integration.html'
+    })
+    .state('examples.metisMenuIntegration', {
+        url: '/metis-menu-integration',
+        templateUrl: 'app/examples/metis-menu-integration.html'
+    })
+    .state('examples.metisMenuAndBootstrapNavbar', {
+        url: '/metis-menu-and-bootstrap-navbar',
+        templateUrl: 'app/examples/metis-menu-and-bootstrap-navbar.html'
     });
 
     eehNavigationProvider
@@ -41,32 +49,46 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
         iconClass: 'fa-magic',
         weight: -16
     })
-    .menuItem('nav.examples.basicMenu', {
+    .menuItem('examples.basicMenu', {
         text: 'Basic Menu',
         state: 'examples.basicMenu'
     })
-    .menuItem('nav.examples.bootstrapNavbar', {
-        text: 'Navbar (Bootstrap 3)',
+    .menuItem('examples.bootstrap', {
+        text: 'Bootstrap 3'
+    })
+    .menuItem('examples.bootstrap.navbar', {
+        text: 'Navbar',
         state: 'examples.bootstrapNavbar'
     })
-    .menuItem('nav.examples.bootstrapSidebar', {
-        text: 'Sidebar (Bootstrap 3)',
+    .menuItem('examples.bootstrap.sidebar', {
+        text: 'Sidebar',
         state: 'examples.bootstrapSidebar'
     })
-    .menuItem('nav.examples.bootstrapNavbarAndSidebar', {
-        text: 'Navbar + Sidebar (Bootstrap 3)',
+    .menuItem('examples.bootstrap.navbarAndSidebar', {
+        text: 'Navbar + Sidebar',
         state: 'examples.bootstrapNavbarAndSidebar'
     })
-    .menuItem('nav.examples.tuxedoMenuIntegration', {
-        text: 'Tuxedo Menu Integration',
+    .menuItem('examples.integrations', {
+        text: '3rd Party Integrations'
+    })
+    .menuItem('examples.integrations.tuxedoMenu', {
+        text: 'Tuxedo Menu',
         state: 'examples.tuxedoMenuIntegration'
     })
-    .menuItem('nav.examples.superfishIntegration', {
-        text: 'Superfish Integration',
+    .menuItem('examples.integrations.superfish', {
+        text: 'Superfish',
         state: 'examples.superfishIntegration'
     })
-    .menuItem('nav.examples.slideoutIntegration', {
-        text: 'Slideout Integration',
+    .menuItem('examples.integrations.slideout', {
+        text: 'Slideout',
         state: 'examples.slideoutIntegration'
+    })
+    .menuItem('examples.integrations.metisMenu', {
+        text: 'metisMenu',
+        state: 'examples.metisMenuIntegration'
+    })
+    .menuItem('examples.integrations.metisMenuAndBootstrapNavbar', {
+        text: 'metisMenu + BS3 Navbar',
+        state: 'examples.metisMenuAndBootstrapNavbar'
     });
 });
