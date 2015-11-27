@@ -19,6 +19,18 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $uiV
             templateUrl: 'app/main/main.html',
             controller: 'MainController'
         })
+        .state('examples', {
+            url: '/examples',
+            templateUrl: 'app/examples/examples.html'
+        })
+        .state('examples.bootstrapNavbar', {
+            url: '/navbar',
+            templateUrl: 'app/examples/navbar.html'
+        })
+        .state('examples.bootstrapSidebar', {
+            url: '/sidebar',
+            templateUrl: 'app/examples/sidebar.html'
+        })
         .state('docs', {
             url: '/docs',
             templateUrl: 'app/docs/docs.html',
@@ -55,13 +67,26 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $uiV
             text: 'Home',
             state: 'home',
             iconClass: 'fa-home',
-            weight: -11
+            weight: -20
         })
         .menuItem('nav.gettingStarted', {
             text: 'Getting Started',
             state: 'docs.gettingStarted',
             iconClass: 'fa-power-off',
-            weight: -10
+            weight: -18
+        })
+        .menuItem('nav.examples', {
+            text: 'Examples',
+            iconClass: 'fa-magic',
+            weight: -16
+        })
+        .menuItem('nav.examples.bootstrapNavbar', {
+            text: 'Navbar',
+            state: 'examples.bootstrapNavbar'
+        })
+        .menuItem('nav.examples.bootstrapSidebar', {
+            text: 'Sidebar',
+            state: 'examples.bootstrapSidebar'
         })
         .menuItem('nav.changeLog', {
             text: 'Change Log',
