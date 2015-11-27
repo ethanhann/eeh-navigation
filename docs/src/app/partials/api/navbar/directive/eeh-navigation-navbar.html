@@ -45,10 +45,10 @@
     
       <li>as element:
       
-      <pre><code>&lt;eeh-navigation-navbar&#10;  [menu-name=&quot;&quot;]&#10;  [nav-class=&quot;&quot;]&#10;  [brand-text=&quot;&quot;]&#10;  [brand-state=&quot;&quot;]&#10;  [brand-href=&quot;&quot;]&#10;  [brand-target=&quot;&quot;]&#10;  [brand-src=&quot;&quot;]&#10;  [brand-click=&quot;&quot;]&gt;&#10;...&#10;&lt;/eeh-navigation-navbar&gt;</code></pre>
+      <pre><code>&lt;eeh-navigation-navbar&#10;  [menu-name=&quot;&quot;]&#10;  [nav-class=&quot;&quot;]&#10;  [container-class=&quot;&quot;]&#10;  [brand-text=&quot;&quot;]&#10;  [brand-state=&quot;&quot;]&#10;  [brand-href=&quot;&quot;]&#10;  [brand-target=&quot;&quot;]&#10;  [brand-src=&quot;&quot;]&#10;  [brand-click=&quot;&quot;]&gt;&#10;...&#10;&lt;/eeh-navigation-navbar&gt;</code></pre>
       </li>
     <li>as attribute:
-        <pre><code>&lt;ANY&#10;  [menu-name=&quot;&quot;]&#10;  [nav-class=&quot;&quot;]&#10;  [brand-text=&quot;&quot;]&#10;  [brand-state=&quot;&quot;]&#10;  [brand-href=&quot;&quot;]&#10;  [brand-target=&quot;&quot;]&#10;  [brand-src=&quot;&quot;]&#10;  [brand-click=&quot;&quot;]&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
+        <pre><code>&lt;ANY&#10;  [menu-name=&quot;&quot;]&#10;  [nav-class=&quot;&quot;]&#10;  [container-class=&quot;&quot;]&#10;  [brand-text=&quot;&quot;]&#10;  [brand-state=&quot;&quot;]&#10;  [brand-href=&quot;&quot;]&#10;  [brand-target=&quot;&quot;]&#10;  [brand-src=&quot;&quot;]&#10;  [brand-click=&quot;&quot;]&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
       </li>
     
   </div>
@@ -95,6 +95,24 @@
         <p>Sets the ng-class attribute of the top-level nav element.</p>
 
         <p><em>(default: navbar-default navbar-static-top)</em></p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        containerClass
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>Sets the ng-class attribute of the top-level &quot;container&quot; element.
+Common settings are nothing, &quot;container&quot; or &quot;container-fluid&quot;.
+Some custom class or expression can also be used if desired.</p>
+
+        
       </td>
     </tr>
     

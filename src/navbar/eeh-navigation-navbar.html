@@ -1,37 +1,39 @@
 <nav class="navbar eeh-navigation eeh-navigation-navbar"
      ng-class="navClass"
      role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" ng-click="isNavbarCollapsed = !isNavbarCollapsed">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <eeh-navigation-navbar-brand text="brandText"
-                                     state="brandState"
-                                     href="brandHref"
-                                     target="brandTarget"
-                                     src="brandSrc"
-                                     click="brandClick"></eeh-navigation-navbar-brand>
-    </div>
-    <div collapse="isNavbarCollapsed" class="navbar-collapse">
-        <ul class="nav navbar-nav navbar-left">
-            <li ng-repeat="item in leftNavbarMenuItems | orderBy:'weight'"
-                ng-include="'template/eeh-navigation/navbar-menu-item.html'"
-                ng-if="item._isVisible()"
-                dropdown
-                ui-sref-active-eq="active"
-                eeh-navigation-active-menu-item="item"></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li ng-repeat="item in rightNavbarMenuItems | orderBy:'weight'"
-                ng-include="'template/eeh-navigation/navbar-menu-item.html'"
-                ng-if="item._isVisible()"
-                dropdown
-                ui-sref-active-eq="active"
-                eeh-navigation-active-menu-item="item"></li>
-        </ul>
+    <div ng-class="containerClass">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="isNavbarCollapsed = !isNavbarCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <eeh-navigation-navbar-brand text="brandText"
+                                         state="brandState"
+                                         href="brandHref"
+                                         target="brandTarget"
+                                         src="brandSrc"
+                                         click="brandClick"></eeh-navigation-navbar-brand>
+        </div>
+        <div collapse="isNavbarCollapsed" class="navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li ng-repeat="item in leftNavbarMenuItems | orderBy:'weight'"
+                    ng-include="'template/eeh-navigation/navbar-menu-item.html'"
+                    ng-if="item._isVisible()"
+                    dropdown
+                    ui-sref-active-eq="active"
+                    eeh-navigation-active-menu-item="item"></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-repeat="item in rightNavbarMenuItems | orderBy:'weight'"
+                    ng-include="'template/eeh-navigation/navbar-menu-item.html'"
+                    ng-if="item._isVisible()"
+                    dropdown
+                    ui-sref-active-eq="active"
+                    eeh-navigation-active-menu-item="item"></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
