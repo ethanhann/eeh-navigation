@@ -4,7 +4,12 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
     $stateProvider
     .state('examples', {
         url: '/examples',
+        abstract: true,
         templateUrl: 'app/examples/examples.html'
+    })
+    .state('examples.index', {
+        url: '/examples',
+        templateUrl: 'app/examples/examples-index.html'
     })
     .state('examples.basicMenu', {
         url: '/basic-menu',
@@ -47,6 +52,7 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
     .menuItem('nav.examples', {
         text: 'Examples',
         iconClass: 'fa-magic',
+        state: 'examples.index',
         weight: -16
     })
     .menuItem('examples.basicMenu', {

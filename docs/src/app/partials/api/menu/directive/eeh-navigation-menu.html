@@ -48,10 +48,10 @@ bare-bones menu that this directive generates.</p>
     
       <li>as element:
       
-      <pre><code>&lt;eeh-navigation-menu&#10;  menu-name=&quot;&quot;&#10;  [nav-class=&quot;&quot;]&gt;&#10;...&#10;&lt;/eeh-navigation-menu&gt;</code></pre>
+      <pre><code>&lt;eeh-navigation-menu&#10;  menu-name=&quot;&quot;&#10;  [nav-class=&quot;&quot;]&#10;  [menu-item-collapsed-icon-class=&quot;&quot;]&#10;  [menu-item-expanded-icon-class=&quot;&quot;]&gt;&#10;...&#10;&lt;/eeh-navigation-menu&gt;</code></pre>
       </li>
     <li>as attribute:
-        <pre><code>&lt;ANY&#10;  menu-name=&quot;&quot;&#10;  [nav-class=&quot;&quot;]&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
+        <pre><code>&lt;ANY&#10;  menu-name=&quot;&quot;&#10;  [nav-class=&quot;&quot;]&#10;  [menu-item-collapsed-icon-class=&quot;&quot;]&#10;  [menu-item-expanded-icon-class=&quot;&quot;]&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
       </li>
     
   </div>
@@ -98,6 +98,38 @@ bare-bones menu that this directive generates.</p>
         <p>Sets the ng-class attribute of the top-level nav element.</p>
 
         <p><em>(default: navigation-menu)</em></p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        menuItemCollapsedIconClass
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>This attribute sets the icon used to indicate that a parent of a nested menu item is collapsed.</p>
+
+        <p><em>(default: "glyphicon-chevron-left")</em></p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        menuItemExpandedIconClass
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>This attribute sets the icon used to indicate that a parent of a nested menu item is expanded.</p>
+
+        <p><em>(default: "glyphicon-chevron-down")</em></p>
       </td>
     </tr>
     

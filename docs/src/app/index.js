@@ -53,6 +53,7 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $uiV
 
     eehNavigationProvider
         .iconBaseClass('fa')
+        .defaultIconClassPrefix('fa')
         .menuItem('nav.home', {
             text: 'Home',
             state: 'home',
