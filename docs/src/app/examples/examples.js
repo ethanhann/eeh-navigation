@@ -25,6 +25,14 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
     .state('examples.tuxedoMenuIntegration', {
         url: '/tuxedo-menu-integration',
         templateUrl: 'app/examples/tuxedo-menu-integration.html'
+    })
+    .state('examples.superfishIntegration', {
+        url: '/superfish-integration',
+        templateUrl: 'app/examples/superfish-integration.html'
+    })
+    .state('examples.slideoutIntegration', {
+        url: '/slideout-integration',
+        templateUrl: 'app/examples/slideout-integration.html'
     });
 
     eehNavigationProvider
@@ -52,5 +60,13 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
     .menuItem('nav.examples.tuxedoMenuIntegration', {
         text: 'Tuxedo Menu Integration',
         state: 'examples.tuxedoMenuIntegration'
+    })
+    .menuItem('nav.examples.superfishIntegration', {
+        text: 'Superfish Integration',
+        state: 'examples.superfishIntegration'
+    })
+    .menuItem('nav.examples.slideoutIntegration', {
+        text: 'Slideout Integration',
+        state: 'examples.slideoutIntegration'
     });
 });
