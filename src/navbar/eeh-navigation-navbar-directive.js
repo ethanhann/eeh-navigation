@@ -41,7 +41,7 @@ var NavbarDirective = function ($window, eehNavigation) {
                 return eehNavigation.iconBaseClass();
             };
             scope.navClass = scope.navClass || 'navbar-default navbar-static-top';
-            scope.isNavbarCollapsed = false;
+            scope.isNavbarCollapsed = true;
             scope.$watch(eehNavigation.menuItems, function () {
                 if (angular.isUndefined(scope.menuName)) {
                     return;
@@ -68,7 +68,7 @@ var NavbarDirective = function ($window, eehNavigation) {
                 }
                 var width = (newValue.innerWidth > 0) ? newValue.innerWidth : $window.screen.width;
                 if (width >= 768) {
-                    scope.isNavbarCollapsed = false;
+                    scope.isNavbarCollapsed = true;
                 }
             }, true);
         }
