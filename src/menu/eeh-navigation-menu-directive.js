@@ -15,6 +15,10 @@ angular.module('eehNavigation').directive('eehNavigationMenu', MenuDirective);
  *
  * @param {string} menuName Sets the name of the menu that the directive will render.
  * @param {string=} [navClass=navigation-menu] Sets the ng-class attribute of the top-level nav element.
+ * @param {string=} [menuItemCollapsedIconClass="glyphicon-chevron-left"]
+ * This attribute sets the icon used to indicate that a parent of a nested menu item is collapsed.
+ * @param {string=} [menuItemExpandedIconClass="glyphicon-chevron-down"]
+ * This attribute sets the icon used to indicate that a parent of a nested menu item is expanded.
  */
 function MenuDirective(eehNavigation) {
     return {
@@ -22,14 +26,21 @@ function MenuDirective(eehNavigation) {
         templateUrl: 'template/eeh-navigation/menu/eeh-navigation-menu.html',
         scope: {
             menuName: '=',
-            navClass: '=?'
+            navClass: '=?',
+            menuItemCollapsedIconClass: '=?',
+            menuItemExpandedIconClass: '=?'
         },
         link: function (scope) {
-            scope.navClass = scope.navClass || 'navigation-menu';
-
             scope.iconBaseClass = function () {
                 return eehNavigation.iconBaseClass();
             };
+            scope.defaultIconClassPrefix = function () {
+                return eehNavigation.defaultIconClassPrefix();
+            };
+
+            scope.navClass = scope.navClass || 'navigation-menu';
+            scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.defaultIconClassPrefix()+'-chevron-left';
+            scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.defaultIconClassPrefix()+'-chevron-down';
 
             scope.$watch(eehNavigation.menuItems, function () {
                 if (angular.isUndefined(scope.menuName)) {

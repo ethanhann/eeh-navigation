@@ -20,7 +20,8 @@
     </a>
     <a ng-if="!item.state && item.hasChildren()">
         <span eeh-navigation-menu-item-content="item"></span>
-        <span class="icon-fw {{ iconBaseClass() }}"></span>
+        <span class="float-right icon-fw {{ iconBaseClass() }}"
+              ng-class="item.isCollapsed ? menuItemCollapsedIconClass : menuItemExpandedIconClass"></span>
     </a>
     <ul ng-if="!item.state && item.hasChildren()">
         <li ng-repeat="item in item.children()"
