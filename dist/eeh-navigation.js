@@ -180,13 +180,20 @@
             templateUrl: "template/eeh-navigation/menu/eeh-navigation-menu.html",
             scope: {
                 menuName: "=",
-                navClass: "=?"
+                navClass: "=?",
+                menuItemCollapsedIconClass: "=?",
+                menuItemExpandedIconClass: "=?"
             },
             link: function(scope) {
-                scope.navClass = scope.navClass || "navigation-menu";
                 scope.iconBaseClass = function() {
                     return eehNavigation.iconBaseClass();
                 };
+                scope.defaultIconClassPrefix = function() {
+                    return eehNavigation.defaultIconClassPrefix();
+                };
+                scope.navClass = scope.navClass || "navigation-menu";
+                scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.defaultIconClassPrefix() + "-chevron-left";
+                scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.defaultIconClassPrefix() + "-chevron-down";
                 scope.$watch(eehNavigation.menuItems, function() {
                     if (angular.isUndefined(scope.menuName)) {
                         return;
@@ -221,6 +228,7 @@
             scope: {
                 menuName: "=",
                 navClass: "=?",
+                containerClass: "=?",
                 brandText: "=",
                 brandState: "=",
                 brandHref: "=",
@@ -233,7 +241,7 @@
                     return eehNavigation.iconBaseClass();
                 };
                 scope.navClass = scope.navClass || "navbar-default navbar-static-top";
-                scope.isNavbarCollapsed = false;
+                scope.isNavbarCollapsed = true;
                 scope.$watch(eehNavigation.menuItems, function() {
                     if (angular.isUndefined(scope.menuName)) {
                         return;
@@ -262,7 +270,7 @@
                     }
                     var width = newValue.innerWidth > 0 ? newValue.innerWidth : $window.screen.width;
                     if (width >= 768) {
-                        scope.isNavbarCollapsed = false;
+                        scope.isNavbarCollapsed = true;
                     }
                 }, true);
             }
