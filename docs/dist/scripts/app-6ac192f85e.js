@@ -162,6 +162,10 @@ angular.module('docs').config(["$stateProvider", "eehNavigationProvider", functi
         url: '/metis-menu-integration',
         templateUrl: 'app/examples/metis-menu-integration.html'
     })
+    .state('examples.metisMenuFolderView', {
+        url: '/metis-menu-folder-view',
+        templateUrl: 'app/examples/metis-menu-folder-view.html'
+    })
     .state('examples.metisMenuAndBootstrapNavbar', {
         url: '/metis-menu-and-bootstrap-navbar',
         templateUrl: 'app/examples/metis-menu-and-bootstrap-navbar.html'
@@ -212,6 +216,10 @@ angular.module('docs').config(["$stateProvider", "eehNavigationProvider", functi
         text: 'metisMenu',
         state: 'examples.metisMenuIntegration'
     })
+    .menuItem('examples.integrations.metisMenuFolderView', {
+        text: 'metisMenu Folder View',
+        state: 'examples.metisMenuFolderView'
+    })
     .menuItem('examples.integrations.metisMenuAndBootstrapNavbar', {
         text: 'metisMenu + BS3 Navbar',
         state: 'examples.metisMenuAndBootstrapNavbar'
@@ -231,9 +239,10 @@ $templateCache.put("app/examples/basic-menu.html","<iframe height=\"600\" scroll
 $templateCache.put("app/examples/bootstrap-navbar-and-sidebar.html","<iframe height=\"600\" scrolling=\"no\" src=\"//codepen.io/ethanhann/embed/GpbGMY/?height=600&theme-id=0&default-tab=result\" frameborder=\"no\" allowtransparency=\"true\" allowfullscreen=\"true\" style=\"width: 100%;\">See the Pen <a href=\"http://codepen.io/ethanhann/pen/GpbGMY/\">eeh-navigation 4.x Sidebar</a> by Ethan Hann (<a href=\"http://codepen.io/ethanhann\">@ethanhann</a>) on <a href=\"http://codepen.io\">CodePen</a>.</iframe>");
 $templateCache.put("app/examples/bootstrap-navbar.html","<iframe height=\"600\" scrolling=\"no\" src=\"//codepen.io/ethanhann/embed/OyeERB/?height=600&theme-id=0&default-tab=result\" frameborder=\"no\" allowtransparency=\"true\" allowfullscreen=\"true\" style=\"width: 100%;\">See the Pen <a href=\"http://codepen.io/ethanhann/pen/OyeERB/\">eeh-navigation 4.x Sidebar</a> by Ethan Hann (<a href=\"http://codepen.io/ethanhann\">@ethanhann</a>) on <a href=\"http://codepen.io\">CodePen</a>.</iframe>");
 $templateCache.put("app/examples/bootstrap-sidebar.html","<iframe height=\"600\" scrolling=\"no\" src=\"//codepen.io/ethanhann/embed/QjXxGX/?height=600&theme-id=0&default-tab=result\" frameborder=\"no\" allowtransparency=\"true\" allowfullscreen=\"true\" style=\"width: 100%;\">See the Pen <a href=\"http://codepen.io/ethanhann/pen/QjXxGX/\">eeh-navigation 4.x Sidebar</a> by Ethan Hann (<a href=\"http://codepen.io/ethanhann\">@ethanhann</a>) on <a href=\"http://codepen.io\">CodePen</a>.</iframe>");
-$templateCache.put("app/examples/examples-index.html","<div class=\"container-fluid\"><h2 class=\"page-header\">Examples</h2><p>Have a look at these examples of how to use the <a href=\"http://ethanhann.github.com/eeh-navigation\">eeh-navigation</a> module.</p></div>");
+$templateCache.put("app/examples/examples-index.html","<div class=\"container-fluid page-container\"><h2 class=\"page-header\">Examples</h2><p>Have a look at these examples of how to use the <a href=\"http://ethanhann.github.com/eeh-navigation\">eeh-navigation</a> module.</p></div>");
 $templateCache.put("app/examples/examples.html","<div class=\"examples\"><div class=\"row\"><div class=\"col-md-2\"><eeh-navigation-menu menu-name=\"\'examples\'\" menu-item-collapsed-icon-class=\"\'arrow\'\" menu-item-expanded-icon-class=\"\'arrow\'\" eeh-tuxedo-menu=\"{{ {isFixed: false} }}\" eeh-metis-menu=\"{{ {toggle: false} }}\"></eeh-navigation-menu></div><div class=\"col-md-10\"><ui-view></ui-view></div></div></div><script async=\"\" src=\"//assets.codepen.io/assets/embed/ei.js\"></script>");
 $templateCache.put("app/examples/metis-menu-and-bootstrap-navbar.html","<iframe height=\"600\" scrolling=\"no\" src=\"//codepen.io/ethanhann/embed/epwjge/?height=600&theme-id=0&default-tab=result\" frameborder=\"no\" allowtransparency=\"true\" allowfullscreen=\"true\" style=\"width: 100%;\">See the Pen <a href=\"http://codepen.io/ethanhann/pen/epwjge/\">eeh-navigation 4.x metisMenu</a> by Ethan Hann (<a href=\"http://codepen.io/ethanhann\">@ethanhann</a>) on <a href=\"http://codepen.io\">CodePen</a>.</iframe>");
+$templateCache.put("app/examples/metis-menu-folder-view.html","<iframe height=\"600\" scrolling=\"no\" src=\"//codepen.io/ethanhann/embed/QjXorp/?height=600&theme-id=0&default-tab=result\" frameborder=\"no\" allowtransparency=\"true\" allowfullscreen=\"true\" style=\"width: 100%;\">See the Pen <a href=\"http://codepen.io/ethanhann/pen/QjXorp/\">eeh-navigation 4.x metisMenu Folder View</a> by Ethan Hann (<a href=\"http://codepen.io/ethanhann\">@ethanhann</a>) on <a href=\"http://codepen.io\">CodePen</a>.</iframe>");
 $templateCache.put("app/examples/metis-menu-integration.html","<iframe height=\"600\" scrolling=\"no\" src=\"//codepen.io/ethanhann/embed/KdjBMa/?height=600&theme-id=0&default-tab=result\" frameborder=\"no\" allowtransparency=\"true\" allowfullscreen=\"true\" style=\"width: 100%;\">See the Pen <a href=\"http://codepen.io/ethanhann/pen/KdjBMa/\">eeh-navigation 4.x metisMenu</a> by Ethan Hann (<a href=\"http://codepen.io/ethanhann\">@ethanhann</a>) on <a href=\"http://codepen.io\">CodePen</a>.</iframe>");
 $templateCache.put("app/examples/slideout-integration.html","<iframe height=\"600\" scrolling=\"no\" src=\"//codepen.io/ethanhann/embed/gaNKJJ/?height=600&theme-id=0&default-tab=result\" frameborder=\"no\" allowtransparency=\"true\" allowfullscreen=\"true\" style=\"width: 100%;\">See the Pen <a href=\"http://codepen.io/ethanhann/pen/gaNKJJ/\">eeh-navigation 4.x Slideout</a> by Ethan Hann (<a href=\"http://codepen.io/ethanhann\">@ethanhann</a>) on <a href=\"http://codepen.io\">CodePen</a>.</iframe>");
 $templateCache.put("app/examples/superfish-integration.html","<iframe height=\"600\" scrolling=\"no\" src=\"//codepen.io/ethanhann/embed/VvJdNG/?height=600&theme-id=0&default-tab=result\" frameborder=\"no\" allowtransparency=\"true\" allowfullscreen=\"true\" style=\"width: 100%;\">See the Pen <a href=\"http://codepen.io/ethanhann/pen/VvJdNG/\">eeh-navigation 4.x Superfish</a> by Ethan Hann (<a href=\"http://codepen.io/ethanhann\">@ethanhann</a>) on <a href=\"http://codepen.io\">CodePen</a>.</iframe>");

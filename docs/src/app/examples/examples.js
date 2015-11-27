@@ -43,6 +43,10 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
         url: '/metis-menu-integration',
         templateUrl: 'app/examples/metis-menu-integration.html'
     })
+    .state('examples.metisMenuFolderView', {
+        url: '/metis-menu-folder-view',
+        templateUrl: 'app/examples/metis-menu-folder-view.html'
+    })
     .state('examples.metisMenuAndBootstrapNavbar', {
         url: '/metis-menu-and-bootstrap-navbar',
         templateUrl: 'app/examples/metis-menu-and-bootstrap-navbar.html'
@@ -92,6 +96,10 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
     .menuItem('examples.integrations.metisMenu', {
         text: 'metisMenu',
         state: 'examples.metisMenuIntegration'
+    })
+    .menuItem('examples.integrations.metisMenuFolderView', {
+        text: 'metisMenu Folder View',
+        state: 'examples.metisMenuFolderView'
     })
     .menuItem('examples.integrations.metisMenuAndBootstrapNavbar', {
         text: 'metisMenu + BS3 Navbar',
