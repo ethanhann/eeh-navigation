@@ -11,7 +11,7 @@
             <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
                 ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
                 ng-class="{ 'leaf': !item.hasChildren() }"
-                ng-if="item._isVisible()"
+                ng-if="item.isVisible()"
                 ng-click="topLevelMenuItemClickHandler(item)"fire
                 ui-sref-active-eq="active"
                 eeh-navigation-active-menu-item="item"></li>
@@ -54,7 +54,7 @@
         <li ng-repeat="item in item.children()"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
             ng-class="{ 'leaf': !item.hasChildren() }"
-            ng-if="item._isVisible()"
+            ng-if="item.isVisible()"
             ui-sref-active-eq="active"
             eeh-navigation-active-menu-item="item"></li>
     </ul>

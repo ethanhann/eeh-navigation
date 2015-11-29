@@ -20,7 +20,7 @@
             <ul class="nav navbar-nav navbar-left">
                 <li ng-repeat="item in leftNavbarMenuItems | orderBy:'weight'"
                     ng-include="'template/eeh-navigation/navbar-menu-item.html'"
-                    ng-if="item._isVisible()"
+                    ng-if="item.isVisible()"
                     dropdown
                     ui-sref-active-eq="active"
                     eeh-navigation-active-menu-item="item"></li>
@@ -28,7 +28,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li ng-repeat="item in rightNavbarMenuItems | orderBy:'weight'"
                     ng-include="'template/eeh-navigation/navbar-menu-item.html'"
-                    ng-if="item._isVisible()"
+                    ng-if="item.isVisible()"
                     dropdown
                     ui-sref-active-eq="active"
                     eeh-navigation-active-menu-item="item"></li>
@@ -56,7 +56,7 @@
         <li ng-repeat="item in item.children()|orderBy:'weight'"
             ng-class="{'divider': item.isDivider}"
             ng-include="'template/eeh-navigation/navbar-menu-item.html'"
-            ng-if="item._isVisible()"
+            ng-if="item.isVisible()"
             ui-sref-active-eq="active"></li>
     </ul>
 </script>

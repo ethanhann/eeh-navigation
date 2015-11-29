@@ -1,6 +1,6 @@
 'use strict';
-/* global MenuItem */
-angular.module('eehNavigation').provider('eehNavigation', NavigationService);
+
+angular.module('eehNavigation').provider('eehNavigation', NavigationProvider);
 
 /**
  * @ngInject
@@ -334,26 +334,13 @@ angular.module('eehNavigation').provider('eehNavigation', NavigationService);
  *     });
  * ```
  */
-function NavigationService() {
+function NavigationProvider() {
     this._iconBaseClass = 'glyphicon';
     this._defaultIconClassPrefix = 'glyphicon';
     this._menuItems = {};
-    this._toArray = function (items) {
-        var arr = [];
-        for (var key in items) {
-            if (items.hasOwnProperty(key)) {
-                arr.push(items[key]);
-            }
-        }
-        return arr;
-    };
 }
 
-NavigationService.prototype.$get = function () {
-    return this;
-};
-
-NavigationService.prototype.iconBaseClass = function (value) {
+NavigationProvider.prototype.iconBaseClass = function (value) {
     if (angular.isUndefined(value)) {
         return this._iconBaseClass;
     }
@@ -361,7 +348,7 @@ NavigationService.prototype.iconBaseClass = function (value) {
     return this;
 };
 
-NavigationService.prototype.defaultIconClassPrefix = function (value) {
+NavigationProvider.prototype.defaultIconClassPrefix = function (value) {
     if (angular.isUndefined(value)) {
         return this._defaultIconClassPrefix;
     }
@@ -369,57 +356,52 @@ NavigationService.prototype.defaultIconClassPrefix = function (value) {
     return this;
 };
 
-
-
-/**
- * Recursively map a flat array of menu items to a nested object suitable to generate hierarchical HTML from.
- */
-NavigationService.prototype.buildAncestorChain = function (name, items, config) {
-    var keys = name.split('.');
-    if (name.length === 0 || keys.length === 0) {
-        return;
-    }
-    var key = keys.shift();
-    if (angular.isUndefined(items[key])) {
-        items[key] = keys.length === 0 ? config : {};
-        if (keys.length === 0) {
-            items[key] = config;
-        }
-    }
-    this.buildAncestorChain(keys.join('.'), items[key], config);
-};
-
-NavigationService.prototype.menuItemTree = function (menuName) {
-    var items = {};
-    var self = this;
-    var menuItemsToTransform = {};
-    if (angular.isDefined(menuName)) {
-        var menuNameRegex = new RegExp('^' + menuName + '.');
-        angular.forEach(this._menuItems, function (menuItem, menuItemName) {
-            if (menuItemName.match(menuNameRegex) !== null) {
-                menuItemsToTransform[menuItemName.replace(menuNameRegex, '')] = menuItem;
-            }
-        });
-    } else {
-        menuItemsToTransform = this._menuItems;
-    }
-    angular.forEach(menuItemsToTransform, function (config, name) {
-        self.buildAncestorChain(name, items, config);
-    });
-    return this._toArray(items);
-};
-
-NavigationService.prototype.menuItem = function (name, config) {
-    if (angular.isUndefined(config)) {
-        if (angular.isUndefined(this._menuItems[name])) {
-            throw name + ' is not a menu item';
-        }
-        return this._menuItems[name];
-    }
-    this._menuItems[name] = new MenuItem(config);
+NavigationProvider.prototype.menuItem = function (name, config) {
+    this._menuItems[name] = config;
     return this;
 };
 
-NavigationService.prototype.menuItems = function () {
-    return this._menuItems;
+/** @ngInject */
+NavigationProvider.prototype.$get = function (menu) {
+    return new NavigationService(menu, this._menuItems, this._iconBaseClass, this._defaultIconClassPrefix);
+};
+
+function NavigationService(menu, menuItems, iconBaseClass, defaultIconClassPrefix) {
+    this._menu = menu;
+    this._iconBaseClass = iconBaseClass
+    this.defaultIconClassPrefix = defaultIconClassPrefix;
+    var self = this;
+
+    this.menuItems = function () {
+        return self._menu._menuItems;
+    };
+
+    angular.forEach(menuItems, function (menuItem, menuItemName) {
+        self.menuItem(menuItemName, menuItem);
+    });
+}
+
+NavigationService.prototype.iconBaseClass = function () {
+    return this._iconBaseClass;
+};
+
+NavigationService.prototype.defaultIconClassPrefix = function () {
+    return this._defaultIconClassPrefix;
+};
+
+NavigationService.prototype.menuItemTree = function (menuName) {
+    return this._menu.menuItemTree(menuName);
+};
+
+NavigationService.prototype.menuItem = function (name, config) {
+    if (angular.isUndefined(config.isVisible)) {
+        config.isVisible = function () {
+            return this.hasVisibleChildren() ||
+              (angular.isDefined(this.state) ||
+              angular.isDefined(this.href) ||
+              angular.isDefined(this.click) ||
+              this.isDivider);
+        };
+    }
+    return this._menu.menuItem(name, config);
 };

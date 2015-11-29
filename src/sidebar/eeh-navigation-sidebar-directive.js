@@ -157,7 +157,7 @@ function SidebarDirective($window, eehNavigation) {
 
             scope.isSidebarVisible = function () {
                 return scope.searchInputIsVisible || (angular.isArray(scope.sidebarMenuItems) && scope.sidebarMenuItems
-                        .filter(function (item) { return item._isVisible(); })
+                        .filter(function (item) { return item.isVisible(); })
                         .length > 0);
             };
 
