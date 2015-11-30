@@ -15,6 +15,10 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
         url: '/basic-menu',
         templateUrl: 'app/examples/basic-menu.html'
     })
+    .state('examples.menuFromUiRouterStates', {
+        url: '/menu-from-ui-router-states',
+        templateUrl: 'app/examples/menu-from-ui-router-states.html'
+    })
     .state('examples.bootstrapNavbar', {
         url: '/bootstrap-navbar',
         templateUrl: 'app/examples/bootstrap-navbar.html'
@@ -59,9 +63,16 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
         state: 'examples.index',
         weight: -16
     })
-    .menuItem('examples.basicMenu', {
+    .menuItem('examples.basics', {
+        text: 'Menu Creation Essentials'
+    })
+    .menuItem('examples.basics.basicMenu', {
         text: 'Basic Menu',
         state: 'examples.basicMenu'
+    })
+    .menuItem('examples.basics.menuFromUiRouterStates', {
+        text: 'Menu from UI Router States',
+        state: 'examples.menuFromUiRouterStates'
     })
     .menuItem('examples.bootstrap', {
         text: 'Bootstrap 3'
