@@ -92,12 +92,12 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "                                         src=\"brandSrc\"\n" +
     "                                         click=\"brandClick\"></eeh-navigation-navbar-brand>\n" +
     "        </div>\n" +
-    "        <div collapse=\"isNavbarCollapsed\" class=\"navbar-collapse\">\n" +
+    "        <div uib-collapse=\"isNavbarCollapsed\" class=\"navbar-collapse\">\n" +
     "            <ul class=\"nav navbar-nav navbar-left\">\n" +
     "                <li ng-repeat=\"item in leftNavbarMenuItems | orderBy:'weight'\"\n" +
     "                    ng-include=\"'template/eeh-navigation/navbar-menu-item.html'\"\n" +
     "                    ng-if=\"item._isVisible()\"\n" +
-    "                    dropdown\n" +
+    "                    uib-dropdown\n" +
     "                    ui-sref-active-eq=\"active\"\n" +
     "                    eeh-navigation-active-menu-item=\"item\"></li>\n" +
     "            </ul>\n" +
@@ -105,7 +105,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "                <li ng-repeat=\"item in rightNavbarMenuItems | orderBy:'weight'\"\n" +
     "                    ng-include=\"'template/eeh-navigation/navbar-menu-item.html'\"\n" +
     "                    ng-if=\"item._isVisible()\"\n" +
-    "                    dropdown\n" +
+    "                    uib-dropdown\n" +
     "                    ui-sref-active-eq=\"active\"\n" +
     "                    eeh-navigation-active-menu-item=\"item\"></li>\n" +
     "            </ul>\n" +
@@ -123,7 +123,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "    <a ng-if=\"item.href\" ng-href=\"{{item.href}}\" target=\"{{item.target ? item.target : '_self'}}\">\n" +
     "        <span eeh-navigation-menu-item-content=\"item\"></span>\n" +
     "    </a>\n" +
-    "    <a ng-if=\"item.hasChildren()\" dropdown-toggle>\n" +
+    "    <a ng-if=\"item.hasChildren()\" uib-dropdown-toggle=\"\">\n" +
     "        <span class=\"icon-fw {{ iconBaseClass() }} {{ item.iconClass }}\"></span>\n" +
     "        <span> {{ item.text|translate }}</span>\n" +
     "        <span class=\"caret\"></span>\n" +
@@ -147,7 +147,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "<a class=\"eeh-navigation-search-input\" ng-href=\"\" ng-if=\"isCollapsed\"\n" +
     "   popover-placement=\"right\"\n" +
     "   popover-append-to-body=\"'true'\"\n" +
-    "   popover-template=\"'template/eeh-navigation/search-input-popover.html'\">\n" +
+    "   uib-popover-template=\"'template/eeh-navigation/search-input-popover.html'\">\n" +
     "    <span class=\"menu-item-icon icon-fw {{ iconBaseClass() }} {{ iconClass }}\"></span>\n" +
     "</a>\n" +
     "<script type=\"text/ng-template\" id=\"template/eeh-navigation/search-input-popover.html\">\n" +
@@ -179,7 +179,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
   $templateCache.put('template/eeh-navigation/sidebar/eeh-navigation-sidebar.html',
     "<nav class=\"navbar navbar-default eeh-navigation eeh-navigation-sidebar\" role=\"navigation\"\n" +
     "    ng-class=\"navClass\">\n" +
-    "    <div class=\"navbar-collapse\" collapse=\"isNavbarCollapsed\">\n" +
+    "    <div class=\"navbar-collapse\" uib-collapse=\"isNavbarCollapsed\">\n" +
     "        <ul class=\"nav sidebar-nav\">\n" +
     "            <li class=\"sidebar-search\" ng-if=\"searchInputIsVisible\">\n" +
     "                <eeh-navigation-search-input class=\"sidebar-search-input\"\n" +
@@ -227,7 +227,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "        <span class=\"navbar-right sidebar-arrow icon-fw {{ iconBaseClass() }}\"\n" +
     "              ng-class=\"item.isCollapsed ? menuItemCollapsedIconClass : menuItemExpandedIconClass\"></span>\n" +
     "    </a>\n" +
-    "    <ul ng-if=\"!item.state && item.hasChildren()\" collapse=\"item.isCollapsed\"\n" +
+    "    <ul ng-if=\"!item.state && item.hasChildren()\" uib-collapse=\"item.isCollapsed\"\n" +
     "        ng-class=\"{ 'text-collapsed': sidebarIsCollapsed }\"\n" +
     "        class=\"nav sidebar-nav sidebar-nav-nested\">\n" +
     "        <li ng-repeat=\"item in item.children()\"\n" +

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default eeh-navigation eeh-navigation-sidebar" role="navigation"
     ng-class="navClass">
-    <div class="navbar-collapse" collapse="isNavbarCollapsed">
+    <div class="navbar-collapse" uib-collapse="isNavbarCollapsed">
         <ul class="nav sidebar-nav">
             <li class="sidebar-search" ng-if="searchInputIsVisible">
                 <eeh-navigation-search-input class="sidebar-search-input"
@@ -48,7 +48,7 @@
         <span class="navbar-right sidebar-arrow icon-fw {{ iconBaseClass() }}"
               ng-class="item.isCollapsed ? menuItemCollapsedIconClass : menuItemExpandedIconClass"></span>
     </a>
-    <ul ng-if="!item.state && item.hasChildren()" collapse="item.isCollapsed"
+    <ul ng-if="!item.state && item.hasChildren()" uib-collapse="item.isCollapsed"
         ng-class="{ 'text-collapsed': sidebarIsCollapsed }"
         class="nav sidebar-nav sidebar-nav-nested">
         <li ng-repeat="item in item.children()"

@@ -16,12 +16,12 @@
                                          src="brandSrc"
                                          click="brandClick"></eeh-navigation-navbar-brand>
         </div>
-        <div collapse="isNavbarCollapsed" class="navbar-collapse">
+        <div uib-collapse="isNavbarCollapsed" class="navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li ng-repeat="item in leftNavbarMenuItems | orderBy:'weight'"
                     ng-include="'template/eeh-navigation/navbar-menu-item.html'"
                     ng-if="item._isVisible()"
-                    dropdown
+                    uib-dropdown
                     ui-sref-active-eq="active"
                     eeh-navigation-active-menu-item="item"></li>
             </ul>
@@ -29,7 +29,7 @@
                 <li ng-repeat="item in rightNavbarMenuItems | orderBy:'weight'"
                     ng-include="'template/eeh-navigation/navbar-menu-item.html'"
                     ng-if="item._isVisible()"
-                    dropdown
+                    uib-dropdown
                     ui-sref-active-eq="active"
                     eeh-navigation-active-menu-item="item"></li>
             </ul>
@@ -47,7 +47,7 @@
     <a ng-if="item.href" ng-href="{{item.href}}" target="{{item.target ? item.target : '_self'}}">
         <span eeh-navigation-menu-item-content="item"></span>
     </a>
-    <a ng-if="item.hasChildren()" dropdown-toggle>
+    <a ng-if="item.hasChildren()" uib-dropdown-toggle="">
         <span class="icon-fw {{ iconBaseClass() }} {{ item.iconClass }}"></span>
         <span> {{ item.text|translate }}</span>
         <span class="caret"></span>
