@@ -382,30 +382,19 @@
                 };
                 function setTextCollapseState() {
                     var sidebarMenuItems = angular.element(document.querySelectorAll("ul.sidebar-nav:not(.sidebar-nav-nested) > li > a > span"));
-                    var sidebarMenuItemText = sidebarMenuItems.find("span");
-                    var sidebarMenuItemTextElements = Array.prototype.filter.call(sidebarMenuItemText, function(item) {
-                        return item.matches(".menu-item-text");
-                    });
                     var sidebarMenuItemArrowElements = Array.prototype.filter.call(sidebarMenuItems, function(item) {
                         return item.matches(".sidebar-arrow");
                     });
-                    var sidebarMenuItemCombinedElements = sidebarMenuItemArrowElements.concat(sidebarMenuItemTextElements);
                     var sidebarElement = angular.element(document.querySelectorAll(".eeh-navigation-sidebar"));
                     if (scope.sidebarIsCollapsed) {
                         transcludedWrapper.addClass("sidebar-text-collapsed");
                         sidebarElement.addClass("sidebar-text-collapsed");
-                        sidebarMenuItemCombinedElements.forEach(function(menuItem) {
-                            angular.element(menuItem).addClass("hidden");
-                        });
                         sidebarMenuItemArrowElements.forEach(function(menuItem) {
                             angular.element(menuItem).addClass("hidden");
                         });
                     } else {
                         transcludedWrapper.removeClass("sidebar-text-collapsed");
                         sidebarElement.removeClass("sidebar-text-collapsed");
-                        sidebarMenuItemCombinedElements.forEach(function(menuItem) {
-                            angular.element(menuItem).removeClass("hidden");
-                        });
                     }
                 }
                 scope.$on("$includeContentLoaded", function() {
