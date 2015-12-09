@@ -3,8 +3,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
 
   $templateCache.put('template/eeh-navigation/menu-item-content/eeh-navigation-menu-item-content.html',
     "<span class=\"menu-item-icon icon-fw {{ iconBaseClass() }} {{ menuItem.iconClass}}\"></span>\n" +
-    "<span class=\"menu-item-text\"> {{ menuItem.text|translate }}</span>\n" +
-    "\n"
+    "<span class=\"menu-item-text\"ng-hide=\"$parent.sidebarIsCollapsed\"> {{ menuItem.text|translate }}</span>\n"
   );
 
 

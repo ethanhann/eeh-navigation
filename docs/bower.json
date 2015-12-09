@@ -25,5 +25,13 @@
   "resolutions": {
     "jquery": "~1.11.1",
     "angular": "~1.4.8"
+  },
+  "overrides": {
+    "google-code-prettify": {
+      "main": [
+        "src/prettify.js",
+        "src/prettify.css"
+      ]
+    }
   }
 }
