@@ -394,6 +394,9 @@ NavigationService.prototype.menuItemTree = function (menuName) {
 };
 
 NavigationService.prototype.menuItem = function (name, config) {
+    if (angular.isUndefined(config)) {
+        return this._menu.menuItem(name);
+    }
     if (angular.isUndefined(config.isVisible)) {
         config.isVisible = function () {
             return this.hasVisibleChildren() ||
@@ -403,5 +406,6 @@ NavigationService.prototype.menuItem = function (name, config) {
               this.isDivider);
         };
     }
-    return this._menu.menuItem(name, config);
+    this._menu.menuItem(name, config);
+    return this;
 };
