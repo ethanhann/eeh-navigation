@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
+angular.module('docs').config(function ($stateProvider, eehMenuProvider) {
     $stateProvider
     .state('examples', {
         url: '/examples',
@@ -56,7 +56,7 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
         templateUrl: 'app/examples/metis-menu-and-bootstrap-navbar.html'
     });
 
-    eehNavigationProvider
+    eehMenuProvider
     .menuItem('nav.examples', {
         text: 'Examples',
         iconClass: 'fa-magic',

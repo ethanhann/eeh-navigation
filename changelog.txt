@@ -1,3 +1,5 @@
+42f0e3e (HEAD, origin/5.x, 5.x) Upgrade Jasmine and refactor tests
+2a69776 (tag: 4.3.1, origin/master, origin/HEAD, master) Prepare for 4.3.1 release
 1552388 removed useless code
 54af996 Changed the way text are hidden in sidebar
 b73886b Update docs
@@ -6,6 +8,7 @@ c97776b Add UI Router example
 3d9b8d1 Fix concat issue by minifying google-code-prettify ourselves
 b4d3c22 Update README.md
 06831d2 Update .travis.yml
+af9e2b0 Decouple core menu building logic -> now in ethanhann/menu.js repo
 c61de5c Add filesystem explorer example
 e49f167 Fix a few issues with new examples
 a34a0d4 Update change log

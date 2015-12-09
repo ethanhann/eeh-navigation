@@ -2,7 +2,7 @@
 
 angular.module('docs', [
     'eehMetisMenu',
-    'eehNavigation',
+    'eehMenu',
     'eehTuxedoMenu',
     'ngAnimate',
     'ngCookies',
@@ -11,7 +11,7 @@ angular.module('docs', [
     'ngTouch',
     'ui.bootstrap',
     'ui.router']);
-angular.module('docs').config(function ($stateProvider, $translateProvider, $uiViewScrollProvider, $urlRouterProvider, eehNavigationProvider) {
+angular.module('docs').config(function ($stateProvider, $translateProvider, $uiViewScrollProvider, $urlRouterProvider, eehMenuProvider) {
     $uiViewScrollProvider.useAnchorScroll();
     $translateProvider.useSanitizeValueStrategy('sanitize');
     $urlRouterProvider.otherwise('/');
@@ -30,28 +30,24 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $uiV
             url: '/getting-started',
             templateUrl: 'app/partials/getting-started.html'
         })
-        .state('docs.changeLog', {
-            url: '/change-log',
-            templateUrl: 'app/partials/change-log.html'
+        .state('docs.eehMenuService', {
+            url: '/eeh-menu-service',
+            templateUrl: 'app/partials/api/core/service/eehMenu.html'
         })
-        .state('docs.eehNavigationService', {
-            url: '/eeh-navigation-service',
-            templateUrl: 'app/partials/api/core/service/eehNavigation.html'
+        .state('docs.eehMenuMenu', {
+            url: '/eeh-menu-menu',
+            templateUrl: 'app/partials/api/menu/directive/eeh-menu-menu.html'
         })
-        .state('docs.eehNavigationMenu', {
-            url: '/eeh-navigation-menu',
-            templateUrl: 'app/partials/api/menu/directive/eeh-navigation-menu.html'
+        .state('docs.eehMenuSidebar', {
+            url: '/eeh-menu-sidebar',
+            templateUrl: 'app/partials/api/sidebar/directive/eeh-menu-sidebar.html'
         })
-        .state('docs.eehNavigationSidebar', {
-            url: '/eeh-navigation-sidebar',
-            templateUrl: 'app/partials/api/sidebar/directive/eeh-navigation-sidebar.html'
-        })
-        .state('docs.eehNavigationNavbar', {
-            url: '/eeh-navigation-navbar',
-            templateUrl: 'app/partials/api/navbar/directive/eeh-navigation-navbar.html'
+        .state('docs.eehMenuNavbar', {
+            url: '/eeh-menu-navbar',
+            templateUrl: 'app/partials/api/navbar/directive/eeh-menu-navbar.html'
         });
 
-    eehNavigationProvider
+    eehMenuProvider
         .iconBaseClass('fa')
         .defaultIconClassPrefix('fa')
         .menuItem('nav.home', {
@@ -66,32 +62,26 @@ angular.module('docs').config(function ($stateProvider, $translateProvider, $uiV
             iconClass: 'fa-power-off',
             weight: -18
         })
-        .menuItem('nav.changeLog', {
-            text: 'Change Log',
-            state: 'docs.changeLog',
-            iconClass: 'fa-refresh',
-            weight: -9
-        })
         .menuItem('nav.apiDocumentation', {
             text: 'API Documentation',
             iconClass: 'fa-book',
             weight: -8
         })
-        .menuItem('nav.apiDocumentation.eehNavigationService', {
-            text: 'eehNavigation',
-            state: 'docs.eehNavigationService'
+        .menuItem('nav.apiDocumentation.eehMenuService', {
+            text: 'eehMenu',
+            state: 'docs.eehMenuService'
         })
-        .menuItem('nav.apiDocumentation.eehNavigationMenu', {
-            text: 'eehNavigationMenu',
-            state: 'docs.eehNavigationMenu'
+        .menuItem('nav.apiDocumentation.eehMenuMenu', {
+            text: 'eehMenuMenu',
+            state: 'docs.eehMenuMenu'
         })
-        .menuItem('nav.apiDocumentation.eehNavigationNavbar', {
-            text: 'eehNavigationNavbar',
-            state: 'docs.eehNavigationNavbar'
+        .menuItem('nav.apiDocumentation.eehMenuNavbar', {
+            text: 'eehMenuNavbar',
+            state: 'docs.eehMenuNavbar'
         })
-        .menuItem('nav.apiDocumentation.eehNavigationSidebar', {
-            text: 'eehNavigationSidebar',
-            state: 'docs.eehNavigationSidebar'
+        .menuItem('nav.apiDocumentation.eehMenuSidebar', {
+            text: 'eehMenuSidebar',
+            state: 'docs.eehMenuSidebar'
         });
 });
 
