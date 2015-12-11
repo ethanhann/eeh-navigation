@@ -63,19 +63,19 @@ function SidebarDirective($window, eehNavigation) {
             };
             scope.topOffset = scope.topOffset || 51; // 51 is the default height of the navbar component
             scope.navClass = scope.navClass || 'navbar-default';
-            scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.defaultIconClassPrefix()+'-chevron-left';
-            scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.defaultIconClassPrefix()+'-chevron-down';
-            scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || scope.defaultIconClassPrefix()+'-arrow-right';
-            scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || scope.defaultIconClassPrefix()+'-arrow-left';
-            scope.searchInputIconClass = scope.searchInputIconClass || scope.defaultIconClassPrefix()+'-search';
-            if (scope.sidebarCollapsedButtonIsVisible !== false)  {
+            scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.defaultIconClassPrefix() + '-chevron-left';
+            scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.defaultIconClassPrefix() + '-chevron-down';
+            scope.sidebarCollapsedIconClass = scope.sidebarCollapsedIconClass || scope.defaultIconClassPrefix() + '-arrow-right';
+            scope.sidebarExpandedIconClass = scope.sidebarExpandedIconClass || scope.defaultIconClassPrefix() + '-arrow-left';
+            scope.searchInputIconClass = scope.searchInputIconClass || scope.defaultIconClassPrefix() + '-search';
+            if (scope.sidebarCollapsedButtonIsVisible !== false) {
                 scope.sidebarCollapsedButtonIsVisible = true;
             }
             scope.sidebarIsCollapsed = scope.sidebarIsCollapsed || false;
-            if (scope.searchInputIsVisible !== false)  {
+            if (scope.searchInputIsVisible !== false) {
                 scope.searchInputIsVisible = true;
             }
-            
+
             var menuItems = function () {
                 return eehNavigation.menuItems();
             };
@@ -112,25 +112,41 @@ function SidebarDirective($window, eehNavigation) {
                 }
             }, true);
 
-            scope.toggleSidebarTextCollapse = function() {
+            scope.toggleSidebarTextCollapse = function () {
                 scope.sidebarIsCollapsed = !scope.sidebarIsCollapsed;
                 setTextCollapseState();
             };
             function setTextCollapseState() {
                 var sidebarMenuItems = angular.element(document.querySelectorAll('ul.sidebar-nav:not(.sidebar-nav-nested) > li > a > span'));
-                var sidebarMenuItemArrowElements = Array.prototype.filter.call(sidebarMenuItems, function(item){ 
-                                    return item.matches('.sidebar-arrow');
-                                  });
+                var sidebarMenuItemText = sidebarMenuItems.find('span');
+                var allMenuItemTextElements = Array.prototype.filter.call(sidebarMenuItemText, function (item) {
+                    return item.matches('.menu-item-text');
+                });
+                var arrowIconElements = Array.prototype.filter.call(sidebarMenuItems, function (item) {
+                    return item.matches('.sidebar-arrow');
+                });
                 var sidebarElement = angular.element(document.querySelectorAll('.eeh-navigation-sidebar'));
                 if (scope.sidebarIsCollapsed) {
                     transcludedWrapper.addClass('sidebar-text-collapsed');
                     sidebarElement.addClass('sidebar-text-collapsed');
-                    sidebarMenuItemArrowElements.forEach(function(menuItem){
+                    allMenuItemTextElements.forEach(function (menuItem) {
                         angular.element(menuItem).addClass('hidden');
                     });
-                }else{
+                    arrowIconElements.forEach(function (menuItem) {
+                        angular.element(menuItem).addClass('hidden');
+                    });
+                    angular.forEach(menuItems(), function (menuItem) {
+                        menuItem.isCollapsed = true;
+                    });
+                } else {
                     transcludedWrapper.removeClass('sidebar-text-collapsed');
                     sidebarElement.removeClass('sidebar-text-collapsed');
+                    allMenuItemTextElements.forEach(function (menuItem) {
+                        angular.element(menuItem).removeClass('hidden');
+                    });
+                    arrowIconElements.forEach(function (menuItem) {
+                        angular.element(menuItem).removeClass('hidden');
+                    });
                 }
             }
 
@@ -146,7 +162,9 @@ function SidebarDirective($window, eehNavigation) {
 
             scope.isSidebarVisible = function () {
                 return scope.searchInputIsVisible || (angular.isArray(scope.sidebarMenuItems) && scope.sidebarMenuItems
-                        .filter(function (item) { return item._isVisible(); })
+                    .filter(function (item) {
+                        return item._isVisible();
+                    })
                         .length > 0);
             };
 
