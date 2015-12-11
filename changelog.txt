@@ -1,3 +1,6 @@
+ca5cadf (HEAD, origin/master, origin/HEAD, master) Revert text collapse fix
+578c71a Update to angular-bootstrap 0.14.x
+2a69776 (tag: 4.3.1) Prepare for 4.3.1 release
 1552388 removed useless code
 54af996 Changed the way text are hidden in sidebar
 b73886b Update docs

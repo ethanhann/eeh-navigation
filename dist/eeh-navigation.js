@@ -382,19 +382,35 @@
                 };
                 function setTextCollapseState() {
                     var sidebarMenuItems = angular.element(document.querySelectorAll("ul.sidebar-nav:not(.sidebar-nav-nested) > li > a > span"));
-                    var sidebarMenuItemArrowElements = Array.prototype.filter.call(sidebarMenuItems, function(item) {
+                    var sidebarMenuItemText = sidebarMenuItems.find("span");
+                    var allMenuItemTextElements = Array.prototype.filter.call(sidebarMenuItemText, function(item) {
+                        return item.matches(".menu-item-text");
+                    });
+                    var arrowIconElements = Array.prototype.filter.call(sidebarMenuItems, function(item) {
                         return item.matches(".sidebar-arrow");
                     });
                     var sidebarElement = angular.element(document.querySelectorAll(".eeh-navigation-sidebar"));
                     if (scope.sidebarIsCollapsed) {
                         transcludedWrapper.addClass("sidebar-text-collapsed");
                         sidebarElement.addClass("sidebar-text-collapsed");
-                        sidebarMenuItemArrowElements.forEach(function(menuItem) {
+                        allMenuItemTextElements.forEach(function(menuItem) {
                             angular.element(menuItem).addClass("hidden");
+                        });
+                        arrowIconElements.forEach(function(menuItem) {
+                            angular.element(menuItem).addClass("hidden");
+                        });
+                        angular.forEach(menuItems(), function(menuItem) {
+                            menuItem.isCollapsed = true;
                         });
                     } else {
                         transcludedWrapper.removeClass("sidebar-text-collapsed");
                         sidebarElement.removeClass("sidebar-text-collapsed");
+                        allMenuItemTextElements.forEach(function(menuItem) {
+                            angular.element(menuItem).removeClass("hidden");
+                        });
+                        arrowIconElements.forEach(function(menuItem) {
+                            angular.element(menuItem).removeClass("hidden");
+                        });
                     }
                 }
                 scope.$on("$includeContentLoaded", function() {
