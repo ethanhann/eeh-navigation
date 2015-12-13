@@ -1,10 +1,10 @@
 {
   "name": "eeh-navigation",
-  "version": "4.3.1",
+  "version": "5.0.0-alpha1",
   "main": [
-    "dist/eeh-navigation.css",
-    "dist/eeh-navigation.js",
-    "dist/eeh-navigation.tpl.js"
+    "dist/eeh-menu.css",
+    "dist/eeh-menu.js",
+    "dist/eeh-menu.tpl.js"
   ],
   "homepage": "https://github.com/ethanhann/eeh-navigation",
   "authors": [
@@ -31,15 +31,12 @@
   ],
   "dependencies": {
     "angular": ">=1.3",
-    "angular-ui-router": "~0.2.13",
-    "angular-bootstrap": "~0.13.0",
-    "angular-translate": "~2.7.0",
-    "bootstrap": ">=3.0",
+    "angular-ui-router": ">=0.2",
+    "angular-translate": ">=2.7",
     "menu.js": "~0.3.0"
   },
   "devDependencies": {
     "jasmine": "~2.4.1",
-    "angular-mocks": ">=1.3",
-    "bootstrap-sass": "~3.3.4"
+    "angular-mocks": ">=1.3"
   }
 }
