@@ -60,9 +60,9 @@ module.exports = function (grunt) {
                 files: {
                     '<%= settings.build %>/<%= settings.libName %>.annotated.js': [
                         '<%= settings.src %>/eeh-menu.js',
-                        '<%= settings.src %>/eeh-menu-*.js',
-                        '<%= settings.src %>/*/eeh-menu-*.js',
-                        '!<%= settings.src %>/**/*-spec.js'
+                        '<%= settings.src %>/menu-js.service.js',
+                        '<%= settings.src %>/eeh-menu.*.js',
+                        '!<%= settings.src %>/*.spec.js'
                     ]
                 }
             }

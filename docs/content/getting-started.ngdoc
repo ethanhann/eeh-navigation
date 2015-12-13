@@ -46,14 +46,14 @@ __JavaScript__
 
 ```javascript
 angular.module('myApp', [
-    'eehNavigation',
+    'eehMenu',
     'pascalprecht.translate',
     'ui.bootstrap',
     'ui.router'
 ])
-.config(['eehNavigationProvider', function (eehNavigationProvider) {
+.config(['eehMenuProvider', function (eehMenuProvider) {
     // Add nested user links to the "foo" menu.
-    eehNavigationProvider
+    eehMenuProvider
     .menuItem('foo.user', {
         text: 'Me',
         iconClass: 'fa-user'
@@ -65,7 +65,7 @@ angular.module('myApp', [
     });
 
     // Add a menu item that links to "/home" to the "bar" menu.
-    eehNavigationProvider
+    eehMenuProvider
     .menuItem('bar.home', {
         text: 'Home',
         iconClass: 'fa-home',
