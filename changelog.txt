@@ -1,4 +1,5 @@
-ca5cadf (HEAD, origin/master, origin/HEAD, master) Revert text collapse fix
+b62c3bc (HEAD, origin/master, origin/HEAD, master) Push dist build
+ca5cadf Revert text collapse fix
 578c71a Update to angular-bootstrap 0.14.x
 2a69776 (tag: 4.3.1) Prepare for 4.3.1 release
 1552388 removed useless code
