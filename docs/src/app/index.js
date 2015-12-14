@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('docs', [
-    'eehMetisMenu',
     'eehMenu',
+    'eehMenuBs3',
+    'eehMetisMenu',
     'eehTuxedoMenu',
     'ngAnimate',
     'ngCookies',

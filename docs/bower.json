@@ -17,7 +17,8 @@
     "google-code-prettify": "~1.0.4",
     "eeh-tuxedo-menu": "~0.1.0",
     "eeh-metis-menu": "~0.2.0",
-    "menu.js": "~0.3.0"
+    "menu.js": "~0.3.0",
+    "eeh-menu-bs3": "~0.1.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.8"
