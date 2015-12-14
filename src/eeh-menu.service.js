@@ -362,8 +362,8 @@ NavigationProvider.prototype.menuItem = function (name, config) {
 };
 
 /** @ngInject */
-NavigationProvider.prototype.$get = function (menu) {
-    return new NavigationService(menu, this._menuItems, this._iconBaseClass, this._defaultIconClassPrefix);
+NavigationProvider.prototype.$get = function (menuJsMenu) {
+    return new NavigationService(menuJsMenu, this._menuItems, this._iconBaseClass, this._defaultIconClassPrefix);
 };
 
 function NavigationService(menu, menuItems, iconBaseClass, defaultIconClassPrefix) {

@@ -8,7 +8,7 @@ function MenuItemContentDirective(eehMenu) {
         scope: {
             menuItem: '=eehMenuMenuItemContent'
         },
-        templateUrl: 'template/eeh-menu/menu-item-content/eeh-menu.menu-item-content.html',
+        templateUrl: 'template/eeh-menu/eeh-menu.menu-item-content.html',
         link: function (scope) {
             scope.iconBaseClass = function () {
                 return eehMenu.iconBaseClass();

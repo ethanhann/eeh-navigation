@@ -23,7 +23,7 @@ angular.module('eehMenu').directive('eehMenu', MenuDirective);
 function MenuDirective(eehMenu) {
     return {
         restrict: 'AE',
-        templateUrl: 'template/eeh-menu/menu/eeh-menu.html',
+        templateUrl: 'template/eeh-menu/eeh-menu.html',
         scope: {
             menuName: '=',
             navClass: '=?',

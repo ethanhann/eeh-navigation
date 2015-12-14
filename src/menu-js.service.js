@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('eehMenu').factory('menu', MenuService);
+angular.module('eehMenu').factory('menuJsMenu', MenuService);
 
 /** @ngInject */
 function MenuService ($window) {
