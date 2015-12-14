@@ -1,5 +1,10 @@
-42f0e3e (HEAD, origin/5.x, 5.x) Upgrade Jasmine and refactor tests
-2a69776 (tag: 4.3.1, origin/master, origin/HEAD, master) Prepare for 4.3.1 release
+d09705e (HEAD, 5.x) Use bs3 module for navbar
+192ff0f (origin/5.x) Fix template paths
+a688c7c Fix grunt build, and start prep'ing docs for 5.0.0
+ee5a8e8 (tag: 5.0.0-alpha1) Prepare for 5.0.0-alpha1 release
+a6c2758 Rename to eeh-menu, remove BS3 directives, and refactor directory structure
+42f0e3e Upgrade Jasmine and refactor tests
+2a69776 (tag: 4.3.1) Prepare for 4.3.1 release
 1552388 removed useless code
 54af996 Changed the way text are hidden in sidebar
 b73886b Update docs

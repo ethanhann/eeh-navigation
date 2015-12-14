@@ -3,7 +3,7 @@
     "use strict";
     angular.module("eehMenu", [ "pascalprecht.translate" ]);
     "use strict";
-    angular.module("eehMenu").factory("menu", MenuService);
+    angular.module("eehMenu").factory("menuJsMenu", MenuService);
     function MenuService($window) {
         return new $window.MenuJs.Menu();
     }
@@ -47,7 +47,7 @@
     function MenuDirective(eehMenu) {
         return {
             restrict: "AE",
-            templateUrl: "template/eeh-menu/menu/eeh-menu.html",
+            templateUrl: "template/eeh-menu/eeh-menu.html",
             scope: {
                 menuName: "=",
                 navClass: "=?",
@@ -82,7 +82,7 @@
             scope: {
                 menuItem: "=eehMenuMenuItemContent"
             },
-            templateUrl: "template/eeh-menu/menu-item-content/eeh-menu.menu-item-content.html",
+            templateUrl: "template/eeh-menu/eeh-menu.menu-item-content.html",
             link: function(scope) {
                 scope.iconBaseClass = function() {
                     return eehMenu.iconBaseClass();
@@ -116,10 +116,10 @@
         this._menuItems[name] = config;
         return this;
     };
-    NavigationProvider.prototype.$get = function(menu) {
-        return new NavigationService(menu, this._menuItems, this._iconBaseClass, this._defaultIconClassPrefix);
+    NavigationProvider.prototype.$get = function(menuJsMenu) {
+        return new NavigationService(menuJsMenu, this._menuItems, this._iconBaseClass, this._defaultIconClassPrefix);
     };
-    NavigationProvider.prototype.$get.$inject = [ "menu" ];
+    NavigationProvider.prototype.$get.$inject = [ "menuJsMenu" ];
     function NavigationService(menu, menuItems, iconBaseClass, defaultIconClassPrefix) {
         this._menu = menu;
         this._iconBaseClass = iconBaseClass;
