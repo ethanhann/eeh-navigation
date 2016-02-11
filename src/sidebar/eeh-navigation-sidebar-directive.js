@@ -52,7 +52,8 @@ function SidebarDirective($window, eehNavigation) {
             searchInputIsVisible: '=?',
             searchInputSubmit: '=',
             sidebarCollapsedButtonIsVisible: '=?',
-            sidebarIsCollapsed: '=?'
+            sidebarIsCollapsed: '=?',
+            query: '=?'
         },
         link: function (scope) {
             scope.iconBaseClass = function () {
