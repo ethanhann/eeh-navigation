@@ -5,10 +5,10 @@
             <li class="sidebar-search" ng-if="searchInputIsVisible">
                 <eeh-navigation-search-input class="sidebar-search-input"
                                              icon-class="searchInputIconClass"
-                                             submit="searchInputSubmit"
-                                             is-collapsed="sidebarIsCollapsed"></eeh-navigation-search-input>
+                                             is-collapsed="sidebarIsCollapsed">
+                </eeh-navigation-search-input>
             </li>
-            <li ng-repeat="item in sidebarMenuItems | orderBy:'weight'"
+            <li ng-repeat="item in sidebarMenuItems | filter: query |orderBy:'weight'"
                 ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
                 ng-class="{ 'leaf': !item.hasChildren() }"
                 ng-if="item._isVisible()"

@@ -20,6 +20,9 @@ function SearchInputDirective(eehNavigation) {
             scope.iconBaseClass = function () {
                 return eehNavigation.iconBaseClass();
             };
+            scope.submit = function(query) {
+                scope.$parent.$parent.query = query;
+            }
         }
     };
 }

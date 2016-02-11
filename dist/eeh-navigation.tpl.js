@@ -184,10 +184,9 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "            <li class=\"sidebar-search\" ng-if=\"searchInputIsVisible\">\n" +
     "                <eeh-navigation-search-input class=\"sidebar-search-input\"\n" +
     "                                             icon-class=\"searchInputIconClass\"\n" +
-    "                                             submit=\"searchInputSubmit\"\n" +
     "                                             is-collapsed=\"sidebarIsCollapsed\"></eeh-navigation-search-input>\n" +
     "            </li>\n" +
-    "            <li ng-repeat=\"item in sidebarMenuItems | orderBy:'weight'\"\n" +
+    "            <li ng-repeat=\"item in sidebarMenuItems | filter: query |orderBy:'weight'\"\n" +
     "                ng-include=\"'template/eeh-navigation/sidebar-menu-item.html'\"\n" +
     "                ng-class=\"{ 'leaf': !item.hasChildren() }\"\n" +
     "                ng-if=\"item._isVisible()\"\n" +
