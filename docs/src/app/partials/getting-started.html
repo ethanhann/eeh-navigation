@@ -28,14 +28,14 @@
 </code></pre>
 <h2 id="3-add-menu-items">3. Add Menu Items</h2>
 <pre><code class="lang-javascript">angular.module(&#39;myApp&#39;, [
-    &#39;eehNavigation&#39;,
+    &#39;eehMenu&#39;,
     &#39;pascalprecht.translate&#39;,
     &#39;ui.bootstrap&#39;,
     &#39;ui.router&#39;
 ])
-.config([&#39;eehNavigationProvider&#39;, function (eehNavigationProvider) {
+.config([&#39;eehMenuProvider&#39;, function (eehMenuProvider) {
     // Add nested user links to the &quot;foo&quot; menu.
-    eehNavigationProvider
+    eehMenuProvider
     .menuItem(&#39;foo.user&#39;, {
         text: &#39;Me&#39;,
         iconClass: &#39;fa-user&#39;
@@ -47,7 +47,7 @@
     });
 
     // Add a menu item that links to &quot;/home&quot; to the &quot;bar&quot; menu.
-    eehNavigationProvider
+    eehMenuProvider
     .menuItem(&#39;bar.home&#39;, {
         text: &#39;Home&#39;,
         iconClass: &#39;fa-home&#39;,

@@ -13,11 +13,12 @@
     "jquery": "~1.11.1",
     "bootstrap-sass": "~3.3.4",
     "angular-bootstrap": "~0.13.0",
-    "eeh-navigation": "4.3.0",
+    "eeh-navigation": "5.0.0-alpha1",
     "google-code-prettify": "~1.0.4",
     "eeh-tuxedo-menu": "~0.1.0",
     "eeh-metis-menu": "~0.2.0",
-    "menu.js": "~0.3.0"
+    "menu.js": "~0.3.0",
+    "eeh-menu-bs3": "~0.1.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.8"
@@ -25,5 +26,13 @@
   "resolutions": {
     "jquery": "~1.11.1",
     "angular": "~1.4.8"
+  },
+  "overrides": {
+    "google-code-prettify": {
+      "main": [
+        "src/prettify.js",
+        "src/prettify.css"
+      ]
+    }
   }
 }

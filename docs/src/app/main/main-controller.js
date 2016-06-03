@@ -3,7 +3,7 @@
 angular.module('docs').controller('MainController', function ($scope) {
     $scope.navbarBrand = {
         src: 'app/main/logo-alt.png',
-        text: 'eeh-navigation',
+        text: 'eeh-menu',
         state: 'home'
     };
 });

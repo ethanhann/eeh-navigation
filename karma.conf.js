@@ -17,7 +17,8 @@ module.exports = function (config) {
             'bower_components/angular/angular.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'bower_components/angular-translate/angular-translate.js',
-            'src/eeh-navigation.js',
+            'bower_components/menu.js/dist/menu.js',
+            'src/eeh-menu.js',
             'src/**/*.js'
         ],
         preprocessors: {

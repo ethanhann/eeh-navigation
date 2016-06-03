@@ -10,7 +10,7 @@ module.exports = function (grunt) {
             src: 'src',
             build: 'build',
             dist: 'dist',
-            libName: 'eeh-navigation',
+            libName: 'eeh-menu',
             docs: 'docs',
             demo: 'docs/bower_components/eeh-navigation/dist'
         },
@@ -56,25 +56,25 @@ module.exports = function (grunt) {
             }
         },
         ngAnnotate: {
-            eehNavigation: {
+            eehMenu: {
                 files: {
                     '<%= settings.build %>/<%= settings.libName %>.annotated.js': [
-                        '<%= settings.src %>/eeh-navigation.js',
-                        '<%= settings.src %>/eeh-navigation-*.js',
-                        '<%= settings.src %>/*/eeh-navigation-*.js',
-                        '!<%= settings.src %>/**/*-spec.js'
+                        '<%= settings.src %>/eeh-menu.js',
+                        '<%= settings.src %>/menu-js.service.js',
+                        '<%= settings.src %>/eeh-menu.*.js',
+                        '!<%= settings.src %>/*.spec.js'
                     ]
                 }
             }
         },
         ngtemplates: {
-            eehNavigation: {
+            eehMenu: {
                 cwd: '<%= settings.src %>',
                 src: ['**/*.html'],
-                dest: '<%= settings.dist %>/eeh-navigation.tpl.js',
+                dest: '<%= settings.dist %>/eeh-menu.tpl.js',
                 options: {
                     url: function (url) {
-                        return 'template/eeh-navigation/' + url;
+                        return 'template/eeh-menu/' + url;
                     }
                 }
             }

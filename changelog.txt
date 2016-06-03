@@ -1,4 +1,24 @@
-1238d74 (HEAD, origin/master, origin/HEAD, master) Add some temp fixes for doc dist
+d09705e (HEAD, 5.x) Use bs3 module for navbar
+192ff0f (origin/5.x) Fix template paths
+a688c7c Fix grunt build, and start prep'ing docs for 5.0.0
+ee5a8e8 (tag: 5.0.0-alpha1) Prepare for 5.0.0-alpha1 release
+a6c2758 Rename to eeh-menu, remove BS3 directives, and refactor directory structure
+42f0e3e Upgrade Jasmine and refactor tests
+2a69776 (tag: 4.3.1) Prepare for 4.3.1 release
+1552388 removed useless code
+54af996 Changed the way text are hidden in sidebar
+b73886b Update docs
+c97776b Add UI Router example
+952ac57 Update docs dist
+3d9b8d1 Fix concat issue by minifying google-code-prettify ourselves
+b4d3c22 Update README.md
+06831d2 Update .travis.yml
+af9e2b0 Decouple core menu building logic -> now in ethanhann/menu.js repo
+c61de5c Add filesystem explorer example
+e49f167 Fix a few issues with new examples
+a34a0d4 Update change log
+cf23157 Update README.md
+1238d74 Add some temp fixes for doc dist
 8df35ed Build docs
 2912829 (tag: 4.3.0) Prepare for release
 2e7abd4 Polish docs

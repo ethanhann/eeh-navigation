@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
+angular.module('docs').config(function ($stateProvider, eehMenuProvider) {
     $stateProvider
     .state('examples', {
         url: '/examples',
@@ -14,6 +14,10 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
     .state('examples.basicMenu', {
         url: '/basic-menu',
         templateUrl: 'app/examples/basic-menu.html'
+    })
+    .state('examples.menuFromUiRouterStates', {
+        url: '/menu-from-ui-router-states',
+        templateUrl: 'app/examples/menu-from-ui-router-states.html'
     })
     .state('examples.bootstrapNavbar', {
         url: '/bootstrap-navbar',
@@ -52,16 +56,23 @@ angular.module('docs').config(function ($stateProvider, eehNavigationProvider) {
         templateUrl: 'app/examples/metis-menu-and-bootstrap-navbar.html'
     });
 
-    eehNavigationProvider
+    eehMenuProvider
     .menuItem('nav.examples', {
         text: 'Examples',
         iconClass: 'fa-magic',
         state: 'examples.index',
         weight: -16
     })
-    .menuItem('examples.basicMenu', {
+    .menuItem('examples.basics', {
+        text: 'Menu Creation Essentials'
+    })
+    .menuItem('examples.basics.basicMenu', {
         text: 'Basic Menu',
         state: 'examples.basicMenu'
+    })
+    .menuItem('examples.basics.menuFromUiRouterStates', {
+        text: 'Menu from UI Router States',
+        state: 'examples.menuFromUiRouterStates'
     })
     .menuItem('examples.bootstrap', {
         text: 'Bootstrap 3'
