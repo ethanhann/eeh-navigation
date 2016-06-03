@@ -59,7 +59,6 @@ module.exports = function (grunt) {
             eehNavigation: {
                 files: {
                     '<%= settings.build %>/<%= settings.libName %>.annotated.js': [
-                        '<%= settings.src %>/eeh-translate.js',
                         '<%= settings.src %>/eeh-navigation.js',
                         '<%= settings.src %>/eeh-navigation-*.js',
                         '<%= settings.src %>/*/eeh-navigation-*.js',
