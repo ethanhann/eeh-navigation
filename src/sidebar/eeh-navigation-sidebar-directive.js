@@ -34,6 +34,8 @@ angular.module('eehNavigation').directive('eehNavigationSidebar', SidebarDirecti
  * This attribute causes the text collapse toggle button to be shown or hidden.
  * @param {boolean=} [sidebarIsCollapsed=false]
  * This attribute sets the state of the text collapse button.
+ * @param {function=} refresh
+ * This attribute provides a function for refreshing the directive.
  */
 function SidebarDirective($window, eehNavigation) {
     return {
@@ -52,7 +54,8 @@ function SidebarDirective($window, eehNavigation) {
             searchInputIsVisible: '=?',
             searchInputSubmit: '=',
             sidebarCollapsedButtonIsVisible: '=?',
-            sidebarIsCollapsed: '=?'
+            sidebarIsCollapsed: '=?',
+            refresh: '=?'
         },
         link: function (scope) {
             scope.iconBaseClass = function () {
@@ -79,12 +82,13 @@ function SidebarDirective($window, eehNavigation) {
             var menuItems = function () {
                 return eehNavigation.menuItems();
             };
-            scope.$watch(menuItems, function () {
+            scope.refresh = function () {
                 if (angular.isUndefined(scope.menuName)) {
                     return;
                 }
                 scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.menuName);
-            }, true);
+            };
+            scope.$watch(menuItems, scope.refresh, true);
             var windowElement = angular.element($window);
             windowElement.bind('resize', function () {
                 scope.$apply();
