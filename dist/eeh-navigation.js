@@ -1,6 +1,10 @@
 (function(exports, global) {
-    global["eeh-navigation"] = exports;
     "use strict";
+    ActiveMenuItemDirective.$inject = [ "$state" ];
+    MenuItemContentDirective.$inject = [ "eehNavigation" ];
+    MenuDirective.$inject = [ "eehNavigation" ];
+    SearchInputDirective.$inject = [ "eehNavigation" ];
+    SidebarDirective.$inject = [ "$window", "eehNavigation" ];
     angular.module("eehNavigation", [ "pascalprecht.translate" ]);
     "use strict";
     angular.module("eehNavigation").directive("eehNavigationActiveMenuItem", ActiveMenuItemDirective);
@@ -35,7 +39,6 @@
             }
         };
     }
-    ActiveMenuItemDirective.$inject = [ "$state" ];
     "use strict";
     var MenuItem = function(config) {
         this.weight = 0;
@@ -171,7 +174,6 @@
             }
         };
     }
-    MenuItemContentDirective.$inject = [ "eehNavigation" ];
     "use strict";
     angular.module("eehNavigation").directive("eehNavigationMenu", MenuDirective);
     function MenuDirective(eehNavigation) {
@@ -203,7 +205,6 @@
             }
         };
     }
-    MenuDirective.$inject = [ "eehNavigation" ];
     "use strict";
     angular.module("eehNavigation").directive("eehNavigationNavbarBrand", NavbarBrandDirective);
     function NavbarBrandDirective() {
@@ -234,7 +235,8 @@
                 brandHref: "=",
                 brandTarget: "=",
                 brandSrc: "=",
-                brandClick: "="
+                brandClick: "=",
+                refresh: "=?"
             },
             link: function(scope) {
                 scope.iconBaseClass = function() {
@@ -242,7 +244,7 @@
                 };
                 scope.navClass = scope.navClass || "navbar-default navbar-static-top";
                 scope.isNavbarCollapsed = true;
-                scope.$watch(eehNavigation.menuItems, function() {
+                scope.refresh = function() {
                     if (angular.isUndefined(scope.menuName)) {
                         return;
                     }
@@ -253,7 +255,8 @@
                     scope.rightNavbarMenuItems = menuItems.filter(function(item) {
                         return item.isHeavy();
                     });
-                }, true);
+                };
+                scope.$watch(eehNavigation.menuItems, scope.refresh, true);
                 var windowElement = angular.element($window);
                 windowElement.bind("resize", function() {
                     scope.$apply();
@@ -300,7 +303,6 @@
             }
         };
     }
-    SearchInputDirective.$inject = [ "eehNavigation" ];
     "use strict";
     angular.module("eehNavigation").directive("eehNavigationSidebar", SidebarDirective);
     function SidebarDirective($window, eehNavigation) {
@@ -320,7 +322,8 @@
                 searchInputIsVisible: "=?",
                 searchInputSubmit: "=",
                 sidebarCollapsedButtonIsVisible: "=?",
-                sidebarIsCollapsed: "=?"
+                sidebarIsCollapsed: "=?",
+                refresh: "=?"
             },
             link: function(scope) {
                 scope.iconBaseClass = function() {
@@ -346,12 +349,13 @@
                 var menuItems = function() {
                     return eehNavigation.menuItems();
                 };
-                scope.$watch(menuItems, function() {
+                scope.refresh = function() {
                     if (angular.isUndefined(scope.menuName)) {
                         return;
                     }
                     scope.sidebarMenuItems = eehNavigation.menuItemTree(scope.menuName);
-                }, true);
+                };
+                scope.$watch(menuItems, scope.refresh, true);
                 var windowElement = angular.element($window);
                 windowElement.bind("resize", function() {
                     scope.$apply();
@@ -434,7 +438,7 @@
             }
         };
     }
-    SidebarDirective.$inject = [ "$window", "eehNavigation" ];
+    global["eeh-navigation"] = exports;
 })({}, function() {
     return this;
 }());

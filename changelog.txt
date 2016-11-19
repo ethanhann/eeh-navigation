@@ -1,4 +1,6 @@
-b62c3bc (HEAD, origin/master, origin/HEAD, master) Push dist build
+1c2ed53 (origin/feature/add_refresh_method, feature/add_refresh_method) Add refresh methods for re-rendering the sidebar and navbar.
+d475879 (tag: 4.4.0, origin/master, origin/HEAD) Prepare for 4.4.0 release
+b62c3bc Push dist build
 ca5cadf Revert text collapse fix
 578c71a Update to angular-bootstrap 0.14.x
 2a69776 (tag: 4.3.1) Prepare for 4.3.1 release
@@ -42,7 +44,7 @@ e0ad62a Ignore docs
 4a17c99 Set default menu item icons with iconBaseClass to automatically use the font library specified
 527afd7 Set default menu item icons with iconBaseClass to automatically use the font library specified
 8fe30ac Removed jQuery dependencies in navbar and sidebar directives
-7887c67 (chore/remove_jquery_dependency) Add note on moving demo site code
+7887c67 Add note on moving demo site code
 34501db Bump version in docs and remove link to old docs
 f404f7a Update docs/dist
 2f92e60 Update docs post release
@@ -96,7 +98,7 @@ c483fe8 Add translation documentation
 6ce0128 Update docs
 0e79bb6 Fix doc link
 dd91f57 Change "list" to "menu" in directive name
-6d405fd (origin/generic-menu-directive, generic-menu-directive) Update docs
+6d405fd (origin/generic-menu-directive) Update docs
 f00d193 Refactor "list" to "menu"
 81b75a9 Check root menu item visibility
 60c66c4 Add framework agnostic menu
@@ -127,7 +129,7 @@ c9ca87d Upgrade lib version in docs
 3fa0796 Remove old doc and move demo to root
 ded1815 (tag: 4.0.0-beta1) Prepare for release
 eecfac3 Switch src path pattern for jshint
-fa888ac (origin/try-dgeni, try-dgeni) Update docs
+fa888ac (origin/try-dgeni) Update docs
 e0f97c1 Fix issues with search input icon class
 7ad04ec Fix typo in docs
 a27c9d4 Add change log to new docs.
@@ -198,7 +200,7 @@ d1d9cec Rework active menu item directive
 892ab73 Begin DRYing out directives
 dd1316c Slightly newer version of UI router is needed for adding active class to nested menu items
 32e63ec Decouple sidebar and navbar
-fb7c44f (decoupled-menus) Start decoupling menus
+fb7c44f Start decoupling menus
 0c54ae8 Copy dist into docs for dev
 e209678 Copy dist into docs for dev
 01a98e5 (tag: 3.2.1) Prepare for release
@@ -290,7 +292,7 @@ e271dcf (tag: 2.0.1) Prepare for release
 ce90627 Add a MenuItem class and factor out functions from directive
 5397bde (tag: 2.0.0) Prepare for release
 7d42fda Fix CS issue
-0282574 (origin/flat-config, flat-config) Add ability to weight menu items (heavier items sink)
+0282574 (origin/flat-config) Add ability to weight menu items (heavier items sink)
 97c4cc1 Separate js into multiple files and prefix lib files with eeh-
 e43336a Refactor navigation service
 9a4bf44 Flatten navbar item configuration
