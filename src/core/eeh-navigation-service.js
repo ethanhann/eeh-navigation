@@ -369,8 +369,6 @@ NavigationService.prototype.defaultIconClassPrefix = function (value) {
     return this;
 };
 
-
-
 /**
  * Recursively map a flat array of menu items to a nested object suitable to generate hierarchical HTML from.
  */
@@ -421,5 +419,5 @@ NavigationService.prototype.menuItem = function (name, config) {
 };
 
 NavigationService.prototype.menuItems = function () {
-    return this._menuItems;
+    return angular.isDefined(this) ? this._menuItems : {};
 };

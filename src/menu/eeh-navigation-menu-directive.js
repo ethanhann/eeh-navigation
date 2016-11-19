@@ -19,6 +19,7 @@ angular.module('eehNavigation').directive('eehNavigationMenu', MenuDirective);
  * This attribute sets the icon used to indicate that a parent of a nested menu item is collapsed.
  * @param {string=} [menuItemExpandedIconClass="glyphicon-chevron-down"]
  * This attribute sets the icon used to indicate that a parent of a nested menu item is expanded.
+ * @param {function=} refresh This attribute provides a function for refreshing the directive.
  */
 function MenuDirective(eehNavigation) {
     return {
@@ -28,7 +29,8 @@ function MenuDirective(eehNavigation) {
             menuName: '=',
             navClass: '=?',
             menuItemCollapsedIconClass: '=?',
-            menuItemExpandedIconClass: '=?'
+            menuItemExpandedIconClass: '=?',
+            refresh: '=?'
         },
         link: function (scope) {
             scope.iconBaseClass = function () {
@@ -42,12 +44,14 @@ function MenuDirective(eehNavigation) {
             scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.defaultIconClassPrefix()+'-chevron-left';
             scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.defaultIconClassPrefix()+'-chevron-down';
 
-            scope.$watch(eehNavigation.menuItems, function () {
+            scope.refresh = function () {
                 if (angular.isUndefined(scope.menuName)) {
                     return;
                 }
                 scope.menuItems = eehNavigation.menuItemTree(scope.menuName);
-            }, true);
+            };
+
+            scope.$watch(eehNavigation.menuItems, scope.refresh, true);
         }
     };
 }
