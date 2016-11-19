@@ -20,6 +20,7 @@
  * @param {string=} brandTarget Sets target attribute of the brand element.
  * @param {string=} brandSrc Sets the src attribute of the image in the brand element.
  * @param {function=} brandClick Sets the callback function of the brand element.
+ * @param {function=} refresh A function for refreshing the directive.
  */
 var NavbarDirective = function ($window, eehNavigation) {
     return {
@@ -34,7 +35,8 @@ var NavbarDirective = function ($window, eehNavigation) {
             brandHref: '=',
             brandTarget: '=',
             brandSrc: '=',
-            brandClick: '='
+            brandClick: '=',
+            refresh: '=?'
         },
         link: function (scope) {
             scope.iconBaseClass = function () {
@@ -42,14 +44,16 @@ var NavbarDirective = function ($window, eehNavigation) {
             };
             scope.navClass = scope.navClass || 'navbar-default navbar-static-top';
             scope.isNavbarCollapsed = true;
-            scope.$watch(eehNavigation.menuItems, function () {
+            scope.refresh = function () {
                 if (angular.isUndefined(scope.menuName)) {
                     return;
                 }
                 var menuItems = eehNavigation.menuItemTree(scope.menuName);
                 scope.leftNavbarMenuItems = menuItems.filter(function (item) { return !item.isHeavy(); });
                 scope.rightNavbarMenuItems = menuItems.filter(function (item) { return item.isHeavy(); });
-            }, true);
+            };
+            scope.$watch(eehNavigation.menuItems, scope.refresh, true);
+
             var windowElement = angular.element($window);
             windowElement.bind('resize', function () {
                 scope.$apply();
