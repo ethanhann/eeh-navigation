@@ -1,5 +1,7 @@
+3327999 (HEAD -> master) Add refresh method to regular menu directive, return blank object when nav service hasn't been created
+e394740 (tag: 4.5.0, origin/master, origin/HEAD) Prepare for 4.5.0 release
 1c2ed53 (origin/feature/add_refresh_method, feature/add_refresh_method) Add refresh methods for re-rendering the sidebar and navbar.
-d475879 (tag: 4.4.0, origin/master, origin/HEAD) Prepare for 4.4.0 release
+d475879 (tag: 4.4.0) Prepare for 4.4.0 release
 b62c3bc Push dist build
 ca5cadf Revert text collapse fix
 578c71a Update to angular-bootstrap 0.14.x

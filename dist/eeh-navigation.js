@@ -156,7 +156,7 @@
         return this;
     };
     NavigationService.prototype.menuItems = function() {
-        return this._menuItems;
+        return angular.isDefined(this) ? this._menuItems : {};
     };
     "use strict";
     angular.module("eehNavigation").directive("eehNavigationMenuItemContent", MenuItemContentDirective);
@@ -184,7 +184,8 @@
                 menuName: "=",
                 navClass: "=?",
                 menuItemCollapsedIconClass: "=?",
-                menuItemExpandedIconClass: "=?"
+                menuItemExpandedIconClass: "=?",
+                refresh: "=?"
             },
             link: function(scope) {
                 scope.iconBaseClass = function() {
@@ -196,12 +197,13 @@
                 scope.navClass = scope.navClass || "navigation-menu";
                 scope.menuItemCollapsedIconClass = scope.menuItemCollapsedIconClass || scope.defaultIconClassPrefix() + "-chevron-left";
                 scope.menuItemExpandedIconClass = scope.menuItemExpandedIconClass || scope.defaultIconClassPrefix() + "-chevron-down";
-                scope.$watch(eehNavigation.menuItems, function() {
+                scope.refresh = function() {
                     if (angular.isUndefined(scope.menuName)) {
                         return;
                     }
                     scope.menuItems = eehNavigation.menuItemTree(scope.menuName);
-                }, true);
+                };
+                scope.$watch(eehNavigation.menuItems, scope.refresh, true);
             }
         };
     }

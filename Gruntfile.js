@@ -129,8 +129,10 @@ module.exports = function (grunt) {
             }
         },
         versioncheck: {
-            options: {
-                hideUpToDate: true
+            target: {
+                options: {
+                    hideUpToDate : true
+                }
             }
         }
     });

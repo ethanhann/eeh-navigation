@@ -1,10 +1,4 @@
-<a href='https://github.com/angular/angular.js/edit//../src/menu/eeh-navigation-menu-directive.js?message=docs(eeh-navigation-menu)%3A%20describe%20your%20change...#L4' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
-
-
-<a href='https://github.com///tree//../src/menu/eeh-navigation-menu-directive.js#L4' class='view-source pull-right btn btn-primary'>
-  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
-</a>
 
 
 <header class="api-profile-header">
@@ -12,7 +6,7 @@
   <ol class="api-profile-header-structure naked-list step-list">
     
     <li>
-      - directive in module <a href=""></a>
+      - directive in module 
     </li>
   </ol>
 </header>
@@ -30,6 +24,8 @@ bare-bones menu that this directive generates.</p>
 
 
 
+
+
 <div>
   
 
@@ -38,6 +34,7 @@ bare-bones menu that this directive generates.</p>
   <ul>
     
     <li>This directive executes at priority level 0.</li>
+    
   </ul>
 
   
@@ -48,10 +45,10 @@ bare-bones menu that this directive generates.</p>
     
       <li>as element:
       
-      <pre><code>&lt;eeh-navigation-menu&#10;  menu-name=&quot;&quot;&#10;  [nav-class=&quot;&quot;]&#10;  [menu-item-collapsed-icon-class=&quot;&quot;]&#10;  [menu-item-expanded-icon-class=&quot;&quot;]&gt;&#10;...&#10;&lt;/eeh-navigation-menu&gt;</code></pre>
+      <pre><code>&lt;eeh-navigation-menu&#10;  menu-name=&quot;string&quot;&#10;  [nav-class=&quot;string&quot;]&#10;  [menu-item-collapsed-icon-class=&quot;string&quot;]&#10;  [menu-item-expanded-icon-class=&quot;string&quot;]&#10;  [refresh=&quot;&quot;]&gt;&#10;...&#10;&lt;/eeh-navigation-menu&gt;</code></pre>
       </li>
     <li>as attribute:
-        <pre><code>&lt;ANY&#10;  menu-name=&quot;&quot;&#10;  [nav-class=&quot;&quot;]&#10;  [menu-item-collapsed-icon-class=&quot;&quot;]&#10;  [menu-item-expanded-icon-class=&quot;&quot;]&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
+        <pre><code>&lt;ANY&#10;  menu-name=&quot;string&quot;&#10;  [nav-class=&quot;string&quot;]&#10;  [menu-item-collapsed-icon-class=&quot;string&quot;]&#10;  [menu-item-expanded-icon-class=&quot;string&quot;]&#10;  [refresh=&quot;&quot;]&gt;&#10;...&#10;&lt;/ANY&gt;</code></pre>
       </li>
     
   </div>
@@ -130,6 +127,22 @@ bare-bones menu that this directive generates.</p>
         <p>This attribute sets the icon used to indicate that a parent of a nested menu item is expanded.</p>
 
         <p><em>(default: "glyphicon-chevron-down")</em></p>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        refresh
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="label type-hint type-hint-function">function=</a>
+      </td>
+      <td>
+        <p>This attribute provides a function for refreshing the directive.</p>
+
+        
       </td>
     </tr>
     
