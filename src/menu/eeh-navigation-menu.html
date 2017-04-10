@@ -9,6 +9,9 @@
 </nav>
 
 <script type="text/ng-template" id="template/eeh-navigation/list-menu-item.html">
+    <p ng-if="item.isReadOnly" class="read-only-menu-item">
+        <span eeh-navigation-menu-item-content="item"></span>
+    </p>
     <span ng-if="item.ngInclude" ng-include="item.ngInclude"></span>
     <a ng-if="item.state" ui-sref="{{item.state}}">
         <span eeh-navigation-menu-item-content="item"></span>
