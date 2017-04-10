@@ -45,6 +45,10 @@ MenuItem.prototype.isVisible = function () {
     return true;
 };
 
+MenuItem.prototype.hasTemplate = function () {
+    return this.hasOwnProperty('template');
+};
+
 MenuItem.prototype.isHeavy = function () {
     if (this.hasOwnProperty('weight')) {
         return this.weight >= 0;
