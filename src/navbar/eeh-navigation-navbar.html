@@ -38,6 +38,7 @@
 </nav>
 
 <script type="text/ng-template" id="template/eeh-navigation/navbar-menu-item.html">
+    <span ng-if="item.ngInclude" ng-include="item.ngInclude"></span>
     <a ng-if="!item.isDivider && item.state" ui-sref="{{ item.state }}">
         <span eeh-navigation-menu-item-content="item"></span>
     </a>

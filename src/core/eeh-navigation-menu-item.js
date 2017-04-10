@@ -28,6 +28,7 @@ MenuItem.prototype._isVisible = function () {
         angular.isUndefined(this.state) &&
         angular.isUndefined(this.href) &&
         angular.isUndefined(this.click) &&
+        angular.isUndefined(this.ngInclude) &&
         !this.isDivider) {
         return false;
     }
@@ -43,10 +44,6 @@ MenuItem.prototype._isVisible = function () {
 
 MenuItem.prototype.isVisible = function () {
     return true;
-};
-
-MenuItem.prototype.hasTemplate = function () {
-    return this.hasOwnProperty('template');
 };
 
 MenuItem.prototype.isHeavy = function () {
