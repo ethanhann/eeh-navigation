@@ -2,6 +2,9 @@
 
 var MenuItem = function (config) {
     this.weight = 0;
+    this.isIconVisible = true;
+    this.isDivider = false;
+    this.isReadOnly = false;
     angular.extend(this, config);
 };
 
@@ -25,10 +28,12 @@ MenuItem.prototype._isVisible = function () {
     }).length > 0;
 
     if (!hasVisibleChildren &&
+        !this.isDivider &&
         angular.isUndefined(this.state) &&
         angular.isUndefined(this.href) &&
         angular.isUndefined(this.click) &&
-        !this.isDivider) {
+        angular.isUndefined(this.ngInclude) &&
+        !this.isReadOnly) {
         return false;
     }
 
@@ -40,6 +45,7 @@ MenuItem.prototype._isVisible = function () {
     }
     return true;
 };
+
 
 MenuItem.prototype.isVisible = function () {
     return true;
