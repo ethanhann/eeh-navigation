@@ -3,7 +3,7 @@
   "version": "4.6.0",
   "main": [
     "dist/eeh-navigation.css",
-    "dist/eeh-navigation.full.js",
+    "dist/eeh-navigation.full.js"
   ],
   "homepage": "https://github.com/ethanhann/eeh-navigation",
   "authors": [
