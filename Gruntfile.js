@@ -106,6 +106,10 @@ module.exports = function (grunt) {
                 files: {
                     '<%= settings.dist %>/<%= settings.libName %>.js': [
                         '<%= settings.build %>/<%= settings.libName %>.annotated.js'
+                    ],
+                    '<%= settings.dist %>/<%= settings.libName %>.full.js': [
+                        '<%= settings.build %>/<%= settings.libName %>.annotated.js',
+                        '<%= settings.dist %>/*.tpl.js'
                     ]
                 },
                 options: {
@@ -120,7 +124,10 @@ module.exports = function (grunt) {
                     '<%= settings.dist %>/<%= settings.libName %>.min.js': [
                         '<%= settings.build %>/<%= settings.libName %>.annotated.js'
                     ],
-                    '<%= settings.dist %>/<%= settings.libName %>.tpl.min.js': ['<%= settings.dist %>/*.tpl.js']
+                    '<%= settings.dist %>/<%= settings.libName %>.tpl.min.js': ['<%= settings.dist %>/*.tpl.js'],
+                    '<%= settings.dist %>/<%= settings.libName %>.full.min.js': [
+                        '<%= settings.dist %>/<%= settings.libName %>.full.js'
+                    ]
                 },
                 options: {
                     wrap: '<%= settings.libName %>',
