@@ -414,6 +414,7 @@ NavigationService.prototype.menuItem = function (name, config) {
         }
         return this._menuItems[name];
     }
+    config.menuItemName = name;
     this._menuItems[name] = new MenuItem(config);
     return this;
 };
