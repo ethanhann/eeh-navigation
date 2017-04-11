@@ -42,6 +42,10 @@
     "use strict";
     var MenuItem = function(config) {
         this.weight = 0;
+        this.isIconVisible = true;
+        this.isDivider = false;
+        this.isReadOnly = false;
+        this.ngBindHtml = "";
         angular.extend(this, config);
     };
     MenuItem.prototype.children = function() {
@@ -60,7 +64,7 @@
         var hasVisibleChildren = this.children().filter(function(child) {
             return child._isVisible() !== false;
         }).length > 0;
-        if (!hasVisibleChildren && angular.isUndefined(this.state) && angular.isUndefined(this.href) && angular.isUndefined(this.click) && !this.isDivider) {
+        if (!hasVisibleChildren && !this.isDivider && angular.isUndefined(this.state) && angular.isUndefined(this.href) && angular.isUndefined(this.click) && angular.isUndefined(this.ngInclude) && !this.isReadOnly) {
             return false;
         }
         if (angular.isFunction(this.isVisible)) {
@@ -78,6 +82,9 @@
         if (this.hasOwnProperty("weight")) {
             return this.weight >= 0;
         }
+    };
+    MenuItem.prototype._ngBindHtml = function() {
+        return angular.isFunction(this.ngBindHtml) ? this.ngBindHtml() : this.ngBindHtml;
     };
     "use strict";
     angular.module("eehNavigation").provider("eehNavigation", NavigationService);
@@ -152,6 +159,7 @@
             }
             return this._menuItems[name];
         }
+        config.menuItemName = name;
         this._menuItems[name] = new MenuItem(config);
         return this;
     };
@@ -303,6 +311,14 @@
                     return eehNavigation.iconBaseClass();
                 };
             }
+        };
+    }
+    "use strict";
+    if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || function(s) {
+            var matches = (this.document || this.ownerDocument).querySelectorAll(s), i = matches.length;
+            while (--i >= 0 && matches.item(i) !== this) {}
+            return i > -1;
         };
     }
     "use strict";
