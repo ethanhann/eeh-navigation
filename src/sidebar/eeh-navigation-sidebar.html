@@ -56,7 +56,7 @@
     <ul ng-if="!item.state && item.hasChildren()" uib-collapse="item.isCollapsed"
         ng-class="{ 'text-collapsed': sidebarIsCollapsed }"
         class="nav sidebar-nav sidebar-nav-nested">
-        <li ng-repeat="item in item.children()"
+        <li ng-repeat="item in item.children() | orderBy:'weight'"
             ng-attr-id="{{item.id ? item.id : 'eeh-navigation-sidebar-' + item.menuItemName}}"
             ng-include="'template/eeh-navigation/sidebar-menu-item.html'"
             ng-class="{ 'leaf': !item.hasChildren() }"
