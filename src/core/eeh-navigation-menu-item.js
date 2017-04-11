@@ -5,6 +5,7 @@ var MenuItem = function (config) {
     this.isIconVisible = true;
     this.isDivider = false;
     this.isReadOnly = false;
+    this.ngBindHtml = '';
     angular.extend(this, config);
 };
 
@@ -55,4 +56,8 @@ MenuItem.prototype.isHeavy = function () {
     if (this.hasOwnProperty('weight')) {
         return this.weight >= 0;
     }
+};
+
+MenuItem.prototype._ngBindHtml = function () {
+    return angular.isFunction(this.ngBindHtml) ? this.ngBindHtml() : this.ngBindHtml;
 };
