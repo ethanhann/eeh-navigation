@@ -1,6 +1,7 @@
 <nav ng-class="navClass">
     <ul>
         <li ng-repeat="item in menuItems | orderBy:'weight'"
+            ng-attr-id="{{item.id ? item.id : 'eeh-navigation-menu-' + item.menuItemName}}"
             ng-include="'template/eeh-navigation/list-menu-item.html'"
             ng-class="{ 'leaf': !item.hasChildren() }"
             ng-if="item._isVisible()"
@@ -9,6 +10,10 @@
 </nav>
 
 <script type="text/ng-template" id="template/eeh-navigation/list-menu-item.html">
+    <p ng-if="item.isReadOnly" class="read-only-menu-item">
+        <span eeh-navigation-menu-item-content="item"></span>
+    </p>
+    <span ng-if="item.ngInclude" ng-include="item.ngInclude"></span>
     <a ng-if="item.state" ui-sref="{{item.state}}">
         <span eeh-navigation-menu-item-content="item"></span>
     </a>
@@ -25,6 +30,7 @@
     </a>
     <ul ng-if="!item.state && item.hasChildren()">
         <li ng-repeat="item in item.children()"
+            ng-attr-id="{{item.id ? item.id : 'eeh-navigation-menu-' + item.menuItemName}}"
             ng-include="'template/eeh-navigation/list-menu-item.html'"
             ng-if="item._isVisible()"
             eeh-navigation-active-menu-item="item"></li>

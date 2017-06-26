@@ -1,6 +1,16 @@
-3327999 (HEAD -> master) Add refresh method to regular menu directive, return blank object when nav service hasn't been created
-e394740 (tag: 4.5.0, origin/master, origin/HEAD) Prepare for 4.5.0 release
-1c2ed53 (origin/feature/add_refresh_method, feature/add_refresh_method) Add refresh methods for re-rendering the sidebar and navbar.
+22ef559 (HEAD -> master, origin/master, origin/HEAD) Allow arbitrary html to be added to a menu item with ng-html-bind
+8a00ba0 Add matches polyfill
+c8ead0e Order nested sidebar items by weight
+70ae36a Add ID to menu items, and allow for custom IDs
+8165804 Feature/adding template to menu item (#66)
+270260b Attempt to fix travis build error
+10b72ef (tag: 4.6.1) bump version
+a11e8b4 Remove errant comma
+3f3685c (tag: 4.6.0) Only include one js file in bower main field
+64f8c86 (tag: 4.5.1) Update npm dev deps
+3327999 Add refresh method to regular menu directive, return blank object when nav service hasn't been created
+e394740 (tag: 4.5.0) Prepare for 4.5.0 release
+1c2ed53 (origin/feature/add_refresh_method) Add refresh methods for re-rendering the sidebar and navbar.
 d475879 (tag: 4.4.0) Prepare for 4.4.0 release
 b62c3bc Push dist build
 ca5cadf Revert text collapse fix
