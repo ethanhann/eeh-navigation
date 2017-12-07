@@ -67,4 +67,21 @@
             ng-if="item._isVisible()"
             ui-sref-active-eq="active"></li>
     </ul>
+    <div ng-if="item.search">
+        <ui-select ng-model="generalSearchItem"
+                theme="select2"
+                on-select="item.on_select(generalSearchItem)"
+                class="form-control border-none p-none"
+                required>
+            <ui-select-match placeholder="General Search">
+                {{ $select.selected.name }}
+            </ui-select-match>
+            <ui-select-choices
+                    repeat="result in item.on_change($select.search) | filter: $select.search"
+                    refresh-delay="800"
+                    group-by="item.group_by">
+                <span ng-bind-html="result.id + ' - ' + result.name | highlight: $select.search | unsafe"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
 </script>
