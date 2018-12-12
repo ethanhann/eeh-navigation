@@ -56,7 +56,7 @@
     </a>
     <a ng-if="item.hasChildren()" uib-dropdown-toggle="">
         <span class="icon-fw {{ iconBaseClass() }} {{ item.iconClass }}"></span>
-        <span> {{ item.text|translate }}</span>
+        <span translate="{{ item.text }}"></span>
         <span class="caret"></span>
     </a>
     <ul ng-if="item.hasChildren()" class="dropdown-menu">
