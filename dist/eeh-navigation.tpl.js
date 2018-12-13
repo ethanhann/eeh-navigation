@@ -5,7 +5,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "<span ng-if=\"menuItem.isIconVisible\"\n" +
     "      class=\"menu-item-icon icon-fw {{ iconBaseClass() }} {{ menuItem.iconClass}}\"></span>\n" +
     "<span ng-if=\"menuItem.text\"\n" +
-    "      class=\"menu-item-text\"> {{ menuItem.text|translate }}</span>\n" +
+    "      class=\"menu-item-text\" translate=\"{{ menuItem.text }}\"></span>\n" +
     "<span ng-if=\"menuItem._ngBindHtml()\" ng-bind-html=\"menuItem._ngBindHtml()\"></span>\n"
   );
 
@@ -141,7 +141,7 @@ angular.module('eehNavigation').run(['$templateCache', function($templateCache) 
     "    </a>\n" +
     "    <a ng-if=\"item.hasChildren()\" uib-dropdown-toggle=\"\">\n" +
     "        <span class=\"icon-fw {{ iconBaseClass() }} {{ item.iconClass }}\"></span>\n" +
-    "        <span> {{ item.text|translate }}</span>\n" +
+    "        <span translate=\"{{ item.text }}\"></span>\n" +
     "        <span class=\"caret\"></span>\n" +
     "    </a>\n" +
     "    <ul ng-if=\"item.hasChildren()\" class=\"dropdown-menu\">\n" +

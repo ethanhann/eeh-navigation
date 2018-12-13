@@ -1,4 +1,9 @@
-22ef559 (HEAD -> master, origin/master, origin/HEAD) Allow arbitrary html to be added to a menu item with ng-html-bind
+b37b6fc (HEAD -> master, origin/master, origin/HEAD) ignore package-lock.json
+6744334 Bump npm version
+ec5b0fd Replace translate filter with directive in navbar
+d7e21ae Replace translate filter with directive
+9c816ea (tag: 4.7.0) Prepare for release
+22ef559 Allow arbitrary html to be added to a menu item with ng-html-bind
 8a00ba0 Add matches polyfill
 c8ead0e Order nested sidebar items by weight
 70ae36a Add ID to menu items, and allow for custom IDs
