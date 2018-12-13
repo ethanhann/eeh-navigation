@@ -1,5 +1,5 @@
 <span ng-if="menuItem.isIconVisible"
       class="menu-item-icon icon-fw {{ iconBaseClass() }} {{ menuItem.iconClass}}"></span>
 <span ng-if="menuItem.text"
-      class="menu-item-text"> {{ menuItem.text|translate }}</span>
+      class="menu-item-text" translate="{{ menuItem.text }}"></span>
 <span ng-if="menuItem._ngBindHtml()" ng-bind-html="menuItem._ngBindHtml()"></span>
