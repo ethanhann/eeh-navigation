@@ -13,7 +13,7 @@
     "jquery": "~1.11.1",
     "bootstrap-sass": "~3.3.4",
     "angular-bootstrap": "~0.14.0",
-    "eeh-navigation": "4.5.0",
+    "eeh-navigation": "~4.8.0",
     "google-code-prettify": "~1.0.4",
     "eeh-tuxedo-menu": "~0.1.0",
     "eeh-metis-menu": "~0.2.0"

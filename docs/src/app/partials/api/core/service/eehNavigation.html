@@ -20,25 +20,23 @@
 <h2 id="creating-menu-items">Creating Menu Items</h2>
 <p>A menu item is added to a menu by using the service&#39;s <strong>menuItem</strong> method.
 In the code below &quot;foo&quot; is the name of the menu.</p>
-<pre><code class="lang-javascript">eehNavigationProvider
+<pre><code class="language-javascript">eehNavigationProvider
 .menuItem(&#39;foo.home&#39;, {
     text: &#39;Home&#39;,
     href: &#39;/home&#39;
-});
-</code></pre>
+});</code></pre>
 <h2 id="accessing-menu-items-in-controllers-services-and-directives">Accessing Menu Items in Controllers, Services, and Directives</h2>
 <p>Menu items can be accessed wherever <strong>eehNavigation</strong> is injected - namely in controllers, services, and directives.
 Menu items are accessed by referencing the menu item name after injecting the <strong>eehNavigation</strong> service.</p>
-<pre><code class="lang-javascript">angular.module(&#39;myApp&#39;)
+<pre><code class="language-javascript">angular.module(&#39;myApp&#39;)
 .controller(&#39;MyCtrl&#39;, [&#39;eehNavigation&#39;, function (eehNavigation) {
     // &quot;foo.home&quot; was defined elsewhere.
     eehNavigation.menuItem(&#39;foo.home&#39;).text = &#39;New Menu Item Text;
-}]);
-</code></pre>
+}]);</code></pre>
 <p>It is possible to create a menu item with the <strong>eehNavigation</strong> service, but it is not recommended.
 Instead, create the menu item in <strong>.config</strong> and only do minimal wiring/contextual configuration elsewhere
 with the <strong>eehNavigation</strong> service.</p>
-<pre><code class="lang-javascript">// In .config, setup a logout menu item.
+<pre><code class="language-javascript">// In .config, setup a logout menu item.
 eehNavigationProvider
 .menuItem(&#39;foo.logout&#39;, {
     text: &#39;Logout&#39;
@@ -50,39 +48,35 @@ eehNavigationProvider
 eehNavigation
 .menuItem(&#39;foo.logout&#39;).click = function () {
     // Call custom logout code (e.g. destroy a cookie, delete user object, send logout request to server).
-};
-</code></pre>
+};</code></pre>
 <h2 id="menu-item-link-actions">Menu Item Link Actions</h2>
 <p>There are three mutually exclusive, configurable menu item actions:
 <strong>href</strong>, <strong>click</strong>, and <strong>state</strong>. These actions are available for both navbar and sidebar menu items.</p>
 <h3 id="href">href</h3>
 <p>A good old fashioned anchor link. This value is plugged into a <strong>ng-href</strong> attribute behind the scenes.</p>
-<pre><code class="lang-javascript">eehNavigationProvider
+<pre><code class="language-javascript">eehNavigationProvider
 .menuItem(&#39;foo.home&#39;, {
     text: &#39;Home&#39;,
     href: &#39;/home&#39;
-});
-</code></pre>
+});</code></pre>
 <p>To make the link open in a new tab, set the <strong>target</strong> property to &#39;_blank&#39; (the default value is &#39;_self&#39;).</p>
-<pre><code class="lang-javascript">eehNavigationProvider
+<pre><code class="language-javascript">eehNavigationProvider
 .menuItem(&#39;foo.home&#39;, {
     text: &#39;Home&#39;,
     href: &#39;/home&#39;,
     target: &#39;_blank&#39;
-});
-</code></pre>
+});</code></pre>
 <h3 id="click">click</h3>
 <p>A parameterless function should be assigned to the click property.
 This value is plugged into a <strong>ng-click</strong> attribute behind the scenes.</p>
-<pre><code class="lang-javascript">eehNavigationProvider
+<pre><code class="language-javascript">eehNavigationProvider
 .menuItem(&#39;foo.myMenuItem&#39;, {
     text: &#39;My Sidebar Item&#39;,
     click: function () {}
-});
-</code></pre>
+});</code></pre>
 <h3 id="state">state</h3>
 <p>The name of an Angular UI Router state. This value is plugged into an ui-sref attribute behind the scenes.</p>
-<pre><code class="lang-javascript">$stateProvider
+<pre><code class="language-javascript">$stateProvider
 .state(&#39;myState&#39;, {
     controller: &#39;MyCtrl&#39;,
     templateUrl: &#39;my-template.html&#39;
@@ -94,13 +88,12 @@ eehNavigationProvider
 .menuItem(&#39;foo.myMenuItem&#39;, {
     text: &#39;My Sidebar Item&#39;,
     state: &#39;myState&#39;    // This is a ui-router state.
-});
-</code></pre>
+});</code></pre>
 <h2 id="menu-item-ordering">Menu Item Ordering</h2>
 <p>Menu items are ordered based on their <strong>weight</strong>.</p>
 <h3 id="weight">weight</h3>
 <p>An integer value. Items that are heavier (i.e. greater weight value) sink to the bottom.</p>
-<pre><code class="lang-javascript">eehNavigationProvider
+<pre><code class="language-javascript">eehNavigationProvider
 .menuItem(&#39;foo.bottomMenuItem&#39;, {
     text: &#39;Bottom Sidebar Item&#39;,
     href: &#39;/bottom-sidebar-item&#39;
@@ -110,23 +103,21 @@ eehNavigationProvider
     text: &#39;Top Sidebar Item&#39;,
     href: &#39;/top-sidebar-item&#39;
     weight: -1
-});
-</code></pre>
+});</code></pre>
 <h2 id="menu-item-visibility">Menu Item Visibility</h2>
 <p>Menu items are made shown or hidden according to their <strong>isVisible</strong> property.</p>
 <h3 id="isvisible">isVisible</h3>
 <p>A boolean value or callback function that returns a boolean value.</p>
-<pre><code class="lang-javascript">eehNavigationProvider
+<pre><code class="language-javascript">eehNavigationProvider
 .menuItem(&#39;myHiddenMenuItem&#39;, {
     text: &#39;My Hidden Menu Item&#39;,
     isVisible: false
-});
-</code></pre>
+});</code></pre>
 <p>It is often necessary to contextually hide or show menu items.
 For example, it is common to hide an &quot;admin&quot; menu item for non-admins.
 This would probably happen in a controller or service,
 hence the use of <strong>eehNavigation</strong> instead of <strong>eehNavigationProvider</strong> in the following example.</p>
-<pre><code class="lang-javascript">var isAdmin = function () {
+<pre><code class="language-javascript">var isAdmin = function () {
     // We are going to assume user and user.hasRole are defined and that user.hasRole evaluates to a boolean value.
     return user.hasRole(&#39;admin&#39;);
 };
@@ -134,31 +125,27 @@ eehNavigation
 .menuItem(&#39;admin&#39;, {
     text: &#39;Admin&#39;,
     isVisible: isAdmin
-});
-</code></pre>
+});</code></pre>
 <h2 id="menu-item-icons">Menu Item Icons</h2>
 <p>Menu items are decorated with icons based on their <strong>iconClass</strong>.</p>
 <h3 id="iconclass">iconClass</h3>
 <p>A CSS class that corresponds to an icon in a library like
 <a href="http://getbootstrap.com/components/#glyphicons">Glyphicons</a> or
 <a href="http://fortawesome.github.io/Font-Awesome/icons/">Font Awesome</a>.</p>
-<pre><code class="lang-javascript">eehNavigationProvider
+<pre><code class="language-javascript">eehNavigationProvider
 .menuItem(&#39;foo.home&#39;, {
     text: &#39;Home&#39;,
     href: &#39;/home&#39;
     iconClass: &#39;glyphicon-home&#39;
-});
-</code></pre>
+});</code></pre>
 <p>Glyphicons are supported by default.
 To use another library, like Font Awesome, the base icon class needs to be set.
 For example, &quot;fa&quot; is the base icon class of font awesome.</p>
-<pre><code class="lang-javascript">eehNavigationProvider.iconBaseClass(&#39;fa&#39;);
-</code></pre>
+<pre><code class="language-javascript">eehNavigationProvider.iconBaseClass(&#39;fa&#39;);</code></pre>
 <p>Certain directives might use the defaultIconClassPrefix property, if the directive has default icons
 (e.g. the chevrons in the sidebar directive), to specify an icon library&#39;s class prefix.
 For example, the prefix for Font Awesome is the same as the base class.</p>
-<pre><code class="lang-javascript">eehNavigationProvider.defaultIconClassPrefix(&#39;fa&#39;);
-</code></pre>
+<pre><code class="language-javascript">eehNavigationProvider.defaultIconClassPrefix(&#39;fa&#39;);</code></pre>
 <h2 id="language-translation">Language Translation</h2>
 <p>This doc provides an example of how to use <a href="http://angular-translate.github.io/">angular-translate</a> to translate menu item text.</p>
 <p>Internally, all menu item names are passed through the angular-translate module&#39;s <em>translate</em> filter.
@@ -175,8 +162,7 @@ function ($translateProvider, eehNavigationProvider) {
             text: &#39;Logout&#39;, // Will be translated.
             href: &#39;/logout&#39;,
         });
-}]);
-</code></pre>
+}]);</code></pre>
 <h3 id="add-translations">Add Translations</h3>
 <pre><code>angular.module(&#39;myApp&#39;).config([&#39;$translateProvider&#39;, &#39;eehNavigationProvider&#39;,
 function ($translateProvider, eehNavigationProvider) {
@@ -195,8 +181,7 @@ function ($translateProvider, eehNavigationProvider) {
             &#39;Home&#39;: &#39;Zuhause&#39;,
             &#39;Logout&#39;: &#39;Abmelden&#39;
         });
-}]);
-</code></pre>
+}]);</code></pre>
 <h3 id="add-nested-menu-items-to-toggle-between-languages">Add Nested Menu Items to Toggle Between Languages</h3>
 <pre><code>angular.module(&#39;myApp&#39;).config([&#39;$translateProvider&#39;, &#39;eehNavigationProvider&#39;,
 function ($translateProvider, eehNavigationProvider) {
@@ -219,8 +204,7 @@ function ($translateProvider, eehNavigationProvider) {
                 $translateProvider.use(&#39;de&#39;);
             }
         });
-}]);
-</code></pre>
+}]);</code></pre>
 <h2 id="nested-menu-items">Nested Menu Items</h2>
 <p>Menu items can be nested by using a <strong>.</strong> in the first parameter of menuItem.
 The below example illustrates how to nest child menu items under parent menu items.</p>
@@ -250,8 +234,7 @@ The various menu directives provided by this module may have limits to what they
 .menuItem(&#39;menu.root.baz.quux&#39;, { // The second item under root.baz
     text: &#39;Quux&#39;,
     href: &#39;/some/path&#39;
-});
-</code></pre>
+});</code></pre>
 <h3 id="iscollapsed">isCollapsed</h3>
 <p>A boolean value. Configure the collapse state of a parent menu item.
 Each parent in a nested hierarchy has an independent collapse state.</p>
@@ -263,8 +246,7 @@ Each parent in a nested hierarchy has an independent collapse state.</p>
 .menuItem(&#39;menu.root.foo&#39;, {
     text: &#39;Foo&#39;,
     href: &#39;/some/path&#39;
-});
-</code></pre>
+});</code></pre>
 
 </div>
 

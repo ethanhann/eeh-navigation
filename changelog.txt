@@ -1,4 +1,5 @@
-b37b6fc (HEAD -> master, origin/master, origin/HEAD) ignore package-lock.json
+9c3fd0d (HEAD -> master, tag: 4.8.0, origin/master, origin/HEAD) Prepare for release
+b37b6fc ignore package-lock.json
 6744334 Bump npm version
 ec5b0fd Replace translate filter with directive in navbar
 d7e21ae Replace translate filter with directive
